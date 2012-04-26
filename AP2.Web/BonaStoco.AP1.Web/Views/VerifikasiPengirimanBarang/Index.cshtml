@@ -1,0 +1,135 @@
+﻿@model IList<BonaStoco.AP1.MasterData.Models.TenanAdvancedSearch>
+@{
+    ViewBag.Title = "Verifikasi Pengiriman Barang";
+}
+
+<h2>Verifikasi Pengiriman Barang</h2>
+@section styles
+{
+    <link href="@Url.Content("~/Content/AdvancedSearch.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/themes/base/jquery-ui-1.8.14.custom.css")" rel="stylesheet" type="text/css" />
+}
+
+@section scripts
+{
+    @Content.Script("jquery.validate.min.js", @Url)
+    @Content.Script("jquery.validate.unobtrusive.min.js", @Url)
+    @Content.Script("jquery.quicksearch.js", @Url)
+   
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#dialog-overlay").ajaxStart(function () {
+                $(this).show();
+            }).ajaxStop(function () {
+                $(this).hide();
+            });
+
+            $("#AdvancedSearch").dialog({
+                autoOpen: false,
+                width: 900,
+                height: 450,
+                show: "Fade",
+                hide: "explode"
+            });
+            $("#AdvSearch").click(function () {
+                document.getElementById("AdvancedSearch").focus();
+                document.getElementById("AdvancedSearch").style.display = "block";
+                $("#AdvancedSearch").dialog("open");
+                $("#messageDelete").empty();
+                return false;
+            });
+
+            $('#id_search').quicksearch('table tbody tr',
+            {
+                noResults: '#noresults',
+                stripeRows: ['odd', 'even'],
+                loader: 'img.loading'
+            });
+        });
+        
+
+        function CloseDialog() {
+            $("#AdvancedSearch").dialog("close");
+        }
+    </script>
+}
+
+
+<div id="search">
+    @using (Ajax.BeginForm("ListPengirimanBarangYangBelumDiVerifikasi", "VerifikasiPengirimanBarang",
+            new AjaxOptions
+            {
+                HttpMethod = "POST",
+                InsertionMode = InsertionMode.Replace,
+                UpdateTargetId = "results",
+                LoadingElementId = "progress"
+            }
+        ))
+    {
+        <p>
+            Masukkan kode tenan <br />
+            <input type="text" name="tenanId" id="txtSearch" placeholder="Kode Tenan"/>
+            <input type="submit" value="Cari" />
+            <img id="progress" src="@Url.Content("~/Content/images/loader.gif")" alt="Loader"/>
+            <input type="submit" value="Advanced Search" id="AdvSearch"/>
+        </p>
+    }
+</div>
+
+<div id="messageDelete" style="font-size: 16px; color: blue;">@ViewBag.Message</div>
+
+<div id="AdvancedSearch" title="Advanced Search" style="display:none">
+    <form action="#">
+	    <input type="text" name="search" value="" id="id_search" placeholder="Search"/> 
+        <img class="loading" src="@Url.Content("~/Content/images/loader.gif")"/>
+    </form>	
+    <table id="tenans" width="100%">
+        <thead>
+            <tr >
+                <th>Kode</th>
+                <th>Nama</th>
+                <th>Alamat</th>
+            </tr>
+        </thead>
+        <tbody>
+    	    <tr id="noresults">
+		        <td colspan="6">No Results</td>
+	        </tr>
+            @foreach (var tenan in Model)
+            {
+                <tr id="tenan" >
+                    <td width="10%" onclick="CloseDialog()">@Ajax.ActionLink(tenan.TenanId.ToString(),"ListPengirimanBarangYangBelumDiVerifikasi", new {tenanid = @tenan.TenanId},
+                    new AjaxOptions
+                    {
+                        HttpMethod = "POST",
+                        InsertionMode = InsertionMode.Replace,
+                        UpdateTargetId = "results",
+                        LoadingElementId = "progress"
+                    })
+                    </td>
+                    <td width="35%" onclick="CloseDialog()">@Ajax.ActionLink(tenan.TenanName, "ListPengirimanBarangYangBelumDiVerifikasi", new { tenanid = @tenan.TenanId },
+                    new AjaxOptions
+                    {
+                        HttpMethod = "POST",
+                        InsertionMode = InsertionMode.Replace,
+                        UpdateTargetId = "results",
+                        LoadingElementId = "progress"
+                    })</td>
+                    <td width="55%">@tenan.Alamat</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div id="results">
+</div>
+
+<div id="dialog-overlay">
+		<div id="dialog-loader">
+			<img src="@Url.Content("~/Content/images/loader-new.gif")"/>
+        </div>
+</div>
+ 

@@ -1,0 +1,74 @@
+﻿ <applet name="jZebra" code="jzebra.RawPrintApplet.class" archive="@Url.Content("~/Scripts/jzebra.jar")" width="10" height="10">
+ <param name="printer" value="zebra"/>
+ <param name="sleep" value="200"/>
+</applet>
+@model BonaStoco.AP1.PengirimanBarang.Models.GRNItem
+@if (Model != null)
+{
+    <td>@Model.Kode</td>
+    <td>@Model.Barcode</td>
+    <td>@Model.Nama</td>
+    <td>@Model.Qty</td>
+    <td >@Model.ActualQty</td>
+    <td><span onclick="Edit()" style="cursor:pointer">
+        @Ajax.ActionLink("Edit", "Edit", new { id = Model.Guid.ToString() },
+        new AjaxOptions
+        {
+            HttpMethod = "POST",
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "FormEdit"
+        })
+        </span>
+    </td>
+    <td>@Model.UnitName</td>
+     if (Model.CcyCode.ToUpper() == "USD" || Model.CcyCode.ToUpper() == "US DOLLAR")
+     {
+                         <td>$ @Model.Harga.ToString("N2")</td>
+                         <td>$ @Model.Jumlah.ToString("N2")</td>
+     }
+     else
+     {
+                        <td>Rp. @Model.Harga.ToString("N0")</td>
+                        <td>Rp. @Model.Jumlah.ToString("N0")</td>
+     }
+                    <td><span id="linkPrint" onclick="dialogPrintBarcode('@Model.Barcode', '@Model.CcyCode', '@Model.HargaJual', '@Model.Nama', '@Model.ActualQty', '@Model.StatusPrint')">Print Barcode</span></td>
+                    if (Model.Items.Length > 0)
+                    {
+		                <td><span style="cursor:pointer">
+                            @Ajax.ActionLink("Reject", "Reject", new { id = Model.Guid.ToString(), grnId = Model.GRNId.ToString() },
+                            new AjaxOptions
+                            {
+                                HttpMethod = "POST",
+                                InsertionMode = InsertionMode.Replace
+                            })
+                        </span></td>
+                    }
+                    else
+                    {
+                        <td></td>       
+                    }
+    if (Model.CcyCode.ToUpper() == "USD" || Model.CcyCode.ToUpper() == "US DOLLAR")
+    {
+        <td>$ @Model.Harga.ToString("N2")</td>
+        <td>$ @Model.Jumlah.ToString("N2")</td>
+    }
+    else{
+        <td>Rp. @Model.Harga.ToString("N0")</td>
+        <td>Rp. @Model.Jumlah.ToString("N0")</td>
+    }
+    <td>
+    if (Model.StatusPrint){
+    <span id="linkPrint" onclick="dialogPrintBarcode('@Model.Barcode', '@Model.CcyCode', '@Model.HargaJual', '@Model.Nama', '@Model.ActualQty', '@Model.StatusPrint')">Print Barcode</span>
+    }
+    </td>
+}
+
+else
+{
+    <script type="text/javascript">
+        alert("Barang yang anda cari tidak ditemukan.");
+    </script>
+}
+<div id="FormEdit" title="Edit Qty">
+
+</div>

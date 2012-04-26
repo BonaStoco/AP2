@@ -1,0 +1,40 @@
+﻿@model BonaStoco.AP1.MasterData.Models.Tenan
+
+@section styles
+{
+ <link href="@Url.Content("~/Content/CompanyProfile.css")" rel="stylesheet" type="text/css" />
+
+}
+           
+@section scripts
+{
+    @Content.Script("jquery.validate.min.js", @Url)
+    @Content.Script("jquery.validate.unobtrusive.min.js", @Url)
+}
+
+<h2>Profil Perusahaan > Edit Profile</h2>
+<form action="" method="post">
+<div id=nama-labelcompanyprofile>@Model.TenanName</div>
+    <div id=companyprofile class=companyprofile>
+      @Html.HiddenFor(model => model.TenanId)
+        @Html.HiddenFor(model => model.TenanName)
+         @Html.HiddenFor(model => model.CategoryId)
+        @Html.HiddenFor(model => model.TerminalId)
+         @Html.HiddenFor(model => model.LocationId)
+          @Html.HiddenFor(model => model.SubTerminalId)
+           @Html.HiddenFor(model => model.Tarif)
+            @Html.HiddenFor(model => model.TanggalBergabung)            
+        
+        
+        <div id=alamat-labelcompanyprofile class=label-companyprofile> Alamat </div><div id=alamat-editcompanyprofile class=field-companyprofile> @Html.TextAreaFor(model => model.Alamat)</div>
+       <hr />
+        <div id=npwp-labelcompanyprofile class=label-companyprofile> NPWP</div><div id=npwp-editcompanyprofile class=field-companyprofile> @Html.TextBoxFor(model => model.Npwp)</div>
+            <hr />
+        <div id=nppkp-labelcompanyprofile class=label-companyprofile> NPPKP </div><div id=nppkp-editcompanyprofile class=field-companyprofile> @Html.TextBoxFor(model => model.Nppkp)</div>
+           <hr />
+         <br />
+        
+    </div>
+     <br />
+        <div> <input type="submit" value="Save Changes" id="btn-editprofile" /></div>
+</form>

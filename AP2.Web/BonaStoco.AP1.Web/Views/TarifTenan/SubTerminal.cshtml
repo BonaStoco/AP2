@@ -1,0 +1,83 @@
+﻿@model IList<BonaStoco.AP1.MasterData.Models.Tenan>
+@{
+    ViewBag.Title = "Data Tenan";
+}
+
+@section styles
+{
+ <link href="@Url.Content("~/Content/CompanyProfile.css")" rel="stylesheet" type="text/css" />
+
+}
+
+<h2>Data Tenan</h2>
+
+<div>
+<table  width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <th>No</th>
+    <th>Kode</th>
+    <th>Nama</th>
+    <th>Alamat</th>
+    <th>Sub</th>
+    <th>Gate</th>
+    <th>Tgl Gabung</th>
+    <th style="text-align:right">Tarif</th>
+    <th style="text-align:right">Target</th>
+    <th style="text-align:center">Edit</th>
+
+  </tr>
+  @{
+      
+      var no = 1;
+      var count=0;
+      var warna="";
+      var ccy = "";
+      }
+  
+  @foreach (var item in Model)
+  {
+      if (no % 2 == 0)
+      {
+          warna = "#f8f8f8";
+      }
+      else
+      {
+          warna = "#fff";
+      }
+
+      if (item.CcyCode == "USD")
+      {
+          ccy = "$";
+      }
+      else if (item.CcyCode == "IDR")
+      {
+          ccy = "Rp.";
+      }
+      else
+      {
+          ccy = "";
+      }
+  <tr id="tenanitem-@item.TenanId" bgcolor=@warna>
+    <td>@no</td>
+    <td>@item.TenanId</td>
+    <td>&nbsp;@item.TenanName</td>
+    <td>&nbsp;@item.Alamat</td>
+    <td>&nbsp;@item.SubTerminalName</td>
+    <td>&nbsp;@item.Gate</td>
+    <td>@item.TanggalBergabung.ToString("dd MMM yyy")</td>
+    <td align=right>@item.Tarif %</td>
+    <td align=right>@ccy @item.Target.ToString("N")</td>
+     <td><img src="../../Content/images/pensil.png"/>@Html.ActionLink("Edit","Edit",new {id=@item.TenanId})</td>
+  </tr>
+      count=count+1;
+      no++;   
+        }
+
+        <tr>
+    
+    <th colspan="10"> Total :  @count rows </th>
+    
+
+  </tr>
+</table>
+</div>

@@ -1,0 +1,188 @@
+﻿@model IList<BonaStoco.AP1.Web.Report.LaporanProduksi>
+@{
+    ViewBag.Title = "LaporanKonsesi";
+}
+@section styles
+{
+ <link href="@Url.Content("~/Content/LaporanProduksi.css")" rel="stylesheet" type="text/css" />
+
+}
+@section scripts{
+    @Content.Script("PrintDocument.js", @Url)
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+
+
+        });
+        $("#btnPrint").click(function () {
+            var print = $("#PrintArea");
+            print.jqprint();
+        });
+    </script>
+}
+
+<button id="btnPrint">Cetak Laporan</button>
+<div id="PrintArea">
+<table id="header-produksi" width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>PT. ANGKASA PURA I (PERSERO) </td>
+    <td rowspan="3">LAPORAN PRODUKSI DAN PENDAPATAN KONSESI RUPIAH</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>KANTOR CABANG UTAMA </td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>BANDAR UDARA INTERNATIONAL NGURAH RAI </td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+
+<table id= "item-produksi" width="100%" border="1" cellpadding="0" cellspacing="0">
+
+  <tr>
+    <th rowspan="2">NO</th>
+    <th rowspan="2">MRCH CODE </th>
+    <th rowspan="2">NAMA PERUSAHAAN </th>
+    <th rowspan="2">GATE</th>
+    <th colspan="2">FAKTUR</th>
+    <th>MASA</th>
+    <th>JENIS PRODUK </th>
+    <th>OMSET</th>
+    <th>%</th>
+    <th>KONSESI</th>
+    <th>NO SERI FAKTUR </th>
+    <th>MANAGEMENT FEE </th>
+  </tr>
+  <tr>
+    <th>NO FAKTUR </th>
+    <th>TANGGAL</th>
+    <th>BULAN</th>
+    <th>&nbsp;</th>
+    <th>RUPIAH</th>
+    <th>KONSESI</th>
+    <th>RUPIAH</th>
+    <th>NO. PAJAK </th>
+    <th>&nbsp;</th>
+  </tr>
+ 
+ 
+
+  @{
+      
+      var no = 1;
+      var count = 0;
+      var tenantype = "";
+      var terminal = "";
+      var gate = "";
+      String[] month = new String[12] { "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember" };
+      decimal TotalOmsetGate = 0;
+      decimal TotalKonsesiGate = 0;
+      decimal TotalOmsetTenanType = 0;
+      decimal TotalKonsesiTenanType = 0;
+      decimal GrandTotalOmset = 0;
+      decimal GrandTotalKonsesi = 0;
+      }
+      
+     
+       @* @foreach (var item in Model)*@
+       @for (var i = 0; i < Model.Count; i++)
+       {
+           var item = Model[i];
+           BonaStoco.AP1.Web.Report.LaporanProduksi nextItem = null;
+           if (i + 1 < Model.Count)
+           {
+               nextItem = Model[i + 1];
+           }
+
+           
+           if (tenantype != item.TenanTypeName)
+           {               
+               tenantype = item.TenanTypeName;                   
+                    <tr>
+                        <td></td><td></td><td align="center" id="text-capital"><b>@tenantype</b></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    </tr>
+           }
+           if (terminal != item.Terminal && tenantype == item.TenanTypeName)
+           {
+               terminal = item.Terminal;                  
+                    <tr>
+                        <td></td><td></td><td id="text-capital"><b>@terminal</b></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    </tr>
+           }
+           if (gate != item.Gate && terminal == item.Terminal && tenantype == item.TenanTypeName)
+           {               
+               gate = item.Gate;
+                    
+                    <tr bgcolor="#DDDDDD">
+                        <td></td><td></td><td id="text-capital"><b>@gate</b></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    </tr> 
+           }
+           
+
+           int tgl = item.Bulan.Substring(4).AsInt();
+           var bulan = month[tgl-1];
+          
+                  <tr>
+                    <td align="center" width="5">@no</td>
+                    <td align="center">@item.MRCHCode</td>
+                    <td width="200">@item.NamaPerusahaan</td>
+                    <td align="center">@item.Gate</td>
+                    <td align="center">@item.NoFaktur</td>
+                    <td align="center">@ViewBag.Tanggal</td>
+                    <td align="center">@bulan</td>
+                    <td align="center">@item.JenisProduk</td>
+                    <td align="right">@item.OMSET.ToString("N")</td>
+                    <td align="center">@item.PersenKonsesi%</td>
+                    <td align="right">@item.NominalKonsesi.ToString("N")</td>
+                    <td align="center">@item.NoPajak</td>
+                    <td align="right">@item.ManagementFee</td>
+                  </tr>  
+
+           TotalOmsetGate += item.OMSET;
+           TotalKonsesiGate += item.NominalKonsesi;   
+           if (nextItem == null || gate != nextItem.Gate)           
+           {               
+               
+                    <tr>
+                        <td></td><td></td><td id="text-capital"><b>Total @gate</b></td><td></td><td></td><td></td><td></td><td></td><td align="right"><b>@TotalOmsetGate.ToString("N")</b></td><td></td><td align="right"><b>@TotalKonsesiGate.ToString("N")</b></td><td></td><td></td>
+                    </tr> 
+                    <tr>
+                        <td>&nbsp;</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    </tr>                                                                                                                                                                                                                                                                                      
+                TotalOmsetGate = 0;
+                TotalKonsesiGate = 0;
+
+           }
+
+
+           TotalOmsetTenanType += item.OMSET;
+           TotalKonsesiTenanType += item.NominalKonsesi;
+           if (nextItem == null || tenantype != nextItem.TenanTypeName)
+           {                                                                                                                                                                                                                                                                                      
+                    <tr bgcolor="#DDDDDD">
+                        <td></td><td></td><td id="text-capital"><b>Total @tenantype</b></td><td></td><td></td><td></td><td></td><td></td><td align="right"><b>@TotalOmsetTenanType.ToString("N")</b></td><td></td><td align="right"><b>@TotalKonsesiTenanType.ToString("N")</b></td><td></td><td></td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    </tr>                                                                                                                                                                                                                                                                    
+                                                  
+                TotalOmsetTenanType = 0;
+                TotalKonsesiTenanType = 0;
+
+           }
+           GrandTotalOmset += item.OMSET;
+           GrandTotalKonsesi += item.NominalKonsesi;
+           no++;
+
+       }                
+                    <tr bgcolor="#DDDDDD">
+                        <td></td><td></td><td><b>GRAND TOTAL</b></td><td></td><td></td><td></td><td></td><td></td><td align="right"><b>@GrandTotalOmset.ToString("N")<b></td><td></td><td align="right"><b>@GrandTotalKonsesi.ToString("N")</b></td><td></td><td></td>
+                    </tr> 
+ 
+  
+</table>
+</div>
+

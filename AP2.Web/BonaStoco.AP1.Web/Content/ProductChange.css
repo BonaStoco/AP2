@@ -1,0 +1,139 @@
+﻿#DetailLeftPerubahan {
+	background-color:White;	   
+	position: inherit;
+	width: 222px;
+	min-height: 480px;
+	z-index: 1;
+	border: 0px;
+}
+#Report 
+{
+	border:solid 0px #D43F55;
+	margin-top:0px;
+	top:0px;
+}
+#Report tr td.tableLeft
+{
+	padding: 0px;
+	margin:0px;
+}
+#tblreport
+{
+	border:0;
+}
+
+#tblreport tbody tr 
+{
+    border:solid 1px #FF3F00;
+    padding: 2px;
+}
+#tblreport tbody tr td
+{
+    padding: 2px;
+    font-size: 12px;
+}
+
+#tblreport th
+{
+	background-color:#5B8EAC; 
+	color:White;
+	font-weight:bold;
+	border:solid 1px #fff;
+	font-size:13px;
+}
+
+#menugroup 
+{
+	border:0px;
+	width:100%;
+}
+#menugroup tr td
+{
+	border:0px;
+}
+#menugroup a
+{
+	 display: block;
+	 color: blue;
+	 font-size:10pt;
+	 text-transform:uppercase;
+	 padding-left:15px;	 
+	 padding-top:3px;
+	 padding-bottom:3px;
+}
+#menugroup a:link
+{
+	display:block;
+    text-decoration:none;   
+}
+#menugroup a:hover
+{
+ background-color: #d8dfea; 
+ color:#0066CC;
+}
+#menugroup a:active
+{
+ color: blue; 
+ font-weight:lighter;
+}
+	
+#headerPerubahan
+{
+	 background-color:#5B8EAC;  
+     padding:5px 3px 5px 3px;
+     color:white;  
+     font-weight:bold;
+     font-size:14px;  
+     border:0px;
+     vertical-align:top;
+     height: 18px;
+     text-align:center;
+}
+	
+.btnPrint
+{
+	font-size: 9px;
+	text-align:center;
+}
+table#ReportPerubahan
+{
+	border: 0px;
+	width: 100%;
+	padding:0px;
+	margin:0px;
+}
+table#ReportPerubahan tr
+{
+	border: 0px;
+	width: 100%;
+	padding:0px;
+	margin:0px;
+}
+table#ReportPerubahan tr td
+{
+	border: 0px;
+	padding:0px;
+	margin:0px;
+	padding-bottom: 5px;
+	font-size:11px;
+	background-color:#f8f8f8;
+}
+div#TenanList
+{
+	min-height: 500px;
+}
+div.navigasitenan
+{
+	text-align: center;
+	font-size: 14px;
+}
+div#divDetailReport
+{
+	width:100%;
+	min-height:510px;
+}
+div.pager
+{
+	width:100%;
+	text-align:right;
+}

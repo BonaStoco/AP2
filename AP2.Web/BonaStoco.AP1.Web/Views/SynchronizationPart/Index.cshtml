@@ -1,0 +1,124 @@
+﻿@section styles{
+    <link href="@Url.Content("~/Content/ImportProduct/ImportProduct.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/Home/ModalDialog.css")" rel="stylesheet" type="text/css" />
+}
+@section scripts
+{
+    @Content.Script("AdvancedSearchTenan.js", @Url)
+    @Content.Script("jquery.validate.min.js", @Url)
+    @Content.Script("jquery.validate.unobtrusive.min.js", @Url)
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#TenanSearch").click(OpenTenanSearchDialog);
+            $('#accordion .head').click(function () {
+                $(this).next().toggle('slow');
+                return false;
+            }).next().hide();
+            $("#accordion").accordion();
+         
+             $("#sycBtn").attr("disabled", "disabled");           
+           
+            $("#sycBtn").click(Submit);
+        });
+        function Submit() {
+            var tenanid = $("#tenanid").val();
+            if (tenanid == "") {
+                $("#Message").text("tenanid tidak ditemukan");
+                $("#sycBtn").attr("disabled", "disabled");   
+            } else {
+                $("#sycBtn").attr("disabled", "");               
+                document.getElementById("loading").style.display = "inline";
+                $("#SyncronizePart").submit();
+            }
+          
+            //SynchronizePartById();
+        }
+
+        function SynchronizePartById() {
+          var tenantId=  $("#tenanid").val();
+          $.ajax({
+              type: "GET",
+              url: "/SynchronizationPart/SyncronizePart/",
+              dataType: "json",
+              data:{"tenantId":tenantId},
+              //async: false,
+              beforeSend: LoadingStart,
+              complete: LoadingEnd,  
+             success: function(data)
+             {
+                alert(data.message);
+             }
+          });
+        }
+        function OpenTenanSearchDialog() {
+            CreateModalDialog("Pencarian Tenan");
+            $("#Loading").hide();
+            $.ajax({
+                type: "GET",
+                url: "/SynchronizationPart/GetTenans",
+                dataType: "json",
+                beforeSend: LoadingStart,
+                complete: LoadingEnd,               
+                success: InsertTenanToTable
+            });
+        }
+        function SearchByTenanName() {
+            var searchKey = $("#search_tenant").val();
+            $.ajax({
+                type: "GET",
+                url: "/SynchronizationPart/FindTenanByName",
+                dataType: "json",
+                data: { "key": searchKey },
+                beforeSend: LoadingStart,
+                complete: LoadingEnd,              
+                success: InsertTenanToTable
+            });
+        }
+        function Searched(tenanId) {
+            DestroyModalDialog();
+            $("#tenanid").val(tenanId);
+            $("#sycBtn").attr("disabled", "");      
+            FindTenantNameByTenanId(tenanId);
+        }
+        function FindTenantNameByTenanId(tenanid) {
+            if (tenanid == null || tenanid.length == 0)
+                return;
+            $.ajax({
+                type: "GET",
+                url: "/SynchronizationPart/FindTenantNameByTenanId/" + tenanid,
+                dataType: "json",
+                success: ShowStateTenantName
+            });
+        }
+        function ShowStateTenantName(data) {
+            TenanName = data;
+            $("#tenanName").text(data);
+            $("#sycBtn").attr("disabled", "");      
+        }
+        function LoadingStart() {
+            $("#loading").show();
+        }
+        function LoadingEnd() {
+            $("#loading").hide();
+        }
+    </script>
+}
+    <fieldset>
+   <legend>Sinkronisasi barang</legend>
+    <br />
+@using (Html.BeginForm("SyncronizePart", "SynchronizationPart", FormMethod.Post, new { id = "SyncronizePart"}))
+{
+       <input type="text" id="tenanid" name="tenanId" placeholder="Tenan" style="float:left;margin-right:5px;" onchange="FindTenantNameByTenanId(this.value)"/>
+       <label id='TenanSearch' class='positive button'><img src='../Content/images/button/search.png'/> Pencarian Tenan</label>
+        <label id="tenanName"></label>
+    <br /><br />
+    <button id="sycBtn" class='positive button'><img src='../Content/images/button/search.png'/>Sinkronisasi</button>
+     <div id="loading">
+		<div id="dialog-loader">
+			<img src="@Url.Content("~/Content/images/loader-new.gif")"/>
+		</div>
+    </div>
+    <span id="Message"></span>
+}
+    </fieldset> 
+    

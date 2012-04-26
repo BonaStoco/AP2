@@ -1,0 +1,474 @@
+﻿#APReportForm 
+{
+	background-color:#e8eef4;
+}
+Table#TblAPReportForm 
+{
+  border: none 0px #fff;
+}
+
+fieldset#APReportForm
+{
+	background-color:#e8eef4;
+}
+#TblAPReportForm td
+{
+	
+ border: none 0px #fff;
+ 
+}
+#TblAPReportForm tr
+{
+	
+ border: none 0px #fff;
+ 
+}
+/*table report
+--------------------------------------------*/
+table#tablereport {
+    border: solid 2px #e8eef4;
+    border-collapse: collapse;
+}
+
+table#tablereport td {
+    padding: 5px;
+    border: none 0px #e8eef4;
+}
+
+table#tablereport th {
+    padding: 6px 5px;
+    text-align: left;
+    background-color: #e8eef4;
+    border: none 0px #e8eef4;
+}
+/*table layout penjualan
+--------------------------------------------*/
+table#layoutpenjualan {
+    border: none 0px #fff;
+    border-collapse: collapse;
+}
+
+table#layoutpenjualan td {
+    padding: 5px;
+    border: none 0px #e8eef4;
+}
+
+table#layoutpenjualan tr {
+    padding: 6px 5px;
+    text-align: left;
+    border: none 0px #e8eef4;
+}
+
+/*table faktur summary
+--------------------------------------------*/
+table#tablefaktursummary {
+    border:  solid 1px #e8eef4;
+    border-collapse: collapse;
+    width:100%;
+}
+
+table#tablefaktursummary td {
+    padding: 5px;
+    border: solid 1px #000;
+}
+
+table#tablefaktursummary th {
+    padding: 6px 5px;
+    text-align: left;
+    background-color: #e8eef4;
+    border: solid 1px #000;
+}
+/*table header
+--------------------------------------------*/
+table#header
+{
+ background-color:#fff;
+ border: none 0px #fff;
+  
+}
+
+table#header td
+{
+ background-color:#fff;
+ border: none 0px #fff;
+  
+}
+/*table description
+--------------------------------------------*/
+table#description
+{
+ background-color:#fff;
+ border: solid 1px #e8eef4;
+  
+}
+td#rincian
+{
+ background-color:#fff;
+  border: none 0px #fff;
+  
+}
+td#mount
+{
+ background-color:#fff;
+ border-left: solid 1px #e8eef4;
+ border-bottom: 0;
+ border-right: 0;
+ border-top: 0;
+
+}
+tr#rincian
+{
+	 background-color:#fff;
+  border: none 0px #000;
+}
+
+table#CompanyProfile
+{
+background-color:#fff;
+ border: none 0px #fff;
+  margin:0 0 0 0;
+   padding:0 0 0 0;
+}
+table#CompanyProfile td
+{
+background-color:#fff;
+ border: none 0px #fff;
+}
+
+table#footer
+{
+ background-color:#fff;
+ border: none 0px #fff;
+  
+}
+table#footer td
+{
+ background-color:#fff;
+ border: none 0px #fff;
+  
+}
+
+
+
+#fieldsetreport {
+    border: 1px solid #ddd;
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
+}
+#detailleft {
+	border-radius: 10px 10px 10px 10px;	
+	background-color: #FFDFAA;
+	position: inherit;
+	width: 222px;
+	height: 480px;
+	z-index: 1;
+	border: 0;
+}
+#detail {
+	z-index:1;
+	top:0px;
+}
+ #totalsale {
+	background-color: #7F7FAA;
+	height: 30px;
+	width: 200px;
+}
+#btnhari {
+	border-radius: 5px 5px 5px 5px;	
+	background-color: #AA0000;
+	background-position: center center;
+	text-align: center;
+	vertical-align: middle;
+	display: block;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #FFFFFF;
+	clear: both;
+	border-top-style: outset;
+	border-right-style: outset;
+	border-bottom-style: outset;
+	border-left-style: outset;
+	clip: rect(auto,auto,auto,auto);
+	cursor: text;
+	filter: Light;
+    height:20px;
+     width:250px;
+}
+#btnbulan {
+	border-radius: 5px 5px 5px 5px;	
+	background-color: #559FAA;
+	background-position: center center;
+	text-align: center;
+	vertical-align: middle;
+	display: block;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #FFFFFF;
+	clear: both;
+	border-top-style: outset;
+	border-right-style: outset;
+	border-bottom-style: outset;
+	border-left-style: outset;
+	clip: rect(auto,auto,auto,auto);
+	cursor: text;
+	filter: Light;
+	 height:20px;
+     width:250px;
+}
+#btntahun {
+	border-radius: 5px 5px 5px 5px;	
+	background-color: #559FAA;
+	background-position: center center;
+	text-align: center;
+	vertical-align: middle;
+	display: block;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #FFFFFF;
+	border-top-style: outset;
+	border-right-style: outset;
+	border-bottom-style: outset;
+	border-left-style: outset;
+	clip: rect(auto,auto,auto,auto);
+	cursor: text;
+	filter: Light;
+	 height:20px;
+     width:250px;
+	
+}
+
+#btnbandara {
+	border-radius: 5px 5px 5px 5px;	
+	background-color: #AA0000;
+	background-position: center center;
+	text-align: center;
+	vertical-align: middle;
+	display: block;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #FFFFFF;
+	clear: both;
+	border-top-style: outset;
+	border-right-style: outset;
+	border-bottom-style: outset;
+	border-left-style: outset;
+	clip: rect(auto,auto,auto,auto);
+	cursor: text;
+    height:20px;
+    width:200px;
+}
+#detailharian {
+	border-radius: 5px 5px 5px 5px;	
+	background-color:#559FAA;
+	background-position: center center;
+	text-align: center;
+	margin-left:20px;	
+	vertical-align: middle;
+	display: block;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #FFFFFF;
+	clear: both;
+	border-top-style: outset;
+	border-right-style: outset;
+	border-bottom-style: outset;
+	border-left-style: outset;
+	clip: rect(auto,auto,auto,auto);
+	cursor: text;
+	filter: Light;
+    height:20px;
+     width:170px;
+}
+#lbltotalsale 
+{
+	background-color:#6F89B0;
+	 height:40px;
+      font-size:x-large;
+      color:Black;
+}
+ table#tbldetail, td,tr
+{
+      border: solid 1px #e8eef4;
+}
+#detailleft table, td, tr
+{
+	border: none 0px #fff;
+
+}
+
+#tbldetail td
+{
+ border:solid 2px #e8eef4;
+}
+#trheader
+{
+	color:White;
+}
+
+/* TAB MENU   
+----------------------------------------------------------*/
+ul#navbutton {
+   
+    padding: 0 0 2px;
+    position: relative;
+    margin:0;
+    text-align: left;
+}
+
+ul#navbutton li {
+    display: inline;
+    list-style: none;
+   }
+
+ul#navbutton li#greeting {
+    padding: 10px 20px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 2.8em;
+    color: #fff;
+}
+
+ul#navbutton li a {
+    padding: 10px 70px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 2.8em;
+    background-color: #99FFFF;
+    color: #000;
+    border-radius: 4px 4px 4px 4px;
+    -webkit-border-radius: 4px 4px 4px 4px;
+    -moz-border-radius: 4px 4px 4px 4px;
+   
+}
+
+ul#navbutton li a:hover {
+    background-color: #AA0000;
+    text-decoration: none;
+    color: #fff;
+}
+
+ul#navbutton li a:active {
+    background-color: #a6e2a6;
+    text-decoration: none;
+    color: #fff;
+}
+
+ul#navbutton li.selected a {
+    background-color: #fff;
+    color: #000;
+}
+
+/*NAV BTN BANDARA*/
+
+ul#navbtnbandara {
+   
+    padding: 0 0 2px;
+    position: inherit;
+    margin:0;
+    text-align: left;
+}
+
+ul#navbtnbandara li {
+    display: inline;
+    list-style: none;
+   }
+
+ul#navbtnbandara li#greeting {
+    padding: 10px 20px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 2.8em;
+    color: #fff;
+}
+
+ul#navbtnbandara li a {
+    padding: 10px 57px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 2.8em;
+    background-color: #AA0000;
+    color: #fff;
+    border-radius: 4px 4px 4px 4px;
+    -webkit-border-radius: 4px 4px 4px 4px;
+    -moz-border-radius: 4px 4px 4px 4px;
+   
+}
+
+ul#navbtnbandara li a:hover {
+    background-color: #D43F55;
+    text-decoration: none;
+}
+
+ul#navbtnbandara li a:active {
+    background-color: #a6e2a6;
+    text-decoration: none;
+}
+
+ul#navbtnbandara li.selected a {
+    background-color: #fff;
+    color: #000;
+}
+
+
+/*NAV BTN DETAIL*/
+
+ul#btndetail {
+   
+    padding: 0 0 2px;
+    position: relative;
+    margin:0;
+    text-align: right;
+}
+
+ul#btndetail li {
+    display: block;
+    list-style: none;
+   }
+
+ul#btndetail li#greeting {
+    padding: 10px 20px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 2.8em;
+    color: #fff;
+}
+
+ul#btndetail li a {
+    padding: 10px 57px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 2.8em;
+    background-color: #99FFFF;
+    color: #000;
+    border-radius: 4px 4px 4px 4px;
+    -webkit-border-radius: 4px 4px 4px 4px;
+    -moz-border-radius: 4px 4px 4px 4px;
+   
+}
+
+ul#btndetail li a:hover {
+    background-color:#AA0000;
+    text-decoration: none;
+    color: #fff;
+}
+
+ul#btndetail li a:active {
+    background-color: #a6e2a6;
+    text-decoration: none;
+    color: #fff;
+}
+
+ul#btndetail li.selected a {
+    background-color: #fff;
+    color: #000;
+}
+
+
+nav#navigationbtn {
+    margin-top: 10px;
+}
+
+table#detailpenjualan tr td
+{
+    border : none;
+}

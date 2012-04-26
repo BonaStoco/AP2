@@ -1,0 +1,220 @@
+﻿@model BonaStoco.AP1.Web.Report.StockOpnameReport[]
+@{
+    ViewBag.Title = "StockOpnameReport";
+}
+@section styles
+{
+    <link href="@Url.Content("~/Content/StockOpnameReport.css")" rel="stylesheet" type="text/css" />
+}
+@section scripts{
+    @Content.Script("PrintDocument.js", @Url)
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#printBtn").click(function () {
+                var print = $("#opnamereport");
+                print.jqprint();
+            });
+        });
+    </script>
+}
+<div class="actionbutton">
+    <table style="border: 0;">
+        <tr>
+            <td style="border: 0;">
+                <button id="printBtn" class="positive button">
+                    <img width="16px" height="16px" src="../Content/images/print.png" />Print</button>
+            </td>
+            <td style="border: 0;">
+                <form action="./OpnamePart" method="post">
+                  <input type="hidden" value="@Model[0].TenantId" id="tenanId" name="tenanId" />
+                  <button id="tmblBackToList" type="submit" class="positive button"><img src="../../Content/images/button/search.png" />Kembali ke list</button>
+                </form>
+                
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="opnamereport">
+    <div id="companynamefield">
+        @Model[0].TenanName</div>
+    <div id="stockopnameheader">
+        Laporan Perbandingan Stok Barang</div>
+    <table width="100%" id="tablebody">
+        <tr>
+            <td>
+                <table id="tableheader" width="50%">
+                    <tr>
+                        <td class="headerCaption">
+                            Nomor Opname
+                        </td>
+                        <td class="headerValue">
+                            @Model[0].OpnameNumber
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="headerCaption">
+                            Tanggal Buka Opname
+                        </td>
+                        <td class="headerValue">
+                            @Model[0].StartingDate.ToString("dd MMM yyyy HH:mm")
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="headerCaption">
+                            Tanggal Tutup Opname
+                        </td>
+                        @if (Model[0].Status == "Closed")
+                        {
+                            <td class="headerValue">
+                                @Model[0].EndingDate.ToString("dd MMM yyyy HH:mm")
+                            </td>
+                        }
+                        else
+                        {
+                            <td class="headerValue">
+                                -
+                            </td>
+                        }
+                    </tr>
+                    <tr>
+                        <td class="headerCaption">
+                            Username
+                        </td>
+                        <td class="headerValue">
+                            @Model[0].UserName
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table id="tabledatailopname" width="100%">
+                    <thead>
+                        <tr class="headerFirstLine">
+                            <th align="left" id="partgroup">
+                                Grup Barang
+                            </th>
+                            <th>
+                            </th>
+                            <th>
+                            </th>
+                            <th>
+                            </th>
+                            <th class="qty">
+                                Sistem
+                            </th>
+                            <th class="qty">
+                                
+                            </th>
+                            <th class="qty">
+                                Selisih
+                            </th>
+                        </tr>
+                        <tr class="headerSecondLine">
+                            <th>
+                            </th>
+                            <th id="partcode">
+                                Kode
+                            </th>
+                            <th id="barcode">
+                                Barcode
+                            </th>
+                            <th id="partname">
+                                Nama Barang
+                            </th>
+                            <th class="qty">
+                                Qty
+                            </th>
+                            <th class="qty">
+                                Qty
+                            </th>
+                            <th class="qty">
+                                Qty
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="7"style="height: 400px; vertical-align: top;">
+                                <table id="tableTBody" width="100%">
+                                    @for (int i = 0; i < Model.Length; i++)
+                                    {
+                                        if (i == 0 || Model[i].PartGroup != Model[i - 1].PartGroup)
+                                        {
+                                        <tr class="partGroup" style="height: 20px;">
+                                            <td colspan="7">
+                                                @Model[i].PartGroup
+                                            </td>
+                                        </tr>
+                                        }
+                                        <tr class="partItem" style="height: 20px;">
+                                            <td id="part_group">
+                                            </td>
+                                            <td id="part_code">
+                                                @Model[i].PartCode
+                                            </td>
+                                            <td id="part_barcode">
+                                                @Model[i].Barcode
+                                            </td>
+                                            <td id="part_name">
+                                                @Model[i].PartName
+                                            </td>
+                                            <td class="center part_qty">
+                                                @Model[i].SysQty
+                                            </td>
+                                            <td class="center part_qty">
+                                                @Model[i].RealQty
+                                            </td>
+                                            <td class="center part_qty">
+                                                @Model[i].DifferentQty
+                                            </td>
+                                        </tr>
+                                    }
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td>
+                                Keterangan
+                            </td>
+                            <td colspan="6">
+                                @Model[0].OpnameNote
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="7">
+                                <table id="approvalTable" width="100%">
+                                    <tr>
+                                        <td class="approvalHeader">
+                                            Disetujui 1
+                                        </td>
+                                        <td class="approvalHeader">
+                                            Disetujui 2
+                                        </td>
+                                        <td class="approvalHeader">
+                                            Disetujui 3
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="approval">
+                                            @Model[0].ApprovalOne
+                                        </td>
+                                        <td class="approval">
+                                            @Model[0].ApprovalTwo
+                                        </td>
+                                        <td class="approval">
+                                            @Model[0].ApprovalThree
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>

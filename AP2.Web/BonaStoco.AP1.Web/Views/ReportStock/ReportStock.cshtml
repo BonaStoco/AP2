@@ -1,0 +1,184 @@
+﻿@model IList<BonaStoco.AP1.MasterData.Models.TenanAdvancedSearch>
+@{
+    ViewBag.Title = "ReportStock";
+}
+
+@section styles
+{
+    <link href="@Url.Content("~/Content/reportstok.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/AdvancedSearch.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/themes/base/jquery-ui-1.8.14.custom.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/site.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/StockCardDetail.css")" rel="stylesheet" type="text/css" />
+}
+@section scripts{
+    @Content.Script("jquery.quicksearch.js", @Url)
+     @Content.Script("stock.js", @Url)
+      @Content.Script("StockCardDetail.js", @Url)
+     <script type="text/javascript">
+         $("#dialog-overlay").ajaxStart(function () {
+             $(this).show();
+         }).ajaxStop(function () {
+             $(this).hide();
+         });
+
+         $(document).ready(function () {
+             $("#AdvancedSearch").dialog({
+                 autoOpen: false,
+                 width: 900,
+                 height: 450,
+                 show: "Fade",
+                 hide: "explode"
+             });
+             $("#AdvSearch").click(function () {
+                 document.getElementById("AdvancedSearch").focus();
+                 document.getElementById("AdvancedSearch").style.display = "block";
+                 $("#AdvancedSearch").dialog("open");
+                 return false;
+             });
+
+             $('#id_search').quicksearch('table#tenans tbody tr',
+            {
+                noResults: '#noresults',
+                stripeRows: ['odd', 'even'],
+                loader: 'img.loading'
+            });
+
+             $("#tenanId").focus();
+         });
+
+         function CloseDialog(tenanId, tenanName) {
+             document.getElementById("tenanId").value = tenanId;
+             document.getElementById("nameTenan").innerHTML = tenanName;
+             FindGroupNameByTenanId(tenanId);
+             $("#AdvancedSearch").dialog("close");
+         }
+
+         function FindTenantNameByTenanId(id) {
+             $.ajax({
+                 type: "GET",
+                 url: "/DaftarPenerimaanAP1/FindTenantNameByTenanId/" + id,
+                 dataType: "json",
+                 success: ShowStateTenantName
+             });
+
+             function ShowStateTenantName(data) {
+                 document.getElementById("tenantName").innerHTML = data;
+             }
+         }
+
+         
+</script>
+}
+
+<table id="ReportStock" width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+    <td width="21%" rowspan="2" valign="top">
+		<div id="detailleft">
+		  <table id="ReportStock" width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td> 
+               
+                   <div id="btnbandara" align=center>Laporan Stock</div>               
+                  
+            </td>
+            </tr>
+            <tr>
+              <td>
+                       <br />
+                        <div id="CategoryStockList"> 
+                        </div>
+                        
+              </td>
+            </tr>
+            
+          </table>
+		</div>
+	</td>
+ 
+  <tr>
+   <td colspan="3" valign="top" >
+	
+  <label>KODE TENAN : </label>
+  <input type="text" name="tenandId" id="tenanId"   onblur="FindNameByTenanid(this.value)"  />
+  <button id="AdvSearch">Search</button>
+  <label><span id="nameTenan"></span>
+  </label>
+<hr />
+
+<br />
+<div id="searchStockCard"></div>
+<table id="tblstock" width="100%">
+    <thead></thead>
+    <tbody></tbody>
+      
+</table>
+    <p class="style11">&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p></td>
+  </tr>
+  </tr>
+</table>
+
+<div id="AdvancedSearch" title="Advanced Search">
+        <br />
+	    <input type="text" name="search" value="" id="id_search" placeholder="Search"/> 
+        <img class="loading" src="@Url.Content("~/Content/images/loader.gif")"/>
+    <table id="tenans" width="100%">
+        <thead>
+            <tr >
+                <th>Kode</th>
+                <th>Nama</th>
+                <th>Alamat</th>
+            </tr>
+        </thead>
+        <tbody>
+    	    <tr id="noresults">
+		        <td colspan="6">No Results</td>
+	        </tr>
+            @foreach (var tenan in Model)
+            {
+                <tr id="tenan" onclick="CloseDialog('@tenan.TenanId.ToString()','@tenan.TenanName')">
+                    <td width="10%">@tenan.TenanId.ToString()</td>
+                    <td width="35%">@tenan.TenanName</td>
+                    <td width="55%">@tenan.Alamat</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div id="dialog-overlay">
+		<div id="dialog-loader">
+			<img src="@Url.Content("~/Content/images/loader-new.gif")"/>
+        </div>
+</div>
+
+
+<div id="BackToList">Kembali Ke List</div>
+<div class="divStockCardDetail divIndex">
+    <div class="divHeaderStockCardDetail divHeader">
+        <label class="TitleStockCardDetail title">Detail Kartu Stock </label>
+    </div> 
+   
+    <div id="divListStockCardDetail">
+        <table id="tableListStockCardDetail" width="96%" border="0" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Tanggal</th>
+                    <th>No. Transaksi</th>
+                    <th>Tipe Transaksi</th>
+                    <th style="text-align: right;">Jumlah Masuk</th>
+                    <th style="text-align: right;">Jumlah Keluar</th>
+                    <th style="text-align: right;">Saldo</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+            <tfoot>
+            </tfoot>
+        </table>
+    </div>
+</div>

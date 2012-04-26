@@ -1,0 +1,82 @@
+﻿table#ExchangeRate
+{
+    border : 0px;
+}
+table#ExchangeRate tr
+{
+    border : 0px;
+}
+table#ExchangeRate td
+{
+    border : 0px;
+}
+
+fieldset
+{
+    border : 0px;
+    padding-top : 20px;
+    margin-left : 10px;
+}
+
+.headerTable
+{
+    color : White;
+    background-color : #627AAD;
+    font-size : 14px;
+    font-weight : bold;
+}
+.bodyTable
+{
+    color : Black;
+    background-color : #e7e7e7;
+    font-size: 13px;
+}
+.bodyTableExchangeLight
+{
+    color : Black;
+    background-color : #d4d4d4;
+    font-size: 13px;
+}
+.left
+{
+    padding-left : 5px;
+    text-align : left;
+    font-size: 13px;
+}
+.right
+{
+    padding-right : 2px;
+    text-align : right;
+    font-size: 13px;
+}
+.center
+{
+    text-align: center;
+    font-size:13px;
+}
+
+#Edit
+{
+    background-image : url("images/edit.png");
+    background-repeat :no-repeat;
+    background-position :center;
+    cursor : pointer;
+}
+#Add
+{
+    background-image : url("images/plus.png");
+    background-repeat :no-repeat;
+    background-position :center;
+    height : 10px;
+    cursor : pointer;
+}
+.ui-state-error { padding: .3em; }
+.validateTips
+{
+    font-size : 11px;    
+    color : Red;
+}
+tbody#bodyExchange tr.bodyTable:hover
+{
+     background : #d4d4d4;
+}

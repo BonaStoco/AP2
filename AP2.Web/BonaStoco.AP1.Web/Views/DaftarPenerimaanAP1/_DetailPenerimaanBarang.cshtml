@@ -1,0 +1,46 @@
+﻿@using BonaStoco.AP1.PengirimanBarang.Models
+@model IList<GRNItem>
+
+<style type="text/css">
+<!--
+
+table#tblresultitem { border-collapse: collapse; margin: 1em 0; }
+table#tblresultitem thead th { background: #3b5998; color: #fff; }
+table#tblresultitem tbody th { text-align: left; }
+table#tblresultitem th, table#tblresultitem td { border: 1px solid #ddd; padding: 2px 5px; font-size: 100%; }
+   
+}
+-->
+</style>
+
+<table id="tblresultitem" width="100%">
+    <thead>
+        <tr>
+            <th>Barcode</th>
+            <th>Nama Barang</th>
+            <th>Qty</th>
+            <th>Actual Qty</th>
+            <th>Unit</th>
+            <th>Harga</th>
+            <th>Jumlah</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if(Model!=null && Model.Count > 0)
+        {
+            foreach(GRNItem item in Model)
+            {
+                <tr id = "grnitem-@item.Guid.ToString()">
+
+                    <td>@item.Barcode</td>
+                    <td>@item.Nama</td>
+                    <td>@item.Qty</td>
+                    <td>@item.ActualQty</td>
+                    <td>@item.UnitName</td>
+                    <td>@item.Harga.ToString("N0")</td>
+                    <td>@item.Jumlah.ToString("N0")</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

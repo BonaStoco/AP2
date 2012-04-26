@@ -1,0 +1,131 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAP1.cshtml";
+}
+@section styles
+{
+    <link href="@Url.Content("~/Content/kalenderView.css")" rel="stylesheet" type="text/css" />   
+}
+@section scripts
+{
+    <script src="@Url.Content("~/Scripts/kalender.js")" type="text/javascript"></script>
+}
+<nav id="navigationbtn">
+    <ul id="navbutton">
+        <li>@Html.ActionLink("Hari ini", "PageHari", "ReportSale")</li>
+        <li id="btnactive">@Html.ActionLink("Harian", "Index", "CalenderView")</li>
+        <li>@Html.ActionLink("Bulan", "PageBulan", "ReportSale")</li> 
+        <li>@Html.ActionLink("Tahun", "PageTahun", "ReportSale")</li>
+    </ul>
+</nav>
+<br />
+<table class="calendar" width="100%" height="100%">
+  <tr>
+    <td height="63" colspan="7" valign="top" bgcolor ="#07A3B4"><h3 id="headerTgl"></h3>
+	<div class = "left">
+        <img src="@Url.Content("~/Content/images/left.png")" onclick="UpdateKalenderBulanSebelumnya()" height="40px" style="cursor:pointer; cursor:hand" id="Ut"  />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <img src="@Url.Content("~/Content/images/right.png")" onclick ="UpdateKalenderBulanBerikutnya()" height="40px" style="cursor:pointer; cursor:hand"/>
+    </div><div class = "right"><span style="color:White"><em>(Dalam Jutaan)</em></span></div></td>
+  </tr>
+
+  <tr bgcolor="#33CCFF">
+    <td width="14%" height="30" style="border-right-color:transparent">&nbsp;&nbsp;&nbsp;<span style="color:Black; font-weight:bold">Minggu</span></td>
+    <td width="14%" style="border-right-color:transparent">&nbsp;&nbsp;&nbsp;<span style="color:Black; font-weight:bold">Senin</span></td>
+    <td width="14%" style="border-right-color:transparent">&nbsp;&nbsp;&nbsp;<span style="color:Black; font-weight:bold">Selasa</span></td>
+    <td width="14%" style="border-right-color:transparent">&nbsp;&nbsp;&nbsp;<span style="color:Black; font-weight:bold">Rabu</span></td>
+    <td width="14%" style="border-right-color:transparent">&nbsp;&nbsp;&nbsp;<span style="color:Black; font-weight:bold">Kamis</span></td>
+    <td width="14%" style="border-right-color:transparent">&nbsp;&nbsp;&nbsp;<span style="color:Black; font-weight:bold">Jum'at</span></td>
+    <td width="14%">&nbsp;&nbsp;&nbsp;<span style="color:Black; font-weight:bold">Sabtu</span></td>
+  </tr>
+  <tr bgcolor="#91E3FF">
+    <td id="0" height="60" align="right" valign="top">&nbsp;</td>
+    <td id="1" align="right" valign="top">&nbsp;</td>
+    <td id="2" align="right" valign="top">&nbsp;</td>
+    <td id="3" align="right" valign="top">&nbsp;</td>
+    <td id="4" align="right" valign="top">&nbsp;</td>
+    <td id="5" align="right" valign="top">1<br /><br />
+    <div align="center" style="height:40px"></div></td>
+    <td  id="6" align="right" valign="top">2<br /><br />
+    <div align="center" style="height:40px"></div></td>
+  </tr>
+  <tr bgcolor="#33CCFF">
+    <td id="7" height="60" align="right" valign="top">3<br /><br />
+    <div align="center" style="height:40px"></div></td>
+    <td id="8" align="right" valign="top">4<br /><br />
+    <div align="center" style="height:40px"></div></td>
+    <td id="9" align="right" valign="top">5<br /><br />
+    <div align="center" style="height:40px"></div></td>
+    <td id="10" align="right" valign="top">6<br /><br />
+    <div align="center" style="height:40px"></div></td>
+    <td id="11" align="right" valign="top">7<br /><br />
+    <div align="center" style="height:40px"></div></td>
+    <td id="12" align="right" valign="top">8<br /><br />
+    <div align="center" style="height:40px"></div></td>
+    <td  id="13" align="right" valign="top">9<br /><br />
+    <div align="center" style="height:40px"></div></td>
+  </tr>
+  <tr bgcolor="#91E3FF">
+    <td id="14" height="60" align="right" valign="top">10<br /><br />
+    <div align="center" style="height:40px"></div></td>
+    <td id="15" align="right" valign="top">11<br /><br />
+    <div align="center" style="height:40px"></div></td>
+    <td id="16" align="right" valign="top">12<br /><br />
+    <div align="center" style="height:40px"></div></td>
+    <td id="17" align="right" valign="top">13<br /><br />
+    <div align="center" style="height:40px"></div></td>
+    <td id="18" align="right" valign="top">14<br /><br />
+    <div align="center" style="height:40px"></div></td>
+    <td id="19" align="right" valign="top">15<br /><br />
+    <div align="center" style="height:40px"></div></td>
+    <td id="20" align="right" valign="top">16<br /><br />
+    <div align="center" style="height:40px"></div></td>
+  </tr>
+  <tr bgcolor="#33CCFF">
+    <td id="21" height="60" align="right" valign="top">17<br /><br />
+    <div  align="center" style="height:40px"></div></td>
+    <td id="22" align="right" valign="top">18<br /><br />
+    <div align="center" style="height:40px"></div></td>
+    <td id="23" align="right" valign="top">19<br /><br />
+    <div align="center" style="height:40px"></div></td>
+    <td id="24" align="right" valign="top">20<br /><br />
+    <div align="center" style="height:40px"></div></td>
+    <td id="25" align="right" valign="top">21<br /><br />
+    <div align="center" style="height:40px"></div></td>
+    <td id="26" align="right" valign="top">22<br /><br />
+    <div align="center" style="height:40px"></div></td>
+    <td id="27" align="right" valign="top">23<br /><br />
+    <div align="center" style="height:40px"></div></td>
+  </tr>
+  <tr bgcolor="#91E3FF">
+    <td id="28" height="60" align="right" valign="top">24<br /><br />
+    <div align="center" style="height:40px"></div></td>
+    <td id="29" align="right" valign="top">25<br /><br />
+    <div align="center" style="height:40px"></div></td>
+    <td id="30" align="right" valign="top">26<br /><br />
+    <div align="center" style="height:40px"></div></td>
+    <td id="31" align="right" valign="top">27<br /><br />
+    <div align="center" style="height:40px"></div></td>
+    <td id="32" align="right" valign="top">28<br /><br />
+    <div align="center" style="height:40px"></div></td>
+    <td id="33" align="right" valign="top">29<br /><br />
+    <div align="center" style="height:40px"></div></td>
+    <td id="34" align="right" valign="top">30<br /><br />
+    <div align="center" style="height:40px"></div></td>
+  </tr>
+  <tr bgcolor="#33CCFF">
+    <td id="35" height="60" align="right" valign="top">31<br /><br />
+    <div align="center" style="height:40px">99</div></td>
+    <td id="36" align="right" valign="top"><br /><br />
+    <div align="center" style="height:40px"></div></td>
+    <td  id="37" align="right" valign="top"><br /><br />
+    <div align="center" style="height:40px"></div></td>
+    <td id="38" align="right" valign="top"><br /><br />
+    <div align="center" style="height:40px"></div></td>
+    <td  id="39" align="right" valign="top"><br /><br />
+    <div align="center" style="height:40px"></div></td>
+    <td id="40" align="right" valign="top"><br /><br />
+    <div align="center" style="height:40px"></div></td>
+    <td id="41" align="right" valign="top"><br /><br />
+    <div align="center" style="height:40px"></div></td>
+  </tr>
+</table>

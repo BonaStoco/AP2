@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="urn:BonastocoServices" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn:BonastocoServices" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="urn:BonastocoServices">
+      <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/" />
+      <xsd:complexType name="askTenant">
+        <xsd:all>
+          <xsd:element tenant="token" name="token" type="xsd:string" />
+          <xsd:element tenant="tenantid" name="tenantid" type="xsd:string" />
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="serverResponse">
+        <xsd:all>
+          <xsd:element response="token" name="token" type="xsd:string" />
+          <xsd:element response="status" name="status" type="xsd:int" />
+          <xsd:element response="message" name="message" type="xsd:string" />
+        </xsd:all>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="gettenantRequest">
+    <wsdl:part name="person" type="tns:askTenant" />
+  </wsdl:message>
+  <wsdl:message name="gettenantResponse">
+    <wsdl:part name="return" type="tns:serverResponse" />
+  </wsdl:message>
+  <wsdl:portType name="BonastocoServicesPortType">
+    <wsdl:operation name="gettenant">
+      <documentation>Get Tenant Information</documentation>
+      <wsdl:input message="tns:gettenantRequest" />
+      <wsdl:output message="tns:gettenantResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BonastocoServicesBinding" type="tns:BonastocoServicesPortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="gettenant">
+      <soap:operation soapAction="urn:BonastocoServices#gettenant" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:BonastocoServices" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:BonastocoServices" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BonastocoServices">
+    <wsdl:port name="BonastocoServicesPort" binding="tns:BonastocoServicesBinding">
+      <soap:address location="http://www.bonastoco.com/services/servicetenant.php" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

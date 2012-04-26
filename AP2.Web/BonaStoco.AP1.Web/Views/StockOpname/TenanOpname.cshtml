@@ -1,0 +1,370 @@
+﻿@{
+    ViewBag.Title = "StockOpname";
+}
+@section styles
+{
+    <link href="@Url.Content("~/Content/StockOpname.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/StockOpnameClose.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/AdvancedSearchProduct.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/themes/base/jquery-ui-1.8.14.custom.css")" rel="stylesheet" type="text/css" />
+}
+@*<script src="../../Scripts/signalr/jquery-1.6.4.min.js" type="text/javascript"></script>
+<script src="../../Scripts/signalr/jquery.signalR.js" type="text/javascript"></script>
+<script src="../../Scripts/signalr/jquery.signalR.min.js" type="text/javascript"></script>
+<script src="http://localhost:51850/signalr/hubs"></script>
+<script src="../../Scripts/StockOpnameHubs.js" type="text/javascript"></script>*@
+@section scripts{
+    @Content.Script("stringformat.js", @Url)
+    @Content.Script("jquery.quicksearch.js", @Url)
+    @*       @Content.Script("jquery-ui-1.8.14.custom.min.js", @Url) *@
+    @Content.Script("PrintDocument.js", @Url)
+    @Content.Script("StockOpname.js", @Url)
+}
+<div id="loadingStockOpname">
+    <center>
+        <div id="loaders">
+            <img src="@Url.Content("~/Content/images/loader.gif")"/><br />
+            <span>Please wait...</span>
+        </div>
+    </center>
+</div>
+<span id="tenanId" hidden="hidden">@ViewBag.tenanId</span>
+<div id="dialogConfirmDelete">
+    <div style="padding-top: 7px; height: 60%">
+        <div id="imagesTrue">
+        </div>
+        <div style="float: left; padding-top: 25px; padding-left: 10px;">
+            Anda yakin menghapus item ini ?</div>
+    </div>
+    <div style="margin-left: 175px;">
+        <div id="btnItemOk">
+            Setuju</div>
+        <div id="btnItemCancel">
+            Batal</div>
+    </div>
+</div>
+<table width="100%" cellpadding="0" border="0" id="tbllistinvoice">
+    <tbody>
+        <tr>
+            <td valign="top" class="bodyBgCenter">
+                <div class="invoicesContainer">
+                    <div class="topBandHeaderDIV">
+                        <div id="TitleSpan" class="HeaderDIVLeft ">
+                            List Stock Opname <span id="tenanname" style="color:Yellow; float:right;padding-right:15px;">@ViewBag.tenanName</span></div>
+                    </div>
+                    <div class="error" id="errorListInv">
+                    </div>
+                    <div class="invoiceContain">
+                        <div class="ActionButtonDiv">
+                            <table id="tblMenuInvoice" width="100%">
+                                <tr id="trMenuInvoice">
+                                    <td id="tdMenuInvoiceLeft" width="70%">
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <table width="100%" cellpadding="5px" id="tblListInvoice">
+                            <thead>
+                                <tr>
+                                    <td class="tblNoInv" style="width: 30%">
+                                        Kode
+                                    </td>
+                                    <td class="tblPO">
+                                        Tanggal
+                                    </td>
+                                    <td class="tblNamaPelanggan">
+                                        Petugas
+                                    </td>
+                                    <td class="tblTanggal" style="text-align: right">
+                                        Status
+                                    </td>
+                                    <td class="center">
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tbody class="bodyDataInvoice">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </td>
+            <td class="bodyBgRight" valign='top'>
+                <div class='BtnNew' id='addStockOpname'>
+                    Open Opname</div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div id="editQtyDialog" title="Edit Qty" style="display: none">
+    <p class="validateTips" id="validateTips">
+    </p>
+    <table width="100%" border="0">
+        <tr>
+            <td>
+                Nama Barang
+            </td>
+            <td>
+                <input type="text" id="ProductName" disabled="disabled" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Qty
+            </td>
+            <td>
+                <input type="text" id="vQty" />
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="AdvancedSearchProduct" style="display: none">
+    <input type='text' id='id_search' placeholder='Search' />
+    <img id='loading' src='../../Content/images/loader.gif' />
+    <table id='tableProduct' width='100%'>
+        <thead class='headerSearchTbl'>
+            <tr>
+                <th width='15%'>
+                    Kode
+                </th>
+                <th width='15%'>
+                    Barcode
+                </th>
+                <th width='20%'>
+                    Group
+                </th>
+                <th width='35%'>
+                    Nama
+                </th>
+                <th width='15%'>
+                    Harga Jual
+                </th>
+            </tr>
+        </thead>
+        <tbody id='tbodyProduct'>
+        </tbody>
+    </table>
+</div>
+<div id='containerDetailInvoice' style="display: none">
+    <table width='100%' id="StockOpnameEntry">
+        <tr>
+            <td width='80%'>
+                <div class='listfaktur'>
+                    <div class='headerfaktur'>
+                        Stock Opname Entry <span id="statusOpname"></span>
+                    </div>
+                    <div class='detailfaktur'>
+                        <table width='100%' id="detailStockOpname">
+                            <tr>
+                                <td>
+                                    <table width="100%" id="HeaderOpname">
+                                        <tr>
+                                            <td class="tdHeader">
+                                                Opname Id
+                                            </td>
+                                            <td>
+                                                :
+                                                <input type="text" id="OpnameNumber" readonly="readonly" disabled="disabled" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tdHeader">
+                                                Tanggal Buka
+                                            </td>
+                                            <td>
+                                                :
+                                                <input type="text" id="OpenDate" readonly="readonly" disabled="disabled" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tdHeader">
+                                                Tanggal Tutup
+                                            </td>
+                                            <td>
+                                                :
+                                                <input type="text" id="CloseDate" readonly="readonly" disabled="disabled" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tdHeader">
+                                                Petugas
+                                            </td>
+                                            <td>
+                                                :
+                                                <input type="text" id="Storeman" readonly="readonly" disabled="disabled" />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan='2' style='padding-top: 20px'>
+                                    <table width='100%' cellpadding="5px" border="0" id='listitem'>
+                                        <thead>
+                                            <tr>
+                                                <th class='HeaderPaymentFaktur' style='width: 12%; padding-left: 3px;'>
+                                                    Barcode
+                                                </th>
+                                                <th class='HeaderPaymentFaktur' style='width: 12%; text-align: center'>
+                                                    Kode
+                                                </th>
+                                                <th class='HeaderPaymentFaktur' style='padding-right: 5px; text-align: left'>
+                                                    Nama Barang
+                                                </th>
+                                                <th class='HeaderPaymentFaktur' style='width: 8%; text-align: center'>
+                                                    Real Qty
+                                                </th>
+                                                <th class='HeaderPaymentFaktur' style='width: 8%; text-align: center'>
+                                                    System Qty
+                                                </th>
+                                                <th class='HeaderPaymentFaktur' style='width: 8%; text-align: center'>
+                                                    Diferent Qty
+                                                </th>
+                                                @*<th class='HeaderPaymentFaktur' style='width:8%; text-align:center'>Adjust Qty</th> *@
+                                                <th class='HeaderPaymentFaktur' style='width: 2%; text-align: left'>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                        <tfoot id='summary'>
+                                            <tr>
+                                                <td colspan='6' style='padding: 10px 0px 10px 0px'>
+                                                    <span class='CariBarang' id='AdvSearch'>Cari Barang Berdasarkan Nama </span>or <span
+                                                        class='CariBarang' id="CariBarcode">Barcode</span>
+                                                    <br />
+                                                    <br />
+                                                    <div id="BarcodeDialog" style="display: none">
+                                                        Masukkan barcode
+                                                        <br />
+                                                        <input type="text" name="vBarcode" id="Barcode" style="float: left; margin-right: 5px;" />
+                                                        <button class="positive button" onclick="SearchBarcode()" id="btnBarcode">
+                                                            <img src="@Url.Content("~/Content/images/button/search.png")"/>Enter</button>
+                                                    </div>
+                                                    <div id="productQtyDialog" title="Tambah Barang" style="display: none">
+                                                        <namabarang>Nama Barang</namabarang>
+                                                        :<vnamabarang><span id="PartName"></span> <input type="hidden" id="Code" /></vnamabarang><br />
+                                                        <qty>Qty</qty>
+                                                        :
+                                                        <vqty><input type="hidden"  id="PartId" /><input type="hidden"  id="PartGroupId" /><input type="hidden"  id="OpnameId" /><input type="hidden"  id="PartGuid" /><input type="text" id="Qty" maxlength="10px" style=" width:30px;"/></vqty>
+                                                        <br />
+                                                        <br />
+                                                        <button class='positive button' onclick='AddStockOpnameItem()' id="btnAddNew">
+                                                            <img src='../../Content/images/button/search.png' />Enter</button>
+                                                        <button class='positive button' onclick='Cancel()'>
+                                                            <img src='../../Content/images/button/search.png' />Cancel</button>
+                                                        <p class="validateTips" id="validateTips">
+                                                        </p>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                    <br />
+                                    @* <button id="Batal">Batal</button>
+                     <button id="Simpan">Simpan</button>*@
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </td>
+            <td valign='top' style='padding-top: 5px;'>
+                <button id="tmblBack" class="positive button">
+                    <img src="../../Content/images/button/search.png" />Kembali ke list</button>
+                <br />
+                <div class='SubMenuDetailInvoice'>
+                    <div class='SubMenuDetailInvoiceForm'>
+                        <div id="SubMenuDetailInvoiceClose">
+                            <div class="SubMenuDetailInvoiceFormimg divSubMenuDetailInvoiceFormClose">
+                            </div>
+                            Selesai Stock Opname
+                        </div>
+                        <form id="stockopnamepriview" action="./StockOpnameReport" method="post">
+                        <input type="hidden" id="_id" name="_id" />
+                        <div id="SubMenuDetailInvoiceFormCetakPdf">
+                            <div class="SubMenuDetailInvoiceFormimg divSubMenuDetailInvoiceFormPrintKePDF">
+                            </div>
+                            Print
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="dialogSuccesDelete">
+    <div style="padding-top: 7px; height: 60%">
+        <div id="imagesTrue">
+        </div>
+        <div style="float: left; padding-top: 25px; padding-left: 10px;">
+            Anda yakin menghapus data ini ?</div>
+    </div>
+    <div style="margin-left: 175px;">
+        <div id="bottonOk">
+            Setuju</div>
+        <div id="bottonCancel">
+            Batal</div>
+    </div>
+</div>
+<div class="ModalDialogStockOpnameClose">
+    <div class="dialogStockOpnameCloseOverlay">
+    </div>
+    <div class="dialogStockOpnameClose">
+        <div class="logoDialog">
+            <img src="../Content/images/button/Icon-Bonastoco.png" alt="Logo">
+        </div>
+        <div class="title-area">
+            <h1>
+                StockOpname Close</h1>
+        </div>
+        <div id="StockOpnameClose-content" class="content-area">
+            <form method="post" id="gaia-login-form" action="">
+            <div id="StockOpnameClose-box">
+                <table id="content-table" cellspacing="0" cellpadding="5" border="0" align="center">
+                    <tr>
+                        <td>
+                            Disetujui 1
+                        </td>
+                        <td>
+                            <input type="text" name="approval1" id="approval1" autocomplete="off" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Disetujui 2
+                        </td>
+                        <td>
+                            <input type="text" name="approval2" id="approval2" autocomplete="off" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Disetujui 3
+                        </td>
+                        <td>
+                            <input type="text" name="approval3" id="approval3" autocomplete="off" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Catatan
+                        </td>
+                        <td>
+                            <textarea rows="2" cols="20" id="opnamenote" style="width: 200px;"></textarea>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            </form>
+        </div>
+        <div class="action-area">
+            <div class="button-strip">
+                <button id="CloseOpname">
+                    OK</button>
+                <button id="CancelOpname">
+                    Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

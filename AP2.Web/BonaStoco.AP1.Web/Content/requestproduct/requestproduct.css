@@ -1,0 +1,155 @@
+input[type="button"]
+{
+    background-color:#6CB6FF;
+	width:60px;   
+    color:blue;    
+    font-size: 12px;  
+    border:1px solid gray;
+    cursor:pointer;   
+    padding: 1px;
+    }
+    
+input[type="submit"]
+{
+    background-color:#6CB6FF;
+	width:60px;   
+    color:red;    
+    font-size: 12px;      
+    border:1px solid gray;
+    cursor:pointer;   
+    padding: 1px;
+    font-weight:normal;
+     
+    }
+    
+  #aprovepart th
+  {
+       font-size: 12px; 
+       text-align:center;
+       background-color:#A7C5C5;
+      
+  }
+  
+  #headerproduct th
+  {
+       font-size: 12px; 
+       text-align:center;
+       background-color:#A7C5C5;
+      
+  }
+  
+  
+  #btn-reject-all
+  {
+    background-color:#6CB6FF;
+	width:100px;   
+    color:blue;    
+    font-size: 12px;  
+    border:1px solid gray;
+    cursor:pointer;   
+    padding: 1px;
+    display:inline;
+    margin-bottom:20px;
+    color:red;     
+  }
+  #btn-approve-all
+  {
+    background-color:#6CB6FF;
+	width:100px;   
+    color:blue;    
+    font-size: 12px;  
+    border:1px solid gray;
+    cursor:pointer;   
+    padding: 1px;
+    display:inline;
+    margin-right:5px;    
+    margin-bottom:20px;
+  }
+  
+ 
+  #group-btn thead td
+  {       
+      border:0; 
+      width:100%;
+  }
+  #group-btn thead tr
+  {       
+      border:0; 
+  }
+  #group-btn
+  {       
+      border:0; 
+  }
+
+ #group-btn-footer thead td
+  {       
+      border:0; 
+      width:100%;
+  }
+  #group-btn-footer thead tr
+  {       
+      border:0; 
+  }
+ #group-btn-footer
+  {       
+      border:0; 
+  }
+  
+#overlay
+{
+    	width:100%;
+    	height:100%;
+    	filter:alpha(opacity=70);
+    	-moz-opacity:0.9;
+    	-khtml-opacity: 0.9;
+    	opacity: 0.9;
+    	background:#fff;
+    	position:fixed;
+    	top:0; left:0;
+    	z-index:3000;
+    	display : none;			
+}
+
+#loaders
+{	
+	width : auto;
+	height :auto;
+  	margin : 14% 50% 14% 40%; 
+}
+  
+  
+div.Loading
+{
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;  
+  border-radius: 10px;
+  color: #666;
+  background-color: #ebedf2;
+  background: -webkit-gradient( linear, left bottom, left top, color-stop(0,#dfe1e5), color-stop(1, #ebedf2) );
+  background: -moz-linear-gradient( center bottom, #dfe1e5 0%, #ebedf2 100% );  
+  border: 1px solid #aaa;
+  -moz-box-shadow: 0 0 1em rgba(0, 0, 0, .5);
+  -webkit-box-shadow: 0 0 1em rgba(0, 0, 0, .5);
+  box-shadow: 0 0 1em rgba(0, 0, 0, .5);
+  opacity: .95;
+  display: none;
+  margin: auto;
+  width: 30em;
+  height: 2em;
+  padding: 1.5em;
+  position: fixed;
+  top: 15;
+  left: 0;
+  right: 0;
+}
+.right
+{
+    
+  text-align:right;   
+}
+
+#Back
+{ 
+  margin-left:700px;   
+}
+

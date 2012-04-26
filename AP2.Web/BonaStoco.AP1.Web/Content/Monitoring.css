@@ -1,0 +1,79 @@
+﻿.mt 
+{
+    font-family:@Trebuchet MS;
+    font-size:12px;
+	padding-bottom : 100px;
+	padding-top: 50px;
+	padding-left: 30px;
+	width: 100%;
+}
+.mt table
+{
+    
+    border-bottom-style:solid;
+    border-color:#666;
+    padding:0px 100px 0px 0px;
+    margin : 0px;
+}
+
+.mt th
+{
+	text-align:center;
+	background-color:#729aef;
+	border:1px;
+	border-bottom-style:solid;
+    border-color:#666;
+	font-style:normal;
+	font-size:1em;
+	width:17px;
+}
+
+.mt th#aktif
+{
+    width: 70px;
+	text-align:left;
+	border-top-style:solid;
+	border-right-style:solid;
+
+}
+.mt th#nonaktif
+{
+    width: 70px;
+	text-align:left;
+	border-top-style:solid;
+	border-right-style:solid;
+}
+
+.mt tr.aktif td
+{
+	background-color:#fbf7dd;
+	color :Black;
+	border: 1px;
+	border-top-style:solid;
+    border-color:#666;
+	font-style:normal;
+	font-size:0.95em;
+}
+
+.mt tr.aktif td:hover
+{
+	background-color:#adc6fd;
+	color:White;
+}
+
+.mt tr.nonaktif td 
+{
+	background-color:#f9f2bf;
+	color:Black;
+	border: 1px;
+    border-color:#666;
+    border-top-style:solid;
+	font-style:normal;
+	font-size:0.95em;
+}
+
+.mt tr.nonaktif td:hover
+{
+	background-color:#adc6fd;
+	color:White;
+}

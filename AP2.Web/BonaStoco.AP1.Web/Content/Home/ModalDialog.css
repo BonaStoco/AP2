@@ -1,0 +1,244 @@
+﻿div#DialogOverlay{
+	width:100%;
+    height:100%;
+    filter:alpha(opacity=80);
+    -moz-opacity:0.8;
+    -khtml-opacity: 0.8;
+    opacity: 0.8;
+    background:#fff;
+    position:absolute;
+    top:0; left:0;
+	z-index:500;
+}
+
+div#ModalDialog label.TitleOverlay{
+	outline:groove;
+	width: 300px;
+	font-size:36px;
+	font-weight:bolder;
+	text-align:center;
+	color:#FFFFFF;
+	top: 70px;
+	-moz-transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
+	-webkit-box-shadow: 2px 2px 10px #888;
+	-moz-box-shadow: 2px 2px 10px #888;
+	position:absolute;
+	background:#999999;
+	left:-150px;
+	padding: 0px 110px;
+	position:absolute;
+	z-index:650;
+}
+
+div#ModalDialog div.TenanDialog{
+	width: 750px;
+	background-color:#FFFFFF;
+	margin-bottom:20px;
+	border:#79BCFF 1px solid;
+	height: 425px;
+	overflow:hidden;
+	resize: none;
+	border-radius: 5px 0px 0px 5px;
+	padding: 3px 3px 7px 3px;
+	-webkit-box-shadow: 1px 1px 7px #000;
+    -moz-box-shadow: 1px 1px 7px #000;
+	position:absolute;
+	z-index:750;
+	top: 23%;
+	left: 23%;
+}
+
+div.TenanDialog label.Header{
+	display:block;
+	padding:3px 3px 5px 5px;
+	font-weight:bold;
+	text-align:center;
+	border: 1px #005CB9 solid;
+	border-radius: 5px 5px 5px 5px;
+	vertical-align:middle;
+	margin-bottom:10px;	
+	color:#F2F2F2;
+	background : -webkit-linear-gradient(top, #79BCFF, #005CB9);
+	background : -moz-linear-gradient(top, #79BCFF, #005CB9);
+}
+
+div.TenanDialog label.Header label.LogoDialog{
+	margin-top: -5px;
+	margin-left: -3px;
+	float:left;
+}
+div.TenanDialog label.Header label.LogoDialog img{
+	width: 21px;
+	height: 26px;
+}
+
+div.TenanDialog label.Header label#Close{
+	padding: 0px 5px 0px 5px;
+	float:right;
+	border: 1px #CCC solid;
+	border-radius: 3px 3px 3px 3px;
+	cursor:pointer;
+}
+div.TenanDialog label.Header label#Close:hover{
+	background : -webkit-linear-gradient(top, #999, #666);
+	background : -moz-linear-gradient(top, #999, #666);
+}
+div#ListTenan{
+	width:98%;
+	padding-right:3px;
+	height: 350px;
+	autoscroll: true;
+	overflow-y: auto;
+	overflow-x: hidden;
+	resize:horizontal;
+	position:absolute;
+	z-index:800;
+}
+
+table#TableTenan{
+	border-collapse: collapse;
+	margin: 2px;
+}
+table#TableTenan thead tr{
+	border-bottom:#CCC 1px solid;
+}
+table#TableTenan thead tr th{
+	border : #CCC 1px solid;
+	font:"trebuchet MS";
+	font-size:14px;
+	font-weight:bold;
+	color:#F2F2F2;
+	padding: 3px 0px 3px 5px;
+	background-color:#5389fa;
+}
+table#TableTenan tbody
+{
+    width:99%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 340px;
+    position: absolute;
+    z-index: 900;
+}
+table#TableTenan tbody tr
+{
+    border-bottom:#CCC 1px solid;
+    cursor:pointer;
+}
+table#TableTenan tbody tr:hover td
+{
+    background:#adc6fd;
+    z-index: 950;
+}
+table#TableTenan tbody tr td{
+	font:"trebuchet MS";
+	font-size:12px;
+	border : #CCC 1px solid;
+	padding: 2px 2px 2px 5px;
+}
+th.TenanId{
+	width: 100px;
+	text-align:center;
+}
+td.TenanId{
+	width: 100px;
+	text-align:center;
+}
+th.NamaTenan{
+	font-weight:bold;
+	text-align:left;
+}
+td.NamaTenan{
+	padding-left: 5px;
+	text-align:left;
+	text-transform:uppercase;
+	width: 545px;
+}
+th.Gate{
+	width:100px;
+	text-align:center;
+}
+td.Gate{
+	width:81px;
+	text-align:center;
+}
+
+
+th.TenanId_IdLama{
+	width: 100px;
+	text-align:center;
+}
+td.TenanId_IdLama{
+	width: 130px;
+	text-align:center;
+}
+th.TenanIdLama_IdLama{
+	width: 100px;
+	text-align:center;
+}
+
+td.TenanIdLama_IdLama{
+	width: 130px;
+	text-align:center;
+}
+th.NamaTenan_IdLama{
+	font-weight:bold;
+	text-align:left;
+}
+td.NamaTenan_IdLama{
+	padding-left: 5px;
+	text-align:left;
+	text-transform:uppercase;
+	width: 565px;
+}
+th.Gate_IdLama{
+	width:100px;
+	text-align:center;
+}
+td.Gate_IdLama{
+	width:100px;
+	text-align:center;
+}
+
+
+div#ModalDialog div.TenanDialog div#Loading{
+	width:100%;
+    height:100%;
+    filter:alpha(opacity=60);
+    -moz-opacity:0.6;
+    -khtml-opacity: 0.6;
+    opacity: 0.6;
+    background:#FFF;	
+	background-image:url(../images/button/preloader.gif);
+	background-position:center;
+	background-repeat:no-repeat;
+	position:absolute;
+	z-index:750px;
+	margin-top: 3em;
+}
+input#search_tenant
+{
+	position:absolute;
+	right:0;
+	bottom:0;
+	font-size:12px;
+	font-family:"trebuchet MS";
+	color:#5389fa;
+	width: 15em;
+	height:14px;
+	margin: 3px;
+}
+label#TotalTenan
+{
+    position:absolute;
+	left:0;
+	bottom:0;
+	font-size:12px;
+	font-family:"trebuchet MS";
+	color:#5389fa;
+	margin: 5px;
+}
+
+
+

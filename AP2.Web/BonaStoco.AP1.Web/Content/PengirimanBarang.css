@@ -1,0 +1,128 @@
+﻿        th.left, td.left
+        {
+        	text-align:left;
+            padding-left : 10px;
+            font-size : 12px;
+        }
+        th.right, td.right
+        {
+        	text-align:right;
+            padding-right : 10px;
+            font-size : 12px;
+        }
+        th.center, td.center
+        {
+            padding-left : 20px;
+            padding-right : 20px;
+            font-size : 12px;
+        }
+        table#resultForEdit
+        {
+            border:0px;
+        }
+        table#resultForEdit tr
+        {
+            border : 0px;
+        }
+        table#resultForEdit tr td
+        {
+            border : 0px;
+        }
+        div#DivEdit
+        {
+            background:#eee;
+            display:block;
+            width:500px;
+            border : 1px;
+            border-radius: 10px;
+            -webkit-box-shadow: 2px 2px 10px #000;
+            -moz-box-shadow: 2px 2px 10px #000;
+            margin-bottom : 8px;
+        }
+        div#DivNewProduct
+        {
+        	background:#eee;
+            display:block;
+            width:420px;
+            border : 1px;
+            border-radius: 10px;
+            -webkit-box-shadow: 2px 2px 10px #000;
+            -moz-box-shadow: 2px 2px 10px #000;
+            margin-bottom : 8px;
+            padding-left:40px;
+        }
+         div#DivError
+        {
+        	background:#eee;
+            display:block;
+            width:500px;
+            border : 1px;
+            border-radius: 10px;
+            -webkit-box-shadow: 2px 2px 10px #000;
+            -moz-box-shadow: 2px 2px 10px #000;
+            margin-bottom : 8px;
+        }
+        div#DivImport
+        {
+            display:block;
+            width:600px;
+            border : 1px solid #eee;
+            border-radius: 10px;
+            -webkit-box-shadow: 2px 2px 10px #000;
+            -moz-box-shadow: 2px 2px 10px #000;
+            padding : 3px 8px 12px 8px;
+        }
+        div#error
+        {
+            display:block;
+            width:500px;
+            border : 1px solid RED;
+            border-radius: 10px;
+            -webkit-box-shadow: 2px 2px 10px #000;
+            -moz-box-shadow: 2px 2px 10px #000;
+            padding : 3px 8px 12px 8px;
+        }
+    
+        #kirimbaranglink a:link
+        {
+			display:block;
+			float:left;
+			margin:0 7px 0 0;
+			background-color:#f5f5f5;
+			border:1px solid #dedede;
+			border-top:1px solid #eee;
+			border-left:1px solid #eee;
+
+			font-size:12px;
+			line-height:130%;
+			text-decoration:none;
+			font-weight:bold;
+			color:#18a001;
+			cursor:pointer;
+			padding:5px 10px 6px 7px;
+        }
+        #kirimbaranglink a:visited 
+        {
+			background-color:#f5f5f5;
+			border:1px solid #dedede;
+			color:#18a001;
+		}
+		#kirimbaranglink a:hover 
+		{
+			background-color:#E6EFC2;
+			border:1px solid #C6D880;
+			color:#529214;
+		}
+		
+        span#deleteall
+        {
+            cursor : pointer;
+        }
+        span.pointer
+        {
+            cursor :pointer;
+        }
+        #tableError thead tr th
+        {
+            font-size : 12px;
+        }

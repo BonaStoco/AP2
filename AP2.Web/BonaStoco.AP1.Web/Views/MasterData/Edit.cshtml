@@ -1,0 +1,108 @@
+﻿@model BonaStoco.AP1.MasterData.Models.Product
+@{
+    ViewBag.Title = "Master Data > Edit Barang";
+    if(ViewBag.IsExist == true)
+    {
+        <script type="text/javascript">
+            alert("Barcode Sudah Terdaftar");
+        </script>
+    }
+}
+
+@section scripts
+{
+    @Content.Script("jquery.validate.min.js", @Url)
+    @Content.Script("jquery.validate.unobtrusive.min.js", @Url)
+}
+
+@if (Model == null)
+{
+    <div>
+    <h2>Barang tidak ditemukan dalam database.</h2>
+    </div>
+}
+else {
+    <form method="post" action="">
+        @Html.ValidationSummary(true)
+        <fieldset>
+            <legend>Edit Barang</legend>
+        
+            @Html.HiddenFor(model => model.ProductId)
+            @Html.HiddenFor(model => model.ModelGuid)
+            <div class="div-floatleft">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.GroupId)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownList("GroupId", String.Empty)
+                    @Html.ValidationMessageFor(model => model.GroupId)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Barcode)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Barcode)
+                    @Html.ValidationMessageFor(model => model.Barcode)
+                     &nbsp;&nbsp; @Html.CheckBoxFor(model=>model.StatusPrint) Cetak
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Kode)
+                </div>
+                <div class="editor-field">
+                    <input type="text" name="Kode" readonly="readonly" value="@Model.Kode"/>
+                    @Html.ValidationMessageFor(model => model.Kode)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Nama)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Nama)
+                    @Html.ValidationMessageFor(model => model.Nama)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.UnitId)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownList("UnitId", String.Empty)
+                    @Html.ValidationMessageFor(model => model.UnitId)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.CcyId)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownList("CcyId", String.Empty)
+                    @Html.ValidationMessageFor(model => model.CcyId)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.HargaBeli)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.HargaBeli)
+                    @Html.ValidationMessageFor(model => model.HargaBeli)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.HargaJual)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.HargaJual)
+                    @Html.ValidationMessageFor(model => model.HargaJual)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.StatusProduct)
+                </div>
+                <div class="editor-field">
+                    @Html.CheckBoxFor(model => model.StatusProduct) Di Gunakan
+                </div>
+            
+            <br />
+            <p>
+                <input type="submit" value="Simpan" />    
+            </p>
+            </div>
+        </fieldset>
+    </form>
+}

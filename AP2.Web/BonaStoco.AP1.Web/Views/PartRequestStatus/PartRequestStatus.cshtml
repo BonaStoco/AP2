@@ -1,0 +1,106 @@
+﻿@model IList<BonaStoco.AP1.MasterData.Models.RequestProduct>
+@{
+    ViewBag.Title = "PartRequestStatus";
+}
+@section styles
+{
+    <link href="@Url.Content("~/Content/themes/base/jquery-ui-1.8.14.custom.css")" rel="stylesheet" type="text/css" />
+}
+@section scripts
+{
+    @Content.Script("jquery.quicksearch.js", @Url)
+    @Content.Script("setupmenu.js", @Url)  
+    <script type="text/javascript">
+        $(function () {
+            var dates = $("#dari, #sampai").datepicker({ dateFormat: 'yy-mm-dd',
+                defaultDate: "+1w",
+                changeMonth: true,
+                numberOfMonths: 1,
+                onSelect: function (selectedDate) {
+                    var option = this.id == "dari" ? "minDate" : "maxDate",
+					instance = $(this).data("datepicker"),
+					date = $.datepicker.parseDate(
+						instance.settings.dateFormat ||
+						$.datepicker._defaults.dateFormat,
+						selectedDate, instance.settings);
+                    dates.not(this).datepicker("option", option, date);
+             }   }
+            );
+        });
+        function Validasi() {
+            var startdate = document.getElementById("dari").value;
+            var enddate = document.getElementById("sampai").value;
+            if (startdate == null || startdate == "") {
+                alert("Tanggal Mulai Harus Diisi");
+            }
+            else
+                return false;
+
+        }
+		</script>
+}
+
+@using (Ajax.BeginForm("GetPartRequestStatus", "PartRequestStatus",
+    new AjaxOptions
+    {
+        HttpMethod="POST",
+        InsertionMode=InsertionMode.Replace,
+        UpdateTargetId="results",
+        LoadingElementId = "progress"
+    }
+    ))
+	{
+<Legend>Part Request Status</legend>
+<table>
+<tr>
+    <td>Tanggal Dari</td>
+    <td><input type="text" name="dari" id="dari" readonly="readonly"/></td>
+</tr>
+<tr>
+    <td>Tanggal Sampai</td>
+    <td><input type="text" name="sampai" id="sampai" readonly="readonly"/></td>
+</tr>
+<tr>
+        <td colspan="3">
+            <input type="submit" value="Cari" onclick="Validasi()"/>
+            <img id="progress" src="@Url.Content("~/Content/images/loader.gif")" alt="Loader"/>
+        </td>
+</tr>
+</table>
+}
+<div>
+<table>
+<thead>
+	<tr>
+		<th>No</th>
+		<th width=500>Nama Product</th>
+		<th>Status</th>
+	</tr>
+</thead>
+
+	<tbody id = "results">
+	 @{
+		  var no = 1;
+		  var count=0;
+	   }
+  
+	  @if(Model.Count != 0)
+	  {
+	  foreach (var item in Model)
+	  {
+		<tr>
+			<td>@no</td>
+			<td width=500>@item.Nama</td>
+			@if(item.Status == 0) {<td>Pending</td>}
+			else if(item.Status == 1) {<td>Approved</td>}
+                else if(item.Status == 2) {<td>Rejected</td>}
+		</tr>
+
+		count=count+1;
+		  no++;   
+        
+		}
+		}
+	</tbody>
+</table>
+</div>

@@ -1,0 +1,63 @@
+﻿@model BonaStoco.AP1.Web.Models.CompanyProfiles
+@{
+    ViewBag.Title = "ReportInventoryTenan";
+}
+@section styles{
+    <link href="@Url.Content("~/Content/reportinventory.css")" rel="stylesheet" type="text/css" />
+}
+@section scripts{
+    @Content.Script("jquery.validate.min.js", @Url)
+    @Content.Script("jquery.validate.unobtrusive.min.js", @Url)
+    @Content.Script("jquery.quicksearch.js", @Url)
+    @Content.Script("Inventory.js", @Url)
+}
+<span id="tenan-id" style="visibility: hidden">@Model.CompanyId</span>
+<table id="ReportInventory" width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td width="21%" rowspan="2" valign="top">
+            <div id="detailleft">
+                <table id="ReportInventory" width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td>
+                            <div id="btnbandara" align="center">
+                                Laporan Inventory</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <br />
+                            <div id="CategoryInventoryList"></div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+        <tr>
+            <td colspan="3" valign="top">
+                <span style="font-size: 16px; font-weight: bold; color: Black">Laporan Inventory @Model.CompanyName</span>
+                <br />
+                <span id="ErrorInvTenan"></span>
+                <table id="tblInventory" width="100%">
+                    <thead>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                    <tfoot>
+                    </tfoot>
+                </table>
+                <p class="style11">
+                    &nbsp;</p>
+                <p class="style11">
+                    &nbsp;</p>
+                <p class="style11">
+                    &nbsp;</p>
+            </td>
+        </tr>
+    </tr>
+</table>
+<div id="dialog-overlay-inventory">
+    <div id="dialog-loader">
+        <img alt src="/Content/images/loader-new.gif" />
+    </div>
+</div>
+</body>

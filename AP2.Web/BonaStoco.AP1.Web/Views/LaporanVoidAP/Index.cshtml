@@ -1,0 +1,132 @@
+﻿@model IList<BonaStoco.AP1.MasterData.Models.TenanAdvancedSearch>
+@{
+    ViewBag.Title = "Index";
+}
+
+@section styles
+{
+    <link href="@Url.Content("~/Content/Home/ModalDialog.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/AdvancedSearchProduct.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/themes/base/jquery-ui-1.8.14.custom.css")" rel="stylesheet" type="text/css" />  
+    <link href="@Url.Content("~/Content/LaporanVoidAp.css")" rel="stylesheet" type="text/css" />
+    
+}
+
+@section scripts
+{
+    @Content.Script("stringformat.js", @Url)
+    @Content.Script("jquery.quicksearch.js", @Url)
+    @Content.Script("jquery.validate.min.js", @Url)
+    @Content.Script("jquery.validate.unobtrusive.min.js", @Url)
+    @Content.Script("AdvancedSearchTenan.js", @Url)
+   
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#TenanSearch").click(OpenTenanSearchDialog);
+            $('#accordion .head').click(function () {
+                $(this).next().toggle('slow');
+                return false;
+            }).next().hide();
+            $("#accordion").accordion();
+            $("#cariBtn").attr("disabled", "disabled");
+            $("#cariBtn").click(Submit);
+        });
+        function Submit() {
+            var tenanid = $("#tenanid").val();
+            if (tenanid == "") {
+                $("#Message").text("tenanid tidak ditemukan");
+                $("#cariBtn").attr("disabled", "disabled");
+            } else {
+                $("#cariBtn").attr("disabled", "");
+                document.getElementById("loading").style.display = "inline";
+                $("#ViewLaporanVoidAp").submit();
+            }
+        }
+
+
+        function OpenTenanSearchDialog() {
+            CreateModalDialog("Pencarian Tenan");
+            $("#Loading").hide();
+            $.ajax({
+                type: "GET",
+                url: "/LaporanVoidAP/GetTenans",
+                dataType: "json",
+                beforeSend: LoadingStart,
+                complete: LoadingEnd,
+                success: InsertTenanToTable
+            });
+        }
+        function SearchByTenanName() {
+            var searchKey = $("#search_tenant").val();
+            $.ajax({
+                type: "GET",
+                url: "/LaporanVoidAP/FindTenanByName",
+                dataType: "json",
+                data: { "key": searchKey },
+                beforeSend: LoadingStart,
+                complete: LoadingEnd,
+                success: InsertTenanToTable
+            });
+        }
+        function Searched(tenanId) {
+            DestroyModalDialog();
+            $("#tenanid").val(tenanId);
+            $("#cariBtn").attr("disabled", "");
+            FindTenantNameByTenanId(tenanId);
+        }
+        function FindTenantNameByTenanId(tenanid) {
+            if (tenanid == null || tenanid.length == 0)
+                return;
+            $.ajax({
+                type: "GET",
+                url: "/LaporanVoidAP/FindTenantNameByTenanId/" + tenanid,
+                dataType: "json",
+                success: ShowStateTenantName
+            });
+        }
+        function ShowStateTenantName(data) {
+            TenanName = data;
+            $("#tenanName").text(data);
+            $("#cariBtn").attr("disabled", "");
+        }
+        function LoadingStart() {
+            $("#loading").show();
+        }
+        function LoadingEnd() {
+            $("#loading").hide();
+        }
+    </script>
+}
+
+<div style="margin-left: 40px;">
+    <div id="DIvStockCardHeader">
+	      <label id="Titel">Pilih Tenat</label>
+    </div>
+    <div id="DivStockCard">
+    @using (Html.BeginForm("ViewLaporanVoidAp", "LaporanVoidAP", FormMethod.Post, new { id = "ViewLaporanVoidAp" }))
+    {
+	    <div id="DivStockOpnameBody" style="padding:10px">
+		    <table id="SearchTenan" width="100%" border=0 cellspacing=0>
+			    <tr>
+				    <td>
+					    Tenant
+				    </td>
+				    <td>
+					    <input type="text" id="tenanid" name="tenanId" placeholder="Tenan" style="float:left;margin-right:5px;" onchange="FindTenantNameByTenanId(this.value)"/>
+				    </td>
+				    <td>
+					    <label id='TenanSearch' class='positive button'><img src='../Content/images/button/search.png'/> Pencarian Tenan</label>
+				    </td>
+			    </tr>
+                <tr>
+                    <td colspan="3">
+					    <button id="cariBtn" class='positive button' style="margin-left: 50px;"><img src='../Content/images/button/search.png'/>Cari</button>
+                        <div style="margin-top: 5px; color: blue;"><label id="tenanName"></label></div> 
+				    </td>
+                </tr>
+		    </table>
+	    </div>
+    }
+    </div>
+</div>

@@ -1,0 +1,482 @@
+﻿/*----------------------------------------------------------
+The base color for this template is #5c87b2. If you'd like
+to use a different color start by replacing all instances of
+#5c87b2 with your new color.
+----------------------------------------------------------*/
+body {
+   
+    background-image:url(../Content/images/background-new.png);
+    background-repeat : repeat-x;
+    background-attachment:scroll;
+    font-size: .85em;
+    font-family: Trebuchet MS;
+    margin: 0;
+    padding: 0;
+    color: #696969;
+}
+
+a:link {
+    color: #034af3;
+    text-decoration: underline;
+
+}
+
+a:visited {
+    color: #505abc;
+
+}
+
+a:hover {
+    color: #1d60ff;
+    text-decoration: none;
+ 
+}
+
+a:active {
+    color: #12eb87;
+ 
+}
+
+p, ul {
+    margin-bottom: 20px;
+    line-height: 1.6em;
+}
+
+header,
+footer {
+    display: block;
+}
+
+/* HEADINGS   
+----------------------------------------------------------*/
+h1, h2, h3, h4, h5, h6 {
+    font-size: 1.5em;
+    color: #000;
+}
+
+h1 {
+    font-size: 2em;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+h2 {
+    padding: 0 0 10px 0;
+}
+
+h3 {
+    font-size: 1.2em;
+}
+
+h4 {
+    font-size: 1.1em;
+}
+
+h5, h6 {
+    font-size: 1em;
+}
+
+/* PRIMARY LAYOUT ELEMENTS   
+----------------------------------------------------------*/
+
+/* you can specify a greater or lesser percentage for the 
+page width. Or, you can specify an exact pixel width. */
+.page {
+    min-width: 1100px;
+    width:80%;
+    margin-left: auto;
+    margin-right: auto;
+ 
+}
+
+header, #header {
+    position: relative;
+    color: #000;
+    padding: 0;
+}
+
+header h1, #header h1 {
+    font-weight: bold;
+    padding-top : 0px;
+    color: #fff;
+    border: none;
+    font-size: 26px !important;
+    text-shadow: 1px 1px 2px #fff;
+}
+
+#main {
+    padding: 30px 30px 15px 30px;
+    background-color: #fff;
+    border-radius: 0px 0 0 0;
+    -webkit-border-radius: 5px 0px 5px 5px;
+    -moz-border-radius:0px 0 0 0;
+     border:1px solid  #1D4088;
+     position:inherit;
+     margin-top:28px;
+     min-height : 480px;
+}
+
+footer-left, 
+#footer {
+    background-color: #FFF;
+    color: #696969;
+    font-size: 12px; 
+    text-align : left;
+    float : left;   
+}
+footer-right 
+{
+    background-color: #FFF;
+    color: #696969;
+    font-size: 12px; 
+    text-align : right;
+    float : right;   
+}
+
+/* TAB MENU   
+----------------------------------------------------------*/
+
+#menustyle
+{
+    margin:0;
+    float:right;
+}
+
+#menustyle ul{
+    float:left;
+    list-style:none;
+}
+#menu a
+{
+    text-decoration:none;
+    font-size : 12px;
+}
+#menustyle li
+{
+    list-style:none;
+    margin-left : 0;
+}
+
+#menustyle li a, #menustyle li a:link, #menustyle li a:visited{
+    background: #627AAD;
+    color:white;
+    font-weight : bolder;
+    display:block;
+    padding:3px 6px 3px 6px;
+    border-top:1px solid #1D4088;
+    border-left:1px solid #1D4088;
+}
+
+#menustyle li a:hover, #menustyle li a:active{
+background-color:#d8dfea;
+color:#0066CC;
+}
+
+#menustyle #aktif {
+background-color:#FFFFCC;
+color:#0066CC;
+}
+
+#menustyle li{float:left;padding:0;}
+#menustyle li a.enclose, #menustyle li a.enclose:visited{border-top:1px solid white;}
+#menustyle li ul{z-index: 9999;position:absolute;left:-999em;height:auto;width:140px;margin:0;padding:0;}
+#menustyle li ul a{width: 104px;}
+#menustyle li ul ul{margin:-75px 0 0 171px; }
+#menustyle li:hover ul ul, #menustyle li:hover ul ul ul, #menustyle li.sfhover ul ul, #menustyle li.sfhover ul ul ul{left:-999em;}
+#menustyle li:hover ul, #menustyle li li:hover ul, #menustyle li li li:hover ul, #menustyle li.sfhover ul, #menustyle li li.sfhover ul, #menustyle li li li.sfhover ul{left:auto;}
+#menustyle li:hover, #menustyle li.sfhover{position:static;}
+
+
+/* FORM LAYOUT ELEMENTS   
+----------------------------------------------------------*/
+
+fieldset {
+    border: 1px solid #ddd;
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
+}
+
+legend {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+textarea {
+    min-height: 75px;
+    font-size: 12px;
+}
+
+input[type="text"], input[type="file"],
+input[type="password"] {
+    border: 1px solid #ccc;
+    padding: 2px;
+    font-size: 12px;
+    color: #444;
+    width: 200px;
+}
+
+select {
+    border: 1px solid #ccc;
+    padding: 2px;
+    font-size: 12px;
+    color: #444;
+}
+
+input[type="submit"] {
+    font-size: 12px;
+    background-color:#6699CC;     
+    color:White;
+    font-weight:bold;
+    border:1px solid #330066;
+    cursor:pointer;   
+    padding: 5px;
+}
+
+/* TABLE
+----------------------------------------------------------*/
+
+table {
+    border: solid 1px #e8eef4;
+    border-collapse: collapse;
+}
+
+table td {
+    padding: 5px;
+    border: solid 1px #e8eef4;
+    font-size:12px;
+}
+
+table th {
+    padding: 6px 5px;
+    text-align: left;
+    background-color: #5B8EAC;
+    border: solid 1px #e8eef4;
+    color:white;
+    font-weight:bold;
+    font-size:13px;
+
+}
+
+/* MISC  
+----------------------------------------------------------*/
+.clear {
+    clear: both;
+}
+
+.error {
+    color: Red;
+}
+
+nav,
+#menucontainer 
+{
+    clear : both;
+}
+
+div#title {
+    float: right;
+    text-align: left;
+    margin-top : -7px;
+}
+
+#logindisplay 
+{
+    font-size: 14px;
+    display: block;
+    text-align: right;
+    margin: 3px;
+    color: White;
+}
+
+#logindisplay a:link {
+    color: white;
+    text-decoration: underline;
+}
+
+#logindisplay a:visited {
+    color: white;
+    text-decoration: underline;
+}
+
+#logindisplay a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error {
+    color: #ff0000;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #ff0000;
+    background-color: #ffeeee;
+}
+
+.validation-summary-errors {
+    font-weight: bold;
+    color: #ff0000;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+/* Styles for editor and display helpers
+----------------------------------------------------------*/
+.display-label, 
+.editor-label {
+    margin: 1em 0 0 0;
+}
+
+.display-field, 
+.editor-field {
+    margin: 0.5em 0 0 0;
+}
+
+.text-box {
+    width: 30em;
+}
+
+.text-box.multi-line {
+    height: 6.5em;
+}
+
+.tri-state {
+    width: 6em;
+}
+
+div.number-format 
+{
+    text-align: right;
+    color: Red;
+}
+
+#progress 
+{
+    display: none;
+}
+
+.div-floatleft 
+{
+    float: left;
+    width: 80%;
+}
+div#Logo 
+{
+    float: left;
+    margin-top : -20px;
+}
+
+.label-field
+{
+  width:15%;   
+  background-color:#5B8EAC;
+  color:White;
+}
+
+.field
+{
+   
+  background-color:#F7F7F7;
+  color:black;
+}
+
+.fontItem
+{
+	text-align:right;
+	color:Black;
+}
+
+.fontField
+{
+	text-align:left;
+	color:Black;
+}
+
+/*********************************BUTTON**********************************************/
+button.button, label.button{
+    display:block;
+    float:left;
+    margin:0 7px 0 0;
+    background-color:#f5f5f5;
+    border:1px solid #dedede;
+    border-top:1px solid #eee;
+    border-left:1px solid #eee;
+ 
+    font-size:12px;
+    line-height:130%;
+    text-decoration:none;
+    font-weight:bold;
+    color:#18a001;
+    cursor:pointer;
+    padding:5px 10px 6px 7px; /* Links */
+}
+button.button, label.button{
+    width:auto;
+    overflow:visible;
+    padding:4px 10px 3px 7px; /* IE6 */
+}
+
+button img, label img, a img{
+    margin:0 3px -3px 0 !important;
+    padding:0;
+    border:none;
+    width:16px;
+    height:16px;
+}
+ /* POSITIVE */
+ 
+button.button.positive, label.button.positive{
+    color:#529214;
+}
+button.button.positive:hover, label.button.positive:hover{
+    background-color:#E6EFC2;
+    border:1px solid #C6D880;
+    color:#529214;
+}
+
+/* NEGATIVE */
+ 
+button.button.negative{
+    color:#d12f19;
+}
+button.button.negative:hover{
+    background:#fbe3e4;
+    border:1px solid #fbc2c4;
+    color:#d12f19;
+}
+
+#dialog-overlay
+{
+    	width:100%;
+    	height:100%;
+    	filter:alpha(opacity=70);
+    	-moz-opacity:0.7;
+    	-khtml-opacity: 0.7;
+    	opacity: 0.7;
+    	background:#000;
+    	position:fixed;
+    	top:0; left:0;
+    	z-index:3000;
+    	display : none;			
+}
+
+#dialog-loader
+{	
+	width : 200px;
+	height : 200px;
+  	margin : 14% 50% 14% 40%; 
+}
+
+#loader
+{	
+	width : 20px;
+	height : 20px;
+	display : none;
+}

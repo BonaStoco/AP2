@@ -1,0 +1,73 @@
+﻿@model IList<BonaStoco.AP1.PengirimanBarang.Models.GRN>
+           
+<link href="@Url.Content("~/Content/themes/base/jquery-ui-1.8.14.custom.css")" rel="stylesheet" type="text/css" />
+<script src="@Url.Content("~/Scripts/jquery-ui-1.8.14.custom.min.js")" type="text/javascript"></script>
+
+@section scripts
+{
+    @Content.Script("jquery.validate.min.js", @Url)
+    @Content.Script("jquery.validate.unobtrusive.min.js", @Url)
+    @Content.Script("jquery.quicksearch.js", @Url)
+
+}
+
+<script type="text/javascript">
+    function Edit() {
+        $("#FormEdit").dialog("open");
+        return false;
+    };
+    $('#CloseUpdate').click(
+        function () {
+            $('#FormEdit').dialog("close");
+            return true;
+        }
+    );
+    $(function () {
+        $("#FormEdit").dialog({
+            autoOpen: false,
+            width: 850,
+            height: 250,
+            show: "Fade",
+            hide: "explode"
+        });
+    });
+</script>
+
+<table width="100%">
+    <thead>
+        <tr>
+            <th>Tanggal</th>
+            <th>No Transaksi</th>
+            <th>Referensi</th>
+            <th>Nama Pengirim</th>
+            <th>Keterangan</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="searchResults">
+    @foreach (BonaStoco.AP1.PengirimanBarang.Models.GRN grn in Model)
+    {
+       <tr>
+            <td>@grn.TanggalTransaksi.ToString("dd-MM-yyyy")</td>
+            <td><span onclick="Edit()" style="cursor:pointer">
+             @Ajax.ActionLink(grn.KodeTransaksi, "DetailLaporanPengirimanBarang", new { grnId = @grn.Guid },
+                        new AjaxOptions
+                        {
+                            HttpMethod = "POST",
+                            InsertionMode = InsertionMode.Replace,
+                            UpdateTargetId = "FormEdit"
+                        })</span></td>
+            <td>@grn.Referensi</td>
+            <td>@grn.NamaPengirim</td>
+            <td>@grn.Keterangan</td>
+            <td>@grn.StatusString</td>
+            <td>@Html.ActionLink("Print", "LaporanPengirimanBarangReport", "LaporanPengirimanBarang", new { guid = grn.Guid, tenanId = ViewBag.TenanId }, null)</td>
+        </tr> 
+    }
+        
+    </tbody>
+</table>
+<div id="FormEdit" title="Detail Barang">
+
+</div>

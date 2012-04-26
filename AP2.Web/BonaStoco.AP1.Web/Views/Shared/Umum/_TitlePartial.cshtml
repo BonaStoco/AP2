@@ -1,0 +1,9 @@
+﻿@{
+    string companyName = "Bonastoco";
+    if(Request.IsAuthenticated)
+    {
+        companyName = new BonaStoco.AP1.Web.Models.CompanyProfiles(this.Session).CompanyName;
+    }
+}
+<h1><span style=" 
+	font-size:36px;">e</span>-POS @companyName</h1>

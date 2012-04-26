@@ -1,0 +1,124 @@
+﻿@model List<BonaStoco.AP1.Web.Report.TenantBandaraYearlySales>
+@{
+    DateTime today = DateTime.Today;
+    
+}
+
+<span id='location-id' hidden="hidden">@ViewBag.locationId</span>
+<span id='no'  hidden="hidden">0</span>
+<table id="detail-harian" width="95%" height="65%" border="0" align="right" cellpadding="0" cellspacing="0">
+    <tr>
+        <td width="128px" height="39">
+            <div id="Periode">@Ajax.ActionLink("Hari", "RekapTenanHarian","APReportSale", new { locationId = ViewBag.LocationId, companyName = ViewBag.CompanyName },
+                    new AjaxOptions
+                    {
+                        HttpMethod = "GET",
+                        InsertionMode = InsertionMode.Replace,
+                        UpdateTargetId = "results",
+                        LoadingElementId = "dialog-overlay",
+                        OnSuccess = "LoadingStop()"
+                    })
+            </div>
+        </td>
+        <td width="128px">
+            <div id="Periode">@Ajax.ActionLink("Bulan", "RekapTenanBulanan", "APReportSale", new { locationId = ViewBag.LocationId, companyName = ViewBag.CompanyName },
+                    new AjaxOptions
+                    {
+                        HttpMethod = "GET",
+                        InsertionMode = InsertionMode.Replace,
+                        UpdateTargetId = "results",
+                        LoadingElementId = "dialog-overlay",
+                        OnSuccess = "LoadingStop()"
+                    })
+            </div>
+        </td>
+        <td width="128px">
+            <div class="ActivePeriode">Tahun
+            </div>
+        </td >
+        <td width="100%">
+            <div class="NamaBandara">@ViewBag.CompanyName</div>
+        </td>
+    </tr>
+     <tr>
+   <td height="494" colspan="4" align="right" class="top" id="results">
+            <table width="100%" height="100%" border="0" align="right" cellpadding="0" cellspacing="0">
+            <tr height="30px" class="header-view" style="cursor:pointer"><td>Total Penjualan</td></tr>
+			 <tr>     
+                              <td width="200" colspan="2" height="21" class="right" id="today" style="text-align:left;"> Total Penjualan Tahun @today.ToString("yyyy")</td>
+					    </tr>  		   
+					        <td height="39" >   
+                         
+   			   
+    <div id="tanggalresult">
+    
+   <table id="tableRekap" width="100%">
+                               
+	                    <tr ><th width="50%" style="text-align:center">IDR</th><th style="text-align:center">USD</th></tr>
+                        <tr>
+					        <td height="40"  class=" twobefore"><span id="date1-usd">Rp. @ViewBag.TotalSalePerYear</span></td>
+					        <td height="40"  class=" before"><span id="date2-usd">$@ViewBag.TotalSalePerYearUSD</span></td>
+					    </tr>
+                       </table>
+                      
+                       </div>
+                     
+                
+                       </td>                      
+                       
+                        <tr><td height="10"></td></tr>
+                        
+                        <tr height="30px" class="header-view" style="cursor:pointer"><td>Detail Penjualan</td></tr>
+                         <tr><td height="10"><span id='btn' style="float:right; height:5px"><button onclick="CetakLaporan()">Cetak Laporan</button></span></td></tr>
+
+					    <tr id="detail">
+					        <td class="top" id="detail-header"><br />                                                                   
+                                            Detail Penjualan di <span id='company-name'> @ViewBag.CompanyName</span> <span id='waktu'> tahun @today.Date.ToString("yyyy")</span>
+                                       
+                                   
+						         <table id="detail-penjualan" class="tablesorter" width="100%" border="0" cellpadding="0" cellspacing="0" bordercolor="#FFFFFF">  
+                                 <thead style="cursor:pointer">                                
+							        <tr>
+							            <th>Tenant</th>
+							            <th style="text-align:right;"> Jumlah Penjualan (IDR)</th>
+                                        <th style="text-align:right;"> Jumlah Penjualan (USD)</th>
+							        </tr>
+                                    </thead>  
+                                    <tbody>
+                                    @{
+                                            int no=0;
+                                        string warna;
+                                    }
+                                    @foreach (var item in Model)
+                                    {
+                                        if(no % 2 == 0)
+                                        {
+                                            warna = "#f8f8f8";
+                                        }
+                                        else
+                                        {
+                                            warna = "#fff";
+                                        }
+							            <tr bgcolor='@warna'>
+								        <td class="left">@item.TenanName &nbsp;</td>
+								        <td class="right">Rp @item.YearlyTotalSalePerTenan.ToString("N0")</td>
+                                        <td class="right">$ @item.TotalSalePertenantInUSD.ToString("N2")</td>
+							            </tr>
+                                      
+                                        no++;
+                                    }                                   
+                                    </tbody>
+                                    <tfoot>
+                                     <tr><th class="left">Total Penjualan</th><th class="right">Rp.@ViewBag.TotalSalePerYear</th><th class="right">$@ViewBag.TotalSalePerYearUSD</th></tr>
+                                     </tfoot>
+						        </table>
+					        </td>
+          			    </tr>
+            </table>
+    </td>
+    </tr>
+</table>
+<script type="text/javascript">
+    $("table").tablesorter({ headers: { 1: { sorter: "rupiahKoma"}} });
+</script>
+

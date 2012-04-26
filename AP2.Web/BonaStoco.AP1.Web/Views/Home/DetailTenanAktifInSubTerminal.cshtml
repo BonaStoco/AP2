@@ -1,0 +1,22 @@
+﻿@using BonaStoco.AP1.MasterData.Models
+@model IList<DetailTenanAktif>
+ <table width="100%" style="font-size:12px;">
+    <thead>
+        <tr>
+            <th>Tenan ID</th>
+            <th>Nama Tenan</th>
+            <th>Gate</th>
+        </tr>
+    </thead>
+    <tbody id="searchResults">
+            @foreach (var item in Model)
+            {
+                 <tr>
+                    <td>@Html.DisplayFor(m => item.TenanId)</td>
+                    <td>@Html.DisplayFor(m => item.TenanName)</td>
+                    <td>@Html.DisplayFor(m => item.Gate)</td>
+                </tr>
+            }
+           
+    </tbody>
+    </table>

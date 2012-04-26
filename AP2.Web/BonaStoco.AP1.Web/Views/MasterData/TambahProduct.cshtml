@@ -1,0 +1,94 @@
+﻿@model BonaStoco.AP1.MasterData.Models.Product
+@{
+    ViewBag.Title = "TambahProduct";
+    if(ViewBag.IsExist == true)
+    {
+        <script type="text/javascript">
+            alert("Barang Sudah Terdaftar");
+        </script>
+    }
+}
+
+@section scripts
+{
+    @Content.Script("jquery.validate.min.js", @Url)
+    @Content.Script("jquery.validate.unobtrusive.min.js", @Url)
+}
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true);
+        <h2>Tambah Barang</h2>
+        
+        @Html.HiddenFor(model => model.ProductId)
+    <div>
+        <div class="editor-label">
+            Part Group
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("GroupId", string.Empty)
+            @Html.ValidationMessageFor(model => model.GroupId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Barcode)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Barcode)
+            @Html.ValidationMessageFor(model => model.Barcode)
+            &nbsp;&nbsp; @Html.CheckBoxFor(model=>model.StatusPrint) Cetak
+        </div>
+           
+        
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Kode)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Kode)
+            @Html.ValidationMessageFor(model => model.Kode)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Nama)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Nama)
+            @Html.ValidationMessageFor(model => model.Nama)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.UnitId)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("UnitId", string.Empty)
+            @Html.ValidationMessageFor(model => model.UnitId)
+        </div>
+    </div>
+    <div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CcyId)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("CcyId", string.Empty)
+            @Html.ValidationMessageFor(model => model.CcyId)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.HargaBeli)
+        </div>
+        <div class="editor-field">
+            <input type="text" value="1" name="HargaBeli"/>
+            @Html.ValidationMessageFor(model => model.HargaBeli)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.HargaJual)
+        </div>
+        <div class="editor-field">
+            <input type="text" value="1" name="HargaJual"/>
+            @Html.ValidationMessageFor(model => model.HargaJual)
+        </div>
+     </div>
+     <br />
+     <p><input type="submit" value="Simpan" /></p>
+}

@@ -1,0 +1,61 @@
+﻿@model IList<BonaStoco.AP1.MasterData.Models.TenanAdvancedSearch>
+@{
+    ViewBag.Title = "Pengiriman Barang";
+}
+@section styles
+{
+    <link href="@Url.Content("~/Content/AdvancedSearch.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/themes/base/jquery-ui-1.8.14.custom.css")" rel="stylesheet" type="text/css" />
+}
+@section scripts
+{
+    @Content.Script("jquery.validate.min.js", @Url)
+    @Content.Script("jquery.validate.unobtrusive.min.js", @Url)
+    @Content.Script("jquery.quicksearch.js", @Url) 
+    @Content.Script("KirimBarang.js", @Url) 
+  
+}
+<h2> Pengiriman Barang</h2>
+<div id="search"> 
+<br />
+    <form id="searchTenantForm" action="Index" method="post">
+            Masukkan kode tenan : &nbsp;<br />
+            <input type="text" name="tenanId" id="txtSearch" placeholder="Kode Tenan" style="float:left;margin-right:5px;"/>
+            <label id="AdvSearch" class="positive button"><img src="@Url.Content("~/Content/images/button/search.png")"/> Pencarian Tenan</label>
+            <br /><br />
+            <button id="searchButton" class="positive button"><img src="@Url.Content("~/Content/images/button/search.png")"/> Cari</button>
+    </form>
+</div>
+
+    <div id="AdvancedSearch" title="Advanced Search" style="display:none">
+    <form id="findTenanForm" action="Index" method="post">
+	        <input type="text" name="id_search" value="" id="id_search" placeholder="Search"/> 
+            <img class="loading" src="@Url.Content("~/Content/images/loader.gif")" alt="loading"/>
+    </form>	
+        <table id="tenans" width="100%">
+            <thead>
+                <tr >
+                    <th>Kode</th>
+                    <th>Nama</th>
+                    <th>Alamat</th>
+                </tr>
+            </thead>
+            <tbody>
+    	        <tr id="noresults">
+		            <td colspan="6">No Results</td>
+	            </tr>
+                @foreach (var tenan in Model)
+                {
+                    <tr id="tenan" >
+                        <td width="10%" onclick="CloseDialog()"><a href='#' onclick='submitted(@tenan.TenanId)' > @tenan.TenanId</a></td>
+                        <td width="35%" onclick="CloseDialog()"><a href='#' onclick='submitted(@tenan.TenanId)' > @tenan.TenanName</a></td>
+                        <td width="55%">@tenan.Alamat</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+
+<div id="status">
+</div>

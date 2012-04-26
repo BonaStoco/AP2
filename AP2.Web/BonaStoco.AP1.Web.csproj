@@ -1,0 +1,756 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0F6E2EC8-DB65-4363-B9CE-F2E525FC6ADE}</ProjectGuid>
+    <ProjectTypeGuids>{E53F8FEA-EAE0-44A6-8774-FFD645390401};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BonaStoco.AP1.Web</RootNamespace>
+    <AssemblyName>BonaStoco.AP1.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PublishDatabases>false</PublishDatabases>
+    <DesktopBuildPackageLocation>..\..\..\..\..\ap1.bonastoco.com\BonaStoco.AP1.Web.zip</DesktopBuildPackageLocation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ExcludeGeneratedDebugSymbol>true</ExcludeGeneratedDebugSymbol>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BonaStoco.Inf.Data">
+      <HintPath>..\..\..\bonastoco-bin\BonaStoco.Inf.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="BonaStoco.Inf.Data.ViewModel">
+      <HintPath>..\..\..\bonastoco-bin\BonaStoco.Inf.Data.ViewModel.dll</HintPath>
+    </Reference>
+    <Reference Include="BonaStoco.Inf.DataMapper">
+      <HintPath>..\..\..\bonastoco-bin\BonaStoco.Inf.DataMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="BonaStoco.Inf.DataMapper.Impl">
+      <HintPath>..\..\..\bonastoco-bin\BonaStoco.Inf.DataMapper.Impl.dll</HintPath>
+    </Reference>
+    <Reference Include="BonaStoco.Inf.ExceptionUtils">
+      <HintPath>..\..\..\bonastoco-bin\BonaStoco.Inf.ExceptionUtils.dll</HintPath>
+    </Reference>
+    <Reference Include="BonaStoco.Inf.Reporting">
+      <HintPath>..\..\..\bonastoco-bin\BonaStoco.Inf.Reporting.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging">
+      <HintPath>..\..\..\external-lib\spring-amqp\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Erlang">
+      <HintPath>..\..\..\external-lib\spring-amqp\Erlang.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Mono.Security, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\external-lib\Mono.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json.Net20">
+      <HintPath>..\..\..\external-lib\spring-amqp\Newtonsoft.Json.Net20.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql, Version=2.0.11.91, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\external-lib\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="RabbitMQ.Client, Version=2.2.0.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\external-lib\spring-amqp\RabbitMQ.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Aop">
+      <HintPath>..\..\..\external-lib\spring-amqp\Spring.Aop.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Core">
+      <HintPath>..\..\..\external-lib\spring-amqp\Spring.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Data">
+      <HintPath>..\..\..\external-lib\spring-amqp\Spring.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Erlang">
+      <HintPath>..\..\..\external-lib\spring-amqp\Spring.Erlang.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Messaging.Amqp">
+      <HintPath>..\..\..\external-lib\spring-amqp\Spring.Messaging.Amqp.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Messaging.Amqp.Rabbit">
+      <HintPath>..\..\..\external-lib\spring-amqp\Spring.Messaging.Amqp.Rabbit.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Messaging.Amqp.Rabbit.Admin">
+      <HintPath>..\..\..\external-lib\spring-amqp\Spring.Messaging.Amqp.Rabbit.Admin.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Threading">
+      <HintPath>..\..\..\external-lib\spring-amqp\Spring.Threading.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Routing">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Home\Home.css" />
+    <Content Include="Content\Home\ModalDialog.css" />
+    <Content Include="Content\images\button\first.png" />
+    <Content Include="Content\images\button\Icon-Bonastoco.png" />
+    <Content Include="Content\images\button\last.png" />
+    <Content Include="Content\images\button\next.png" />
+    <Content Include="Content\images\button\preloader.gif" />
+    <Content Include="Content\images\button\prev.png" />
+    <Content Include="Content\ProductChange.css" />
+    <Content Include="Content\LaporanProduksi.css" />
+    <Content Include="Content\images\delete-icon.png" />
+    <Content Include="Content\ImportProduct\ImportProduct.css" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AP2ReportController.cs" />
+    <Compile Include="Controllers\APReportController.cs" />
+    <Compile Include="Controllers\CalenderViewController.cs" />
+    <Compile Include="Controllers\CargoController.cs" />
+    <Compile Include="Controllers\CargoMasterDataController.cs" />
+    <Compile Include="Controllers\CompanyProfileController.cs" />
+    <Compile Include="Controllers\DaftarPembayaranTenanAPController.cs" />
+    <Compile Include="Controllers\DaftarPembayaranTenanController.cs" />
+    <Compile Include="Controllers\LaporanProduksiController.cs" />
+    <Compile Include="Controllers\MonitoringDashBoardController.cs" />
+    <Compile Include="Controllers\PerubahanBarangController.cs" />
+    <Compile Include="Controllers\ReportSale\ReportSaleTenantController.cs" />
+    <Compile Include="Controllers\ReturBarangController.cs" />
+    <Compile Include="Controllers\DaftarPenerimaanAP1Controller.cs" />
+    <Compile Include="Controllers\ExchangeRateController.cs" />
+    <Compile Include="Controllers\FakturPajakController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\kalenderViewByTenantController.cs" />
+    <Compile Include="Controllers\LaporanPengirimanBarangController.cs" />
+    <Compile Include="Controllers\MasterDataController.cs" />
+    <Compile Include="Controllers\PartGroupController.cs" />
+    <Compile Include="Controllers\PartRequestStatusController.cs" />
+    <Compile Include="Controllers\PengirimanBarangAP1Controller.cs" />
+    <Compile Include="Controllers\PengirimanBarangController.cs" />
+    <Compile Include="Controllers\ReportSale\ReportSaleController.cs" />
+    <Compile Include="Controllers\ReportSale\APReportSaleController.cs" />
+    <Compile Include="Controllers\ReportSale\BandaraReportSaleController.cs" />
+    <Compile Include="Controllers\ReportSale\SubTerminalReportSaleController.cs" />
+    <Compile Include="Controllers\ReportSale\TerminalReportSaleController.cs" />
+    <Compile Include="Controllers\ReportStockController.cs" />
+    <Compile Include="Controllers\Test\TestExportController.cs" />
+    <Compile Include="Controllers\VerifikasiReturBarangController.cs" />
+    <Compile Include="Controllers\TarifTenanController.cs" />
+    <Compile Include="Controllers\Test\TestController.cs" />
+    <Compile Include="Controllers\Test\TestPrintBarcodeController.cs" />
+    <Compile Include="Controllers\UnitController.cs" />
+    <Compile Include="Controllers\UploadSalesController.cs" />
+    <Compile Include="Controllers\RequestProductController.cs" />
+    <Compile Include="Controllers\VerifikasiPengirimanBarangController.cs" />
+    <Compile Include="Controllers\ViewRouter.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\AP1Entities.cs" />
+    <Compile Include="Models\APRoles.cs" />
+    <Compile Include="Models\BonaStocoWSLogon.cs" />
+    <Compile Include="Models\CompanyProfiles.cs" />
+    <Compile Include="Models\GRNAutoNumber.cs" />
+    <Compile Include="Models\GRNItemModel.cs" />
+    <Compile Include="Models\GRNModel.cs" />
+    <Compile Include="Models\ImportProductResponse.cs" />
+    <Compile Include="Models\MappingCompany.cs" />
+    <Compile Include="Models\MappingSubTerminal.cs" />
+    <Compile Include="Models\MappingTerminal.cs" />
+    <Compile Include="Models\MonthlyActivityMonitoringDto.cs" />
+    <Compile Include="Models\PartGroup.cs" />
+    <Compile Include="Models\PengirimanBarang.cs" />
+    <Compile Include="Models\RabbitHelper.cs" />
+    <Compile Include="Models\RecoverImportProductResponse.cs" />
+    <Compile Include="Models\RecoverTenanModel.cs" />
+    <Compile Include="Models\RoleId.cs" />
+    <Compile Include="Models\RoleMapper.cs" />
+    <Compile Include="Models\UploadSalesResponse.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\sercurityws\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\AdvancedSearch.css" />
+    <Content Include="Content\AdvancedSearchProduct.css" />
+    <Content Include="Content\ChangePassword.css" />
+    <Content Include="Content\FakturAP\FakturAPPrint.css" />
+    <Content Include="Content\FakturPajak\ReportFakturPajak%28report%29.css" />
+    <Content Include="Content\FakturPajak\ReportFakturPajak.css" />
+    <Content Include="Content\images\button\add.png" />
+    <Content Include="Content\images\checked.png" />
+    <Content Include="Content\images\error.png" />
+    <Content Include="Content\images\help.gif" />
+    <Content Include="Content\images\important.gif" />
+    <Content Include="Content\images\info.gif" />
+    <Content Include="Content\images\info.png" />
+    <Content Include="Content\images\sprite.png" />
+    <Content Include="Content\images\success.png" />
+    <Content Include="Content\images\warning.png" />
+    <Content Include="Content\ListMenuUnit.css" />
+    <Content Include="Content\ExchangeRate.css" />
+    <Content Include="Content\images\button\cancel.png" />
+    <Content Include="Content\images\button\search.png" />
+    <Content Include="Content\images\button\submit.png" />
+    <Content Include="Content\Monitoring.css" />
+    <Content Include="Content\partgroup\partgroup.css" />
+    <Content Include="Content\PengirimanBarang.css" />
+    <Content Include="Content\RekapPerTenant.css" />
+    <Content Include="Content\ReportSale\DetailPenjualan.css" />
+    <Content Include="Content\requestproduct\requestproduct.css" />
+    <Content Include="Content\images\Angkasa.png" />
+    <Content Include="Content\images\AP1-Logo.png" />
+    <Content Include="Content\images\ap2.png" />
+    <Content Include="Content\images\background-new.png" />
+    <Content Include="Content\images\edit.png" />
+    <Content Include="Content\images\loader-new.gif" />
+    <Content Include="Content\images\loader.gif" />
+    <Content Include="Content\images\plus.png" />
+    <Content Include="Content\LaporanPenjualanByTenant.css" />
+    <Content Include="Content\PenerimaanBarang%28Report%29.css" />
+    <Content Include="Content\MasterData.css" />
+    <Content Include="Content\CompanyProfile.css" />
+    <Content Include="Content\images\body.jpg" />
+    <Content Include="Content\images\JSPGetProperty.gif" />
+    <Content Include="Content\images\left.png" />
+    <Content Include="Content\images\loader.gif" />
+    <Content Include="Content\images\menu.jpg" />
+    <Content Include="Content\images\Pencil-32.png" />
+    <Content Include="Content\images\pensil.png" />
+    <Content Include="Content\images\right.png" />
+    <Content Include="Content\images\roller.gif" />
+    <Content Include="Content\PenerimaanBarang%28Report%29.css" />
+    <Content Include="Content\MasterData.css" />
+    <Content Include="Content\kalenderView.css" />
+    <Content Include="Content\partgroup\tambahgroup.css" />
+    <Content Include="Content\PenerimaanBarang%28View%29.css" />
+    <Content Include="Content\Report.css" />
+    <Content Include="Content\Report2.css" />
+    <Content Include="Content\ReportSale.css" />
+    <Content Include="Content\reportstok.css" />
+    <Content Include="Content\themes\base\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="Content\themes\base\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="Content\themes\base\images\ui-bg_diagonals-thick_90_eeeeee_40x40.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_10_000000_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_15_cd0a0a_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_100_e4f1fb_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_50_3baae3_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_80_d7ebf9_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-hard_100_f2f5f7_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-hard_70_000000_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_100_deedf7_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_25_ffef8f_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_228ef1_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2694e8_256x240.png" />
+    <Content Include="Content\sdmenu\images\bottom.gif" />
+    <Content Include="Content\sdmenu\images\collapsed.gif" />
+    <Content Include="Content\sdmenu\images\expanded.gif" />
+    <Content Include="Content\sdmenu\images\linkarrow.gif" />
+    <Content Include="Content\sdmenu\images\title.gif" />
+    <Content Include="Content\sdmenu\images\toptitle.gif" />
+    <Content Include="Content\sdmenu\sdmenu.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_3d80b3_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_72a7cf_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_ef8c08_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_ffd27a_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui-1.8.14.custom.css" />
+    <Content Include="Content\themes\base\jquery-ui-1.8.15.custom.css" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\treeview\images\menu-collapsed.gif" />
+    <Content Include="Content\treeview\images\menu-expanded.gif" />
+    <Content Include="Content\treeview\images\menu-leaf.gif" />
+    <Content Include="Content\treeview\TreeView.css" />
+    <Content Include="Content\UploadSales.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\AdvancedSearchProduct.js" />
+    <Content Include="Scripts\ap1.js" />
+    <Content Include="Scripts\AdvancedSearch.js" />
+    <Content Include="Scripts\AirCraft.js" />
+    <Content Include="Scripts\Comodity.js" />
+    <Content Include="Scripts\BillingTenantBandara.js" />
+    <Content Include="Scripts\BillingTenantTerminal.js" />
+    <Content Include="Scripts\BillingTenantSubTerminal.js" />
+    <Content Include="Scripts\BillingTenantAP.js" />
+    <Content Include="Scripts\AdvancedSearchTenan.js" />
+    <Content Include="Scripts\Paging.js" />
+    <Content Include="Scripts\pagingtenanlist.js" />
+    <Content Include="Scripts\PenjualanTotal.js" />
+    <Content Include="Scripts\ProductChange.js" />
+    <Content Include="Scripts\Destinetion.js" />
+    <Content Include="Scripts\Customer.js" />
+    <Content Include="Scripts\highcharts.js" />
+    <Content Include="Scripts\highcharts.src.js" />
+    <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Scripts\Monitoring.js" />
+    <Content Include="Scripts\partgroup.js" />
+    <Content Include="Scripts\ExchangeRate.js" />
+    <Content Include="Scripts\fakturAP1.js" />
+    <Content Include="Scripts\ListUnit.js" />
+    <Content Include="Scripts\BillingTenant.js" />
+    <Content Include="Scripts\PengirimanBarang.js" />
+    <Content Include="Scripts\PrintDocument.js" />
+    <Content Include="Scripts\ReportSale\DetailPenjualan.js" />
+    <Content Include="Scripts\ReportSale\DetailPenjualanTenan.js" />
+    <Content Include="Scripts\ReportSale\LaporanSummary.js" />
+    <Content Include="Scripts\ReportSale\LaporanSummaryTenan.js" />
+    <Content Include="Scripts\ReportSale\SummaryPerKasir.js" />
+    <Content Include="Scripts\RekapPerTenant.js" />
+    <Content Include="Scripts\ReportSale\SummaryPerKasirTenan.js" />
+    <Content Include="Scripts\RequestProduct.js" />
+    <Content Include="Scripts\fakturAP2.js" />
+    <Content Include="Scripts\jquery.ajax_postup.js" />
+    <Content Include="Scripts\jquery.formatCurrency-1.4.0.js" />
+    <Content Include="Scripts\ReturBarang.js" />
+    <Content Include="Scripts\setupmenu.js" />
+    <Content Include="Scripts\stringformat.js" />
+    <Content Include="Scripts\TreeView.js" />
+    <Content Include="Scripts\kalenderTenan.js" />
+    <Content Include="Scripts\sdmenu.js" />
+    <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.5.1.js" />
+    <Content Include="Scripts\jquery-1.5.1.min.js" />
+    <Content Include="Scripts\jquery-ui-1.8.11.js" />
+    <Content Include="Scripts\jquery-ui-1.8.11.min.js" />
+    <Content Include="Scripts\jquery-ui-1.8.14.custom.min.js" />
+    <Content Include="Scripts\jquery.quicksearch.js" />
+    <Content Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jzebra.jar" />
+    <Content Include="Scripts\kalender.js" />
+    <Content Include="Scripts\KirimBarang.js" />
+    <Content Include="Scripts\modernizr-1.7.js" />
+    <Content Include="Scripts\modernizr-1.7.min.js" />
+    <Content Include="Scripts\stock.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\MicrosoftAjax.js" />
+    <Content Include="Scripts\MicrosoftAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Account\ChangePasswordSuccess.cshtml" />
+    <Content Include="Views\Account\LogOn.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_LogOnPartial.cshtml" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\Uploads\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="Views\LaporanDetailPenjualanPerTenan\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Code\Content.cshtml" />
+    <None Include="App_Data\ListTenanDomestik.csv" />
+    <None Include="App_Data\listtenantinternasional.csv" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Views\Home\TenantPage.cshtml" />
+    <Content Include="Views\Home\AP1Page.cshtml" />
+    <Content Include="Views\Shared\_TitlePartial.cshtml" />
+    <Content Include="Views\Shared\_LayoutTenant.cshtml" />
+    <Content Include="Views\MasterData\Index.cshtml" />
+    <Content Include="Views\MasterData\TambahProduct.cshtml" />
+    <Content Include="Views\MasterData\TambahProductSelesai.cshtml" />
+    <Content Include="Views\MasterData\Edit.cshtml" />
+    <Content Include="Views\MasterData\EditProductSelesai.cshtml" />
+    <Content Include="Views\MasterData\_SearchProductResult.cshtml" />
+    <Content Include="Views\PengirimanBarang\Index.cshtml" />
+    <Content Include="Views\PengirimanBarang\_HasilPencarianBarangGRN.cshtml" />
+    <Content Include="Views\PengirimanBarang\_Edit.cshtml" />
+    <Content Include="Views\PengirimanBarang\_EditResult.cshtml" />
+    <Content Include="Views\PengirimanBarang\KirimBarang.cshtml" />
+    <Content Include="Views\PengirimanBarang\_EmptyResult.cshtml" />
+    <Content Include="Views\PengirimanBarang\_BarangTerkirim.cshtml" />
+    <Content Include="Views\PengirimanBarang\_DeleteResult.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
+    <Content Include="Views\VerifikasiPengirimanBarang\_ListPengirimanBarangYangBelumDiVerifikasi.cshtml" />
+    <Content Include="Views\VerifikasiPengirimanBarang\_NotFound.cshtml" />
+    <Content Include="Views\VerifikasiPengirimanBarang\_TenanNotFound.cshtml" />
+    <Content Include="Views\VerifikasiPengirimanBarang\DetailVerifikasiPengirimanBarang.cshtml" />
+    <Content Include="Views\VerifikasiPengirimanBarang\ConfirmVerifikasiPengirimanBarangResult.cshtml" />
+    <Content Include="Views\Shared\_LayoutAP1.cshtml" />
+    <Content Include="Views\Shared\_LayoutHome.cshtml" />
+    <Content Include="Views\PengirimanBarang\PengirimanBarangDariAP1.cshtml" />
+    <Content Include="Views\Test\Index.cshtml" />
+    <Content Include="Views\Shared\_Report.cshtml" />
+    <Content Include="Views\ReportSale\PenjualanTotal.cshtml" />
+    <Content Include="Views\FakturPajak\ReportFakturPajak.cshtml" />
+    <Content Include="Views\FakturPajak\ShowDialogReport.cshtml" />
+    <Content Include="Views\Shared\_FakturPajak.cshtml" />
+    <Content Include="Views\ReportStock\ReportStock.cshtml" />
+    <Content Include="Views\Unit\Index.cshtml" />
+    <Content Include="Views\Unit\TambahUnit.cshtml" />
+    <Content Include="Views\Unit\TambahUnitSelesai.cshtml" />
+    <Content Include="Views\PartGroup\Index.cshtml" />
+    <Content Include="Views\PartGroup\TambahPartGroup.cshtml" />
+    <Content Include="Views\PartGroup\TambahPartGroupSelesai.cshtml" />
+    <Content Include="Views\PengirimanBarangAP1\FindByTenant.cshtml" />
+    <Content Include="Views\PengirimanBarangAP1\Index.cshtml" />
+    <Content Include="Views\PengirimanBarangAP1\KirimBarang.cshtml" />
+    <Content Include="Views\PengirimanBarangAP1\PengirimanBarangDariAP1.cshtml" />
+    <Content Include="Views\PengirimanBarangAP1\ViewTenan.cshtml" />
+    <Content Include="Views\PengirimanBarangAP1\_BarangTerkirim.cshtml" />
+    <Content Include="Views\PengirimanBarangAP1\_DeleteResult.cshtml" />
+    <Content Include="Views\PengirimanBarangAP1\_Edit.cshtml" />
+    <Content Include="Views\PengirimanBarangAP1\_EditResult.cshtml" />
+    <Content Include="Views\PengirimanBarangAP1\_EmptyResult.cshtml" />
+    <Content Include="Views\PengirimanBarangAP1\_HasilPencarianBarangGRN.cshtml" />
+    <Content Include="Views\PengirimanBarangAP1\TenanNotFound.cshtml" />
+    <Content Include="Views\VerifikasiPengirimanBarang\Index.cshtml" />
+    <Content Include="Views\ReportStock\ReportStockTenan.cshtml" />
+    <Content Include="Views\CompanyProfile\Index.cshtml" />
+    <Content Include="Views\CompanyProfile\EditProfile.cshtml" />
+    <Content Include="Views\CompanyProfile\EditTenanSelesai.cshtml" />
+    <Content Include="Views\DaftarPenerimaanAP1\DaftarPenerimaan.cshtml" />
+    <Content Include="Views\DaftarPenerimaanAP1\_EmptyResult.cshtml" />
+    <Content Include="Views\DaftarPenerimaanAP1\_ListPenerimaanBarangAP1.cshtml" />
+    <Content Include="Views\kalenderViewByTenant\Index.cshtml" />
+    <Content Include="Views\VerifikasiPengirimanBarang\Index.cshtml" />
+    <Content Include="Views\VerifikasiPengirimanBarang\_Edit.cshtml" />
+    <Content Include="Views\VerifikasiPengirimanBarang\_EditResult.cshtml" />
+    <Content Include="Views\VerifikasiPengirimanBarang\Edit.cshtml" />
+    <Content Include="Views\ReportSale\_PageHarian.cshtml" />
+    <Content Include="Views\ReportSale\_PageBulanan.cshtml" />
+    <Content Include="Views\ReportSale\_PageTahunan.cshtml" />
+    <Content Include="Views\ReportSale\PenjualanTotal\AP\_PageTotalPenjualanHarianPerAP.cshtml" />
+    <Content Include="Views\ReportSale\PenjualanTotal\AP\_PageTotalPenjualanBulananPerAP.cshtml" />
+    <Content Include="Views\ReportSale\PenjualanTotal\AP\_PageTotalPenjualanTahunanPerAP.cshtml" />
+    <Content Include="Views\ReportSale\_DetailHarianSemuaBandara.cshtml" />
+    <Content Include="Views\ReportSale\ReportSaleSemuaBandara.cshtml" />
+    <Content Include="Views\DaftarPenerimaanAP1\_DetailPenerimaanBarang.cshtml" />
+    <Content Include="Views\TarifTenan\Edit.cshtml" />
+    <Content Include="Views\TarifTenan\Index.cshtml" />
+    <Content Include="Views\TarifTenan\Update.cshtml" />
+    <Content Include="Views\UploadSales\Index.cshtml" />
+    <Content Include="Views\UploadSales\Result.cshtml" />
+    <Content Include="Views\CalenderView\Index.cshtml" />
+    <Content Include="Views\Home\DetailTenanAktif.cshtml" />
+    <Content Include="Views\Shared\_LayoutAP2.cshtml" />
+    <Content Include="Views\Home\AP2Page.cshtml" />
+    <Content Include="Views\ReportSale\RekapPerTenant.cshtml" />
+    <Content Include="Views\ReportSale\PenjualanTotal\Bandara\TotalPenjualanBulananBandara.cshtml" />
+    <Content Include="Views\ReportSale\PenjualanTotal\Bandara\TotalPenjualanTahunanBandara.cshtml" />
+    <Content Include="Views\ReportSale\PenjualanTotal\Bandara\TotalPenjualanHarianBandara.cshtml" />
+    <Content Include="Views\ReportSale\RekapPerTenan\AP\RekapPerTenanBulananAP.cshtml" />
+    <Content Include="Views\ReportSale\RekapPerTenan\AP\RekapPerTenanHarianAP.cshtml" />
+    <Content Include="Views\ReportSale\RekapPerTenan\AP\RekapPerTenanTahunanAP.cshtml" />
+    <Content Include="Views\ReportSale\RekapPerTenan\Terminal\RekapPerTenanBulananTerminal.cshtml" />
+    <Content Include="Views\ReportSale\RekapPerTenan\Terminal\RekapPerTenanHarianTerminal.cshtml" />
+    <Content Include="Views\ReportSale\RekapPerTenan\Terminal\RekapPerTenanTahunanTerminal.cshtml" />
+    <Content Include="Views\ReportSale\RekapPerTenan\Bandara\RekapPerTenanBulananBandara.cshtml" />
+    <Content Include="Views\ReportSale\RekapPerTenan\Bandara\RekapPerTenanHarianBandara.cshtml" />
+    <Content Include="Views\ReportSale\RekapPerTenan\Bandara\RekapPerTenanTahunanBandara.cshtml" />
+    <Content Include="Views\Home\AP2BandaraPage.cshtml" />
+    <Content Include="Views\Home\AP2TerminalPage.cshtml" />
+    <Content Include="Views\Home\AP2SubTerminalPage.cshtml" />
+    <Content Include="Views\Home\DetailTenanAktifInBandara.cshtml" />
+    <Content Include="Views\Home\DetailTenanAktifInTerminal.cshtml" />
+    <Content Include="Views\Home\DetailTenanAktifInSubTerminal.cshtml" />
+    <Content Include="Views\Home\AP1BandaraPage.cshtml" />
+    <Content Include="Views\Home\AP1TerminalPage.cshtml" />
+    <Content Include="Views\Home\AP1SubTerminalPage.cshtml" />
+    <Content Include="Views\Shared\_LayoutAP1Bandara.cshtml" />
+    <Content Include="Views\Shared\_LayoutAP2Bandara.cshtml" />
+    <Content Include="Views\Shared\_LayoutAP2Terminal.cshtml" />
+    <Content Include="Views\Shared\_LayoutAP2SubTerminal.cshtml" />
+    <Content Include="Views\ReportSale\DetailPerTenan.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\ReportSale\PenjualanTotal\SubTerminal\TotalPenjualanTahunanSubTerminal.cshtml" />
+    <Content Include="Views\ReportSale\PenjualanTotal\SubTerminal\TotalPenjualanHarianSubTerminal.cshtml" />
+    <Content Include="Views\ReportSale\PenjualanTotal\SubTerminal\TotalPenjualanBulananSubTerminal.cshtml" />
+    <Content Include="Views\ReportSale\RekapPerTenan\SubTerminal\RekapPerTenanTahunanSubTerminal.cshtml" />
+    <Content Include="Views\ReportSale\RekapPerTenan\SubTerminal\RekapPerTenanHarianSubTerminal.cshtml" />
+    <Content Include="Views\ReportSale\RekapPerTenan\SubTerminal\RekapPerTenanBulananSubTerminal.cshtml" />
+    <Content Include="Views\ReportSale\PenjualanTotal\Terminal\TotalPenjualanBulananTerminal.cshtml" />
+    <Content Include="Views\ReportSale\PenjualanTotal\Terminal\TotalPenjualanHarianTerminal.cshtml" />
+    <Content Include="Views\ReportSale\PenjualanTotal\Terminal\TotalPenjualanTahunanTerminal.cshtml" />
+    <Content Include="Views\ReportSale\EmptyListDetailPenjualanPerTenan.cshtml" />
+    <Content Include="Views\TarifTenan\Bandara.cshtml" />
+    <Content Include="Views\TarifTenan\SubTerminal.cshtml" />
+    <Content Include="Views\TarifTenan\Terminal.cshtml" />
+    <Content Include="Views\Home\Guest.cshtml" />
+    <Content Include="Views\AP2Report\BillingNotFound.cshtml" />
+    <Content Include="Views\AP2Report\FakturAP2.cshtml" />
+    <Content Include="Views\AP2Report\Index.cshtml" />
+    <Content Include="Views\APReport\FakturAP1NotFound.cshtml" />
+    <Content Include="Views\APReport\Index.cshtml" />
+    <Content Include="Views\APReport\ReportView.cshtml" />
+    <Content Include="Views\DaftarPenerimaanAP1\LaporanPenerimaanBarang.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\LaporanPengirimanBarang\LaporanPengirimanBarangReport.cshtml" />
+    <Content Include="Views\DaftarPembayaranTenan\Index.cshtml" />
+    <Content Include="Views\Account\UbahPassword.cshtml" />
+    <Content Include="Views\Home\TelkomPage.cshtml" />
+    <Content Include="Views\Home\AP2CargoPage.cshtml" />
+    <Content Include="Views\Cargo\AirCraft.cshtml" />
+    <Content Include="Views\Cargo\Customer.cshtml" />
+    <Content Include="Views\Cargo\Comodity.cshtml" />
+    <Content Include="Views\Cargo\Destination.cshtml" />
+    <Content Include="Views\MasterData\ImportProduct.cshtml" />
+    <Content Include="Views\DaftarPembayaranTenanAP\Bandara.cshtml" />
+    <Content Include="Views\DaftarPembayaranTenanAP\Terminal.cshtml" />
+    <Content Include="Views\DaftarPembayaranTenanAP\SubTerminal.cshtml" />
+    <Content Include="Views\DaftarPembayaranTenanAP\APTenant.cshtml" />
+    <Content Include="Views\MasterData\ImportProductResult.cshtml" />
+    <Content Include="Views\MasterData\ImportPartgroup.cshtml" />
+    <Content Include="Views\MasterData\ImportPartGroupResult.cshtml" />
+    <Content Include="Views\MonitoringDashBoard\MonitoringDashBoard.cshtml" />
+    <Content Include="Views\MasterData\ImportEditBarang.cshtml" />
+    <Content Include="Views\MasterData\ImportEditBarangResult.cshtml" />
+    <Content Include="Views\Home\DetailTenanAktifKemarin.cshtml" />
+    <Content Include="Views\Home\DetailTenanAktifKemarinInTerminal.cshtml" />
+    <Content Include="Views\Home\DetailTenanAktifKemarinInBandara.cshtml" />
+    <Content Include="Views\Home\DetailTenanAktifKemarinInSubTerminal.cshtml" />
+    <Content Include="Views\MasterData\ExportProduct.cshtml" />
+    <Content Include="Views\MasterData\ExportEditProduct.cshtml" />
+    <Content Include="Views\MonitoringDashBoard\Index.cshtml" />
+    <Content Include="Views\LaporanProduksi\Index.cshtml" />
+    <Content Include="Views\LaporanProduksi\LaporanProduksi.cshtml" />
+    <Content Include="Views\TarifTenan\ImportEditTenant.cshtml" />
+    <Content Include="Views\TarifTenan\ImportEditTenantResult.cshtml" />
+    <Content Include="Views\MasterData\APImportProduct.cshtml" />
+    <Content Include="Views\MasterData\APImportProductResult.cshtml" />
+    <Content Include="Views\LaporanPengirimanBarang\_DetailLaporanPengirimanBarang.cshtml" />
+    <Content Include="Views\LaporanPengirimanBarang\_LaporanPengirimanBarang.cshtml" />
+    <Content Include="Views\LaporanPengirimanBarang\Index.cshtml" />
+    <Content Include="Views\ExchangeRate\ExchangeRate.cshtml" />
+    <Content Include="Views\RequestProduct\Index.cshtml" />
+    <Content Include="Views\ReturBarang\Index.cshtml" />
+    <Content Include="Views\ReturBarang\_BarangTerkirim.cshtml" />
+    <Content Include="Views\ReturBarang\PengirimanBarangDariAP1.cshtml" />
+    <Content Include="Views\ReturBarang\_DeleteResult.cshtml" />
+    <Content Include="Views\ReturBarang\_Edit.cshtml" />
+    <Content Include="Views\ReturBarang\_EditResult.cshtml" />
+    <Content Include="Views\ReturBarang\_EmptyResult.cshtml" />
+    <Content Include="Views\ReturBarang\_HasilPencarianBarangGRN.cshtml" />
+    <Content Include="Views\ReturBarang\KirimBarang.cshtml" />
+    <Content Include="Views\VerifikasiReturBarang\VerifikasiReturnBarang.cshtml" />
+    <Content Include="Views\VerifikasiReturBarang\Index.cshtml" />
+    <Content Include="Views\VerifikasiReturBarang\_ListReturnBarangYangBelumDiVerifikasi.cshtml" />
+    <Content Include="Views\VerifikasiReturBarang\_NotFound.cshtml" />
+    <Content Include="Views\VerifikasiReturBarang\_TenanNotFound.cshtml" />
+    <Content Include="Views\VerifikasiReturBarang\DetailVerifikasiReturnBarang.cshtml" />
+    <Content Include="Views\VerifikasiReturBarang\_Edit.cshtml" />
+    <Content Include="Views\VerifikasiReturBarang\_EditResult.cshtml" />
+    <Content Include="Views\VerifikasiReturBarang\Edit.cshtml" />
+    <Content Include="Views\TestPrintBarcode\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutTelkom.cshtml" />
+    <Content Include="Views\Shared\_LayoutAP2Cargo.cshtml" />
+    <Content Include="Views\Test\RegisterTenant.cshtml" />
+    <Content Include="Views\Shared\_HomeLayout.cshtml" />
+    <Content Include="Views\Test\ImportProductRecovery.cshtml" />
+    <Content Include="Views\Test\ImportPengirimanBarang.cshtml" />
+    <Content Include="Views\PerubahanBarang\Index.cshtml" />
+    <Content Include="Views\ReportSale\DetailPenjualanTenant.cshtml" />
+    <Content Include="Views\PartRequestStatus\GetPartRequestStatus.cshtml" />
+    <Content Include="Views\PartRequestStatus\PartRequestStatus.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <None Include="Web References\sercurityws\loginResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\sercurityws\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\sercurityws\serverResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\sercurityws\serverStatistic.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\sercurityws\servicelogin.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BonaStoco.AP1.MasterData.Models\BonaStoco.AP1.MasterData.Models.csproj">
+      <Project>{8D677F59-3717-494A-9700-2FA40E0FA9A4}</Project>
+      <Name>BonaStoco.AP1.MasterData.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BonaStoco.AP1.PengirimanBarang.Models\BonaStoco.AP1.PengirimanBarang.Models.csproj">
+      <Project>{EFC830BD-3391-4F34-9535-F7110D23489F}</Project>
+      <Name>BonaStoco.AP1.PengirimanBarang.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BonaStoco.AP1.TenantMonitoring\BonaStoco.AP1.TenantMonitoring.Models.csproj">
+      <Project>{037B074A-82F2-4E6C-898B-5161A3EAF6D7}</Project>
+      <Name>BonaStoco.AP1.TenantMonitoring.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BonaStoco.AP1.Web.Messages\BonaStoco.AP1.Web.Messages.csproj">
+      <Project>{7D80F628-91AA-4542-B988-7110839A1ECD}</Project>
+      <Name>BonaStoco.AP1.Web.Messages</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BonaStoco.AP1.Web.ReportingRepository\BonaStoco.AP1.Web.ReportingRepository.csproj">
+      <Project>{DA288C70-DC64-490B-8042-F4D55C0197B9}</Project>
+      <Name>BonaStoco.AP1.Web.ReportingRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BonaStoco.AP1.Web.Report\BonaStoco.AP1.Web.Report.csproj">
+      <Project>{7120214E-F4BE-4E88-A6AF-E987EEA38687}</Project>
+      <Name>BonaStoco.AP1.Web.Report</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://www.bonastoco.com/services/servicelogin.php%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\sercurityws\</RelPath>
+      <UpdateFromURL>http://www.bonastoco.com/services/servicelogin.php%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>BonaStoco_AP1_Web_sercurityws_BonastocoServices</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>61688</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "eLECTRONIC POINT OF SALES DPS";
+}
+@section styles{
+    <link href="@Url.Content("~/Content/MonitoringEPOS.css")" rel="stylesheet" type="text/css" />
+}
+
+@section scripts{
+    @Content.Script("stringformat.js", @Url)
+    @Content.Script("MonitoringEPOS.js", @Url)
+}
+<div id="mainMOnitoringEPOS">
+    <div class="header">
+        <label id="title">eLECTRONIC POINT OF SALES DPS</label>
+        <div id="dateTimePanel"></div>
+    </div>
+    <br />
+</div>

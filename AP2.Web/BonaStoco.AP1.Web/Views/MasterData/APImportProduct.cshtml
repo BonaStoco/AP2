@@ -1,0 +1,155 @@
+﻿@{
+    ViewBag.Title = "Import Barang";
+}
+@section styles{
+    <link href="@Url.Content("~/Content/ImportProduct/ImportProduct.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/Home/ModalDialog.css")" rel="stylesheet" type="text/css" />
+}
+@section scripts
+{
+    @Content.Script("AdvancedSearchTenan.js", @Url)
+    @Content.Script("jquery.validate.min.js", @Url)
+    @Content.Script("jquery.validate.unobtrusive.min.js", @Url)
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#TenanSearch").click(OpenTenanSearchDialog);
+            $('#accordion .head').click(function () {
+                $(this).next().toggle('slow');
+                return false;
+            }).next().hide();
+            $("#accordion").accordion();
+            $("#importBtn").click(Submit);
+        });
+        function Submit() {
+            $("#importBtn").val("Please wait...");
+            $("#importBtn").attr("disabled", true);
+            document.getElementById("loading").style.display = "inline";
+            $("#ImportProduct").submit();
+        }
+        function OpenTenanSearchDialog() {
+            CreateModalDialog("Pencarian Tenan");
+            $("#Loading").hide();
+            $.ajax({
+                type: "GET",
+                url: "/ReportSale/GetTenans",
+                dataType: "json",
+                beforeSend: LoadingStart,
+                complete: LoadingEnd,
+                success: InsertTenanToTable
+            });
+        }
+        function SearchByTenanName() {
+            var searchKey = $("#search_tenant").val();
+            $.ajax({
+                type: "GET",
+                url: "/ReportSale/FindTenanByName",
+                dataType: "json",
+                data: { "key": searchKey },
+                beforeSend: LoadingStart,
+                complete: LoadingEnd,
+                success: InsertTenanToTable
+            });
+        }
+        function Searched(tenanId) {
+            DestroyModalDialog();
+            $("#tenanid").val(tenanId);
+            FindTenantNameByTenanId(tenanId);
+        }
+        function FindTenantNameByTenanId(tenanid) {
+            if (tenanid == null || tenanid.length == 0)
+                return;
+            $.ajax({
+                type: "GET",
+                url: "/ReportSale/FindTenantNameByTenanId/" + tenanid,
+                dataType: "json",
+                success: ShowStateTenantName
+            });
+        }
+        function ShowStateTenantName(data) {
+            TenanName = data;
+            $("#tenanName").text(data);
+        }
+    </script>
+}
+<h2>Import Barang</h2>
+@using (Html.BeginForm("APUploadProductForImport", "MasterData", FormMethod.Post, new { enctype = "multipart/form-data", id = "ImportProduct" }))
+{
+    <input type="text" id="tenanid" name="tenanId" placeholder="Tenan" style="float:left;margin-right:5px;" onchange="FindTenantNameByTenanId(this.value)"/>
+    <label id='TenanSearch' class='positive button'><img src='../Content/images/button/search.png'/> Pencarian Tenan</label>
+    <label id="tenanName"></label>
+    <br /><br />
+    <input type='file' name='file' id='file' />
+    <br /><br />
+    <button id="importBtn" class='positive button'><img src='../Content/images/button/search.png'/>Import</button>
+    
+    <div id="loading">
+		<div id="dialog-loader">
+			<img src="@Url.Content("~/Content/images/loader-new.gif")"/>
+		</div>
+    </div>
+}
+<br /><br />
+<div id="accordion">
+    <h3>File harus dalam format CSV ( namafile.csv ). Contoh format data adalah sbb:</h3>
+    <div>
+    <table border="1">
+        <tr>
+            <td>GroupCode</td>
+            <td>,</td>
+            <td>UnitCode</td>
+            <td>,</td>
+            <td>Barcode</td>
+            <td>,</td>
+            <td>Kode</td>
+            <td>,</td>
+            <td>Nama</td>
+            <td>,</td>
+            <td>HargaJual</td>
+            <td>,</td>
+            <td>CcyCode</td>
+            <td>,</td>
+            <td>StatusPrint</td>
+            <td>,</td>
+            <td>StatusProduct</td>
+        </tr>
+        <tr>
+            <td>Snack</td>
+            <td>,</td>
+            <td>Pcs</td>
+            <td>,</td>
+            <td>001</td>
+            <td>,</td>
+            <td>001</td>
+            <td>,</td>
+            <td>Cupcake</td>
+            <td>,</td>
+            <td>15000</td>
+            <td>,</td>
+            <td>IDR</td>
+            <td>,</td>
+            <td>True</td>
+            <td>,</td>
+            <td>True</td>
+        </tr>
+        <tr>
+            <td>Beverage</td>
+            <td>,</td>
+            <td>Pcs</td>
+            <td>,</td>
+            <td>002</td>
+            <td>,</td>
+            <td>002</td>
+            <td>,</td>
+            <td>Kopi Luwak</td>
+            <td>,</td>
+            <td>200000</td>
+            <td>,</td>
+            <td>IDR</td>
+            <td>,</td>
+            <td>True</td>
+            <td>,</td>
+            <td>True</td>
+        </tr>
+    </table>
+    </div>
+</div>

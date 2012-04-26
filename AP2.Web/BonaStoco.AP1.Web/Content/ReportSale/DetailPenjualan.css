@@ -1,0 +1,639 @@
+﻿table#PencarianDetailPenjualan tr, table#PencarianDetailPenjualan tr td, table#PencarianDetailPenjualan
+{
+    border: 0px;
+}
+table#PencarianRingkasanPerHari tr, table#PencarianRingkasanPerHari tr td, table#PencarianRingkasanPerHari
+{
+    border: 0px;
+}
+table#PencarianSummaryPenjualan tr, table#PencarianSummaryPenjualan tr td, table#PencarianSummaryPenjualan
+{
+    border: 0px;
+}
+table#PencarianSummaryPerKasir tr, table#PencarianSummaryPerKasir tr td, table#PencarianSummaryPerKasir
+{
+    border: 0px;
+}
+div#DivTableDetailPenjualan{
+	width: 100%;
+}
+div#DivTableDetailPenjualan div.DialogOverlay{
+	width:80%;
+    height:75%;
+    margin-top: 3.5em;
+    filter:alpha(opacity=60);
+    -moz-opacity:0.6;
+    -khtml-opacity: 0.6;
+    opacity: 0.6;
+    background:#FFF;	
+	background-image:url(../images/button/preloader.gif);
+	background-position:center;
+	background-repeat:no-repeat;
+	position:absolute;
+	z-index:750px;
+}
+table#TableDetailPenjualan{
+	padding:0px;
+	margin:0px;
+	border-collapse:collapse;
+}
+table#TableDetailPenjualan thead tr th{
+	padding: 2px 15px 2px 5px;
+	font-size:13px;
+	font-family:"trebuchet MS";
+}
+table#TableDetailPenjualan thead tr th.tanggal{
+	text-align:left;
+	width: 250px;
+	background-color:#729aef;
+}
+table#TableDetailPenjualan thead tr th.noTransaksi{
+	text-align:left;
+	background-color:#729aef;
+}
+table#TableDetailPenjualan thead tr th.matauang{
+	text-align:center;
+	width: 100px;
+	background-color:#729aef;
+}
+table#TableDetailPenjualan thead tr th.IDR{
+	text-align:center;
+	background-color:#729aef;
+	width: 200px;
+	font-size:12px;
+	font-family:"trebuchet MS";
+}
+table#TableDetailPenjualan thead tr th.USD{
+	width: 150px;
+	text-align:center;
+	background-color:#729aef;
+	font-size:12px;
+	font-family:"trebuchet MS";
+}
+table#TableDetailPenjualan tbody tr td{
+	padding: 1px 5px 1px 5px;
+	font-size:12px;
+	font-family:"trebuchet MS";
+	cursor:pointer;
+}
+table#TableDetailPenjualan tbody tr:hover td
+{
+    background:#adc6fd;
+}
+label#Back{
+	float:right;
+	margin-right: 0px;
+}
+label#BackSummary{
+	float:right;
+	margin-right: 0px;
+}
+label#PrintSummary{
+    float:right;
+	margin-right: 5px;
+}
+.Right{
+    text-align:right;
+}
+
+label.headerContent
+{
+    font-size:15px;
+    font-weight:bolder;
+}
+
+table#TableDetailPenjualan tbody{
+    position:absolute;
+    overflow-y:scroll;
+    overflow-x : hidden;
+    height: 385px;
+    margin-left:-1px;
+    margin-top:-1px;
+}
+table#TableDetailPenjualan tfoot{
+    margin-left: -1px;
+    position: absolute;
+    bottom: 0;
+    top: 573px;
+}
+table#TableDetailPenjualan tfoot td{
+    text-align: right; 
+    font-size: 14px;
+    font-weight: bold; 
+    background-color: #EDFFC3;
+}
+#tdFootNameTotal
+{
+    width:816px;
+}
+#tdFootValueTotal
+{
+    width:181px;
+}
+table#TableDetailPenjualan tbody tr td.tanggal{
+	width:250px;
+}
+table#TableDetailPenjualan tbody tr td.noTransaksi{
+    width:555px;
+}
+table#TableDetailPenjualan tbody tr td.IDR{
+	width:181px;
+}
+table#TableDetailPenjualan tbody tr td.USD{
+	width:131px;
+}
+
+div#DivTableDetailPenjualan label.TenantName{
+    margin-left: 20px;
+    font-family:Trebuchet MS;
+    font-size:12;
+    color: #5389fa;
+}
+span.CCY{
+    float:left;
+    text-align:left;
+}
+label#BackToListPenjualan{
+    float: right;
+    margin-right: 0px;
+    margin-bottom: 2px;
+}
+
+table#TableDetailTransaction thead tr th{
+    padding: 2px 15px 2px 5px;
+    margin: 0px;
+    background-color: #729aef;
+}
+table#TableDetailTransaction tbody tr td{
+    padding: 2px 5px 2px 5px;
+    margin: 0px;
+}
+.Left{
+    text-align:left;
+}
+.Right{
+    text-align:right;
+}
+.Center{
+    text-align:center;
+}
+.Italic
+{
+	font-style:italic;
+}
+span.CCY{
+    float: left;
+    margin-left: 3px;
+}
+table#TableDetailTransaction thead tr th.Kasir{
+    width: 70px;
+}
+table#TableDetailTransaction thead tr th.No{
+    width: 25px;
+}
+table#TableDetailTransaction thead tr th.KodeProduk{
+    width: 150px;
+}
+
+table#TableDetailTransaction thead tr th.HargaJual{
+    width: 130px;
+}
+table#TableDetailTransaction thead tr th.Qty{
+    width: 60px;
+}
+table#TableDetailTransaction tbody tr td.Qty{
+    text-transform:uppercase;
+}
+table#TableDetailTransaction thead tr th.HargaJual{
+    width: 100px;
+}
+table#TableDetailTransaction thead tr th.Diskon{
+    width: 100px;
+}
+table#TableDetailTransaction thead tr th.Jumlah{
+     width: 130px;
+}
+table#TableDetailTransaction tbody tr.Bold{
+     font-weight: bold;
+     color: #000;
+}
+table#TableDetailTransaction tfoot tr.Bold{
+     font-weight: bold;
+     color: #000;
+}
+
+
+/*TableDetailRingkasaPenjualanPerHari*/
+
+table#TableDetailRingkasaPenjualanPerHari{
+	padding:0px;
+	margin:0px;
+	border-collapse:collapse;
+}
+table#TableDetailRingkasaPenjualanPerHari thead tr th{
+	padding: 2px 15px 2px 5px;
+	font-size:13px;
+	font-family:"trebuchet MS";
+}
+table#TableDetailRingkasaPenjualanPerHari thead tr th.tanggalTransaksi{
+	text-align:left;
+	width: 250px;
+	background-color:#729aef;
+}
+table#TableDetailRingkasaPenjualanPerHari thead tr th.jumlahIDR{
+	text-align:center;
+	background-color:#729aef;
+	width: 200px;
+	font-size:12px;
+	font-family:"trebuchet MS";
+}
+table#TableDetailRingkasaPenjualanPerHari thead tr th.jumlahUSD{
+	width: 150px;
+	text-align:center;
+	background-color:#729aef;
+	font-size:12px;
+	font-family:"trebuchet MS";
+}
+table#TableDetailRingkasaPenjualanPerHari tbody tr td{
+	padding: 1px 5px 1px 5px;
+	font-size:12px;
+	font-family:"trebuchet MS";
+	cursor:pointer;
+}
+table#TableDetailRingkasaPenjualanPerHari tbody tr:hover td
+{
+    background:#adc6fd;
+}
+label#BackTo{
+	float:right;
+	margin-right: 0px;
+}
+span.CCY{
+    float: left;
+    margin-left: 3px;
+}
+table#TableDetailRingkasaPenjualanPerHari tbody{
+    position:absolute;
+    overflow-y:scroll;
+    overflow-x : hidden;
+    height: 410px;
+    margin-left:-1px;
+    margin-top:-1px;
+}
+table#TableDetailRingkasaPenjualanPerHari tbody tr td.tanggalTransaksi{
+	width:412px;
+}
+table#TableDetailRingkasaPenjualanPerHari tbody tr td.jumlahIDR{
+	width:335px;
+}
+table#TableDetailRingkasaPenjualanPerHari tbody tr td.jumlahUSD{
+	width:239px;
+}
+table#TableDetailRingkasaPenjualanPerHari tfoot{
+	position:absolute;
+	bottom:0;
+	width:100%;
+	top:600px;
+	
+}
+table#TableDetailRingkasaPenjualanPerHari tfoot tr.Bold{
+     font-weight: bolder;
+}
+table#TableDetailRingkasaPenjualanPerHari tfoot tr td.tanggalTransaksi{
+	width:412px;
+	background-color:#EDFFC3;
+}
+table#TableDetailRingkasaPenjualanPerHari tfoot tr td.jumlahIDR{
+	width:335px;
+	background-color:#EDFFC3;
+}
+table#TableDetailRingkasaPenjualanPerHari tfoot tr td.jumlahUSD{
+	width:239px;
+	background-color:#EDFFC3;
+}
+
+
+/*End -- TableDetailRingkasaPenjualanPerHari*/
+
+table#TableSummaryPenjualan thead tr th{
+    padding: 2px 15px 2px 5px;
+    margin: 0px;
+    background-color: #729aef;
+}
+table#TableSummaryPenjualan tbody tr td{
+    padding: 2px 5px 2px 5px;
+    margin: 0px;
+}
+table#TableSummaryPenjualan thead tr th.No{
+    width: 25px;
+}
+table#TableSummaryPenjualan thead tr th.Kode{
+    width: 150px;
+}
+table#TableSummaryPenjualan thead tr th.Qty{
+    width: 60px;
+}
+table#TableSummaryPenjualan thead tr th.Jumlah{
+    width: 148px;
+}
+label.Tanggal
+{
+    padding-left: 20px;
+}
+
+/*Tab*/
+
+div#tabContainer {
+	width:800px;
+	background-color:#fff;
+	-moz-border-radius: 4px;
+	border-radius: 4px; 
+}
+
+div.tabs{
+	height:30px;
+}
+
+div.tabs > ul{
+	font: 1em;
+	list-style:none;
+}
+
+div.tabs > ul > li{
+	margin:0 1px 0 0;
+	padding:5px 10px;
+	display:block;
+	float:left;
+	color:#333;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+	-moz-border-radius-topleft: 4px;
+	-moz-border-radius-topright: 4px;
+	-moz-border-radius-bottomright: 0px;
+	-moz-border-radius-bottomleft: 0px;
+	border-top-left-radius:4px;
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 0px;
+	border-bottom-left-radius: 0px; 
+	background: #C9C9C9;
+	background: -moz-linear-gradient(top, #0C91EC 0%, #257AB6 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#F3F3F3), color-stop(100%,#CCC));
+}
+
+div.tabs > ul > li:hover{
+	background: #FFFFFF;
+	background: -moz-linear-gradient(top, #FFFFFF 0%, #F3F3F3 10%, #F3F3F3 50%, #FFFFFF 100%); 
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#0C91EC), color-stop(100%,#257AB6), color-stop(50%,#257AB6), color-stop(100%,#0C91EC)); 
+	cursor:pointer;
+	color: #FFF;
+}
+
+div.tabs > ul > li.tabActiveHeader{
+	background: #FFFFFF; 
+	background: -moz-linear-gradient(top, #FFFFFF 0%, #F3F3F3 10%, #F3F3F3 50%, #FFFFFF 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#0C91EC), color-stop(100%,#257AB6), color-stop(50%,#257AB6), color-stop(100%,#0C91EC));
+	cursor:pointer;
+	color: #FFF;
+}
+
+div.tabscontent {
+	-moz-border-radius-topleft: 0px;
+	-moz-border-radius-topright: 4px;
+	-moz-border-radius-bottomright: 4px;
+	-moz-border-radius-bottomleft: 4px;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+	border: solid 1px #CCC;
+	padding:10px 10px 25px;
+	background: #FFFFFF; 
+	margin:0 40px;
+	color:#333;
+	height:170px;
+    -webkit-box-shadow: 1px 1px 6px #257AB6;
+    -moz-box-shadow: 1px 1px 6px #257AB6;
+}
+
+@media print
+{
+    label#BackSummary
+    {
+        display: none;
+    }
+    label#PrintSummary
+    {
+        display:none;
+    }
+    label#BackSummaryPerkasir
+    {
+        display:none;
+    }
+    label#PrintSummaryPerkasir
+    {
+        display:none;
+    }
+}
+
+/*----------summary per kasir--------------*/
+
+table#PencarianSummaryPerKasir tr td select#SessionPerkasir
+{
+    min-width:100px;
+}
+
+label#PrintSummaryPerkasir
+{
+    float:right;
+    margin-right: 5px;
+}
+label#BackSummaryPerkasir
+{
+    float:right;
+    margin-right: 0px;
+}
+label.Session
+{
+    margin-left: 15px;
+}
+label.Tanggal
+{
+    margin-left: 15px;
+}
+table#TableSummaryPerkasir thead tr th{
+    padding: 2px 15px 2px 5px;
+    margin: 0px;
+    background-color: #729aef;
+}
+table#TableSummaryPerkasir tbody tr td{
+    padding: 2px 5px 2px 5px;
+    margin: 0px;
+}
+table#TableSummaryPerkasir thead tr th.No{
+    width: 25px;
+}
+table#TableSummaryPerkasir thead tr th.Kode{
+    width: 150px;
+}
+table#TableSummaryPerkasir thead tr th.Qty{
+    width: 60px;
+}
+table#TableSummaryPerkasir thead tr th.Jumlah{
+    width: 148px;
+}
+label#tenantName,label#tenantPerkasirName,label#tenantSummaryName
+{
+    width: 200px;
+}
+
+table.tablesorter {
+	font-family:arial;
+	background-color: #FFF;
+	margin:10px 0pt 15px;
+	font-size: 8pt;
+	width: 100%;
+	text-align: left;
+}
+table.tablesorter thead tr th, table.tablesorter tfoot tr th {
+	background-color: #FFFFFF;
+	border: 1px solid #FFF;
+	font-size: 8pt;
+	padding: 4px;
+}
+table.tablesorter thead tr .header {
+	background-image: url(../images/reportsales/bg.gif);
+	background-repeat: no-repeat;
+	background-position: center right;
+	cursor: pointer;
+	padding-right: 20px;
+}
+table.tablesorter tbody td {
+	color: #3D3D3D;
+	padding: 4px;
+	background-color: #FFF;
+	vertical-align: top;
+}
+table.tablesorter tbody tr.odd td {
+	background-color:#F0F0F6;
+}
+table.tablesorter thead tr .headerSortUp {
+	background-image: url(../images/reportsales/asc.gif);
+}
+table.tablesorter thead tr .headerSortDown {
+	background-image: url(../images/reportsales/desc.gif);
+}
+table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+background-color: #ffffff;
+}
+
+
+
+/*Per Hari Sisi TEnan*/
+table#TableDetailPenjualanPerHariTenan{
+	padding:0px;
+	margin:0px;
+	border-collapse:collapse;
+}
+table#TableDetailPenjualanPerHariTenan thead tr th{
+	padding: 2px 15px 2px 5px;
+	font-size:13px;
+	font-family:"trebuchet MS";
+	
+}
+table#TableDetailPenjualanPerHariTenan thead tr th.tanggalTransaksiTenan{
+	text-align:left;
+	width: 250px;
+	background-color:#729aef;
+}
+table#TableDetailPenjualanPerHariTenan thead tr th.jumlahIDRTenan{
+	text-align:center;
+	background-color:#729aef;
+	width: 200px;
+	font-size:12px;
+	font-family:"trebuchet MS";
+}
+table#TableDetailPenjualanPerHariTenan thead tr th.jumlahUSDTenan{
+	width: 150px;
+	text-align:center;
+	background-color:#729aef;
+	font-size:12px;
+	font-family:"trebuchet MS";
+}
+table#TableDetailPenjualanPerHariTenan tbody tr td{
+	padding: 1px 5px 1px 5px;
+	font-size:12px;
+	font-family:"trebuchet MS";
+	cursor:pointer;
+}
+table#TableDetailPenjualanPerHariTenan tbody tr:hover td
+{
+    background:#adc6fd;
+}
+label#BackTo{
+	float:right;
+	margin-right: 0px;
+}
+span.CCY{
+    float: left;
+    margin-left: 3px;
+}
+table#TableDetailPenjualanPerHariTenan tbody{
+    position: absolute;
+    overflow-y:scroll;
+    overflow-x : hidden;
+    height: 420px;
+    margin-left:-1px;
+    margin-top:-1px;
+}
+
+
+table#TableDetailPenjualanPerHariTenan tfoot
+{
+    margin-left: -1px;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    top:600px;
+} 
+
+table#TableDetailPenjualanPerHariTenan tfoot tr.bold{
+    font-weight:bold;
+    color:#fff;
+}
+table#TableDetailPenjualanPerHariTenan tbody tr td.tanggalTransaksiTenan{
+	width:412px;
+}
+table#TableDetailPenjualanPerHariTenan tbody tr td.jumlahIDRTenan{
+	width:335px;
+}
+table#TableDetailPenjualanPerHariTenan tbody tr td.jumlahUSDTenan{
+	width:239px;
+}
+
+table#TableDetailPenjualanPerHariTenan tfoot tr td.tanggalTransaksiTenan{
+	width:412px;
+	background-color:#729aef;
+}
+table#TableDetailPenjualanPerHariTenan tfoot tr td.jumlahIDRTenan{
+	width:335px;
+	background-color:#729aef;
+	
+	
+}
+table#TableDetailPenjualanPerHariTenan tfoot tr td.jumlahUSDTenan{
+	width:239px;
+	background-color:#729aef;
+	
+}
+
+/*
+div#DivTableDetailPenjualan label.TenantName{
+    margin-left: 20px;
+    font-family:Trebuchet MS;
+    font-size:12;
+    color: #5389fa;
+}
+*/
+
+/*End*/

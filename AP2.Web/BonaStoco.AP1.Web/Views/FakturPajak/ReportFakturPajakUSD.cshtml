@@ -1,0 +1,290 @@
+﻿@using BonaStoco.AP1.Web.Models
+@model BonaStoco.AP1.Web.Report.FakturPajak
+@{
+    ViewBag.Title = "Report Faktur Pajak";
+    Layout = APRoles.MapLayout(ViewBag.HomePage);
+}
+@section styles{
+    <link rel="stylesheet" type="text/css" media="print" href="@Url.Content("~/Content/FakturPajak/ReportFakturPajak(report)-USD.css")" />
+    <link href="@Url.Content("~/Content/FakturPajak/ReportFakturPajak.css")" rel="stylesheet" type="text/css" />
+}
+@section scripts{
+    @Content.Script("PrintDocument.js", @Url)
+    <script type="text/javascript">
+        $(document).ready(function () {
+        });
+        $("#btnPrint").click(function () {
+            var print = $("#PrintArea");
+            print.jqprint();
+        });
+    </script>
+}
+<button id="btnPrint">Cetak Faktur Pajak</button>
+<div class="fp">
+        <div align = "center" class=""><h3>FAKTUR PAJAK</h3></div>
+         <table id="FakturPajakReport" width="100%">
+            <tr>
+              <td colspan="4">
+                    <span class="fontTebal">
+                        <label class="">Kode dan Nomor Seri Faktur Pajak : 
+                        </label>@Model.NoFakturPajak
+                    </span>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="4">&nbsp;<span class="fontTebal">Pengusaha Kena Pajak</span></td>
+            </tr>
+            <tr>
+              <td height="90" colspan="4">
+                  <table id ="line" width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td width="33%" valign = "top"><span class= "fontTebal ">Nama</span></td>
+                        <td width="1%" valign = "top"><span class="fontTebal ">:</span></td>
+                        <td colspan="66"><span class= "fontTebal ">PT. ANGKASA PURA I (Persero)</span></td>
+                    </tr>
+                    <tr>
+                        <td width="33%" valign = "top"><span class= "fontTebal ">Alamat</span></td>
+                        <td width="1%" valign = "top"><span class="fontTebal ">:</span></td>
+                        <td colspan="66"><span class= "fontTebal ">Kota Baru Bandar Kemayoran Blok-B12 Kav No.2 Kemayoran Jakarta</span></td>
+                    </tr>
+                    <tr>
+                        <td width="33%" valign = "top"><span class= "fontTebal ">NPWP</span></td>
+                        <td width="1%" valign = "top"><span class="fontTebal ">:</span></td>
+                        <td width="66%"><span class= "fontTebal ">01&nbsp;000&nbsp;487&nbsp;7&nbsp;051&nbsp;000</td>
+                    </tr>
+                    </table>
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="4"><span class="fontTebal ">Pembeli Barang Kena Pajak/Penerima Jasa Kena Pajak</span></td>
+            </tr>
+              <tr>
+                <td colspan="4">
+                <div id="TenantInfo">
+                    <table id = "line" width="100%">
+                        <tr>
+                            <td width="33%" valign = "top"><span class= "fontNormal ">Nama</span></td>
+                            <td width="1%" valign = "top" class="">:</td>
+                            <td width="66%" colspan = "4"><span class= "fontTebal">@Model.TenanName.ToUpper()</span></td>
+                        </tr>
+                        <tr>
+                            <td width="33%" valign = "top"><span class= "fontNormal ">Alamat</span></td>
+                            <td width="1%" valign = "top" class="">:</td>
+                            <td width="66%" colspan = "4">
+                                <span class= "fontNormal">
+                                    @if (Model.Alamat.Equals(""))
+                                    {
+                                        <text>-</text>
+                                    }
+                                    else
+                                    {
+                                        @Model.Alamat.ToUpper()
+                                    }
+                                <br /><br /><br /></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="33%" valign = "top"><span class= "fontNormal ">NPWP</span></td>
+                            <td width="1%" valign = "top" class="">:</td>
+                            <td width="66%"><span class= "fontNormal">@Model.Npwp</span></td>
+                        </tr>
+                    </table>
+                </div>
+                </td>
+            </tr>
+	        <tr>
+	          <td width="5%" rowspan="2"> <div align="center"><span class="fontNormal ">No</span><br />
+              <span class="fontNormal ">Urut</span></div></td>
+              <td width="50%" rowspan="2"><div align="center"><span class="fontNormal ">Nama Barang Kena Pajak / Jasa Kena Pajak</span></div></td>
+              <td colspan="2" width="47%"><div align="center"><span class="fontNormal ">Harga Jual/Penggantian/Uang Muka/Termin</span></div></td>
+            </tr>
+            <tr>
+            <td width="23%"><div align="center"><span class="fontNormal ">Valas</span></div></td>
+            <td width="23%"><div align="center"><span class="fontNormal ">Rp</span></div></td>
+            </tr>
+	        <tr>
+	          <td height="180" width="5%">&nbsp;</td>
+              <td width="45">
+                <div id="Detail">
+                    <span class= "fontNormal">Bagi Hasil Tenan</span><br /><br /><br />
+                    <span class= "fontNormal">Masa: @ViewBag.Period.ToUpper()</span><br />
+                    <span class= "fontNormal">No. Invoice: @Model.NoFaktur</span><br />
+                    <span class= "fontNormal">@DateTime.Today.ToString("dd MMMM yyyy")</span>
+                </div>
+              </td>
+              @if (@Model.CcyCode == "USD")
+              {
+                <td width="25%"><div class ="fontFooter">@ViewBag.TotalBagiHasil </div><br /><br /><br /><br /><br /></td>
+                <td width="25%"><div class ="fontFooter">&nbsp;</div><br /><br /><br /><br /><br /></td>
+              }
+              else
+              {
+                  <td width="25%"><div class ="fontFooter">&nbsp;</div><br /><br /><br /><br /><br /></td>
+                  <td width="25%"><div class ="fontFooter">@ViewBag.TotalBagiHasil</div><br /><br /><br /><br /><br /></td>
+              }
+            </tr>
+	        <tr>
+              <td width="50%" colspan="2"><span class="fontNormal ">Harga Jual/Penggantian/Uang Muka/Termin**)</span></td>
+              @if (@Model.CcyCode == "USD")
+              {
+                <td width="25%"><div class ="fontFooter">@ViewBag.TotalBagiHasil</div></td>
+                <td width="25%"><div class ="fontFooter">&nbsp;</div></td>
+              }
+              else
+              {
+                <td width="25%"><div class ="fontFooter">&nbsp;</div></td>
+                <td width="25%"><div class ="fontFooter">@ViewBag.TotalBagiHasil</div></td>
+              }
+            </tr>
+	        <tr>
+              <td width="50%" colspan="2"><span class="fontNormal ">Dikurangi Potongan Harga</span></td>
+              <td width="25%"><div class ="fontFooter ">-</div></td>
+              <td width="25%"><div class ="fontFooter ">-</div></td>
+            </tr>
+	        <tr>
+              <td width="50%" colspan="2"><span class="fontNormal ">Dikurangi Uang Muka yang telah diterima</span></td>
+              <td width="25%"><div class ="fontFooter ">-</div></td>
+              <td width="25%"><div class ="fontFooter ">-</div></td>
+            </tr>
+	        <tr>
+              <td width="50%" colspan="2"><span class="fontNormal ">Dasar Pengenaan Pajak</span></td>
+              @if (@Model.CcyCode == "USD")
+              {
+                <td width="25%"><div class ="fontFooter ">@ViewBag.TotalBagiHasil</div></td>
+                <td width="25%"><div class ="fontFooter">&nbsp;</div></td>
+              }
+              else
+              {
+                <td width="25%"><div class ="fontFooter">&nbsp;</div></td>
+                <td width="25%"><div class ="fontFooter">@ViewBag.TotalBagiHasil</div></td>
+              }
+            </tr>
+	        <tr>
+              <td width="50%" colspan="2"><span class="fontNormal ">PPN = @Math.Ceiling(Model.Pajak * 100)% x Dasar Pengenaan Pajak</span>
+                @if (@Model.CcyCode == "USD")
+                {
+                    <span class="fontNormal">(@ViewBag.TotalBagiHasil X @ViewBag.Rate)</span>
+                }
+              </td>
+              @if (@Model.CcyCode == "USD")
+              {
+                <td width="25%"><div class ="fontFooter">@ViewBag.TotalPajakBagiHasil</div></td>
+                <td width="25%"><div class ="fontFooter">&nbsp;</div></td>
+              }
+              else
+              {
+                <td width="25%"><div class ="fontFooter">&nbsp;</div></td>
+                <td width="25%"><div class ="fontFooter">@ViewBag.TotalPajakBagiHasil</div></td>
+              }
+              
+            </tr>
+	        <tr>
+	          <td colspan="4">
+                <table id="line" width="100%">
+                    <tr>
+                        <td width="70%">
+                            <span class="fontNormal ">Pajak Penjualan Atas Dasar Barang Mewah</span>
+                            <br />
+                            <br />
+                                  <table id="tableFooter" width="80%" >
+                                    <tr>
+                                      <td><div class = "fontFooter1">Tarif</div></td>
+                                      <td><div class = "fontFooter1">DPP</div></td>
+                                      <td><div class = "fontFooter1">PPnBM</div></td>
+                                    </tr>
+                                    <tr>
+                                      <td><div class = "fontFooter1">.............%</div></td>
+                                      <td><div class = "fontFooter1">Rp ...........</div></td>
+                                      <td><div class = "fontFooter1">Rp ...........................</div></td>
+                                    </tr>
+                                    <tr>
+                                      <td><div class = "fontFooter1">.............%</div></td>
+                                      <td><div class = "fontFooter1">Rp ...........</div></td>
+                                      <td><div class = "fontFooter1">Rp ...........................</div></td>
+                                    </tr>
+                                    <tr>
+                                      <td><div class = "fontFooter1">.............%</div></td>
+                                      <td><div class = "fontFooter1">Rp ...........</div></td>
+                                      <td><div class = "fontFooter1">Rp ...........................</div></td>
+                                    </tr>
+                                    <tr>
+                                      <td><div class = "fontFooter1">.............%</div></td>
+                                      <td><div class = "fontFooter1">Rp ...........</div></td>
+                                      <td><div class = "fontFooter1">Rp ...........................</div></td>
+                                    </tr>
+                                    <tr>
+                                      <td colspan="2"><div align="left"><span class= "fontFooter1">Jumlah</span></div></td>
+                                      <td><div class = "fontFooter1">Rp ...........................</div></td>
+                                    </tr>
+                                  </table>
+                        </td>
+                        <td width="40%"><div align="center"class="fontNormal"><br />Jakarta, @DateTime.Now.ToString("dd MMMM yyyy")</div><br /><br /><br /><br />
+                            <div align="center"class="fontNormal"><label style="text-decoration:underline;">@Model.Ttd</label><br />@*Nip: @Model.Nip*@</div>
+                            <br /></td>
+                     </tr>
+                 </table>    
+              </td>
+      
+           </tr>
+        </table>
+        <span class= "fontNormal ">*) Diisi apabila penyerahan menggunakan mata uang asing</span><br />
+        <span class= "fontNormal ">**) Coret yang tidak perlu</span>
+</div>
+
+<div id="PrintArea">
+    <div id="FakturPajakPrint">
+        @if (@Model.CcyCode == "IDR")
+        {
+            <div class="IDR"></div>
+        }
+	    <div class="NoFaktur">@Model.NoFakturPajak</div>
+        <div class="PenerimaKenaPajak">
+    	    <div class="NamaPenerima">@Model.TenanName.ToUpper()</div>
+            <div class="AlamatPenerima">
+                <table border="0" width="550px">
+                    @foreach (string alm in Model.Alamat.Split('|'))
+                    {
+                        <tr>
+                            <td>
+                            @if (Model.Alamat.Equals(""))
+                            {
+                                <text>-</text>
+                            }
+                            else
+                            {
+                                @alm.ToUpper()
+                            }
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+            <div class="NpwpPenerima">@Model.Npwp</div>
+        </div>
+        <div class="NamaBarang">
+       	    <div class="KeteranganBarang">KONSESI</div>
+            <div class="TextPadding">Masa: @ViewBag.Period.ToUpper()</div>
+            <div class="TextPadding">No. Invoice: @Model.NoFaktur</div>
+            <div class="TextPadding">@DateTime.Today.ToString("dd MMMM yyyy")</div>
+            <!--<div class="TextPadding">5 Desember 2011</div>-->
+        </div>
+        <div class="HargaJual"><div class="MarginLeft">@ViewBag.TotalBagiHasil</div></div>
+        <div class="DivPerhitungan"></div>
+        <div class="DivPerhitungan1"><div class="MarginLeft">@ViewBag.TotalBagiHasil</div></div>
+        <div class="DivPerhitungan2">
+            <div class="MarginRight">
+                <table>
+                    <tr>
+                        <td><div id="Rate">$ @ViewBag.TotalPajakBagiHasil X @ViewBag.Rate</div></td>
+                        <td><div id="KonversiRupiah">@ViewBag.TotalTagihanIDR</div></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="DivPerhitungan"></div>
+        <div class="Tanggal">Jakarta, @DateTime.Now.ToString("dd MMMM yyyy")</div>
+        <!--<div class="Tanggal">Jakarta, 5 Desember 2011</div>-->
+        <div class="NamaTtd"><br /><label class="underline">@Model.Ttd</label><br /></div>
+    </div>
+</div>

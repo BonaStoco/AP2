@@ -1,0 +1,65 @@
+﻿div.backgroudErrorMsg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    filter: alpha(opacity=30);
+    -moz-opacity: 0.3;
+    -khtml-opacity: 0.6;
+    opacity: 0.5;
+    background: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+}
+div.dialogAreaErrorMsg {
+    display: block;
+    margin: auto;
+    vertical-align: middle;
+    text-align: center;
+    position: absolute;
+    z-index: 9999;
+    top: 35%;
+    left: 33%;
+    background-color: #fcfbaa;
+    padding: 20px 20px 5px 20px;
+    border: 1px Solid #666;
+    border-image: initial;
+    border-radius: 6px;
+}
+div.bodyErrorMsg {
+    width: 100%;
+    display: block;
+    padding-bottom: 10px;
+}
+div.errorMsgFooter {
+    text-align: right;
+    margin: 15px 0 0 0;
+}
+div.buttonErrorMsg
+{
+    float: right;
+    padding: 5px;
+    margin-right: 4px;
+    cursor: pointer;
+    color: white;
+}
+.ignore
+{
+    background-color: #FC1B1B;
+    border: 1px solid #B80909;
+}
+.ignore:hover
+{
+    background-color: #ff3a3a;
+    border: 1px solid #d10b0b;
+}
+.retry, .ok
+{
+    background-color: Green;
+    border:1px Solid #053d01;
+}
+.retry:hover, ok:hover
+{
+    background-color: #0EAC02;
+}

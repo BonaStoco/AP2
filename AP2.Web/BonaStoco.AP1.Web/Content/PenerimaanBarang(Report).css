@@ -1,0 +1,89 @@
+body
+{
+	width : 100%;
+}
+#headerReportPenerimaanBarang
+{
+ background-color:#fff;
+ border: 0px none #fff;
+ width : 100%; 
+}
+
+#headerReportPenerimaanBarang td
+{
+ background-color:#fff;
+ border: 0px none #fff;
+  
+}
+#headerReportPenerimaanBarang tr
+{
+ background-color:#fff;
+ border: 0px none #fff;
+  
+}
+#tblitem, #tblitem td, #tblitem tr
+{
+	border: 1px solid #E8EEF4;
+    border-collapse: collapse;	
+}
+#divItem
+{
+	min-height: 550px;
+}
+#divItemPengirimanBarang
+{
+    min-height: 500px;
+}
+#TitleHeader
+{
+	text-align:center;
+	font-weight:bolder;
+	font-size: 16px;
+}
+.left
+{
+	text-align: left;
+	padding-left: 7px;
+}
+.right
+{
+	text-align:right;
+	padding-right: 7px;
+}
+.center
+{
+	text-align:center;
+}
+.top
+{
+	vertical-align:top;
+}
+#HeaderTableItem th
+{
+	background-color : #CCC;
+	font-weight: bold;
+	font-size: 12px;
+	color : Gray;
+}
+
+/* TABLE
+----------------------------------------------------------*/
+
+table {
+    border: solid 1px #e8eef4;
+    border-collapse: collapse;
+}
+
+table td {
+    padding: 5px;
+    border: solid 1px #e8eef4;
+}
+
+table th {
+    padding: 6px 5px;
+    text-align: left;
+    background-color: #5B8EAC;
+    border: solid 1px #e8eef4;
+    color:white;
+    font-size:11pt;
+}

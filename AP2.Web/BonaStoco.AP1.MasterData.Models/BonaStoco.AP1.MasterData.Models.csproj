@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8D677F59-3717-494A-9700-2FA40E0FA9A4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BonaStoco.AP1.MasterData.Models</RootNamespace>
+    <AssemblyName>BonaStoco.AP1.MasterData.Models</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BonaStoco.Inf.Data.ViewModel">
+      <HintPath>..\..\..\bonastoco-bin\BonaStoco.Inf.Data.ViewModel.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActualQtyItem.cs" />
+    <Compile Include="AirCraft.cs" />
+    <Compile Include="Ccy.cs" />
+    <Compile Include="Comodity.cs" />
+    <Compile Include="Company.cs" />
+    <Compile Include="Info.cs" />
+    <Compile Include="MappingPrice.cs" />
+    <Compile Include="ProductHeader.cs" />
+    <Compile Include="ProductPrint.cs" />
+    <Compile Include="Customer.cs" />
+    <Compile Include="Destinetion.cs" />
+    <Compile Include="DetailTenanAktif.cs" />
+    <Compile Include="DetailTenanAktifHariIni.cs" />
+    <Compile Include="DetailTenanAktifKemarin.cs" />
+    <Compile Include="ExchangeRate.cs" />
+    <Compile Include="IDashBoardRepository.cs" />
+    <Compile Include="IMasterDataRepository.cs" />
+    <Compile Include="ITenanAdvancedSearchRepository.cs" />
+    <Compile Include="MappingCompany.cs" />
+    <Compile Include="MappingSubTerminal.cs" />
+    <Compile Include="MappingTerminal.cs" />
+    <Compile Include="ModelBase.cs" />
+    <Compile Include="PartGroup.cs" />
+    <Compile Include="Product.cs" />
+    <Compile Include="PendingProductRequestCount.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RequestProduct.cs" />
+    <Compile Include="SummaryHome.cs" />
+    <Compile Include="SummaryHomeBandara.cs" />
+    <Compile Include="SummaryHomeSubTerminal.cs" />
+    <Compile Include="SummaryHomeTenan.cs" />
+    <Compile Include="SummaryHomeTerminal.cs" />
+    <Compile Include="Tenan.cs" />
+    <Compile Include="TenantSalesMonitoring.cs" />
+    <Compile Include="Unit.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,91 @@
+﻿@{
+    var TimeSessionTimOut = 900;
+ }
+
+<!DOCTYPE html>
+<html>
+<head>
+  <head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/themes/base/jquery.ui.all.css")"  rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/themes/base/jquery.ui.datepicker.css")"  rel="stylesheet" type="text/css" />
+    @RenderSection("styles", false)     
+
+
+
+    <style type="text/css">
+        .removeBtn {
+            color: #0000CC;
+        }
+        #container span
+        {
+            border: solid 1px black;
+            padding: 3px;
+        }
+        #targetContainer 
+        {
+            height: 200px;
+            width: 200px;
+            border: solid 1px black;
+            background-color: #abacab;
+            margin: 50px;
+        }
+        #container2 
+        {
+            border: solid 1px black;
+            padding: 3px;
+        }
+        .optionHead
+        {
+            border: solid 1px black;
+            background-color: #abacab;
+        }
+        .optionDiv 
+        {
+            border-bottom: dotted 1px black;
+        }
+    </style>
+</head>
+<body onkeypress="RefreshSessionTimeOut(@TimeSessionTimOut)" onmousemove="RefreshSessionTimeOut(@TimeSessionTimOut)">
+    <div class="page">
+        <header>
+            <div id="logindisplay">
+                @Html.Partial("_LogOnPartial")
+            </div>
+            <div id="title">
+                 @Html.Partial("_TitlePartial")
+            </div>
+            <div id="Logo">
+                <img src="@Url.Content("~/Content/images/AP1-Logo.png")" height="72px"/>
+            </div>
+            <nav>
+                <div id="menu">
+                    <ul id="menustyle">
+                        <li>@Html.ActionLink("Home", "TelkomPage", "Home")</li>
+                    </ul>
+               </div>
+            </nav>
+        </header>
+        <section id="main">
+            @RenderBody()
+        </section>
+        <footer-left>
+            © 2011 AP1.Bonastoco.com - Telkom Indonesia
+        </footer-left>
+        <footer-right>
+            Powered By <a href="http://www.bonastoco.com" target="_blank">Inforsys Indonesia</href>
+        </footer-right>
+    </div>
+    @Content.Script("jquery-1.5.1.min.js", @Url)
+    @Content.Script("jquery.quicksearch.js", @Url)
+    @Content.Script("modernizr-1.7.min.js", @Url)
+    @Content.Script("jquery.unobtrusive-ajax.min.js", @Url)
+    @Content.Script("jquery-ui-1.8.11.min.js", @Url)
+    @Content.Script("ap1.js", @Url)
+    @Content.Script("SessionTimeOut.js", @Url)   
+    @RenderSection("scripts", false)
+</body>
+</html>
+<div id="timeCounter" style="display:none;">@TimeSessionTimOut</div>

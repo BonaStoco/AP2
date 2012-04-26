@@ -1,0 +1,72 @@
+﻿@section styles
+{
+ <link href="@Url.Content("~/Content/LaporanProduksi.css")" rel="stylesheet" type="text/css" />
+
+}
+
+@section scripts {
+<script type="text/javascript">
+$(function () {
+    var dates = $("#tglCetak").datepicker({ dateFormat: 'dd-M-yy',
+        defaultDate: "-1w",
+        changeMonth: true,
+        numberOfMonths: 1,
+        onSelect: function (selectedDate) {
+            var option = this.id == "tglCetak" ? "minDate" : "maxDate",
+			instance = $(this).data("datepicker"),
+			date = $.datepicker.parseDate(
+				instance.settings.dateFormat ||
+				$.datepicker._defaults.dateFormat,
+				selectedDate, instance.settings);
+            dates.not(this).datepicker("option", option, date);
+        }
+    });
+});    
+</script> 
+}
+
+@using (Html.BeginForm("LaporanProduksi", "LaporanProduksi"))
+{   
+<h2>Laporan Konsesi</h2>
+
+<table id="form-period">
+<tr>
+    <td>Period</td>
+    <td>@{
+    int currentYear = DateTime.Now.Year;
+            <input name="tahun" type="text" id="tahun" value="@currentYear"/>
+           }
+   
+   <select name="bulan" id="bulan" >
+   @{
+      
+        String[] month = new String[12] { "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember" };
+        int currentMonth = DateTime.Now.Month;
+        int y = 1;
+        string t;
+        foreach (var item in month)
+        {
+            if (y == currentMonth)
+            {
+                t = "selected";
+            }
+            else
+            {
+                t = "";
+            }
+<option value=@y @t>@item</option>
+y++;
+        }
+    }
+       </select></td>
+
+</tr>
+<tr>
+    <td>Tanggal Cetak</td>
+    <td><input type="text" id="tglCetak" name="tglCetak" readonly="readonly"/></td>
+</tr>
+<tr>
+    <td colspan="2"><input type="submit" value="Tampilkan" id="preview"/></td>
+</tr>
+</table>
+}

@@ -1,0 +1,12 @@
+﻿@using BonaStoco.AP1.Web.Models
+@{
+    if (User.Identity.IsAuthenticated)
+    {
+        CompanyProfiles cp = new CompanyProfiles(this.Context);
+        Layout = APRoles.MapLayout(cp.HomePage);
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_LayoutHome.cshtml";
+    }
+}

@@ -1,0 +1,9 @@
+﻿body 
+{
+    text-align: left;
+}
+
+#upload-result-error
+{
+    color: Red;
+}

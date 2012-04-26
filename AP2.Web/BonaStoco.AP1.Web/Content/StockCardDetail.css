@@ -1,0 +1,295 @@
+﻿.divIndex{
+    font-family:tahoma;
+    border-radius: 5px 5px 5px 5px;
+    border: solid 1px #3294F0;
+    -webkit-box-shadow: 1px 1px 7px #333;
+    -moz-box-shadow: 1px 1px 7px #333;
+    color: white;
+}
+.divHeader{
+    border: solid 1px #3294F0;
+    border-radius: 5px 5px 0 0;
+    padding: 10px 0 10px 0;
+    background: -webkit-linear-gradient(top, #98CBFB, #3294F0);
+    background: -moz-linear-gradient(top, #98CBFB, #3294F0);
+    color: white;
+    font-family:tahoma;
+}
+.title{
+   font-weight: bold;
+   margin-left: 10px;
+   text-shadow: 1px 1px 1px black, 3px 3px 5px blue;
+}
+.divStockCardDetail 
+{
+    margin-top:23px;
+    width: 100%;
+    display:none;
+}
+
+.divHeaderStockCardDetail{
+    width: 100%;
+    height:25px;
+}
+
+#divBodyMappingPrice{
+    width:470px;
+    padding: 18px;
+}
+.TitleStockCardDetail{
+   font-size: 16px;
+}
+#SearchTenan {
+    width :100%; 
+    border :0;
+}
+#SearchTenan tr {
+    border :0;
+}
+#SearchTenan tr td{
+    border :0;
+    color:Black;
+    font-size:12px;
+}
+#divListStockCardDetail{
+    width:100%;    
+    padding: 20px;
+    color: black;
+}
+table#tableListStockCardDetail thead tr th{
+    background-color :#3294F0
+}
+table#tableListStockCardDetail tbody tr td{
+    height:16px;
+}
+table#tableListProduct thead tr th{
+    background-color :#3294F0
+}
+.EditPrice{
+    background: transparent url("./images/Actions.png") no-repeat;
+    background-position: -382px -57px;
+    height: 16px;
+    width: 19px;
+    float: right;
+    cursor:pointer;
+    margin-left:10px;
+    display:none
+}
+.DivDialogMapping{
+    width: 350px;
+    margin-left: 31%;
+    margin-top: -16%;
+    margin-bottom: 4%;
+    position: relative;
+    z-index: 600;
+    display: none;
+}
+.DivHeaderDialogMapping{
+    width: 100%;
+    height:17px;
+}
+.TitleEdit{
+    font-size:16px;
+}
+#tableEditDialog tr {
+    border :0;
+}
+#tableEditDialog tr td{
+    border :0;
+    color:Black;
+    font-size:12px;
+}
+#tableAddDialog tr {
+    border :0;
+}
+#tableAddDialog tr td{
+    border :0;
+    color:Black;
+    font-size:12px;
+}
+#simpanMapping{
+    border: solid 1px #3294F0;
+    border-radius: 5px 5px 5px 5px;
+    float: left;
+    padding: 5px;
+    background-color: #3294F0;
+    margin-left: 32%;
+    margin-right: 2%;
+    cursor: pointer;
+    font-weight: bold;
+}
+#updateMapping{
+    border: solid 1px #3294F0;
+    border-radius: 5px 5px 5px 5px;
+    float: left;
+    padding: 5px;
+    background-color: #3294F0;
+    margin-left: 32%;
+    margin-right: 2%;
+    cursor: pointer;
+    font-weight: bold;
+}
+#batalMapping{
+    border: solid 1px #3294F0;
+    border-radius: 5px 5px 5px 5px;
+    float: left;
+    padding: 5px;
+    background-color: Red;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#simpanMapping:hover{
+    border: solid 1px #D4D5D6;
+    border-radius: 5px 5px 5px 5px;
+    float: left;
+    padding: 5px;
+    background-color: #D4D5D6;
+    margin-left: 32%;
+    margin-right: 2%;
+    cursor: pointer;
+    font-weight: bold;
+}
+#updateMapping:hover{
+    border: solid 1px #D4D5D6;
+    border-radius: 5px 5px 5px 5px;
+    float: left;
+    padding: 5px;
+    background-color: #D4D5D6;
+    margin-left: 32%;
+    margin-right: 2%;
+    cursor: pointer;
+    font-weight: bold;
+}
+#batalMapping:hover{
+    border: solid 1px #D4D5D6;
+    border-radius: 5px 5px 5px 5px;
+    float: left;
+    padding: 5px;
+    background-color: #D4D5D6;
+    cursor: pointer;
+    font-weight: bold;
+}
+ #loadingMapping
+{
+    	width:100%;
+    	height:100%;
+    	filter:alpha(opacity=70);
+    	-moz-opacity:0.9;
+    	-khtml-opacity: 0.9;
+    	opacity: 0.9;
+    	background:#fff;
+    	position:fixed;
+    	top:0; left:0;
+    	z-index:3000;
+    	display : none;		
+}
+#loaders
+{	
+	width : auto;
+	height :auto;
+  	margin : 23% 50% 13% 43%;
+}
+
+div#DialogOverlayProduct{
+	width:100%;
+    height:100%;
+    filter:alpha(opacity=80);
+    -moz-opacity:0.8;
+    -khtml-opacity: 0.8;
+    opacity: 0.8;
+    background:#fff;
+    position:absolute;
+    top:0; left:0;
+	z-index:500;
+	display:none;
+}
+.divListproduct{
+    width: 59%;
+    margin-top: -16%;
+    margin-left: 19%;
+    display: none;
+    position: relative;
+    z-index: 600;
+}
+.Titelproduct{
+    font-size:16px;
+    font-weight:bold;
+}
+.TitelMappingPrice{
+    font-size:22px;
+    font-weight:bold;
+}
+.HeaderListProduct label#close{
+    float: right;
+    margin-right: 15px;
+    font-weight: bold;
+}
+.HeaderListProduct label#close:hover{
+    float: right;
+    margin-right: 15px;
+    font-weight: bold;
+    color:Red;
+}
+.White
+{
+    background-color:White;
+}
+.Blue
+{
+    background-color: #e3ecff;
+}
+
+#BackToList 
+{
+  border:1px solid #e3ecff;  
+  float:right; 
+  margin-bottom:25px;
+  cursor:pointer; 
+  background-color: #3294F0;
+  padding-left:5px;
+  padding-right:5px;
+  color:white;
+  -webkit-box-shadow: 1px 1px 5px #5B8EAC;
+  -moz-box-shadow: 1px 1px 5px #5B8EAC;
+   border-radius: 5px 5px 5px 5px;
+   display:none;    
+}
+
+#tableListStockCardDetail tfoot
+{
+      border:1px;
+    
+}
+
+#tableListStockCardDetail tfoot tr
+{
+      border:1px;
+    
+}
+
+#tableListStockCardDetail tfoot td
+{
+      border:1px;
+      background-color:#ddd;
+    
+}
+
+#tableListStockCardDetail tbody tr
+{
+      border:0px;     
+    
+}
+
+#tableListStockCardDetail tbody tr td
+{
+      border:0px;
+    
+}
+
+.border-top 
+{
+  border-top:1px solid #ddd;
+  border-bottom:1px solid #ddd;
+  font-weight:bold;   
+}

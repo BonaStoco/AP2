@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Map Role Result";
+}
+
+@if (ViewBag.HasError)
+{
+    <p>
+        @ViewBag.ErrorMessage
+        @Html.ActionLink("Kembali ke Role Maper", "RoleMaper", "Admin")
+    </p>
+}
+else
+{
+    <p>
+        @Html.ActionLink("Kembali ke Role Maper", "RoleMaper", "Admin")
+    </p>
+}

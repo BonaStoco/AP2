@@ -1,0 +1,39 @@
+﻿#DivStockCard{
+   font-family:tahoma;
+   width: 470px;
+   border-radius: 5px 5px 5px 5px;
+   border: solid 1px #3294F0;
+   -webkit-box-shadow: 1px 1px 7px #333;
+   -moz-box-shadow: 1px 1px 7px #333;
+   color: white;
+}
+#DIvStockCardHeader{
+   width: 150px;
+   border: solid 1px #3294F0;
+   border-radius: 5px 5px 0 0;
+   padding: 5px 0 5px 0;
+   background: -webkit-linear-gradient(top, #98CBFB, #3294F0);
+   background: -moz-linear-gradient(top, #98CBFB, #3294F0);
+   color: white;
+   font-family:tahoma;
+   margin-left: 3px;
+   margin-top:30px;
+}
+#Titel{
+   font-size: 14px;
+   font-weight: bold;
+   margin-left: 10px;
+   text-shadow: 1px 1px 1px black, 3px 3px 5px blue;
+}
+#SearchTenan {
+    width :100%; 
+    border :0;
+}
+#SearchTenan tr {
+    border :0;
+}
+#SearchTenan tr td{
+    border :0;
+    color:Black;
+    font-size:12px;
+}

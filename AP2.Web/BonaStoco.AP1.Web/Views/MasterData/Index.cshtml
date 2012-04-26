@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "Master Data - Cari Barang";
+}
+@section styles
+{
+    <link href="@Url.Content("~/Content/MasterData.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/AdvancedSearchProduct.css")" rel="stylesheet" type="text/css" />
+}
+@section scripts
+{
+    @Content.Script("jquery.validate.min.js", @Url)
+    @Content.Script("AdvancedSearchProduct.js", @Url)
+    @Content.Script("jquery.validate.unobtrusive.min.js", @Url)
+    @Content.Script("jquery-ui-1.8.14.custom.min.js", @Url)
+    @Content.Script("stringformat.js", @Url)
+     @Content.Script("caribarang.js", @Url)
+
+}
+   <applet name="jZebra" code="jzebra.RawPrintApplet.class" archive="@Url.Content("~/Scripts/jzebra.jar")" width="10" height="10">
+    <param name="printer" value="zebra"/>
+    <param name="sleep" value="200"/>
+</applet>
+<div>
+    <div id="leftSearch">
+        @using (Ajax.BeginForm("SearchProduct", "MasterData",
+                new AjaxOptions
+                {
+                    HttpMethod = "GET",
+                    InsertionMode = InsertionMode.Replace,
+                    UpdateTargetId = "divListProduct",
+                    LoadingElementId = "progress"
+                }
+            ))
+        {
+            <p>
+                Masukkan Barcode atau Kode Barang  <br />
+                <input type="text" name="code" id="kode" style="float:left;margin-right:5px;"/>
+                <button class="positive button" id="cari"><img src="@Url.Content("~/Content/images/button/search.png")"/> Cari</button>
+                <button id="AdvSearch" class="positive button"><img src="@Url.Content("~/Content/images/button/search.png")"/>Cari Berdasarkan Nama</button>
+                <img id="progress" src="@Url.Content("~/Content/images/loader.gif")" alt="Loader"/>
+            </p>
+        }
+    </div>
+</div>
+
+<div id="divListProduct">
+</div>
+
+<div id="AdvancedSearchProduct" title="Pencarian Berdasarkan Nama Barang">
+</div>
+<div id="dialog-print" title="Print Barcode">
+    <p class="validateTips"></p>
+    <table width="100%" border="0">
+      <tr id="headerTable">
+        <td width="37%" class="left">Jumlah Barcode</td>
+        <td width="63%" class="left">
+            <input type="text" id="qty"/>
+            <input type="hidden" id="kode" />
+        </td>
+      </tr>
+    </table>
+</div>

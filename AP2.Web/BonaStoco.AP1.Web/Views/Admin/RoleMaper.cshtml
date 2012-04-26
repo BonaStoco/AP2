@@ -1,0 +1,35 @@
+﻿@using BonaStoco.AP1.Web.Models
+@model RoleMaperSettingModel
+@{
+    ViewBag.Title = "Role Maper Setting - Tenant";
+}
+<h2>Role Maper - Tenat</h2>
+@using (@Html.BeginForm("MapRole", "Admin"))    
+{
+    <fieldset>
+        <legend>Category</legend>
+        @Html.DropDownListFor(model => model.Category, new SelectList(Model.Categories, "Id", "Name", Model.Category))
+    </fieldset>
+    
+    <fieldset>
+        <legend>Locatoin</legend>
+        @Html.DropDownListFor(model => model.Location, new SelectList(Model.Locations, "Id", "Name", Model.Location))
+    </fieldset>
+    
+    <fieldset>
+        <legend>Terminal</legend>
+        @Html.DropDownListFor(model => model.Terminal, new SelectList(Model.Terminals, "Id", "Name", Model.Terminal))
+    </fieldset>
+    
+    <fieldset>
+        <legend>Sub Terminal</legend>
+        @Html.DropDownListFor(model => model.SubTerminal, new SelectList(Model.SubTerminals, "Id", "Name", Model.SubTerminal))
+    </fieldset>
+    
+    <fieldset>
+        <legend>Role</legend>
+        @Html.DropDownListFor(model => model.Role, new SelectList(Model.Roles, "Id", "Name", Model.Role))
+    </fieldset>
+    
+    <input type="submit" value="Map Role" />
+}

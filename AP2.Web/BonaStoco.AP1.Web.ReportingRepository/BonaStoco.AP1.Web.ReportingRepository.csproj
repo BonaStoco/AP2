@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DA288C70-DC64-490B-8042-F4D55C0197B9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BonaStoco.AP1.Web.ReportingRepository</RootNamespace>
+    <AssemblyName>BonaStoco.AP1.Web.ReportingRepository</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BonaStoco.Inf.Data.ViewModel">
+      <HintPath>..\..\..\bonastoco-bin\BonaStoco.Inf.Data.ViewModel.dll</HintPath>
+    </Reference>
+    <Reference Include="BonaStoco.Inf.DataMapper">
+      <HintPath>..\..\..\bonastoco-bin\BonaStoco.Inf.DataMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="BonaStoco.Inf.DataMapper.Impl">
+      <HintPath>..\..\..\bonastoco-bin\BonaStoco.Inf.DataMapper.Impl.dll</HintPath>
+    </Reference>
+    <Reference Include="BonaStoco.Inf.Reporting">
+      <HintPath>..\..\..\bonastoco-bin\BonaStoco.Inf.Reporting.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging">
+      <HintPath>..\..\..\external-lib\spring-amqp\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="LoveSeat">
+      <HintPath>..\packages\LoveSeat.1.0.1\lib\net40\LoveSeat.dll</HintPath>
+    </Reference>
+    <Reference Include="LoveSeat.Interfaces">
+      <HintPath>..\packages\LoveSeat.1.0.1\lib\net40\LoveSeat.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Bson">
+      <HintPath>..\packages\mongocsharpdriver.1.4\lib\net35\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>..\packages\mongocsharpdriver.1.4\lib\net35\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.0.8.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.4.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Aop">
+      <HintPath>..\..\..\external-lib\spring-amqp\Spring.Aop.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Core">
+      <HintPath>..\..\..\external-lib\spring-amqp\Spring.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Data">
+      <HintPath>..\..\..\external-lib\spring-amqp\Spring.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AP2CargoRepository.cs" />
+    <Compile Include="AP2ReportRepository.cs" />
+    <Compile Include="APMasterRepository.cs" />
+    <Compile Include="APStockRepository.cs" />
+    <Compile Include="ILaporanVoidRepository.cs" />
+    <Compile Include="DashboardRepository\DashboardRepository.cs" />
+    <Compile Include="IAP2CargoRepository.cs" />
+    <Compile Include="IBandaraReportSaleRepository.cs" />
+    <Compile Include="ILaporanRingkasanPenjualanPerHariRepository.cs" />
+    <Compile Include="InventoryRepository\InventoryMongoRepository.cs" />
+    <Compile Include="InventoryRepository\InventoryRepository.cs" />
+    <Compile Include="IStockOpnameReportRepository.cs" />
+    <Compile Include="ISubTerminalReportSaleRepository.cs" />
+    <Compile Include="ITerminalReportSaleRepository.cs" />
+    <Compile Include="LaporanRingkasanPenjualanPerHariTenanRepository.cs" />
+    <Compile Include="LaporanRingkasanPenjualanPerHariRepository.cs" />
+    <Compile Include="LaporanVoidRepository.cs" />
+    <Compile Include="MappingPriceRepository\IMappingPriceRepository.cs" />
+    <Compile Include="MappingPriceRepository\MappingPriceRepository.cs" />
+    <Compile Include="MasterDataRepository\MasterDataRepository.cs" />
+    <Compile Include="MasterDataRepository\SampleData.cs" />
+    <Compile Include="MasterDataRepository\TenanAdvancedSearchRepository.cs" />
+    <Compile Include="PengirimanBarangRepository\PengirimanBarangRepository.cs" />
+    <Compile Include="ReportSaleRepository\BandaraReportSaleRepository.cs" />
+    <Compile Include="IAP2ReportRepository.cs" />
+    <Compile Include="IAPMasterRepository.cs" />
+    <Compile Include="IAPStockRepository.cs" />
+    <Compile Include="IReportSaleRepository.cs" />
+    <Compile Include="KalenderTenanViewRepository.cs" />
+    <Compile Include="KalenderViewRepository.cs" />
+    <Compile Include="LaporanDetailPenjualanPerTenanRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="ReportFakturPajakRepository.cs" />
+    <Compile Include="ReportSaleRepository\APReportSaleRepository.cs" />
+    <Compile Include="ReportSaleRepository\SubTerminalReportSaleRepository.cs" />
+    <Compile Include="ReportSaleRepository\TerminalReportSaleRepository.cs" />
+    <Compile Include="StockOpnameReportRepository.cs" />
+    <Compile Include="TenanActivityMonitoringRepository.cs" />
+    <Compile Include="TenantMonitoringRepository\ActivityMonitoringRepository.cs" />
+    <Compile Include="TenantMonitoringRepository\ReportMonitoringRepository.cs" />
+    <Compile Include="Web References\tenanws\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BonaStoco.AP1.MasterData.Models\BonaStoco.AP1.MasterData.Models.csproj">
+      <Project>{8D677F59-3717-494A-9700-2FA40E0FA9A4}</Project>
+      <Name>BonaStoco.AP1.MasterData.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BonaStoco.AP1.PengirimanBarang.Models\BonaStoco.AP1.PengirimanBarang.Models.csproj">
+      <Project>{EFC830BD-3391-4F34-9535-F7110D23489F}</Project>
+      <Name>BonaStoco.AP1.PengirimanBarang.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BonaStoco.AP1.TenantMonitoring\BonaStoco.AP1.TenantMonitoring.Models.csproj">
+      <Project>{037B074A-82F2-4E6C-898B-5161A3EAF6D7}</Project>
+      <Name>BonaStoco.AP1.TenantMonitoring.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BonaStoco.AP1.Web.Report\BonaStoco.AP1.Web.Report.csproj">
+      <Project>{7120214E-F4BE-4E88-A6AF-E987EEA38687}</Project>
+      <Name>BonaStoco.AP1.Web.Report</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\BonaStoco.AP1.CouchDB.Config\BonaStoco.AP1.CouchDB.Config.csproj">
+      <Project>{41C1F8B3-F95B-42AE-B3EB-6D01BD48AB1A}</Project>
+      <Name>BonaStoco.AP1.CouchDB.Config</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\BonaStoco.AP1.Inventory.Models\BonaStoco.AP1.Inventory.Models.csproj">
+      <Project>{AD109A76-3A03-4A1A-8F50-F938C9B65F4E}</Project>
+      <Name>BonaStoco.AP1.Inventory.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://www.bonastoco.com/services/servicetenant.php%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\tenanws\</RelPath>
+      <UpdateFromURL>http://www.bonastoco.com/services/servicetenant.php%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>BonaStoco_AP1_Web_ReportingRepository_tenanws_BonastocoServices</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\tenanws\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\tenanws\serverResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\tenanws\servicetenant.wsdl" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

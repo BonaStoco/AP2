@@ -1,0 +1,64 @@
+﻿@using BonaStoco.AP1.PengirimanBarang.Models
+@model GRNItem
+<script type="text/javascript">
+    function CloseUpdate() {
+              $('#FormEdit').dialog("close");
+                return true;
+    }
+</script>
+@if (Model != null )
+{
+    using (Ajax.BeginForm("UpdateItem","VerifikasiPengirimanBarang", new AjaxOptions
+                        {
+                            HttpMethod = "POST",
+                            InsertionMode = InsertionMode.Replace,
+                            UpdateTargetId = "grnitem-" + Model.Guid.ToString()
+                           
+                        }))
+    {
+        var qty = Int32.Parse(Model.Qty.ToString("N0"));
+        var actualQty= Int32.Parse(Model.ActualQty.ToString("N0"));
+        @Html.HiddenFor(m => Model.Guid)
+        @Html.HiddenFor(m => Model.Barcode)
+        @Html.HiddenFor(m => qty)
+        @Html.HiddenFor(m => Model.GRNId)
+        @Html.HiddenFor(m => Model.Harga)
+        @Html.HiddenFor(m => Model.Jumlah)
+        @Html.HiddenFor(m => Model.Kode)
+        @Html.HiddenFor(m => Model.Nama)
+        @Html.HiddenFor(m => Model.ProductGuid)
+        @Html.HiddenFor(m => Model.UnitGuid)
+        @Html.HiddenFor(m => Model.UnitName)
+        @Html.HiddenFor(m => Model.CcyCode)
+        @Html.HiddenFor(m => Model.TenanId)
+        @Html.HiddenFor(m => Model.StatusPrint)
+        
+        <table>
+            <tbody>
+            <tr>
+                <td>Barcode</td>
+                <td>@Html.DisplayFor(m => Model.Barcode)</td>
+            </tr>
+            <tr>
+                <td>Nama Barang</td>
+                <td>@Html.DisplayFor(m => Model.Nama)</td>
+            </tr>
+            <tr>
+                <td>Qty</td>
+                <td>@Html.DisplayFor(m => qty)
+                    @Html.DisplayFor(m => Model.UnitName)</td>
+            </tr>
+            <tr>
+                <td>Actual Qty</td>
+                <td>@Html.EditorFor(m => actualQty)
+                    @Html.ValidationMessageFor(m => Model.ActualQty)@Html.DisplayFor(m => Model.UnitName)</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Update" onclick = "CloseUpdate()"/>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    }
+}

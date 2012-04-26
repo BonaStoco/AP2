@@ -1,0 +1,120 @@
+﻿span.fontTebal {
+	font-size: 14px;
+	font-weight: bold;
+	color:#3c3b3b;
+}
+.fontNormal {font-size: 12px;
+       color :Black;
+}
+
+.fontFooter {
+	font-size : 12px;
+	text-align:right;
+	color:#3c3b3b;	
+	padding-right : 25px;
+}
+.fontFooter1 {
+	font-size : 12px;
+	text-align:center;
+	color:#3c3b3b;	
+}
+
+div.styled {
+  border-width:1px;
+  border-color:#000000;
+  border-style: solid;
+  text-align: center;
+  float:left;
+  width:16px;
+  height:auto;
+  padding:3px
+}
+
+
+
+.fp table {
+    border: 1px #3c3b3b;
+    padding : 5px;
+    border-collapse: collapse;
+    margin : 0px;
+}
+
+.fp table td {
+    padding: 5px;
+    border: solid 1px #000000;
+}
+
+.fp table th {
+    padding: 6px 5px;
+    text-align: left;
+    background-color: #e8eef4;
+    border: solid 1px #000000;
+}
+
+table#line {
+    padding: 3px;
+    border: 1px #000000;
+    }
+    
+table#line td {
+    padding: 3px;
+    border: 1px #000000;
+    }
+    
+.fp table#line2 {
+    padding: 5px;
+    border: 1px #000000;
+    }
+    
+.fp table#line2 td {
+    padding: 5px;
+    border: 1px #000000;
+    }
+
+
+
+.fp h1 {
+    font-size: 2em;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.fp h2 {
+    padding: 0 0 10px 0;
+}
+
+.fp h3 {
+    font-size: 1.5em;
+    color : #3c3b3b;
+}
+
+.fp h4 {
+    font-size: 1.1em;
+}
+
+.fp h5, h6 {
+    font-size: 1em;
+}
+
+#tableFooter
+{
+    padding : 2px;
+    border:1px Solid Black;
+    border-collapse : collapse;
+}
+#tableFooter tr
+{
+    padding : 2px;
+    border:1px Solid Black;
+}
+#tableFooter tr td
+{
+    padding : 2px;
+    border:1px Solid Black;
+}
+
+div#PrintArea
+{
+    display : none;
+}
+

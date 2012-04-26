@@ -1,0 +1,136 @@
+﻿
+@model List<BonaStoco.AP1.Web.Report.TenantBandaraDailySales>
+@{
+    DateTime today = DateTime.Today;
+   DateTime previousDay =  today.AddDays(-1);
+   DateTime twoDaysBefore = previousDay.AddDays(-1);      
+   
+}
+
+
+<span id='location-id' hidden="hidden">@ViewBag.locationId</span>
+<span id='no'  hidden="hidden">0</span>
+
+<table id="detail-harian" width="95%" height="65%" border="0" align="right" cellpadding="0" cellspacing="0">
+    <tr>
+        <td width="128x" height="39">
+            <div class="ActivePeriode">Hari
+            </div>
+        </td>
+        <td width="128px">
+            <div id="Periode">@Ajax.ActionLink("Bulan", "RekapTenanBulanan", "APReportSale", new { locationId = ViewBag.LocationId, ViewBag.CompanyName },
+                    new AjaxOptions {
+                        HttpMethod = "GET",
+                        InsertionMode = InsertionMode.Replace,
+                        UpdateTargetId = "results",
+                        LoadingElementId = "dialog-overlay",
+                        OnSuccess = "LoadingStop()"
+                    })
+            </div>
+        </td>
+        <td width="128px">
+            <div id="Periode">@Ajax.ActionLink("Tahun", "RekapTenanTahunan", "APReportSale", new { locationId = ViewBag.LocationId, ViewBag.CompanyName },
+                    new AjaxOptions
+                    {
+                        HttpMethod = "GET",
+                        InsertionMode = InsertionMode.Replace,
+                        UpdateTargetId = "results",
+                        LoadingElementId = "dialog-overlay",
+                        OnSuccess = "LoadingStop()"
+                    })
+            </div>
+        </td >
+        <td width="100%">
+            <div class="NamaBandara">@ViewBag.CompanyName</div>
+        </td>
+    </tr>
+    <tr>
+   <td height="494" colspan="4" align="right" class="top" id="results">
+            <table width="100%" height="100%" border="0" align="right" cellpadding="0" cellspacing="0">
+            <tr height="30px" class="header-view" style="cursor:pointer"><td>Total Penjualan</td></tr>
+					   
+					        <td height="39" >   
+                         
+   			   
+    <div id="tanggalresult">
+    
+   <table id="tableRekap" width="100%">
+                         <tr>
+                          <th width="200" height="21" class="right" id="twoDaysBefore" style="text-align:right;">@twoDaysBefore.ToString("dd MMMM yyyy")</th>
+					        <th width="200" height="21" class="right" id="previousDay" style="text-align:right;">@previousDay.ToString("dd MMMM yyyy")</th>
+                              <th width="200" height="21" class="right" id="today" style="text-align:right;">@ViewBag.Today.ToString("dd MMMM yyyy")</th>
+					    </tr>         
+					    <tr>
+					        <td height="40" class="twobefore"><span id="date1-idr">Rp.@ViewBag.TwoDaysBeforeDate</span></td>
+					        <td height="40" class="before"><span id="date2-idr">Rp.@ViewBag.PreviousDayDate</span></td>
+                             <td height="40" class="current" style="background-color:#FFFF9B; font-weight:bold;"><span id="date3-idr">Rp.@ViewBag.TotalSalePerDay</span></td>
+
+					    </tr>
+                        <tr>
+					        <td height="40"  class=" twobefore"><span id="date1-usd">$@ViewBag.TwoDaysBeforeDateUSD</span></td>
+					        <td height="40"  class=" before"><span id="date2-usd">$@ViewBag.PreviousDayDateUSD</span></td>
+                             <td height="40"  class="current" style="background-color:#FFFF9B; font-weight:bold;"><span id="date3-usd">$@ViewBag.TotalSalePerDayUSD</span></td>
+					    </tr>
+                       </table>
+                        <div style="float:right">   
+                  <a href="#" onclick="previous()" id="previous"><b> Previous</b></a>  <a href="#" onclick="next()" id="next" style="cursor:pointer"><b>| Next</b></a>
+            </div> 
+                       </div>
+                     
+                
+                       </td>                      
+                       
+                   
+                        
+                        <tr height="30px" class="header-view" style="cursor:pointer"><td>Detail Penjualan</td></tr>
+                       <tr><td height="10"><span id='btn' style="float:right; height:5px"><button onclick="CetakLaporan()">Cetak Laporan</button></span></td></tr>
+					    <tr id='detail'>
+					        <td class="top" id="detail-header"><br />                                                                   
+                                            Detail Penjualan di <span id='company-name'> @ViewBag.CompanyName</span> <span id='waktu'>, @today.Date.ToString("dd MMMM yyyy")</span>
+                                       
+                                   
+						         <table id="detail-penjualan" class="tablesorter" width="100%" border="0" cellpadding="0" cellspacing="0" bordercolor="#FFFFFF">  
+                                 <thead style="cursor:pointer">                                
+							        <tr>
+							            <th>Tenant</th>
+							            <th style="text-align:right;"> Jumlah Penjualan (IDR)</th>
+                                        <th style="text-align:right;"> Jumlah Penjualan (USD)</th>
+							        </tr>
+                                    </thead>  
+                                    <tbody>
+                                    @{
+                                            int no=0;
+                                        string warna;
+                                    }
+                                    @foreach (var item in Model)
+                                    {
+                                        if(no % 2 == 0)
+                                        {
+                                            warna = "#f8f8f8";
+                                        }
+                                        else
+                                        {
+                                            warna = "#fff";
+                                        }
+							            <tr bgcolor='@warna'>
+								        <td class="left">@item.TenanName  &nbsp;</td>
+								        <td class="right">Rp @item.TotalSalePerTenan.ToString("N0")</td>
+                                        <td class="right">$ @item.TotalSalesPerTenantInUSD.ToString("N2")</td>
+							            </tr>
+                                        no++;
+                                    }                                    
+                                    </tbody>
+                                    <tfoot>
+                                    <tr><th class="left">Total Penjualan</th><th class="right">Rp @ViewBag.TotalSalePerDay</th><th class="right">$@ViewBag.TotalSalePerDayUSD</th></tr>
+                                    </tfoot>
+						        </table>
+					        </td>
+          			    </tr>
+                       
+            </table>
+    </td>
+    </tr>
+</table>
+<script type="text/javascript">
+   $("table").tablesorter({ headers: { 1: { sorter: "rupiahKoma"}} });
+</script>

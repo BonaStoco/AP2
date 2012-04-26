@@ -1,0 +1,63 @@
+﻿@model IList<BonaStoco.AP1.MasterData.Models.Tenan>
+@{
+    ViewBag.Title = "Index";
+}
+
+@section styles
+{
+ <link href="@Url.Content("~/Content/CompanyProfile.css")" rel="stylesheet" type="text/css" />
+
+}
+
+<h2>Data Tenan</h2>
+<div>
+<table  width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <th>No</th>
+    <th>Kode</th>
+    <th>Nama</th>
+    <th>Alamat</th>
+    <th>Terminal</th>
+    <th>Sub Terminal</th>
+    <th>Tanggal Bergabung </th>
+    <th>Tarif</th>
+  </tr>
+  @{
+      
+      var no = 1;
+      var count=0;
+      var warna="#";
+      }
+  
+  @foreach (var item in Model)
+  {
+      if (no % 2 == 0)
+      {
+          warna = "#f8f8f8";
+      }
+      else
+      {
+          warna = "#fff";
+      }  
+  <tr id="tenanitem-@item.TenanId" bgcolor=@warna>
+    <td>@no</td>
+    <td>@item.TenanId</td>
+    <td>&nbsp;@item.TenanName</td>
+    <td>&nbsp;@item.Alamat</td>
+    <td>&nbsp;@item.TerminalName</td>
+    <td>&nbsp;@item.SubTerminalName</td>
+    <td>@item.TanggalBergabung.ToString("dd MMM yyy")</td>
+    <td align=right>@item.Tarif %</td>
+  </tr>
+      count=count+1;
+      no++;   
+        }
+
+        <tr>
+    
+    <th colspan="8"> Total :  @count rows </th>
+    
+
+  </tr>
+</table>
+</div>

@@ -1,0 +1,221 @@
+#dialog-overlay
+{
+    	width:100%;
+    	height:100%;
+    	filter:alpha(opacity=70);
+    	-moz-opacity:0.7;
+    	-khtml-opacity: 0.7;
+    	opacity: 0.7;
+    	background:#000;
+    	position:fixed;
+    	top:0; left:0;
+    	z-index:3000;
+    	display : none;			
+}
+#dialog-loader
+{	
+	width : 200px;
+	height : 200px;
+  	margin : 14% 50% 14% 40%; 
+}
+
+/*********************Table***************************/
+#DivLeftContain {
+	background: -moz-linear-gradient(bottom, #FFC082, #FFEBD7);
+    -webkit-border-radius: 12px 12px 12px 12px;
+    -moz-border-radius: 12px 12px 12px 12px;
+	border: Orange solid 1px;
+	min-height: 100%;
+	width : 100%;
+}
+
+/***************************Menu*************************************/
+#DivLeftContain ul li ul
+{
+	visibility : visible;
+}
+
+div#Periode a:link
+{
+	background : -moz-linear-gradient(bottom,#5C87B2,#9F9FFF);
+    -webkit-border-radius: 4px 4px 4px 4px;
+    -moz-border-radius: 4px 4px 4px 4px;
+	border: #999999 solid 1px;
+	width: 130px;
+	height: 25px;
+	text-align: center;
+	margin: 3px;
+	font-size: 17px;	
+	cursor:pointer;
+	color:black;
+	display:block;
+	text-decoration:none;
+}
+
+div#Periode a:hover 
+{
+	background-color: #e8eef4;
+	width: 130px;
+	color:#5C87B2;
+	display:block;
+}
+
+#clear 
+{
+  border-bottom:0;
+  border-left:0;
+  border-right:0;
+  border-top:0;   
+}
+
+#view-calender td
+{
+    
+    background-color: #e8eef4;
+    color:Blue;
+}
+
+#view-calender td:hover
+{
+    
+    background-color: #e8eef4;
+    color:green;
+}
+div#Periode a
+{
+	background-color: #e8eef4;
+	width: 130px;
+	color:#5C87B2;
+	display:block;
+}
+.ActivePeriode
+{
+	background-color: #e8eef4;
+    -webkit-border-radius: 4px 4px 4px 4px;
+    -moz-border-radius: 4px 4px 4px 4px;
+	border: #999999 solid 1px;
+	width: 130px;
+	height: 25px;
+	text-align: center;
+	margin: 3px;
+	font-size: 17px;	
+	cursor:default;
+	color:#5C87B2;
+	display:block;
+	text-decoration:none;
+}
+
+#headerCompany
+{
+	 background-color:#5B8EAC;  
+     padding:5px 3px 5px 3px;
+     color:white;  
+     font-weight:bold;
+     font-size:14px;  
+     border:0px;
+     vertical-align:top;
+     height: 18px;
+     text-align:center;
+}
+/***********************Align************************************/
+.top
+{
+	vertical-align:top;
+}
+
+#HeaderjumlahTransaksi
+{
+	background : -moz-linear-gradient(top,#5C87B2,#FFF);
+	border-top : 1px solid Gray;
+	border-left : 1px solid Gray;
+	border-right : 1px solid Gray;
+	color : #333;
+}
+#IsijumlahTransaksi
+{
+	background-color : #FFF;
+	font-size : 21px;
+	font-weight: bolder;
+	text-align : center;
+	border-bottom : 1px solid Gray;
+	border-left : 1px solid Gray;
+	border-right : 1px solid Gray;
+}
+#BodyLeftjumlahTransaksi
+{
+	background-color : #FFF;
+	border-left : 1px solid Gray;
+}
+#BodyRightjumlahTransaksi
+{
+	background-color : #FFF;
+	border-right : 1px solid Gray;
+}
+.NamaBandara
+{
+	font-size : 20px;
+	color : Gray;
+	text-align : center;
+}
+
+table#tableLaporanPenjualan
+{
+    border: none 0px #fff;
+}
+.isiLaporanPenjualan table
+{
+    border: none 0px #fff;
+}
+
+#detail-harian 
+{
+    
+  border:0;
+     
+}
+#detail-harian tr
+{
+    
+  border:0;
+     
+}
+
+#detail-harian td
+{
+    
+  border:0;
+     
+}
+span.corner 
+{
+     top:0;
+     left:0;
+      display:block;
+      bottom:20px;
+}
+span .IDR
+{
+   background-color:white;
+   color:Red; 
+    
+}
+
+span .USD
+{
+    background-color:white;
+   color:Red; 
+    
+}
+
+td.current 
+{
+    
+  background-color:Red;
+  color:White;   
+}
+
+#next
+{
+    
+ display:none;   
+}

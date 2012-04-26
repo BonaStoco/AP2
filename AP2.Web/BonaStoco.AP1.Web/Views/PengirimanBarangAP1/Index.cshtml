@@ -1,0 +1,135 @@
+﻿@using BonaStoco.AP1.Web.Models
+@model IList<GRNItemModel>
+@{
+    ViewBag.Title = "Pengiriman Barang";
+}
+
+
+@section scripts
+{
+    @Content.Script("jquery.validate.min.js", @Url)
+    @Content.Script("jquery.validate.unobtrusive.min.js", @Url)
+   
+}
+
+<style type="text/css" >
+
+ul.pengirimanbarangap1 a {
+    padding: 5px 5px;
+    font-weight:normal;
+    font-family:Times New Roman;
+    text-decoration: none;
+    line-height: 2.8em;
+    background-color: #BC5F80;
+    color: #fff;
+    border-radius: 4px 4px 0 0;
+    -webkit-border-radius: 4px 4px 0 0;
+    -moz-border-radius: 4px 4px 0 0;
+}
+
+
+
+</style>
+<script type="text/javascript">
+    var count = 0;
+    function onItemAdded() {
+        count++;
+        if (count > 0) {
+            $("#kirimbaranglink").css("display", "block");
+        } else {
+            $("#kirimbaranglink").css("display", "none");
+        }
+        document.getElementById("code").value = "";
+    }
+    function onItemDeleted() {
+        $("#kirimbaranglink").css("display", "none");
+        count--;
+        if (count > 0) {
+            $("#kirimbaranglink").css("display", "block");
+        } else {
+            $("#kirimbaranglink").css("display", "none");
+        }
+    }
+</script>
+
+<div>
+<h3>@ViewBag.Nama</h3>
+    @using (Ajax.BeginForm("CariBarangUntukGRNBerdasarkanKode", "PengirimanBarangAP1",
+            new AjaxOptions
+            {
+                HttpMethod = "POST",
+                InsertionMode = InsertionMode.InsertAfter,
+                UpdateTargetId = "searchResults",
+                LoadingElementId = "progress",
+                OnSuccess = "onItemAdded"
+            }
+        ))
+    {
+        <p>
+            Masukkan barcode atau kode barang  <br />
+            <input type="hidden" name="tenanId" value=@ViewBag.TenanId />
+            <input type="text" name="code" id="code" placeholder="Barcode atau Kode" style="float:left;margin-right:5px;"/>
+            <button class="positive button"><img src="@Url.Content("~/Content/images/button/search.png")"/> Cari</button>
+            <img id="progress" src="@Url.Content("~/Content/images/loader.gif")" alt="Loader"/><br />
+        </p>
+    }
+</div>
+<div>
+<table>
+    <thead>
+        <tr>
+            <th>Barcode</th>
+            <th>Nama Barang</th>
+            <th>Qty</th>
+            <th>Unit</th>
+            <th>Harga</th>
+            <th>Jumlah</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="searchResults">
+        @if (Model != null && Model.Count > 0)
+        {
+            foreach (GRNItemModel item in Model)
+            {
+                <tr id="grnitem-@item.Id">
+                    <td>@Html.DisplayFor(m => item.Barcode)</td>
+                    <td>@Html.DisplayFor(m => item.NamaBarang)</td>
+                    <td>@Html.DisplayFor(m => item.Qty)</td>
+                    <td>@Html.DisplayFor(m => item.Unit)</td>
+                    <td>@Html.DisplayFor(m => item.Harga)</td>
+                    <td>@Html.DisplayFor(m => item.Jumlah)</td>
+                    <td>@Ajax.ActionLink(
+                        "Edit", "Edit", new { id = item.Id, tenanId = ViewBag.TenanId },
+                        new AjaxOptions()
+                        {
+                            HttpMethod = "GET",
+                            InsertionMode = InsertionMode.Replace,
+                            UpdateTargetId = "grnitem-" + item.Id
+                        })
+                        @Ajax.ActionLink(
+                        "Hapus", "DeleteItem", new { id = item.Id },
+                        new AjaxOptions()
+                        {
+                            HttpMethod = "POST",
+                            InsertionMode = InsertionMode.Replace,
+                            UpdateTargetId = "grnitem-" + item.Id,
+                            OnSuccess = "onItemDeleted"
+                        })
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+</div>
+<div>
+@if (Model != null && Model.Count <= 0)
+{
+    <h4 id="kirimbaranglink" style='display: none;'>@Html.ActionLink("Kirim Barang >>", "KirimBarang", new { id = ViewBag.TenanId })</h4>
+}
+else
+{
+    <h4 id="kirimbaranglink" style='display: block;'>@Html.ActionLink("Kirim Barang >>", "KirimBarang", new { id = ViewBag.TenanId })</h4>
+}
+</div>

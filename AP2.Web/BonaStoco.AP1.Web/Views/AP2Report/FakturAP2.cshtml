@@ -1,0 +1,543 @@
+﻿@using BonaStoco.AP1.Web.Models
+@model BonaStoco.AP1.Web.Report.FakturAP2
+@{
+    ViewBag.Title = "Faktur AP2";
+}
+<head>
+@section scripts{
+    @Content.Script("jquery-ui-1.8.11.min.js", @Url)
+    @Content.Script("jquery.unobtrusive-ajax.js", @Url)
+    @Content.Script("MicrosoftAjax.debug.js", @Url)
+    @Content.Script("MicrosoftMvcAjax.debug.js", @Url)
+    @Content.Script("jquery.validate.min.js", @Url)
+    @Content.Script("jquery.validate.unobtrusive.min.js", @Url)
+    @Content.Script("jquery.quicksearch.js", @Url) 
+    @Content.Script("PrintDocument.js", @Url)
+    @Content.Script("fakturAP2.js", @Url) 
+    
+}
+@section styles{
+    <link rel="stylesheet" type="text/css"  href="@Url.Content("~/Content/FakturAP/FakturAP2Print.css")" />
+}
+    <style type="text/css">
+        div#PrintArea { display : none; }
+        #headerfaktur{border:0;}
+        #headerfaktur tr{border:0;}
+        #headerfaktur td{border:0;}
+        #billingdetail{border:0;}
+        #billingdetail tr{border:0;}
+        #billingdetail td{border:0;}
+        .trdetail {border:0px solid black;}
+    </style>
+
+@{
+    var tanggal = DateTime.Today.ToString("dd MMMM yyyy");
+    var tglsekarang = DateTime.Today.ToString("dd/MM");
+    String[] month = new String[12] { "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember" };
+    var currentMonth = month[Int32.Parse(ViewBag.Bulan) - 1];   
+}
+</head>
+
+
+<button onclick="javascript: openwindow(document.getElementById('PrintArea').innerHTML)">Cetak Laporan</button>
+
+<span id="Tenant" style="visibility:hidden">@ViewBag.Tenant</span>
+<span id="Tahun" style="visibility:hidden">@ViewBag.Tahun</span>
+<span id="Bulan" style="visibility:hidden">@ViewBag.Bulan</span>
+<span id="ccy" style="visibility:hidden">@Model.CcyCode</span>
+<fieldset id="fakturAP1">
+
+<table id="headerfaktur" border="0" cellpadding="0" cellspacing="0" style="font-family:Tahoma">
+  <tr>
+    @*<td colspan="4"><center><h2>F A K T U R</h2><center>@ViewBag.BillingId</center></center>
+    <hr /></td>*@
+    <td colspan="4" style="font-size:x-large"><center>PT ANGKASA PURA 2 (PERSERO)</center></td>
+  </tr>
+  <tr>
+    <td colspan="4"><center>Kota Baru Bandar Kemayoran Blok-B12 Kav No.2 Kemayoran Jakarta</center></td>
+  </tr>
+  <tr>
+    <td colspan="4"><center></center></td>
+  </tr>
+  <tr>
+    <td colspan="4">
+        <center></center>
+        <hr />
+    </td>
+  </tr>
+  <tr>
+    <td>No Faktur </td>
+    <td>: @Model.NoFaktur</td>
+    <td>&nbsp;</td>
+    <td width="363" rowspan="5">Kepada Yth;<br/> @Model.TenanName <br />@Model.Alamat</<br /> </td>
+  </tr> 
+  <tr>
+    <td width="205">Tanggal</td>
+    <td width="196">: @tanggal </td>
+    <td width="234">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>Kode Tenan </td>
+    <td>: @Model.TenanId
+</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>Jenis Tagihan </td>
+    <td>: KONSESI </td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>Tagihan Periode </td>
+    <td>: @currentMonth &nbsp; @ViewBag.Tahun</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="4">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="4">Berikut adalah data penjualan harian : </td>
+  </tr>
+  <tr>
+    <td colspan="4">
+
+
+<table id="billingdetail" width="100%" border="0" cellpadding="0" cellspacing="0" style="font-family:Tahoma">
+  <tr class="trdetail">
+    <td style="font-weight:bold; text-align:left; background-color:Menu">No</td>
+    <td style="font-weight:bold; text-align:left; background-color:Menu" >Tanggal</td>
+    <td style="font-weight:bold; text-align:right; background-color:Menu">Jumlah</td>
+    <td style="border-bottom:0; border-top:0; clear:none ">&nbsp;&nbsp;&nbsp;</td>
+    <td style="font-weight:bold; text-align:left; background-color:Menu">No</td>
+    <td style="font-weight:bold; text-align:left; background-color:Menu">Tanggal</td>
+    <td style="font-weight:bold; text-align:right; background-color:Menu">Jumlah</td>
+  </tr>
+  <tr class="trdetail">
+    <td id="1">1</td>
+    <td id="tgl1">&nbsp;</td>
+    <td id="jml1" style="text-align:right">&nbsp;</td>
+    <td style="border-bottom:0; border-top:0">&nbsp;</td>
+    <td id="17">17</td>
+    <td id="tgl17">&nbsp;</td>
+    <td id="jml17"   style="text-align:right">&nbsp;</td>
+  </tr>
+  <tr class="trdetail">
+    <td id="2">2</td>
+    <td id="tgl2">&nbsp;</td>
+    <td id="jml2"  style="text-align:right">&nbsp;</td>
+    <td style="border-bottom:0; border-top:0">&nbsp;</td>
+    <td id="18">18</td>
+    <td id="tgl18">&nbsp;</td>
+    <td id="jml18"  style="text-align:right">&nbsp;</td>
+  </tr>
+  <tr class="trdetail">
+    <td id="3">3</td>
+    <td id="tgl3">&nbsp;</td>
+    <td id="jml3"  style="text-align:right" >&nbsp;</td>
+    <td style="border-bottom:0; border-top:0">&nbsp;</td>
+    <td id="19">19</td>
+    <td id="tgl19">&nbsp;</td>
+    <td id="jml19"  style="text-align:right">&nbsp;</td>
+  </tr>
+  <tr class="trdetail">
+    <td id="4">4</td>
+    <td id="tgl4">&nbsp;</td>
+    <td id="jml4"  style="text-align:right">&nbsp;</td>
+    <td style="border-bottom:0; border-top:0">&nbsp;</td>
+    <td id="20">20</td>
+    <td id="tgl20">&nbsp;</td>
+    <td id="jml20"  style="text-align:right">&nbsp;</td>
+  </tr>
+  <tr class="trdetail">
+    <td id="5">5</td>
+    <td id="tgl5">&nbsp;</td>
+    <td id="jml5"  style="text-align:right">&nbsp;</td>
+    <td style="border-bottom:0; border-top:0">&nbsp;</td>
+    <td id="21">21</td>
+    <td id="tgl21">&nbsp;</td>
+    <td id="jml21"  style="text-align:right">&nbsp;</td>
+  </tr>
+  <tr>
+    <td id="6">6</td>
+    <td id="tgl6">&nbsp;</td>
+    <td id="jml6"  style="text-align:right">&nbsp;</td>
+    <td style="border-bottom:0; border-top:0">&nbsp;</td>
+    <td id="22">22</td>
+    <td id="tgl22" >&nbsp;</td>
+    <td id="jml22"  style="text-align:right">&nbsp;</td>
+  </tr>
+  <tr class="trdetail">
+    <td id="7">7</td>
+    <td id="tgl7">&nbsp;</td>
+    <td id="jml7"  style="text-align:right">&nbsp;</td>
+    <td style="border-bottom:0; border-top:0">&nbsp;</td>
+    <td id="23">23</td>
+    <td id="tgl23">&nbsp;</td>
+    <td id="jml23"  style="text-align:right">&nbsp;</td>
+  </tr>
+  <tr class="trdetail">
+    <td id="8">8</td>
+    <td id="tgl8">&nbsp;</td>
+    <td id="jml8"  style="text-align:right">&nbsp;</td>
+    <td style="border-bottom:0; border-top:0">&nbsp;</td>
+    <td id="24">24</td>
+    <td id="tgl24">&nbsp;</td>
+    <td id="jml24"  style="text-align:right">&nbsp;</td>
+  </tr>
+  <tr class="trdetail">
+    <td id="9">9</td>
+    <td id="tgl9">&nbsp;</td>
+    <td id="jml9"  style="text-align:right">&nbsp;</td>
+    <td style="border-bottom:0; border-top:0">&nbsp;</td>
+    <td id="25">25</td>
+    <td id="tgl25">&nbsp;</td>
+    <td id="jml25"  style="text-align:right">&nbsp;</td>
+  </tr>
+  <tr class="trdetail">
+    <td id="10">10</td>
+    <td id="tgl10">&nbsp;</td>
+    <td id="jml10"  style="text-align:right">&nbsp;</td>
+    <td style="border-bottom:0; border-top:0">&nbsp;</td>
+    <td id="26">26</td>
+    <td id="tgl26">&nbsp;</td>
+    <td id="jml26"  style="text-align:right">&nbsp;</td>
+  </tr>
+  <tr class="trdetail">
+    <td id="11">11</td>
+    <td id="tgl11">&nbsp;</td>
+    <td id="jml11"  style="text-align:right">&nbsp;</td>
+    <td style="border-bottom:0; border-top:0">&nbsp;</td>
+    <td id="27">27</td>
+    <td id="tgl27">&nbsp;</td>
+    <td id="jml27"  style="text-align:right">&nbsp;</td>
+  </tr>
+  <tr class="trdetail">
+    <td id="12">12</td>
+    <td id="tgl12">&nbsp;</td>
+    <td id="jml12"  style="text-align:right">&nbsp;</td>
+    <td style="border-bottom:0; border-top:0">&nbsp;</td>
+    <td id="28">28</td>
+    <td id="tgl28">&nbsp;</td>
+    <td id="jml28"  style="text-align:right">&nbsp;</td>
+  </tr>
+  <tr class="trdetail">
+    <td id="13">13</td>
+    <td id="tgl13">&nbsp;</td>
+    <td id="jml13"  style="text-align:right">&nbsp;</td>
+   <td style="border-bottom:0; border-top:0">&nbsp;</td>
+    <td id="29">29</td>
+    <td id="tgl29">&nbsp;</td>
+    <td id="jml29"  style="text-align:right">&nbsp;</td>
+  </tr>
+  <tr class="trdetail">
+    <td id="14">14</td>
+    <td id="tgl14">&nbsp;</td>
+    <td id="jml14"  style="text-align:right">&nbsp;</td>
+    <td style="border-bottom:0; border-top:0">&nbsp;</td>
+    <td id="30">30</td>
+    <td id="tgl30">&nbsp;</td>
+    <td id="jml30"  style="text-align:right">&nbsp;</td>
+  </tr>
+  <tr class="trdetail">
+    <td id="15">15</td>
+    <td id="tgl15">&nbsp;</td>
+    <td id="jml15"  style="text-align:right">&nbsp;</td>
+    <td style="border-bottom:0; border-top:0">&nbsp;</td>
+    <td id="31">31</td>
+    <td id="tgl31">&nbsp;</td>
+    <td id="jml31"  style="text-align:right">&nbsp;</td>
+  </tr>
+  <tr class="trdetail">
+    <td id="16">16</td>
+    <td id="tgl16">&nbsp;</td>
+    <td id="jml16"  style="text-align:right">&nbsp;</td>
+    <td style="border-bottom:0; border-top:0">&nbsp;</td>
+    <td colspan="2" style="font-weight:bold; text-align:right; background-color:Menu">Total</td>
+    <td style="font-weight:bold; text-align:right; background-color:Menu" >
+   @* @if (Model.CcyCode == "USD")
+    {
+         <text> @Model.USDCode @Model.TotalPenjualanInUSD.ToString("N2") </text>
+     
+    }
+    else
+    {
+      <text> @Model.IDRCode @Model.TotalPenjualan.ToString("N") </text>
+
+    }   *@
+    
+    @ViewBag.TotalPenjualan
+
+    
+    </td>
+  </tr>
+</table> 
+   </td>
+    <tr> <td colspan="4">&nbsp;</td></tr>
+  </tr>
+  <tr>
+    <td>Total Penjualan </td>
+	<td colspan="2">=</td>
+    <td style="font-weight:bold; text-align:right">
+    @*  @if (Model.CcyCode == "USD")
+    {
+         <text> @Model.USDCode @Model.TotalPenjualanInUSD.ToString("N2") </text>
+     
+    }
+    else
+    {
+      <text> @Model.IDRCode @Model.TotalPenjualan.ToString("N") </text>
+
+    }   *@
+     @ViewBag.TotalPenjualan
+     </td>
+  </tr>
+  <tr>
+    <td>Bagi Hasil </td>
+	<td colspan="2">=</td>
+    <td style="font-weight:bold; text-align:right"> 
+    @*  @if (Model.CcyCode == "USD")
+    {
+         <text> @Model.USDCode @Model.TotalBagiHasilInUSD.ToString("N2") </text>
+     
+    }
+    else
+    {
+      <text> @Model.IDRCode @Model.TotalBagiHasil.ToString("N") </text>
+
+    }   *@
+
+    @ViewBag.TotalBagiHasil
+    
+    </td>
+  </tr>
+  <tr>
+    <td>Pajak Bagi Hasil (@Math.Ceiling(Model.Pajak * 100)%) </td>
+	<td colspan="2">=</td>
+    <td style="font-weight:bold; text-align:right"> 
+    
+   @* @if (Model.CcyCode == "USD")
+    {
+         <text> @Model.USDCode @Model.TotalPajakBagiHasilInUSD.ToString("N2") </text>
+     
+    }
+    else
+    {
+      <text> @Model.IDRCode @Model.TotalPajakBagiHasil.ToString("N") </text>
+
+    }   
+    *@
+
+    @ViewBag.TotalPajakBagiHasil
+    </td>
+  </tr>
+  <tr>
+    <td>Total Tagihan </td>
+	<td colspan="2">=</td>
+    <td style="font-weight:bold; text-align:right"> 
+    @*  @if (Model.CcyCode == "USD")
+            {
+                 <text>@Model.USDCode @Model.TotalTagihanInUSD.ToString("N2")</text>
+              
+            }
+            else
+            {
+              <text>@Model.IDRCode @Model.Totaltagihan.ToString("N")</text>
+
+            }*@
+
+            @ViewBag.TotalTagihan
+    
+    </td>
+  </tr>
+  <tr>
+    <td>Terbilang </td>
+	<td colspan="3">: @ViewBag.Say.ToUpper()</td>
+  </tr>
+</table>
+<table id="footer" width="100%" border="0" cellpadding="0" cellspacing="0" style="font-family:Tahoma; font-size:12px">
+  <tr>
+    <td width="50%">&nbsp;</td>
+    <td width="50%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="50%">&nbsp;</td>
+    <td width="50%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="50%">&nbsp;</td>
+    <td width="50%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="50%">&nbsp;</td>
+    <td width="50%" align="center" valign="middle"> Jakarta, @tanggal </td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="center" valign="middle"><p>&nbsp;</p>
+    <p>&nbsp;</p></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="center" valign="middle">@Model.Ttd</td>
+  </tr>
+</table>
+</fieldset>
+ <div id="PrintArea" style="font-size:9pt; font-family:Times New Roman">
+ 	
+    <div id="space-top"></div>
+  <table class="print-area-table" width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td colspan="5"><div align="center"><strong>FAKTUR</strong></div></td>
+  </tr>
+  <tr>
+    <td colspan="5"><div align="center">No. @Model.NoFaktur/ KONR/TMI/@ViewBag.Tahun</div></td>
+  </tr>
+  <tr>
+    <td colspan="5"><div align="center">&nbsp;</div></td>
+  </tr>
+  <tr>
+    <td colspan="5"><div align="center"></div></td>
+  </tr>
+  <tr>
+    <td width="16%">Tanggal Proses </td>
+    <td width="1%">:</td>
+    <td width="46%">@tanggal</td>
+    <td width="5%">Yth : </td>
+    <td width="32%" rowspan="4" valign="top">@Model.TenanName.ToUpper()<br />
+     @Model.Alamat<br />     </td>
+  </tr>
+  <tr>
+    <td>No. Debitur </td>
+    <td>:</td>
+    <td>K98</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>Jenis Tagihan </td>
+    <td>:</td>
+    <td>KONSESI</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>Tagihan Bulan </td>
+    <td>:</td>
+    <td> @currentMonth &nbsp; @ViewBag.Tahun </td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+ <div id="space-middle"></div>
+<table class="print-area-table" width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td colspan="4">Berdasarkan:</td>
+  </tr>
+  <tr>
+    <td colspan="4">Surat Kaca No.15.02.01/01/01/09/2011/086 tanggal 26/09/2011 dengan ini disampaikan tagihan konsesi sebagai berikut: </td>
+  </tr>
+  <tr>
+    <td width="27%">&nbsp;</td>
+    <td width="9%">&nbsp;</td>
+    <td width="37%">&nbsp;</td>
+    <td width="27%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>Bidang Usaha </td>
+    <td colspan="3">: @ViewBag.JenisJasa </td>
+  </tr>
+  <tr>
+    <td>Lokasi</td>
+    <td colspan="3">: @Model.TenanName </td>
+  </tr>
+  <tr>
+    <td>Nomor ruang  </td>
+    <td colspan="3">: -</td>
+  </tr>
+  <tr>
+    <td>Masa Perjanjian </td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>Konsesi</td>
+    <td colspan="3">: @Math.Ceiling(@Model.Tarif * 100) %</td>
+  </tr>
+  <tr>
+    <td>MBO</td>
+    <td colspan="3">: @ViewBag.Target</td>
+  </tr>
+  <tr>
+    <td>BRUTO OMZET </td>
+    <td colspan="3">: @ViewBag.TotalPenjualan</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td colspan="3">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="4">Konsesi yang harus dibayar </td>
+  </tr>
+  <tr>
+    <td>@Math.Ceiling(@Model.Tarif * 100) % x @ViewBag.TotalKonsesi</td>
+    <td>&nbsp;</td>
+    <td>: @ViewBag.TotalBagiHasil</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>PPN @Math.Ceiling(@Model.Pajak * 100) % </td>
+    <td>&nbsp;</td>
+    <td>: @ViewBag.TotalPajakBagiHasil</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><strong>JUMLAH</strong></td>
+    <td><strong>: @ViewBag.TotalTagihan</strong> </td>
+    <td></td>
+  </tr>
+</table>
+ <div id="space-bottom"></div>
+<table class="print-area-table" width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="42%" rowspan="7" valign="top">@ViewBag.Say.ToUpper()</td>
+    <td>&nbsp;</td>
+    <td><div align="center">
+      <p>@if (ViewBag.Pts != null)
+         {
+         
+               <text>PTS</text>
+            
+        }<br />      
+      </div></td>
+  </tr>
+  <tr>
+    <td width="13%">&nbsp;</td>
+    <td width="45%"><div align="center"></div></td>
+  </tr>
+ 
+   <tr>
+    <td>&nbsp;</td>
+    <td><div align="center"></div></td>
+  </tr>
+   <tr>
+     <td>&nbsp;</td>
+     <td>&nbsp;</td>
+   </tr>
+   <tr>
+     <td colspan="2">&nbsp;</td>
+    </tr>
+   
+   
+  <tr>
+    <td>&nbsp;</td>
+    <td rowspan="2"><div align="center">@Model.Ttd.ToUpper() <br >@Model.Nip </div></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    </tr>
+</table>
+    </div>
+
+
+ <div id="dialog-overlay">
+		<div id="dialog-loader">
+			<img src="@Url.Content("~/Content/images/loader-new.gif")"/>
+        </div>
+</div>

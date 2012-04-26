@@ -1,0 +1,105 @@
+﻿@{
+    ViewBag.Title = "Perubahan Barang";
+}
+@section styles
+{
+    <link href="@Url.Content("~/Content/ProductChange.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/themes/base/jquery-ui-1.8.14.custom.css")" rel="stylesheet" type="text/css" />
+}
+@section scripts
+{
+@Content.Script("stringformat.js", @Url)
+   @Content.Script("ProductChange.js", @Url)
+   @Content.Script("pagingtenanlist.js", @Url)
+   <script type="text/javascript">
+           $("#dialog-overlay").ajaxStart(function () {
+               $(this).show();
+           }).ajaxStop(function () {
+               $(this).hide();
+           });
+   </script>
+}
+
+<applet name="jZebra" code="jzebra.RawPrintApplet.class" archive="@Url.Content("~/Scripts/jzebra.jar")" width="10" height="10">
+    <param name="printer" value="zebra"/>
+    <param name="sleep" value="200"/>
+</applet>
+<table id="Report" width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td width="21%" rowspan="2" valign="top" class="tableLeft">
+		    <div id="DetailLeftPerubahan">
+		      <table id="ReportPerubahan">
+                <tr>
+                    <td>               
+                       <div id="headerPerubahan">Perubahan Barang</div>                                
+                    </td>
+                </tr>
+                <tr>
+                  <td>
+                        <div id="TenanList"></div>
+                        <div class="navigasitenan">
+                        <a href='#' class='first'>First</a>
+                        <a href='#' class='prev'>Prev</a>
+                        <span class='current'></span> of <span class='total'></span>
+                        <a href='#' class='next'>Next</a>
+                        <a href='#' class='last'>Last</a> 
+                        </div>
+                  </td>
+                </tr>
+              </table>
+		    </div>
+	    </td>
+    </tr> 
+  <tr>
+   <td colspan="3" valign="top" >
+           <select id="selectdate" onchange="SelectPeriod()">
+               <option id="hari" value="1" selected="selected">Hari ini</option>
+               <option id="minggu" value="2">Minggu ini</option>
+               <option id="bulan" value="3">Bulan ini</option>
+               <option id="semua" value="4">Semua</option>
+           </select>
+            <hr />
+            <div id="divDetailReport">
+                <table id="tblreport" width="100%">
+                  <thead>
+                      <tr>
+                        <th width="5%">No</th>
+                        <th width="15%">Tanggal</th>
+                        <th width="20%">Kode</th>
+                        <th width="50%">Perubahan</th>
+                        <th width="10%"></th>
+                      </tr>           
+                  </thead>
+                  <tbody>
+                  </tbody>    
+                </table>
+            </div>
+            <div class='pager'>
+                    <a href='#' class='firstPage'>First</a>
+                    <a href='#' class='prevPage'>Prev</a>
+                    <span class='currentPage'></span> of <span class='totalPages'></span>
+                    <a href='#' class='nextPage'>Next</a>
+                    <a href='#' class='lastPage'>Last</a>
+            </div>
+    </td>
+  </tr>
+</table>
+
+<div id="edit-dialog" title="Print">
+    <p class="validateTips"></p>
+    <table width="100%" border="0">
+      <tr id="headerTable">
+        <td width="37%" class="left">Jumlah Barcode</td>
+        <td width="63%" class="left">
+            <input type="text" id="qty"/>
+            <input type="hidden" id="kode" />
+        </td>
+      </tr>
+    </table>
+</div>
+
+<div id="dialog-overlay">
+		<div id="dialog-loader">
+			<img src="@Url.Content("~/Content/images/loader-new.gif")"/>
+        </div>
+</div>

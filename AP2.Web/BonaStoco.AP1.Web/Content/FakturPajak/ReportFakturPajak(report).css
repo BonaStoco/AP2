@@ -1,0 +1,175 @@
+﻿/* 1 em = 3mm */
+/*div#FakturPajakPrint {
+	    height: 11in;
+	    width: 9.3in;
+	    font-family: tahoma;
+	    font-size:16px;
+		margin-left: -3em;
+		margin-top: 8.5em;
+		padding-bottom:0px;
+    }*/
+@media print
+{
+    div#FakturPajakPrint {
+	    height: 11in;
+	    width: 9.3in;
+	    font-family: tahoma;
+	    font-size:16px;
+		margin-left: -3em;
+		padding-bottom:0px;
+		margin-bottom: 0em;
+    }
+    div.NoFaktur
+    {
+        margin-top: 8em;
+	    width: 6in;	  
+	    float: right;
+	    font-weight: bold;
+	    font-size:16px;	   
+    }
+    div.PenerimaKenaPajak{
+	    clear: both;
+	    width: 6.2in;
+	    float: right;
+	    padding-top: 0.5em;
+	    padding-bottom: 0.5em;
+	    font-size:16px;
+    }
+    div.NamaPenerima{
+	    padding : 4px;
+	    font-weight: bold;
+	    font-size:14px;
+	    padding-top:11em;
+    }
+    div.AlamatPenerima{
+	    padding : 4px;
+        height: 78px;
+	    font-size:12px;
+    }
+    div.NpwpPenerima {
+        padding-top:0;
+	    padding : 4px;
+	    font-size:16px;
+    }
+    div.NamaBarang{
+	    float:left;
+	    width : 4.5in;
+	    padding-bottom: 4.5em;
+	    padding-top: 4.5em;
+	    padding-left: 7em;
+	    font-size:16px;
+    }
+    div.HargaJual{
+	    float:right;
+	    margin-top: 17.5em;
+	    margin-left: 0em;
+	    margin-right: 0em;
+	    font-size:16px;
+    }
+    div.MarginRight
+    {
+        float:right;
+        width:250px;
+        text-align:right;
+	    padding-right:3em;
+	    font-size:16px;
+    }
+    div.MarginLeft
+    {
+        float:right;
+        width:220px;
+        text-align: right;
+	    padding-right: 5em;
+	    font-size:16px;
+    }
+    div.KeteranganBarang{
+	    padding-bottom: 2em;
+	    font-size:16px;
+    }
+    div.TextPadding{
+	    padding: 3px;
+	    font-size:16px;
+    }
+    div.DivPerhitungan{
+	    clear: both;
+	    text-align:right;
+	    margin-right: 5em;
+	    height: 2em;
+	    padding-top: 15px;
+	    font-size:16px;
+    }
+    div.DivPerhitungan1{
+	    clear: both;
+	    text-align:right;
+	    margin-left: 0em;
+	    margin-right: 0em;
+	    height: 2em;
+	    padding-top: 59px;
+	    font-size:16px;
+    }
+	div.DivPerhitungan2{
+	    clear: both;
+	    text-align:right;
+	    margin-left: 0em;
+	    margin-right: 0em;
+	    height: 20px;
+	    margin-top: -1em;
+	    font-size:16px;
+    }
+    div.DivPerhitunganInUSD{
+	    clear: both;
+	    text-align:right;
+	    margin-right: 2em;
+	    height: 20px;
+	    padding: 2px;
+	    font-size:16px;
+    }
+    div.TotalHargaJual{
+	    clear: both;
+	    text-align:right;
+	    margin-right: 1em;
+	    height: 20px;
+	    padding-top: 13px;
+	    font-size:16px;
+    }
+    div.Tanggal{
+	    margin-top: -1.5em;
+	    text-align: center;
+	    margin-right: 2em;
+	    float:right;
+	    width: 3in;
+	    font-size:16px;
+    }
+    div.NamaTtd{
+	    clear:both;
+	    text-align: center;
+	    margin-right: 2em;
+	    float:right;
+	    width: 3in;
+	    font-size:16px;	    
+		margin-top:3em;
+		bottom: 0;
+    }
+    label.underline {
+        text-decoration:underline;
+    }
+    div.PaddingBottom{
+	    clear: both;
+	    margin-right: 3em;
+	    height: 8px;
+	    padding: 2px;
+    }
+    div.IDR{
+	    height:10px;
+    }
+    div.Rate{
+	    margin-left: 330px;
+	    text-align:left;
+	    float:left;
+	    width:200px;
+    }
+    div.TotalTagihan{
+	    float:right;
+	    width:250px;
+    }
+}

@@ -1,0 +1,49 @@
+﻿@using BonaStoco.AP1.PengirimanBarang.Models
+@model IList<GRNItem>
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+@using (Html.BeginForm("ConfirmReturnPengirimanBarang", "VerifikasiFReturnBarang", new { grnId = ViewBag.GRN.Guid, tenanId = ViewBag.Tenan.TenanId }, FormMethod.Post)) 
+{
+    <fieldset>
+        <legend>@ViewBag.Tenan.TenanId - @ViewBag.Tenan.TenanName</legend>
+        <br />
+         <table>
+            <tbody>
+            @if (Model != null && Model.Count>0)
+	            {
+                    foreach (var item in Model)
+	                        {
+                                <tr>
+                                    <td>Barcode</td>
+                                    <td>@Html.DisplayFor(m => item.Barcode )</td>
+                                </tr>
+                                <tr>
+                                    <td>Nama Barang</td>
+                                    <td>@Html.DisplayFor(m => item.Nama)</td>
+                                </tr>
+                                <tr>
+                                    <td>Qty</td>
+                                    <td>@Html.EditorFor(m => item.Qty)
+                                        @Html.ValidationMessageFor(m => item.Qty) @Html.DisplayFor(m => item.UnitName)</td>
+                                </tr>
+                                <tr>
+                                    <td>Actual Qty</td>
+                                    <td>@Html.EditorFor(m => item.Qty)
+                                    @Html.ValidationMessageFor(m => item.Qty)@Html.DisplayFor(m => item.UnitName)</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="submit" value="Update" />
+                                    </td>
+                                </tr>
+                        
+	                        }
+	            }
+            
+            </tbody>
+        </table>
+    </fieldset>
+}

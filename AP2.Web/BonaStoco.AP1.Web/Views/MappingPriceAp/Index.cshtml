@@ -1,0 +1,216 @@
+﻿@{
+    ViewBag.Title = "Mapping Price";
+}
+
+@section styles
+{
+    <link href="@Url.Content("~/Content/Home/ModalDialog.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/AdvancedSearchProduct.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/themes/base/jquery-ui-1.8.14.custom.css")" rel="stylesheet" type="text/css" />  
+    <link href="@Url.Content("~/Content/MappingPrice.css")" rel="stylesheet" type="text/css" />
+    
+}
+
+@section scripts
+{
+    @Content.Script("stringformat.js", @Url)
+    @Content.Script("jquery.quicksearch.js", @Url)
+    @Content.Script("jquery.validate.min.js", @Url)
+    @Content.Script("jquery.validate.unobtrusive.min.js", @Url)
+    @Content.Script("AdvancedSearchTenan.js", @Url)
+    @Content.Script("MappingLounge.js", @Url)
+   
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#TenanSearch").click(OpenTenanSearchDialog);
+            $('#accordion .head').click(function () {
+                $(this).next().toggle('slow');
+                return false;
+            }).next().hide();
+            $("#accordion").accordion();
+            $("#cariBtn").attr("disabled", "disabled");
+            $("#cariBtn").click(Submit);
+        });
+        function Submit() {
+            var tenanid = $("#tenanid").val();
+            if (tenanid == "") {
+                $("#Message").text("tenanid tidak ditemukan");
+                $("#cariBtn").attr("disabled", "disabled");
+            } else {
+                $("#cariBtn").attr("disabled", "");
+                document.getElementById("loading").style.display = "inline";
+                $("#TenanLounge").submit();
+            }
+        }
+
+
+        function OpenTenanSearchDialog() {
+            CreateModalDialog("Pencarian Tenan");
+            $("#Loading").hide();
+            $.ajax({
+                type: "GET",
+                url: "/MappingPriceAp/GetTenans",
+                dataType: "json",
+                beforeSend: LoadingStart,
+                complete: LoadingEnd,
+                success: InsertTenanToTable
+            });
+        }
+        function SearchByTenanName() {
+            var searchKey = $("#search_tenant").val();
+            $.ajax({
+                type: "GET",
+                url: "/MappingPriceAp/FindTenanByName",
+                dataType: "json",
+                data: { "key": searchKey },
+                beforeSend: LoadingStart,
+                complete: LoadingEnd,
+                success: InsertTenanToTable
+            });
+        }
+        function Searched(tenanId) {
+            DestroyModalDialog();
+            $("#tenanid").val(tenanId);
+            $("#cariBtn").attr("disabled", "");
+            FindTenantNameByTenanId(tenanId);
+        }
+        function FindTenantNameByTenanId(tenanid) {
+            if (tenanid == null || tenanid.length == 0)
+                return;
+            $.ajax({
+                type: "GET",
+                url: "/MappingPriceAp/FindTenantNameByTenanId/" + tenanid,
+                dataType: "json",
+                success: ShowStateTenantName
+            });
+        }
+        function ShowStateTenantName(data) {
+            var tenanId = $("#tenanid").val();
+            TenanName = data;
+            $("#tenanName").text(data);
+            $("#cariBtn").attr("disabled", "");
+            GetMappingRepository(tenanId);
+        }
+        function LoadingStart() {
+            $("#loading").show();
+        }
+        function LoadingEnd() {
+            $("#loading").hide();
+        }
+    </script>
+}
+<div id="loadingMapping">
+    <center>
+        <div id="loaders">
+            <img src="@Url.Content("~/Content/images/loader.gif")"/><br />
+            <span>Please wait...</span>
+        </div>
+    </center>
+</div>
+<div class="divMappingPrice divIndex">
+    <div class="divHeaderMappingPrice divHeader">
+        <label class="TitelMappingPrice title">Mapping Price</label>
+    </div>
+    <div id="divBodyMappingPrice">
+        <table class="SearchTenan" width="100%" border=0 cellspacing=0>
+			<tr>
+				<td>
+					Tenant
+				</td>
+				<td>
+					<input type="text" id="tenanid" name="tenanId" placeholder="Tenan" style="float:left;margin-right:5px;" onchange="FindTenantNameByTenanId(this.value)"/>
+				</td>
+				<td>
+					<label id='TenanSearch' class='positive button'><img src='../Content/images/button/search.png'/> Pencarian Tenan</label>
+				</td>
+			</tr>
+            <tr>
+                <td colspan="3">
+					<button id="cariBtn" class='positive button' style="margin-left: 50px;"><img src='../Content/images/button/search.png'/>Cari Produk Kartu Kredit</button>
+                    <div style="margin-top: 5px; color: blue;"><label id="tenanName"></label></div> 
+                    
+				</td>
+            </tr>
+		</table> 
+    </div>
+    <div id="errorMessage"><label id="error"></label><label class="close" onclick="error()">X</label></div>
+    <div id="divListItemMappingPirce">
+        <table id="tableListProductTenanLounge" width="96%" border=0 cellspacing=0>
+            <thead>
+                <tr>
+                    <th>Nama Kartu Kredit</th>
+                    <th>Kode Kartu Kredit</th>
+                    <th style="text-align: right;">Harga Kartu Kredit</th>
+                    <th id="thButton"></th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="DialogOverlayProduct">
+</div>
+<div class="divListproduct divIndex">
+    <div class="HeaderListProduct divHeader" style="margin-bottom:4%;">
+        <label class="Titelproduct title">Mapping Price</label>
+        <label class="close" onclick="hideDialog()">X</label>
+    </div>
+    <div id="bodyListProduct" style="background-color:White; color: black;">
+        <table id="tableListProduct" width="100%" border=0 cellspacing=0>
+            <thead>
+                <tr>
+                    <th>Nama Kartu Kredit</th>
+                    <th>Kode Kartu Kredit</th>
+                    <th style="text-align: right;">Harga Kartu Kredit</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="DivDialogMapping divIndex" id="DivDialogMappingPrice">
+    <div class="DivHeaderDialogMapping divHeader">
+        <label class="TitleEdit title">Add Kartu Kredit</label>
+    </div>
+    <div style="background-color:White;">
+        <table width="100%" id="tableAddDialog" border=0 cellspacing=0>
+                
+        </table>
+    </div>
+</div>
+<div class="DivDialogMapping divIndex" id="DivDialogEditMappingPrice">
+    <div class="DivHeaderDialogMapping divHeader">
+        <label class="TitleEdit title">Edit Harga Kartu Kredit</label>
+    </div>
+    <div style="background-color:White;">
+        <table width="100%" id="tableEditDialog" border=0 cellspacing=0>
+                
+        </table>
+    </div>
+</div>
+
+<div class="DivDialogMessage divIndex" id="DivDialogMessage" style="display:none;">
+    <div class="bodyMessage">
+        <table class="SearchTenan" width="100%" border=0 cellspacing=0>
+			<tr>
+				<td>
+					<div id="imageMessage"></div>
+				</td>
+				<td style="font-size: 14px;">
+					Apakah Anda Akan Menghapus Kartu Kredit ini
+				</td>
+			</tr>
+            <tr>
+                <td colspan="2">
+                    <div class='simpan' onclick='Delete()'>Ok</div>
+                    <div class='batal' onclick='Cancel()'>Cancel</div>
+				</td>
+            </tr>
+		</table> 
+    </div>
+</div>
+    

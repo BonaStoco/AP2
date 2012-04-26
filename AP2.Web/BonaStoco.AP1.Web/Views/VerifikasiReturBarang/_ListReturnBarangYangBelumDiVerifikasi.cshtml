@@ -1,0 +1,46 @@
+﻿@model IList<BonaStoco.AP1.PengirimanBarang.Models.GRN>
+@section srcipts
+{
+    @Content.Script("jquery.quicksearch.js", @Url)
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#kode_transaksi_search').quicksearch('table tbody tr',
+            {
+                noResults: '#noresultkodeproduksi',
+                stripeRows: ['odd', 'even'],
+                loader: 'img.loading'
+            });
+    });
+</script>
+<h3>@ViewBag.Tenan.TenanId - @ViewBag.Tenan.TenanName </h3>
+<form action="#">
+	    <input type="text" name="search" value="" id="kode_transaksi_search" placeholder="Search"/> 
+        <img class="loading" src="@Url.Content("~/Content/images/loader.gif")"/>
+</form>
+<table>
+    <thead>
+        <tr>
+            <th>Nomor Transaksi</th>
+            <th>Tanggal</th>
+            <th>Nama Pengirim</th>
+            <th>Referensi</th>
+            <th>Keterangan</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr id="noresultkodeproduksi">
+		    <td colspan="6">No Results</td>
+	    </tr>
+        @foreach (BonaStoco.AP1.PengirimanBarang.Models.GRN grn in Model)
+        {
+            <tr>
+                <td>@Html.ActionLink(grn.KodeTransaksi, "DetailVerifikasiReturnBarang", new { grnId = @grn.Guid, tenanId = @ViewBag.Tenan.TenanId })</td>
+                <td>@grn.TanggalTransaksi.ToString("dd-MM-yyyy")</td>
+                <td>@grn.NamaPengirim</td>
+                <td>@grn.Referensi</td>
+                <td>@grn.Keterangan</td>
+            </tr>
+        }
+    </tbody>
+</table>

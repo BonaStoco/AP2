@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4C9EE93D-BCA1-405A-AA99-A3EE6B81A0BC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BonaStoco.AP1.Web.RepositoryTest</RootNamespace>
+    <AssemblyName>BonaStoco.AP1.Web.RepositoryTest</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BonaStoco.Inf.Data.ViewModel">
+      <HintPath>..\..\..\bonastoco-bin\BonaStoco.Inf.Data.ViewModel.dll</HintPath>
+    </Reference>
+    <Reference Include="BonaStoco.Inf.DataMapper, Version=1.1.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bonastoco-bin\BonaStoco.Inf.DataMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="BonaStoco.Inf.DataMapper.Impl, Version=1.1.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bonastoco-bin\BonaStoco.Inf.DataMapper.Impl.dll</HintPath>
+    </Reference>
+    <Reference Include="BonaStoco.Inf.Reporting, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\bonastoco-bin\BonaStoco.Inf.Reporting.dll</HintPath>
+    </Reference>
+    <Reference Include="LoveSeat">
+      <HintPath>..\packages\LoveSeat.1.0.1\lib\net40\LoveSeat.dll</HintPath>
+    </Reference>
+    <Reference Include="LoveSeat.Interfaces">
+      <HintPath>..\packages\LoveSeat.1.0.1\lib\net40\LoveSeat.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.0.8.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.4.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql">
+      <HintPath>..\..\..\external-lib\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus">
+      <HintPath>..\..\..\external-lib\NServiceBus.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.5.0.9015, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\tools\nunit\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Aop">
+      <HintPath>..\..\..\external-lib\spring-amqp\Spring.Aop.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Core">
+      <HintPath>..\..\..\external-lib\spring-amqp\Spring.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Data">
+      <HintPath>..\..\..\external-lib\spring-amqp\Spring.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TestDrivenDesign">
+      <HintPath>..\packages\TestDrivenDesign.0.0.3\lib\net40\TestDrivenDesign.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="StockCardReportFixture.cs" />
+    <Compile Include="PaymentTenantContext.cs" />
+    <Compile Include="When_find_partgroup_by_tenanid.cs" />
+    <Compile Include="When_find_stockard_by_period.cs" />
+    <Compile Include="When_insert_tenan_payment.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="When_update_existing_tenant_payment.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BonaStoco.AP1.Web.ReportingRepository\BonaStoco.AP1.Web.ReportingRepository.csproj">
+      <Project>{DA288C70-DC64-490B-8042-F4D55C0197B9}</Project>
+      <Name>BonaStoco.AP1.Web.ReportingRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BonaStoco.AP1.Web.Report\BonaStoco.AP1.Web.Report.csproj">
+      <Project>{7120214E-F4BE-4E88-A6AF-E987EEA38687}</Project>
+      <Name>BonaStoco.AP1.Web.Report</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\BonaStoco.AP1.CouchDB.Config\BonaStoco.AP1.CouchDB.Config.csproj">
+      <Project>{41C1F8B3-F95B-42AE-B3EB-6D01BD48AB1A}</Project>
+      <Name>BonaStoco.AP1.CouchDB.Config</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\BonaStoco.AP1.Inventory.Models\BonaStoco.AP1.Inventory.Models.csproj">
+      <Project>{AD109A76-3A03-4A1A-8F50-F938C9B65F4E}</Project>
+      <Name>BonaStoco.AP1.Inventory.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

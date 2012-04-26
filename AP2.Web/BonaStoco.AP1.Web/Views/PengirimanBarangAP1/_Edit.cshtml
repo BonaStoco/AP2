@@ -1,0 +1,60 @@
+﻿@using BonaStoco.AP1.Web.Models
+@model GRNItemModel
+@if (Model == null)
+{
+    <script>
+        alert("Item tidak ditemukan dalam database");
+    </script>
+}
+else
+{
+    <td colspan="6">
+    @using(Ajax.BeginForm("UpdateItem", new AjaxOptions{HttpMethod = "POST",
+                                                            InsertionMode = InsertionMode.Replace,
+                                                            UpdateTargetId = "grnitem-" + Model.Id}))
+    {
+        @Html.HiddenFor(m => m.Id)
+        @Html.HiddenFor(m => m.Barcode)
+        @Html.HiddenFor(m => m.Code)
+        @Html.HiddenFor(m => m.ProductId)
+        @Html.HiddenFor(m => m.UserId)
+        @Html.HiddenFor(m => m.NamaBarang)
+        @Html.HiddenFor(m => m.Unit)
+        @Html.HiddenFor(m => m.TenanId)
+        <table>
+            <tbody>
+            <tr>
+                <td>Nama Barang</td>
+                <td>@Html.DisplayFor(m => m.NamaBarang)</td>
+            </tr>
+            <tr>
+                <td>Qty</td>
+                <td>@Html.EditorFor(model => model.Qty)
+                    @Html.ValidationMessageFor(model => model.Qty) @Html.DisplayFor(m => m.Unit)</td>
+            </tr>
+            <tr>
+                <td>Harga</td>
+                <td>@Html.EditorFor(model => model.Harga)
+                    @Html.ValidationMessageFor(model => model.Harga)</td>
+            </tr>
+            <tr>
+                <td>Jumlah</td>
+                <td>@Html.DisplayFor(m => m.Jumlah)</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Update" /> | 
+                    @Ajax.ActionLink("Cancel", "CancelEdit", new { id = Model.Id },
+                        new AjaxOptions
+                        {
+                            HttpMethod = "POS",
+                            InsertionMode = InsertionMode.Replace,
+                            UpdateTargetId = "grnitem-" + Model.Id
+                        })
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    }
+    </td>
+}

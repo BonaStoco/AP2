@@ -1,0 +1,35 @@
+﻿ table#headerfaktur 
+    {
+        border:0px;
+    }
+
+    table#headerfaktur tr
+    {
+        border:0px;
+    }
+    table#headerfaktur td
+    {
+        border:0px;
+    }
+
+    #detailbilling 
+    {
+    
+     border:1px solid #D2E2E3;   
+    }
+
+    #detailbilling .rowbilling
+    {
+    
+     border:1px solid #D2E2E3;   
+    }
+
+    #detailbilling .colbilling
+    {
+    
+     border:1px solid #D2E2E3;   
+    }
+    fieldset#fakturAP2
+    {
+    	border : 0px none #FFF;
+    }

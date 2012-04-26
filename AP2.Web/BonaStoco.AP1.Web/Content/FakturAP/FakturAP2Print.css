@@ -1,0 +1,222 @@
+@media print{
+ 
+  
+
+
+/*********************HEADER LEFT***************************************/
+
+div.HeaderLeft{
+	width: 4.8in;
+	padding-top: 130px;
+	padding-left: 5px;
+	float: left;
+}
+		div.NoFaktur{
+			float: right;
+			width: 56%;
+			text-align:left;
+			padding : 4px;
+			padding-left: 4em;
+			font-size:16px;
+			padding-bottom:5px;
+		}
+		div.JenisJasa{
+			float: right;
+			width: 56%;
+			text-align:left;
+			height: 5em;
+			padding : 4px;
+			padding-top: 35px;
+			padding-left: 4em;
+			font-size:16px;
+		}
+/*****************************HEADER RIGHT*************************************/		
+div.HeaderRight{
+	width: 3.5in;
+	float : right;
+	padding-top: 70px;
+	padding-left: 5px;
+}
+	div.Tanggal{
+		float: right;
+		width: 98%;
+		text-align:center;
+		padding : 4px;
+		font-size:16px;
+	    padding-bottom:5px;
+	}
+	div.Kepada{
+		clear: both;
+		padding-left: 0em;
+		padding-top: 2em;
+		text-align:left;
+		font-size:16px;
+	}
+	div.NamaPenerima{
+		clear: both;
+		padding-left: 0em;
+		text-align:left;
+		padding-top: 4px;
+		font-size:16px;
+	}
+	div.AlamatPenerima{
+		clear: both;
+		padding-left: 0em;
+		text-align:left;
+		padding-top: 4px;
+		padding-bottom: 20px;
+		font-size:16px;
+	}
+/****************************************ISI FAKTUR***************************************************/
+div.IsiFaktur{
+	clear:both;
+	padding-top: 4em;
+	padding-left: 2em;
+	width: 90%;
+	padding-bottom: 13em;
+}
+	div.KeteranganPertama{
+		padding-right: 4em;
+		padding-bottom: 2em;
+		font-size:16px;
+	}
+	div.Omzet{
+		clear: both;
+		padding-top: 4px;
+		padding-bottom: 4px;
+		width: 200px;
+		float: left;
+		font-size:16px;
+	}
+	div.HasilOmzet{
+		padding-top: 4px;
+		padding-bottom: 4px;
+		float: right;
+		width: 500px;
+		font-size:16px;
+	}
+	div.HasilKonsesi{
+		clear:right;
+		float: right;
+		width: 440px;
+		padding-top: 4px;
+		padding-bottom: 4px;
+		font-size:16px;
+	}
+	div.TagihanKonsesi{
+		clear:both;
+		padding-top: 2em;
+		padding-bottom: 4px;
+		width: 100%;
+		float:left;
+		font-size:16px;
+	}
+	div.TotalTagiahn{
+		clear: right;
+		float: right;
+		padding-top: 2em;
+		padding-bottom: 4px;
+		width: 390px;
+		font-size:16px;
+	}
+	div.HasilPPN{
+		clear:right;
+		float: right;
+		width: 100%;
+		padding-top: 4px;
+		padding-bottom: 4px;
+		font-size:16px;
+	}
+/***************************************Jumlah Yang Harus DiBayar**********************************************/
+div.Jumlah{
+	clear:both;
+	text-align:right;
+	margin-right: 40px;
+	padding: 4px;
+	font-size:16px;
+}
+div.Terbilang{
+	padding-top: 2em;
+	margin-left: 15em;
+	margin-right: 5em;
+	font-size:16px;
+}
+div.Ttd{
+	margin-top: 17em;
+	margin-right:2em;
+	float:right;
+	width: 20em;
+	font-size:16px;
+}
+div.Pts{
+	margin-top: 17em;
+	margin-left:30em;
+	float:left;
+	width: 3em;
+	font-size:16px;
+}
+label.Underline
+{
+    text-decoration:underline;
+}
+div.rekening{
+	float:right;
+	border: 1px solid #000;
+	font-size: 12px;
+	width:210px;
+	margin-bottom:15px;
+	padding:2px;
+	margin-right:4.4em;
+}
+
+
+}
+
+ div#FakturAPPrint 
+   {
+     margin:0;
+	height: 13in;
+	width: 8.5in;
+	font-family: Times New Roman;
+	font-size:10pt;
+}
+
+.print-area-table 
+{
+ border:0;   
+ font-family: Times New Roman;
+font-size:10pt;
+   
+}
+
+.print-area-table tr
+{
+ border:0;   
+    
+}
+
+.print-area-table td
+{
+ border:0;   
+    
+}
+#space-top 
+{
+  min-height:2.1in;   
+    
+}
+#space-middle 
+{
+  min-height:1.20in;   
+    
+}
+#space-bottom
+{
+  min-height:3.1in ;   
+    
+}
+
+#PrintArea
+{
+    font-size:9pt;
+}

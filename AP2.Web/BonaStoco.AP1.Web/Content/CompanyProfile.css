@@ -1,0 +1,93 @@
+﻿
+fieldset
+{
+    border:none;
+}
+
+#alamat-labelcompanyprofile{display:inline; width:80px; border:none; font-weight:bold;  }
+#alamat-fieldcompanyprofile{display:inline; padding-left:20px;}
+#npwp-labelcompanyprofile{display:inline; width:80px; border:none;font-weight:bold; }
+#npwp-fieldcompanyprofile{display:inline;padding-left:26px;}
+#nppkp-labelcompanyprofile{display:inline; width:80px; border:none;font-weight:bold;}
+#nppkp-fieldcompanyprofile{display:inline;padding-left:22px;}
+
+.field-companyprofile
+{
+    padding-left:5px;
+}
+.companyprofile 
+{
+    background-color:Menu;
+     padding-left:5px;
+     padding:10px 10px 10px 10px;
+      border:1px solid #A4A7B9;
+}
+#alamat-editcompanyprofile textarea
+{
+    width:400px; padding-left:5px;
+    
+ }
+#nama-labelcompanyprofile 
+{
+    background-color:#5B8EAC;
+    padding-left:5px;
+    border:1px solid #A4A7B9;
+    font-weight:bold;
+    font-size:16px;
+    color:white;
+   
+}
+#nppkp-editcompanyprofile input[type="text"]
+{
+    width:200px;padding-left:5px;
+      font-size:12px;
+    }
+#npwp-editcompanyprofile input[type="text"]
+{
+    width:200px;
+    font-size:12px;
+    
+    }
+
+#btn-editprofile 
+{
+   display:block;
+   background-color:#6699CC;  
+   font-size:8pt;
+   color:White;
+   font-weight:bold;
+    border:1px solid #330066;
+    cursor:pointer;   
+}
+#link-editprofile a
+{     font-size:12px;
+      text-decoration:none;    
+}
+#link-editprofile a:hover
+{     font-size:12px;
+      text-decoration:underline; 
+      font-weight:bold;     
+}
+.profile-header
+{
+ font-size:13px;
+ font-weight:bold;
+ display:block;
+ background-color:Menu;
+    
+}
+#nama-commpanyprofile
+{
+     font-size:16px;
+     color:Black;
+    
+}
+
+div a:link
+{
+    text-decoration:none;
+}
+div a:hover
+{
+    text-decoration:underline;
+}

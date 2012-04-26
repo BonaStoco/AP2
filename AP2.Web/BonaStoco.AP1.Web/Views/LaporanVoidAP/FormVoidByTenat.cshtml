@@ -1,0 +1,68 @@
+﻿@{
+    ViewBag.Title = "Laporan Void Detail";
+}
+@section styles
+{
+    <link href="@Url.Content("~/Content/LaporanVoid.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/Home/ModalDialog.css")" rel="stylesheet" type="text/css" />
+}
+@section scripts
+{
+    @Content.Script("AdvancedSearchTenan.js", @Url)
+    @Content.Script("LaporanVoidDetailAP.js", @Url)
+    @Content.Script("LaporanVoidSummaryAP.js", @Url)
+    @Content.Script("stringformat.js", @Url)
+    @Content.Script("jquery.quicksearch.js", @Url)
+
+    <table><thead style="cursor:pointer;"></thead></table>
+
+     <script type="text/javascript">
+         var tenanId = @ViewBag.tenanId
+         var TenanName;
+         $(document).ready(function () {
+             CreateTabMenu();
+         });
+
+         function CreateTabMenu() {
+             $("section#main").append("<div id='tabContainer'>" +
+                    "<div class='tabs'>" +
+                    "<ul><li id='tabHeader_1'>Laporan Void Detail</li>" +
+                    "<li id='tabHeader_2'>Laporan Void Summary</li></ul>" +
+                    "</div><div class='tabscontent'>" +
+                    "</div></div>");
+             $("#tabHeader_1").click(CreateDivDetail);
+             InitTab();
+         }
+
+         function InitTab() {
+             var container = document.getElementById("tabContainer");
+             var navitem = container.querySelector(".tabs ul li");
+             var ident = navitem.id.split("_")[1];
+             navitem.parentNode.setAttribute("data-current", ident);
+             navitem.setAttribute("class", "tabActiveHeader");
+             CreateDivDetail(tenanId);
+             var tabs = container.querySelectorAll(".tabs ul li");
+             for (var i = 0; i < tabs.length; i++) {
+                 tabs[i].onclick = DisplayPage;
+             }
+         }
+
+         function DisplayPage() {
+             var current = this.parentNode.getAttribute("data-current");
+             document.getElementById("tabHeader_" + current).removeAttribute("class");
+             var ident = this.id.split("_")[1];
+             if (ident == 1) {
+                 this.setAttribute("class", "tabActiveHeader");
+                 CreateDivDetail(tenanId);
+                 $("#DivSummary").hide();
+                 this.parentNode.setAttribute("data-current", ident);
+             }
+             else if (ident == 2) {
+                 this.setAttribute("class", "tabActiveHeader");
+                 CreateDivSummary(tenanId);
+                 $("#DivDetail").hide();
+                 this.parentNode.setAttribute("data-current", ident);
+             }
+         }
+
+</script>

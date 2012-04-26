@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "Import Pengiriman Barang";
+}
+@section styles{
+    <link href="@Url.Content("~/Content/ImportProduct/ImportProduct.css")" rel="stylesheet" type="text/css" />
+}
+@section scripts
+{
+    @Content.Script("jquery.validate.min.js", @Url)
+    @Content.Script("jquery.validate.unobtrusive.min.js", @Url)
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.accordion .head').click(function () {
+                $(this).next().toggle('slow');
+                return false;
+            }).next().hide();
+            $("#accordion").accordion();
+            $("#importBtn").click(function () {
+                $("#importBtn").val("Please wait...");
+                $("#importBtn").attr("disabled", true);
+                document.getElementById("loading").style.display = "inline";
+            });
+
+        });
+    </script>
+}
+<h2>Import Pengiriman Barang</h2>
+@using (Html.BeginForm("ImportPengirimanBarang", "Test", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <input type='file' name='file' id='file' />
+    <p>
+        <input type="submit" value="Import" id="importBtn" />
+    </p>
+    
+    <div id="loading">
+		<div id="dialog-loader">
+			<img src="@Url.Content("~/Content/images/loader-new.gif")"/>
+		</div>
+    </div>
+}
+
+
+<div id="accordion">
+    <h3>File harus dalam format CSV ( namafile.csv ). Contoh format data adalah sbb:</h3>
+    <div>
+    <table border="1">
+        <tr>
+            <td>Kode</td>
+            <td>,</td>
+            <td>Nama</td>
+            <td>,</td>
+            <td>Qty</td>
+        </tr>
+        <tr>
+            <td>001</td>
+            <td>,</td>
+            <td>Cupcake</td>
+            <td>,</td>
+            <td>5</td>
+        </tr>
+        <tr>
+            <td>002</td>
+            <td>,</td>
+            <td>Kopi Luwak</td>
+            <td>,</td>
+            <td>4</td>
+        </tr>
+    </table>
+    </div>
+</div>

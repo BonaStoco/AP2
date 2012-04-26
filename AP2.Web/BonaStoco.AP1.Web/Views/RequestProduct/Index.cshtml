@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+@section styles
+{   
+    <link href="@Url.Content("~/Content/themes/base/jquery-ui-1.8.14.custom.css")" rel="stylesheet" type="text/css" />
+      <link href="@Url.Content("~/Content/Home/ModalDialog.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/requestproduct/requestproduct.css")" rel="stylesheet" type="text/css" />
+}
+@section scripts
+{
+    @Content.Script("jquery.validate.min.js", @Url)
+    @Content.Script("jquery.validate.unobtrusive.min.js", @Url)   
+    @Content.Script("jquery-ui-1.8.14.custom.min.js", @Url)
+     @Content.Script("AdvancedSearchTenan.js", @Url)
+    @Content.Script("RequestProduct.js", @Url)   
+}
+
+<fieldset>
+   <legend>Verifikasi Barang Baru</legend>
+    <br />
+<table id="headerproduct" width="100%"> 
+</table>
+<table id="group-btn" width="100%"></table>
+<table id="aprovepart" width="100%"> 
+</table>
+<table id="group-btn-footer" width="100%"></table>
+
+</fieldset>
+<div id="overlay">
+<center>
+		<div id="loaders">
+			<img src="@Url.Content("~/Content/images/loader.gif")"/><br />
+            <span>Please wait...</span>
+        </div>
+</center>
+</div>
+
+

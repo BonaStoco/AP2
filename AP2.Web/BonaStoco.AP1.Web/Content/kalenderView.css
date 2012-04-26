@@ -1,0 +1,145 @@
+﻿/* HEADINGS   
+----------------------------------------------------------*/
+h1, h2, h3, h4, h5, h6 {
+    font-size: 1.5em;
+    color: #00000;
+}
+
+h1 {
+    font-size: 2em;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+h2 {
+    padding: 0 0 10px 0;
+}
+
+h3 {
+    font-size: 1.8em;
+    margin-bottom :auto;
+    margin-top:auto;
+    color:#FFFFFF;
+}
+
+h4 {
+    font-size: 1.1em;
+}
+
+h5, h6 {
+    font-size: 1em;
+}
+
+/* TABLE
+----------------------------------------------------------*/
+
+.calendar table {
+    border: solid 1px #3399FF;
+    border-collapse: collapse;
+}
+
+.calendar table td {
+    padding: 5px;
+    border: solid 1px #3399FF;
+}
+
+.calendar table th {
+    padding: 6px 5px;
+    text-align: left;
+    background-color: #3399FF;
+    border: solid 1px #3399FF;
+}
+
+div.left {
+  border-width:0px;
+  border-color:#000000;
+  border-style: solid;
+  text-align: left;
+  float:left;
+  width:83%;  
+  padding:2px;
+  display:inline;
+}
+div.right {
+  border-width:0px;
+  border-color:#000000;
+  border-style: solid;
+  text-align: right;
+  float:left;
+  width:15%; 
+  padding:2px;
+  display:inline;
+}
+
+/* TAB MENU   
+----------------------------------------------------------*/
+ul#navbutton {
+   
+    padding: 0 0 2px;
+    position: relative;
+    margin:0;
+    text-align: left;
+}
+
+ul#navbutton li {
+    display: inline;
+    list-style: none;
+   }
+
+ul#navbutton li#greeting {
+    padding: 10px 20px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 2.8em;
+    color: #fff;
+}
+
+ul#navbutton li a {
+    padding: 10px 70px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 2.8em;
+    background-color: #99FFFF;
+    color: #000;
+    border-radius: 4px 4px 4px 4px;
+    -webkit-border-radius: 4px 4px 4px 4px;
+    -moz-border-radius: 4px 4px 4px 4px;
+   
+}
+
+ul#navbutton li a:hover {
+    background-color: #AA0000;
+    text-decoration: none;
+    color: #fff;
+}
+
+ul#navbutton li a:active {
+    background-color: #a6e2a6;
+    text-decoration: none;
+    color: #fff;
+}
+
+ul#navbutton li.selected a {
+    background-color: #fff;
+    color: #000;
+}
+nav#navigationbtn {
+    margin-top: 5px;
+}
+
+div#calendar-border
+{
+    margin-top: 2em;
+}
+
+ul#navbutton #btnactive a {
+    padding: 10px 70px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 2.8em;
+    background-color: #D43F55;
+    color: #fff;
+    border-radius: 4px 4px 4px 4px;
+    -webkit-border-radius: 4px 4px 4px 4px;
+    -moz-border-radius: 4px 4px 4px 4px;
+}

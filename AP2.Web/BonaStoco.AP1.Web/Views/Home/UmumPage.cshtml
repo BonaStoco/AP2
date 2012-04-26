@@ -1,0 +1,181 @@
+﻿@model BonaStoco.AP1.MasterData.Models.SummaryHome
+@{
+    ViewBag.Title = "Dashboard AP2";
+}
+
+@section styles{
+<link href="@Url.Content("~/Content/themes/base/jquery-ui-1.8.14.custom.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/Content/Home/Home.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/Content/Home/ModalDialog.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/Content/ModalDialog/ModalDialogPengirimanBarang.css")" rel="stylesheet" type="text/css" />
+}
+@section scripts
+{
+    @Content.Script("AdvancedSearchTenan.js", @Url)
+    @Content.Script("highcharts.js", @Url)
+    @Content.Script("Home/HomeMonitoring.js", @Url)
+    @Content.Script("Home/Notification.js", @Url)
+    @Content.Script("ModalDialog/ModalDialogPengirimanBarang.js", @Url)
+    @Content.Script("jquery.validate.min.js", @Url)
+    @Content.Script("jquery.validate.unobtrusive.min.js", @Url)
+    @Content.Script("jquery.quicksearch.js", @Url)
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#TenanAktif").click(OpenTenanAktifDialog);
+            $("#TenanAktifHariIni").click(OpenTenanAktifHariIniDialog);
+            $("#TenanAktifKemarin").click(OpenTenanAktifKemarinDialog);
+            GetDataMonitoring(1);
+            LoadProductPending();
+            LoadPendingGRN();
+            LoadPendingRET();
+        });
+        function OpenTenanAktifDialog() {
+            if ($("#TenanAktif").text() == 0)
+                return;
+            CreateModalDialog("Daftar Tenan Aktif");
+            $("#Loading").hide();
+            $.ajax({
+                type: "GET",
+                url: "/Home/DetailTenanAktif",
+                dataType: "json",
+                beforeSend: LoadingStart,
+                complete: LoadingEnd,
+                success: InsertTenanToTable
+            });
+        }
+        function OpenTenanAktifHariIniDialog() {
+            if ($("#TenanAktifHariIni").text() == 0)
+                return;
+            CreateModalDialog("Daftar Tenan Aktif Hari Ini");
+            $("#Loading").hide();
+            $.ajax({
+                type: "GET",
+                url: "/Home/DetailTenanAktifHariIni",
+                dataType: "json",
+                beforeSend: LoadingStart,
+                complete: LoadingEnd,
+                success: InsertTenanToTable
+            });
+        }
+        function OpenTenanAktifKemarinDialog() {
+            if ($("#TenanAktifKemarin").text() == 0)
+                return;
+            CreateModalDialog("Daftar Tenan Aktif Hari Sebelumnya");
+            $("#Loading").hide();
+            $.ajax({
+                type: "GET",
+                url: "/Home/DetailTenanAktifKemarin",
+                dataType: "json",
+                beforeSend: LoadingStart,
+                complete: LoadingEnd,
+                success: InsertTenanToTable
+            });
+        }
+        function SearchByTenanName() {
+            $('#search_tenant').quicksearch('table#TableTenan tbody tr',
+            {
+                stripeRows: ['odd', 'even']
+            });
+        }
+    </script>
+}
+
+@*<h2>@ViewBag.Title</h2>*@
+
+<div id="Home">
+    <div id="tenant">
+    	<label class="Header">Activity</label>
+  		<div id="DataTenant">
+            <label class="Left BorderOrange">Total Tenan</label>
+            <label class="Rigth BorderOrange" >@Model.TotalTenan</label>
+            
+            <label class="Left BorderOrange">Total Tenan Aktif</label>
+            <label class="Rigth BorderOrange" id="TenanAktif" style="cursor:pointer; color:Green; text-decoration:underline">@Model.TotalTenanAktif</label>
+
+            <label class="Left BorderOrange">Total Tenan Aktif Hari Ini</label>
+            <label class="Rigth BorderOrange" id="TenanAktifHariIni" style="cursor:pointer; color:Blue; text-decoration:underline">@Model.TotalTenanAktifHariIni</label>
+            
+            <label class="Left BorderOrange">Total Tenan Aktif Hari Sebelumnya</label>
+            <label class="Rigth BorderOrange" id="TenanAktifKemarin" style="cursor:pointer; color:Red; text-decoration:underline">@Model.TotalTenanAktifKemarin.ToString()</label>
+        </div>
+    </div>
+    <div id="Sales">
+    	<label class="Header">Sales</label>
+    	<div class="HeaderLeft"></div>
+        <div class="HeaderMataUang">
+        	<label class="HeaderIDR">IDR</label>
+        	<label class="HeaderUSD">USD</label>
+        </div>
+		
+        <div id="DataSales">
+            <div class="Left BorderOrange">Total Transaksi Hari Ini</div>
+            <div class="MataUang">
+                <label class="IDR BorderOrange">
+                    <span class="CCY">Rp.</span>
+                    <span>@Model.TotalTransaksiHariInIDR.ToString("N0")</span>
+                </label>
+                <label class="USD BorderOrange">
+                    <span class="CCY">$</span>
+                    <span>@Model.TotalTransaksiHariInUSD.ToString("N")</span>
+                </label>
+            </div>
+            
+            <div class="Left BorderOrange">Total Transaksi Hari Sebelumnya</div>
+            <div class="MataUang">
+                <label class="IDR BorderOrange">
+                    <span class="CCY">Rp.</span>
+                    <span>@Model.TotalTransaksiKemarinInIDR.ToString("N0")</span>
+                </label>
+                <label class="USD BorderOrange">
+                    <span class="CCY">$</span>
+                    <span>@Model.TotalTransaksiKemarinInUSD.ToString("N")</span>
+                </label>
+            </div>
+
+            <div class="Left BorderOrange">Total Transaksi Bulan Ini</div>
+            <div class="MataUang">
+                <label class="IDR BorderOrange">
+                    <span class="CCY">Rp.</span>
+                    <span>@Model.TotalTransaksiBulanInIDR.ToString("N0")</span>
+                </label>
+                <label class="USD BorderOrange">
+                    <span class="CCY">$</span>
+                    <span>@Model.TotalTransaksiBulanInUSD.ToString("N")</span>
+                </label>
+            </div>
+
+            <div class="Left BorderOrange">Total Transaksi Bulan Sebelumnya</div>
+            <div class="MataUang">
+                <label class="IDR BorderOrange">
+                    <span class="CCY">Rp.</span>
+                    <span>@Model.TotalTransaksiBulanKemarinInIDR.ToString("N0")</span>
+                </label>
+                <label class="USD BorderOrange">
+                    <span class="CCY">$</span>
+                    <span>@Model.TotalTransaksiBulanKemarinInUSD.ToString("N")</span>
+                </label>
+            </div>
+
+            <div class="Left BorderOrange">Total Transaksi Tahun Ini</div>
+            <div class="MataUang">
+                <label class="IDR BorderOrange">
+                    <span class="CCY">Rp.</span>
+                    <span>@Model.TotalTransaksiTahunInIDR.ToString("N0")</span>
+                </label>
+                <label class="USD BorderOrange">
+                    <span class="CCY">$</span>
+                    <span>@Model.TotalTransaksiTahunInUSD.ToString("N")</span>
+                </label>
+            </div>
+		</div>
+    </div>
+    <div id="Notification">
+        <label class="Header">Notification</label>
+        <div id="DataNotification"></div>
+    </div>
+    <div id="Monitoring">
+        <label class="Header">Activity Monitoring</label>
+        <div id="DataMonitoring"></div>
+    </div>
+
+</div>

@@ -1,0 +1,106 @@
+﻿@{
+    ViewBag.Title = "Import Edit Tenant";
+}
+@section styles{
+    <link href="@Url.Content("~/Content/ImportProduct/ImportProduct.css")" rel="stylesheet" type="text/css" />
+}
+@section scripts
+{
+    @Content.Script("jquery.validate.min.js", @Url)
+    @Content.Script("jquery.validate.unobtrusive.min.js", @Url)
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.accordion .head').click(function () {
+                $(this).next().toggle('slow');
+                return false;
+            }).next().hide();
+            $("#accordion").accordion();
+            $("#importBtn").click(function () {
+                $("#importBtn").val("Please wait...");
+                $("#importBtn").attr("disabled", true);
+                document.getElementById("loading").style.display = "inline";
+                $("#importDataTenant").submit();
+            });
+
+        });
+    </script>
+}
+<h2>Import Edit Tenant</h2>
+@using (Html.BeginForm("ImportEditTenant", "TarifTenan", FormMethod.Post, new { enctype = "multipart/form-data", id="importDataTenant" }))
+{
+    <input type='file' name='file' id='file' />
+    <p>
+        <input type="submit" value="Import" id="importBtn" />
+    </p>
+    
+    <div id="loading">
+		<div id="dialog-loader">
+			<img src="@Url.Content("~/Content/images/loader-new.gif")"/>
+		</div>
+    </div>
+}
+
+<div id="accordion">
+    <h3>File harus dalam format CSV ( namafile.csv ). Contoh format data adalah sbb:</h3>
+    <div>
+    <table border="1" width="100%">
+        <tr>
+            <td>ID</td>
+            <td>,</td>
+            <td>Merchant</td>
+            <td>,</td>
+            <td>Alamat</td>
+            <td>,</td>
+            <td>NPWP</td>
+            <td>,</td>
+            <td>Konsesi</td>
+            <td>,</td>
+            <td>Kategori Tenan</td>
+            <td>,</td>
+            <td>Kategori Produk</td>
+            <td>,</td>
+            <td>Mata Uang</td>
+            <td>,</td>
+            <td>Gate</td>
+        </tr>
+        <tr>
+            <td>4178</td>
+            <td>,</td>
+            <td>CV. CIPTA KARTIKA</td>
+            <td>,</td>
+            <td>JL. SIDAKARYA, GG.SIDADADI</td>
+            <td>,</td>
+            <td>01.672.000.0-000.000</td>
+            <td>,</td>
+            <td>8%</td>
+            <td>,</td>
+            <td>SMALL MERCHANT</td>
+            <td>,</td>
+            <td>Art Shop</td>
+            <td>,</td>
+            <td>IDR</td>
+            <td>,</td>
+            <td>Gate 3-4</td>
+        </tr>
+        <tr>
+            <td>4179</td>
+            <td>,</td>
+            <td>CV. ALIT MAS</td>
+            <td>,</td>
+            <td>JL. GADUNG NO.11</td>
+            <td>,</td>
+            <td>01.123.000.0-000.000</td>
+            <td>,</td>
+            <td>10%</td>
+            <td>,</td>
+            <td>BIG MERCHANT</td>
+            <td>,</td>
+            <td>Garment & T Shirt</td>
+            <td>,</td>
+            <td>USD</td>
+            <td>,</td>
+            <td>Gate 1-2</td>
+        </tr>
+    </table>
+    </div>
+</div>

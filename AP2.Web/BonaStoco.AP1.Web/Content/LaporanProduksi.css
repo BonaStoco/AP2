@@ -1,0 +1,58 @@
+﻿#header-produksi
+{
+ border : 0;
+ 
+}
+#header-produksi tr
+{
+ border : 0;
+ 
+}
+
+#header-produksi td
+{
+ border : 0;
+ 
+}
+
+#item-produksi th
+{
+ background-color:#BBBBBB;
+ font-size:13px;
+ border-color :#EEEEEE;
+ text-align:center;	
+}
+
+#item-produksi tr {
+ border : 1;
+ border-color :#EEEEEE;
+ font-size:12px;
+	
+}
+
+#item-produksi td
+{
+ border : 1;
+ border-color :#EEEEEE;
+	
+}
+
+#text-capital
+{
+	text-transform:uppercase;
+}
+
+#form-period
+{
+	 border: none 0px #fff;
+}
+
+#form-period tr
+{
+	 border: none 0px #fff;
+}
+
+#form-period td
+{
+	 border: none 0px #fff;
+}

@@ -1,0 +1,105 @@
+﻿@using BonaStoco.AP1.Web.Models
+@model GRNModel
+@{
+    ViewBag.Title = "Kirim Barang";
+    IList<GRNItemModel> items = ViewBag.GRNItems;
+}
+<div>
+@using (@Html.BeginForm())
+{
+    <fieldset>
+        <legend>Kirim Barang</legend>
+    
+        @Html.HiddenFor(model => model.TenantId)
+        @Html.HiddenFor(model => model.NamaTenan)
+
+        <div>
+            <div class="editor-label">
+                @Html.LabelFor(m => m.NamaTenan)
+            </div>
+            <div class="editor-label">
+                <b>
+                    @Html.DisplayFor(m => m.TenantId)
+                    <text> - </text>
+                    @Html.DisplayFor(m => m.NamaTenan)
+                </b>
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.NamaPengirim)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.NamaPengirim)
+                @Html.ValidationMessageFor(model => model.NamaPengirim, "Masukkan nama pengirim")
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.CcyId)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownList("CcyId", String.Empty)
+                @Html.ValidationMessageFor(model => model.CcyId, "Pilih mata uang")
+            </div>
+        </div>
+        <div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Referensi)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Referensi)
+                @Html.ValidationMessageFor(model => model.Referensi)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.TanggalTransaksi)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.TanggalTransaksi)
+                @Html.ValidationMessageFor(model => model.TanggalTransaksi)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Keterangan)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Keterangan)
+                @Html.ValidationMessageFor(model => model.Keterangan)
+            </div>
+        </div>
+        <p>
+            <br />
+            <input type="submit" value="Kirim" />
+        </p>
+    </fieldset>
+}
+</div>
+<div>
+<table>
+    <thead>
+        <tr>
+            <th>Barcode</th>
+            <th>Nama Barang</th>
+            <th>Qty</th>
+            <th>Unit</th>
+            <th>Harga</th>
+            <th>Jumlah</th>
+        </tr>
+    </thead>
+    <tbody id="searchResults">
+        @if(items!=null && items.Count > 0)
+        {
+            foreach(GRNItemModel item in items)
+            {
+                <tr id="grnitem-@item.Id">
+                    <td>@item.Barcode</td>
+                    <td>@item.NamaBarang</td>
+                    <td>@item.Qty</td>
+                    <td>@item.Unit</td>
+                    <td>@item.Harga.ToString("N0")</td>
+                    <td>@item.Jumlah.ToString("N0")</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+</div>

@@ -1,0 +1,29 @@
+﻿@using BonaStoco.AP1.Web.Models
+@model UploadSalesResponse
+@{
+    ViewBag.Title = "Result";
+}
+@section styles{
+    <link href="@Url.Content("~/Content/UploadSales.css")" rel="stylesheet" type="text/css" />
+}
+@if (Model != null && Model.HasError)
+{
+    <div id="upload-result-error">
+        <p>
+            <strong>Gagal upload:</strong>
+            <p>
+                <strong>@Model.ErrorMessage</strong> <br />
+            </p>
+            @Html.ActionLink("Kembali ke upload data penjualan", "Index")
+        </p>
+    </div>
+}
+
+@if (Model != null && !Model.HasError)
+{
+    <div id="upload-result-success">
+        <p>
+            <strong>Data penjualan telah di upload.</strong> 
+        </p>
+    </div>
+}

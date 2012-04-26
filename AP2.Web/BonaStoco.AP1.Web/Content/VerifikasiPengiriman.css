@@ -1,0 +1,24 @@
+#linkPrint
+{
+	color: #034af3;
+    text-decoration: underline;
+    cursor:pointer;
+}
+
+#linkPrint:visited {
+    color: #505abc;
+    cursor:pointer;
+
+}
+
+#linkPrint:hover {
+    color: #1d60ff;
+    text-decoration: none;
+    cursor:pointer;
+ 
+}
+
+#linkPrint:active {
+    color: #12eb87;
+    cursor:pointer;
+}

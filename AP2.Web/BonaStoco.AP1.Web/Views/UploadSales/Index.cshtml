@@ -1,0 +1,61 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+@section styles{
+    <link href="@Url.Content("~/Content/UploadSales.css")" rel="stylesheet" type="text/css" />
+}
+
+@section scripts
+{
+    @Content.Script("jquery.validate.min.js", @Url)
+    @Content.Script("jquery.validate.unobtrusive.min.js", @Url)
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.accordion .head').click(function () {
+                $(this).next().toggle('slow');
+                return false;
+            }).next().hide();
+
+            $("#accordion").accordion();
+        });
+    </script>
+}
+
+<div id="accordion">
+    <h2><a href="#">Upload Data Penjualan</a></h2>
+    <div style="font-size:12px;">
+        @using (Html.BeginForm("Upload", "UploadSales", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <input type='file' name='file' id='file' />
+            <p>
+                <input type="submit" value="Upload" />
+            </p>
+        }
+        <p>
+            File harus dalam format CSV ( namafile.csv ) dan tidak ada column header. <br />
+            Contoh format data adalah sbb:
+            <table border="1" style="font-size:12px;">
+                <tr>
+                    <td>1007-12457,</td>
+                    <td>2010-07-20 08:20:10,</td>
+                    <td>150000</td>
+                    <td>IDR</td>
+                </tr>
+                <tr>
+                    <td>1007-12458,</td>
+                    <td>2010-07-20 08:25:12,</td>
+                    <td>350000</td>
+                    <td>IDR</td>
+                </tr>
+                 <tr>
+                    <td>1007-12459,</td>
+                    <td>2010-07-20 08:30:15,</td>
+                    <td>160000</td>
+                    <td>IDR</td>
+                </tr>
+            </table>
+        </p>
+    </div>
+</div>

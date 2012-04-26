@@ -1,0 +1,175 @@
+﻿@using BonaStoco.AP1.Web.Models
+@{
+    ViewBag.Title = "Monitoring DashBoard";
+}
+
+<link href="@Url.Content("~/Content/Monitoring.css")" rel="stylesheet" type="text/css" />   
+<link href="@Url.Content("~/Content/Home/ModalDialog.css")" rel="stylesheet" type="text/css" />
+@section scripts
+{
+    @Content.Script("jquery-ui-1.8.14.custom.min.js", @Url)
+    @Content.Script("highcharts.js", @Url);
+    @Content.Script("Monitoring.js",@Url);
+    @Content.Script("AdvancedSearchTenan.js", @Url)
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var bandara = $("#Bandara").text();
+            tahun = $("#Tahun").text();
+            bulan = $("#Bulan").text();
+            //    OpenDialogAktif();
+            //    OpenDialogNonAktif();
+            LoadDataUsingAjax(bandara);
+
+            //    $("#ExportTenanAktif").click(function () {
+            //        $("#DialogAktif").dialog("close");
+            //    });
+            //    $("#ExportTenanNonAktif").click(function () {
+            //        $("#DialogNonAktif").dialog("close");
+            //    });
+        });
+    </script>
+}
+
+<span id="Bandara" style="visibility:hidden">@ViewBag.Bandara</span>
+<span id="Tahun" style="visibility:hidden">@ViewBag.Tahun</span>
+<span id="Bulan" style="visibility:hidden">@ViewBag.Bulan</span>
+
+
+<div id="container" style="width: 800px; height: 400px; margin: 0 auto"></div>	
+
+@*<div class="mt">
+<table>
+	<thead>
+		<tr>
+			<th></td>
+			<th id="tgl1" scope="col">1</th>
+			<th id="tgl2" scope="col">2</th>
+			<th id="tgl3" scope="col">3</th>
+			<th id="tgl4" scope="col">4</th>
+			<th id="tgl5" scope="col">5</th>
+			<th id="tgl6" scope="col">6</th>
+			<th id="tgl7" scope="col">7</th>
+			<th id="tgl8" scope="col">8</th>
+			<th id="tgl9" scope="col">9</th>
+			<th id="tgl10" scope="col">10</th>
+			<th id="tgl11" scope="col">11</th>
+			<th id="tgl12" scope="col">12</th>
+			<th id="tgl13" scope="col">13</th>
+			<th id="tgl14" scope="col">14</th>
+			<th id="tgl15" scope="col">15</th>
+			<th id="tgl16" scope="col">16</th>
+			<th id="tgl17" scope="col">17</th>
+			<th id="tgl18" scope="col">18</th>
+			<th id="tgl19" scope="col">19</th>
+			<th id="tgl20" scope="col">20</th>
+			<th id="tgl21" scope="col">21</th>
+			<th id="tgl22" scope="col">22</th>
+			<th id="tgl23" scope="col">23</th>
+			<th id="tgl24" scope="col">24</th>
+			<th id="tgl25" scope="col">25</th>
+			<th id="tgl26" scope="col">26</th>
+			<th id="tgl27" scope="col">27</th>
+			<th id="tgl28" scope="col">28</th>
+			<th id="tgl29" scope="col">29</th>
+			<th id="tgl30" scope="col">30</th>
+            <th id="tgl31" scope="col">31</th>
+		</tr>
+	</thead>
+	<tbody align="center">
+		<tr class="aktif">
+			<th id="aktif" scope="row">Aktif</th>
+			<td id = "aktif1"></td>
+            <td id = "aktif2"></td>
+			<td id = "aktif3"></td>
+            <td id = "aktif4"></td>
+			<td id = "aktif5"></td>
+            <td id = "aktif6"></td>
+			<td id = "aktif7"></td>
+            <td id = "aktif8"></td>
+			<td id = "aktif9"></td>
+            <td id = "aktif10"></td>
+			<td id = "aktif11"></td>
+            <td id = "aktif12"></td>
+			<td id = "aktif13"></td>
+            <td id = "aktif14"></td>
+			<td id = "aktif15"></td>
+            <td id = "aktif16"></td>
+			<td id = "aktif17"></td>
+            <td id = "aktif18"></td>
+			<td id = "aktif19"></td>
+            <td id = "aktif20"></td>
+			<td id = "aktif21"></td>
+            <td id = "aktif22"></td>
+			<td id = "aktif23"></td>
+            <td id = "aktif24"></td>
+			<td id = "aktif25"></td>
+            <td id = "aktif26"></td>
+			<td id = "aktif27"></td>
+            <td id = "aktif28"></td>
+			<td id = "aktif29"></td>
+            <td id = "aktif30"></td>
+			<td id = "aktif31"></td>
+		</tr>
+		<tr class = "nonaktif">
+			<th id="nonaktif" scope="row">Non Aktif</th>
+			<td id = "nonaktif1"></td>
+            <td id = "nonaktif2"></td>
+			<td id = "nonaktif3"></td>
+            <td id = "nonaktif4"></td>
+			<td id = "nonaktif5"></td>
+            <td id = "nonaktif6"></td>
+			<td id = "nonaktif7"></td>
+            <td id = "nonaktif8"></td>
+			<td id = "nonaktif9"></td>
+            <td id = "nonaktif10"></td>
+			<td id = "nonaktif11"></td>
+            <td id = "nonaktif12"></td>
+			<td id = "nonaktif13"></td>
+            <td id = "nonaktif14"></td>
+			<td id = "nonaktif15"></td>
+            <td id = "nonaktif16"></td>
+			<td id = "nonaktif17"></td>
+            <td id = "nonaktif18"></td>
+			<td id = "nonaktif19"></td>
+            <td id = "nonaktif20"></td>
+			<td id = "nonaktif21"></td>
+            <td id = "nonaktif22"></td>
+			<td id = "nonaktif23"></td>
+            <td id = "nonaktif24"></td>
+			<td id = "nonaktif25"></td>
+            <td id = "nonaktif26"></td>
+			<td id = "nonaktif27"></td>
+            <td id = "nonaktif28"></td>
+			<td id = "nonaktif29"></td>
+            <td id = "nonaktif30"></td>
+			<td id = "nonaktif31"></td>
+		</tr>		
+	</tbody>
+</table>
+</div>	
+
+<div id="DialogAktif" title="Daftar Tenan Aktif">
+    @using (Html.BeginForm("ExportTenanAktif", "MonitoringDashBoard"))
+    {
+        <input type="hidden" name="hari" id="hari"/>
+        <input type="hidden" name="bulan" id="bulan"/>
+        <input type="hidden" name="tahun" id="tahun"/>
+        <input type="hidden" name="bandara" id="bandara"/>
+        <button id="ExportTenanAktif">Export</button>
+    }
+    <div id="IsiDialogAktif">
+    </div>
+</div>
+<div id="DialogNonAktif" title="Daftar Tenan Tidak Aktif">
+    @using (Html.BeginForm("ExportTenanNonAktif", "MonitoringDashBoard"))
+    {
+        <input type="hidden" name="hari" id="hari1"/>
+        <input type="hidden" name="bulan" id="bulan1"/>
+        <input type="hidden" name="tahun" id="tahun1"/>
+        <input type="hidden" name="bandara" id="bandara1"/>
+        <button id="ExportTenanNonAktif">Export</button>
+    }
+    <div id="IsiDialogNonAktif">
+    </div>
+</div>*@

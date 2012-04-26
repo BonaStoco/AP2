@@ -1,0 +1,41 @@
+﻿@model BonaStoco.AP1.MasterData.Models.Unit
+           
+@{
+    ViewBag.Title = "TambahUnit";
+    if(ViewBag.IsExist == true)
+    {
+        <script type="text/javascript">
+            alert("Unit Sudah Terdaftar");
+        </script>
+    }
+}
+
+@using (Html.BeginForm())
+{
+    <div>
+        @Html.ValidationSummary(true)
+        <fieldset>
+            <legend style="font-size=16px">Tambah Unit</legend>
+            @Html.HiddenFor(Model=>Model.UnitId)
+            <div class="div-floatleft">
+                <div class="editor-label">
+                    @Html.LabelFor(Model=>Model.Kode)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(Model=>Model.Kode)
+                    @Html.ValidationMessageFor(Model => Model.Kode)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(Model=>Model.Nama)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(Model=>Model.Nama)
+                    @Html.ValidationMessageFor(Model => Model.Nama)
+                </div>
+                <br />
+                <input type="submit" value="Simpan" />
+            </div>
+        
+        </fieldset>
+    </div>
+}

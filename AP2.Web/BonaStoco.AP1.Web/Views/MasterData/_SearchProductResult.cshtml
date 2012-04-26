@@ -1,0 +1,52 @@
+﻿@using BonaStoco.AP1.MasterData.Models
+@model IList<Product>
+@if (Model != null && Model.Count > 0)
+{
+    <p style="clear:both">
+        <table width="100%">
+            <thead>
+                <tr>
+                    <th width="23%">Nama</th>
+                    <th width="5%">Group</th>
+                    <th width="14%">Barcode</th>
+                    <th width="10%">Kode</th>
+                    <th width="10%">Unit</th>
+                    <th width="10%">Harga Beli</th>
+                    <th width="10%">Harga Jual</th>
+                    <th width="10%">Mata Uang</th>
+                    <th width="10%"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var p in Model)
+                {
+                    <tr>
+                        <td>@p.Nama</td>
+                        <td>@p.GroupName</td>
+                        <td>@p.Barcode</td>
+                        <td>@p.Kode</td>
+                        <td>@p.UnitName</td>
+                        <td>@p.HargaBeli.ToString("N")</td>
+                        <td>@p.HargaJual.ToString("N")</td>
+                        <td>@p.CcyName</td>
+                        <td>@Html.ActionLink("Edit","Edit",new { tenanId = @p.TenanId, productId = @p.ProductId }) ||
+                        @if (p.StatusPrint)
+                        {
+                            <a href="#" onclick="dialogPrintBarcode('@p.Kode', '@p.TenanId')">Print</a>
+                        }
+                        else
+                        {
+                            <span>Print</span>
+                        }
+                        </td>    
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </p>
+}
+else
+{
+    <br />
+    <text>Barang yang anda cari tidak ditemukan.</text>
+}

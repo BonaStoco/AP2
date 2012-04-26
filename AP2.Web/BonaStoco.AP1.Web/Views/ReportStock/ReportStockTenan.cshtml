@@ -1,0 +1,100 @@
+﻿@model BonaStoco.AP1.Web.Models.CompanyProfiles
+@{
+    ViewBag.Title = "ReportStockTenan";
+}
+@section styles{
+    <link href="@Url.Content("~/Content/reportstok.css")" rel="stylesheet" type="text/css" />
+     <link href="@Url.Content("~/Content/StockCardDetail.css")" rel="stylesheet" type="text/css" />
+}
+
+@section scripts{
+ @Content.Script("jquery.validate.min.js", @Url)
+    @Content.Script("jquery.validate.unobtrusive.min.js", @Url)
+    @Content.Script("jquery.quicksearch.js", @Url) 
+      @Content.Script("stock.js", @Url)     
+    <script type="text/javascript">
+         $("#dialog-overlay").ajaxStart(function () {
+             $(this).show();
+         }).ajaxStop(function () {
+             $(this).hide();
+         });
+     </script>
+}
+
+<span id="tenan-id" style="visibility:hidden">@Model.CompanyId</span>
+
+<table  id="ReportStock" width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+    <td width="21%" rowspan="2" valign="top">
+		<div id="detailleft">
+		  <table id="ReportStock" width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td> 
+               
+                  <div id="btnbandara" align=center>Laporan Stock</div>           
+               
+            </td>
+            </tr>
+            <tr>
+              <td>
+                       <br />
+                        <div id="CategoryStockList">                      
+
+                        
+                </td>
+            </tr>
+            
+          </table>
+		</div>
+	</td>
+  
+  <tr>
+    <td colspan="3" valign="top" >  
+<span style="font-size:16px; font-weight:bold; color:Black">Laporan Stock @Model.CompanyName</span>
+<div id="searchStockCard"></div>
+<table id="tblstock" width="100%">
+    <thead></thead>
+    <tbody></tbody>
+      
+</table>
+        <p class="style11">&nbsp;</p>
+      
+      <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p></td>
+  </tr>
+</table>
+
+<div id="BackToList">Kembali Ke List</div>
+<div class="divStockCardDetail divIndex">
+    <div class="divHeaderStockCardDetail divHeader">
+        <label class="TitleStockCardDetail title">Detail Kartu Stock </label>
+    </div> 
+   
+    <div id="divListStockCardDetail">
+        <table id="tableListStockCardDetail" width="96%" border="0" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Tanggal</th>
+                    <th>No. Transaksi</th>
+                    <th>Tipe Transaksi</th>
+                    <th style="text-align: right;">Jumlah Masuk</th>
+                    <th style="text-align: right;">Jumlah Keluar</th>
+                    <th style="text-align: right;">Saldo</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+             <tfoot>
+            </tfoot>
+        </table>
+    </div>
+</div>
+<div id="dialog-overlay">
+		<div id="dialog-loader">
+			<img src="@Url.Content("~/Content/images/loader-new.gif")"/>
+        </div>
+</div>
+
+</body>

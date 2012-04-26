@@ -1,0 +1,38 @@
+﻿@model BonaStoco.AP1.PengirimanBarang.Models.GRNItem
+@if (Model != null)
+{
+    <td>@Model.Barcode</td>
+    <td>@Model.Nama</td>
+    <td>@Model.Qty</td>
+    <td>&nbsp;&nbsp; @Model.ActualQty &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                   <span onclick="Edit()" style="cursor:pointer">
+                        @Ajax.ActionLink("Edit", "Edit", new { id = Model.Guid.ToString() },
+                        new AjaxOptions
+                        {
+                            HttpMethod = "POST",
+                            InsertionMode = InsertionMode.Replace,
+                            UpdateTargetId = "FormEdit"
+                        })
+                        </span>
+                       </td>
+    <td>@Model.UnitName</td>
+    if (Model.CcyCode.ToUpper() == "USD")
+    {
+    <td>@Model.Harga.ToString("N2")</td>
+    <td>@Model.Jumlah.ToString("N2")</td>
+    }
+    else
+    {
+         <td>@Model.Harga.ToString("N0")</td>
+    <td>@Model.Jumlah.ToString("N0")</td>
+    }
+}
+else
+{
+    <script type="text/javascript">
+        alert("Barang yang anda cari tidak ditemukan.");
+    </script>
+}
+<div id="FormEdit" title="Edit Qty">
+
+</div>

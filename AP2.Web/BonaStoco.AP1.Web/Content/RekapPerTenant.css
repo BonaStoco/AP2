@@ -1,0 +1,330 @@
+#dialog-overlay
+{
+    	width:100%;
+    	height:100%;
+    	filter:alpha(opacity=70);
+    	-moz-opacity:0.7;
+    	-khtml-opacity: 0.7;
+    	opacity: 0.7;
+    	background:#000;
+    	position:fixed;
+    	top:0; left:0;
+    	z-index:3000;
+    	display : none;			
+}
+#dialog-loader
+{	
+	width : 200px;
+	height : 200px;
+  	margin : 14% 50% 14% 40%; 
+}
+
+/*********************Table***************************/
+#DivLeftContain {
+	background: -moz-linear-gradient(bottom, #FFC082, #FFEBD7);
+    -webkit-border-radius: 12px 12px 12px 12px;
+    -moz-border-radius: 12px 12px 12px 12px;
+	border: Orange solid 1px;
+	min-height: 100%;
+	width : 100%;
+}
+
+/***************************Menu*************************************/
+#DivLeftContain ul li ul
+{
+	visibility : visible;
+}
+
+div#Periode a:link
+{
+	background : -webkit-linear-gradient(top, #79BCFF, #005CB9);
+    -webkit-border-radius: 4px 4px 4px 4px;
+    -moz-border-radius: 4px 4px 4px 4px;
+	border: #999999 solid 1px;
+	width: 130px;
+	height: 25px;
+	text-align: center;
+	margin: 3px;
+	font-size: 17px;	
+	cursor:pointer;
+	color:white;
+	display:block;
+	text-decoration:none;
+}
+
+div#Periode a:hover 
+{
+	background : -webkit-linear-gradient(top, #e8eef4, #79BCFF);
+	width: 130px;
+	color:#005CB9;
+	display:block;
+}
+
+#clear 
+{
+  border-bottom:0;
+  border-left:0;
+  border-right:0;
+  border-top:0;   
+}
+
+.header-view td
+{
+    
+   background : -webkit-linear-gradient(top, #79BCFF, #005CB9);
+   color:white;
+   font-weight:bold;
+   text-transform:uppercase;
+}
+
+
+
+.ActivePeriode
+{
+	background : -webkit-linear-gradient(top, #e8eef4, #79BCFF);
+    -webkit-border-radius: 4px 4px 4px 4px;
+    -moz-border-radius: 4px 4px 4px 4px;
+	border: #999999 solid 1px;
+	width: 130px;
+	height: 25px;
+	text-align: center;
+	margin: 3px;
+	font-size: 17px;	
+	cursor:default;
+	color:#005CB9;
+	display:block;
+	text-decoration:none;
+}
+
+#headerCompany
+{
+	background : -webkit-linear-gradient(top, #79BCFF, #005CB9);
+     padding:5px 3px 5px 3px;
+     color:white;  
+     font-weight:bold;
+     font-size:14px;  
+     border:0px;
+     vertical-align:top;
+     height: 18px;
+     text-align:center;
+}
+/***********************Align************************************/
+.top
+{
+	vertical-align:top;
+}
+
+#HeaderjumlahTransaksi
+{
+	background : -moz-linear-gradient(top,#5C87B2,#FFF);
+	border-top : 1px solid Gray;
+	border-left : 1px solid Gray;
+	border-right : 1px solid Gray;
+	color : #333;
+}
+#IsijumlahTransaksi
+{
+	background-color : #FFF;
+	font-size : 21px;
+	font-weight: bolder;
+	text-align : center;
+	border-bottom : 1px solid Gray;
+	border-left : 1px solid Gray;
+	border-right : 1px solid Gray;
+}
+#BodyLeftjumlahTransaksi
+{
+	background-color : #FFF;
+	border-left : 1px solid Gray;
+}
+#BodyRightjumlahTransaksi
+{
+	background-color : #FFF;
+	border-right : 1px solid Gray;
+}
+.NamaBandara
+{
+	font-size : 20px;
+	color : Gray;
+	text-align : center;
+}
+
+table#tableLaporanPenjualan
+{
+    border: none 0px #fff;
+}
+.isiLaporanPenjualan table
+{
+    border: none 0px #fff;
+}
+
+#detail-harian 
+{
+    
+  border:0;
+     
+}
+#detail-harian tr
+{
+    
+  border:0;
+     
+}
+
+#detail-harian td
+{
+    
+  border:0;
+     
+}
+
+#detail-bulanan 
+{
+    
+  border:0;
+     
+}
+#detail-bulanan tr
+{
+    
+  border:0;
+     
+}
+
+#detail-bulanan td
+{
+    
+  border:0;
+     
+}
+
+#detail-tahunan 
+{
+    
+  border:0;
+     
+}
+#detail-tahunan tr
+{
+    
+  border:0;
+     
+}
+
+#detail-tahunan td
+{
+    
+  border:0;
+     
+}
+
+#next 
+{
+ display:none; 
+ text-transform:uppercase;  
+ color:blue;
+}
+
+#previous 
+{
+
+ text-transform:uppercase;  
+ color:blue;
+    
+}
+
+
+
+.center 
+{
+  text-align:center;   
+    
+}
+.current 
+{
+    
+     text-align:right;
+       font-size:14px;
+}
+
+.twobefore 
+{
+    
+     text-align:right;
+       font-size:14px;
+    
+}
+
+.before
+{
+     text-align:right;
+       font-size:14px;
+}
+
+.right 
+{
+  text-align:right;     
+}
+
+#tableRekap {
+    border: solid 1px #e8eef4;
+    -webkit-box-shadow: 1px 1px 7px #000;
+}
+
+#tableRekap th {
+    text-align: left;
+    border: solid 1px #e8eef4;
+    font-weight:bold;
+    color:#555555;
+    background : -webkit-linear-gradient(top, #FFFF9B, #FDB344);
+}
+
+#tableRekap td {
+    padding: 5px;
+    border: solid 1px #e8eef4;
+    
+}
+
+/*sorting table*/
+
+table.tablesorter {
+	font-family:arial;
+	background-color: #FFF;
+	margin:10px 0pt 15px;
+	font-size: 8pt;
+	width: 100%;
+	text-align: left;
+}
+table.tablesorter thead tr th, table.tablesorter tfoot tr th {
+	border: 1px solid #FFF;
+	padding: 4px;
+}
+table.tablesorter thead tr .header {
+	background-image: url(images/reportsales/bg.gif);
+	background-repeat: no-repeat;
+	background-position: center right;
+	cursor: pointer;
+	padding-right: 20px;
+}
+table.tablesorter tbody td {
+	color: #3D3D3D;
+	padding: 4px;
+	background-color: #FFF;
+	vertical-align: top;
+}
+table.tablesorter tbody tr.odd td {
+	background-color:#F0F0F6;
+}
+table.tablesorter thead tr .headerSortUp {
+	background-image: url(images/reportsales/asc.gif);
+}
+table.tablesorter thead tr .headerSortDown {
+	background-image: url(images/reportsales/desc.gif);
+}
+/*table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+background-color: #ffffff;
+}*/
+
+
+
+

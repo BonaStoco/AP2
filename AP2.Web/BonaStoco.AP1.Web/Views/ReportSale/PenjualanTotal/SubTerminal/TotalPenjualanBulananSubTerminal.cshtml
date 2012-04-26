@@ -1,0 +1,64 @@
+﻿@model List<BonaStoco.AP1.Web.Report.SubTerminalMonthlySales>
+@{
+    DateTime today = DateTime.Today;
+}
+@section styles{
+    <link href="@Url.Content("~/Content/LaporanPenjualanByTenant.css")" rel="stylesheet" type="text/css" />
+}
+<table width="95%" height="65%" border="0" align="right" cellpadding="0" cellspacing="0">
+    <tr>
+        <td width="128px" height="39">
+            <div id="Periode">
+            @Html.ActionLink("Hari", "PageHari", "SubTerminalReportSale", new { locationId = ViewBag.LocationId, subTerminalId = ViewBag.TerminalId,subTerminalName = ViewBag.SubTerminalName },null)
+                    
+            </div>
+        </td>
+        <td width="128px">
+            <div class="ActivePeriode">Bulan
+            </div>
+        </td>
+        <td width="128px">
+            <div id="Periode">
+            @Html.ActionLink("Tahun", "PageTahun", "SubTerminalReportSale", new { locationId = ViewBag.LocationId,subTerminalId = ViewBag.TerminalId, subTerminalName = ViewBag.SubTerminalName },null)
+                    
+            </div>
+        </td >
+        <td width="100%">
+            <div class="NamaBandara">@ViewBag.SubTerminalName</div>
+        </td>
+    </tr>
+    <tr>
+    <td height="494" colspan="4" align="right" class="top" id="results">
+            <table width="100%" height="100%" border="0" align="right" cellpadding="0" cellspacing="0">
+					    <tr>
+					    <td height="39" class="left" id="HeaderjumlahTransaksi">Total penjualan @ViewBag.Waktu, @today.Date.ToString("MMMM yyyy") di @ViewBag.SubTerminalName</td>
+					    </tr>
+					    <tr>
+					    <td height="21" class="center" id="IsijumlahTransaksi">Rp. @ViewBag.TotalSalePerMonth</td>
+					    </tr>
+					    <tr>
+					    <td class="top"><br />
+						    <table width="100%" border="0" cellpadding="0" cellspacing="0" bordercolor="#FFFFFF">
+                                <tr>
+                                    <td  colspan="2" id="HeaderjumlahTransaksi">
+                                        Detail Penjualan di @ViewBag.SubTerminalName @ViewBag.Waktu, @today.Date.ToString("MMMM yyyy")
+                                    </td>
+                                </tr>
+							    <tr >
+							        <td width="50%"  class="left" id="BodyLeftjumlahTransaksi">Sub Terminal</td>
+							        <td width="50%" class="right" id="BodyRightjumlahTransaksi">Jumlah Penjualan</td>
+							    </tr>
+                                @foreach (var item in Model)
+                                {
+							        <tr>
+								    <td class="left" id="BodyLeftjumlahTransaksi">@item.SubTerminalName</td>
+								    <td class="right" id="BodyRightjumlahTransaksi">Rp. @item.TotalSaleperCompany.ToString("N")</td>
+							        </tr>
+                                }
+						    </table>
+					    </td>
+          			    </tr>
+            </table>
+    </td>
+    </tr>
+</table>

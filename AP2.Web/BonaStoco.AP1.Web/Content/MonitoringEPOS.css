@@ -1,0 +1,173 @@
+﻿div#mainMOnitoringEPOS{
+	width:70%;
+	height:450px;
+	margin-left:2.5em;
+	border-radius: 5px 5px 5px 5px;	
+	border: solid 1px #FDB344;
+	position:absolute;
+	padding: 2px 3px 10px 3px;
+	-webkit-box-shadow: 1px 1px 4px #333;
+    -moz-box-shadow: 1px 1px 4px #333;
+    color:#0066CC;
+}
+
+div#datePanel
+{
+	float:left;
+}
+
+div.header
+{
+	width:100%;
+	display:block;
+	margin-bottom:10px;
+}
+
+label#title{
+	display:block;
+	padding:2px;
+	font-weight:bold;
+	text-align:center;
+	border: 1px #FDB344 solid;
+	border-radius: 5px 5px 5px 5px;
+	vertical-align:middle;
+	margin-bottom:7px;	
+	color:#000;
+	background : -webkit-linear-gradient(top, #FFFF9B, #FDB344);
+	background : -moz-linear-gradient(top, #FFFF9B, #FDB344);
+}
+
+label.left
+{
+	float:left;
+	padding-left:2px;
+}
+
+label.right
+{
+	float:right;
+	padding-right:2px;
+}
+
+label.direction
+{
+	padding: 0px 5px 0px 5px;
+	border: 1px #CCC solid;
+	border-radius: 3px 3px 3px 3px;
+	cursor:pointer;
+}
+label.direction:hover
+{
+	background : -webkit-linear-gradient(top, #999, #666);
+	background : -moz-linear-gradient(top, #999, #666);
+}
+
+table#tableMonitoring
+{
+	width:100%;
+	margin: 3px 0px 3px 0px;
+	border-collapse:collapse;
+}
+table#tableMonitoring thead tr th{
+	padding: 2px 15px 2px 5px;
+	font-size:13px;
+	font-family:"trebuchet MS";
+	text-align:center;
+}
+
+table#tableMonitoring thead tr th.no
+{
+	width:8px;
+}
+table#tableMonitoring thead tr th.jam
+{
+	width:60px;
+}
+table#tableMonitoring thead tr th.tenanId
+{
+	width:50px;
+}
+table#tableMonitoring thead tr th.idle
+{
+	width:50px;
+}
+table#tableMonitoring thead tr th.totalItem
+{
+	width:40px;
+}
+table#tableMonitoring thead tr th.totalTransaksi
+{
+	width:50px;
+}
+table#tableMonitoring thead tr th.totalPenjualan
+{
+	width:130px;
+}
+table#tableMonitoring tbody{
+    position: absolute;
+    overflow-y:scroll;
+    overflow-x : hidden;
+    height: 305px;
+    margin-left:-1px;
+    margin-top:-1px;
+}
+table#tableMonitoring tbody tr td{
+	padding: 1px 5px 1px 5px;
+	font-size:12px;
+	font-family:"trebuchet MS";
+}
+table#tableMonitoring tbody tr td.no
+{
+	width:26px;
+	text-align:center;
+}
+table#tableMonitoring tbody tr td.jam
+{
+	width:70px;
+	text-align:center;
+}
+table#tableMonitoring tbody tr td.tenanId
+{
+	width:60px;
+	text-align:center;
+}
+table#tableMonitoring tbody tr td.tenanName
+{
+	width:299px;
+	text-align:center;
+}
+table#tableMonitoring tbody tr td.idle
+{
+	width:60px;
+	text-align:center;
+}
+td.totalItem
+{
+	width:50px;
+	text-align:right;
+}
+td.totalTransaction
+{
+	width:69px;
+	text-align:right;
+}
+td.totalSales
+{
+	width:123px;
+	text-align:right;
+}
+span#ccy
+{
+	float:left;
+	text-align:left;
+}
+table#tableMonitoring tfoot{
+	position:absolute;
+	bottom:0;
+}
+table#tableMonitoring tfoot tr td.Total
+{
+	width:640px;
+	text-align:center;
+}
+

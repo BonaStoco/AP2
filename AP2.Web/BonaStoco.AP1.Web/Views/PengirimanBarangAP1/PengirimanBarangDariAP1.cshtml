@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Pengiriman Barang";
+    AjaxOptions ao = new AjaxOptions{
+        HttpMethod="POS",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "result"  
+    };
+}
+<h2>Pengiriman Barang</h2>
+<div class="div-center">
+@using (Ajax.BeginForm("FindTenant", "Tenant", ao)) { 
+    <input type="text" value="input kode tenan" />
+    <input type="button" value="Cari" />
+}
+</div>
+<div id="result">
+</div>

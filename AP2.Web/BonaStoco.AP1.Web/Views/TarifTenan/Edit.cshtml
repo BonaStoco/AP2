@@ -1,0 +1,97 @@
+﻿@model BonaStoco.AP1.MasterData.Models.Tenan
+@{
+    ViewBag.Title = "Data Tenan > Edit";
+}
+
+@section scripts
+{
+    @Content.Script("jquery.validate.min.js", @Url)
+    @Content.Script("jquery.validate.unobtrusive.min.js", @Url)
+}
+@if (Model == null)
+{
+    <div>
+    <h2>Barang tidak ditemukan dalam database.</h2>
+    </div>
+}
+else
+{
+ <h2>Data Tenan > Edit</h2>
+<form method="post" action="">
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(m => m.TenanId)
+        @Html.HiddenFor(m => m.TerminalId)
+        @Html.HiddenFor(m => m.SubTerminalId)
+        @Html.HiddenFor(m => m.LocationId)
+        @Html.HiddenFor(m => m.Nppkp)
+        @Html.HiddenFor(m => m.Npwp)
+        @Html.HiddenFor(m => m.Alamat)
+        @Html.HiddenFor(m => m.NameCompany)
+        @Html.HiddenFor(m => m.TenanName)
+        @Html.HiddenFor(m => m.TerminalName)
+        @Html.HiddenFor(m => m.SubTerminalName)
+        @Html.HiddenFor(m => m.CategoryId)
+
+        <table width="100%" border="0">
+            <tbody>
+            <tr>
+                <td class="label-field">Tenan Id</td>
+                <td class="field">@Html.DisplayFor(m => m.TenanId)</td>
+            </tr>
+            <tr>
+                <td class="label-field">Nama </td>
+                <td class="field">@Html.DisplayFor(m => m.TenanName)</td>
+                   
+            </tr>
+            <tr>
+                <td class="label-field">Alamat</td>
+                <td class="field">@Html.DisplayFor(m => m.Alamat)
+                    </td>
+            </tr>
+            <tr>
+                <td class="label-field">Lokasi</td>
+                <td class="field">@Html.DisplayFor(m => m.NameCompany)</td>
+            </tr>
+            <tr>
+                <td class="label-field">Terminal</td>
+                <td class="field">@Html.DisplayFor(m => m.TerminalName)</td>
+            </tr>
+            <tr>
+                <td class="label-field">Sub Terminal</td>
+                <td class="field">@Html.DisplayFor(m => m.SubTerminalName)</td>
+            </tr>
+            <tr>
+                <td class="label-field">Gate</td>
+                <td class="field">@Html.TextBoxFor(m => m.Gate)</td>
+            </tr>
+            <tr>
+                <td class="label-field">Kategori Tenan</td>
+                <td class="field">@Html.DropDownList("TenanTypeId", String.Empty)</td>
+            </tr>
+            <tr>
+                <td class="label-field">Kategori Produk</td>
+                <td class="field">@Html.DropDownList("ProductTypeId", String.Empty)</td>
+            </tr>
+            <tr>
+                <td class="label-field">Tanggal Bergabung</td>
+                <td class="field">@Html.EditorFor(m => m.TanggalBergabung)</td>
+            </tr>
+            <tr>
+                <td class="label-field">Tarif</td>
+                <td class="field">@Html.EditorFor(m => m.Tarif)</td>
+            </tr>
+            <tr>
+                 <td class="label-field">Formula Konsesi</td>
+                 <td class="field">@Html.EditorFor(m => m.FormulaKonsesi)</td>
+            </tr>
+            <tr>
+                <td class="label-field">Target</td>
+                <td class="field">@Html.EditorFor(m => m.Target) @Html.DropDownList("CcyCode")</td>
+            </tr>
+           
+            </tbody>
+        </table>
+        <br />
+         <input type="submit" value="Update" /> 
+</form>
+}

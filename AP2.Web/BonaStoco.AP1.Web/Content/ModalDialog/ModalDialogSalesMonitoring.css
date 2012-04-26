@@ -1,0 +1,248 @@
+﻿div#DialogOverlay{
+	width:100%;
+    height:100%;
+    filter:alpha(opacity=80);
+    -moz-opacity:0.8;
+    -khtml-opacity: 0.8;
+    opacity: 0.8;
+    background:#fff;
+    position:absolute;
+    top:0; left:0;
+	z-index:500;
+}
+
+div#ModalDialogSales label.TitleOverlay, div#ModalDialogDetailTransaction label.TitleOverlay{
+	outline:groove;
+	width: 300px;
+	font-size:36px;
+	font-weight:bolder;
+	text-align:center;
+	color:#FFFFFF;
+	top: 70px;
+	-moz-transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
+	-webkit-box-shadow: 2px 2px 10px #888;
+	-moz-box-shadow: 2px 2px 10px #888;
+	position:absolute;
+	background:#999999;
+	left:-150px;
+	padding: 0px 110px;
+	position:absolute;
+	z-index:650;
+}
+
+div#ModalDialogSales div.SalesDialog, div#ModalDialogDetailTransaction div.DetailTransactionDialog{
+	width: 750px;
+	background-color:#FFFFFF;
+	margin-bottom:20px;
+	border:#79BCFF 1px solid;
+	height: 425px;
+	overflow:hidden;
+	resize: none;
+	border-radius: 5px 0px 0px 5px;
+	padding: 3px 3px 7px 3px;
+	-webkit-box-shadow: 1px 1px 7px #000;
+    -moz-box-shadow: 1px 1px 7px #000;
+	position:absolute;
+	z-index:750;
+	top: 23%;
+	left: 23%;
+}
+
+div.SalesDialog label.Header, div.DetailTransactionDialog label.Header{
+	display:block;
+	padding:3px 3px 5px 5px;
+	font-weight:bold;
+	text-align:center;
+	border: 1px #005CB9 solid;
+	border-radius: 5px 5px 5px 5px;
+	vertical-align:middle;
+	margin-bottom:10px;	
+	color:#F2F2F2;
+	background : -webkit-linear-gradient(top, #79BCFF, #005CB9);
+	background : -moz-linear-gradient(top, #79BCFF, #005CB9);
+}
+
+div.SalesDialog label.Header label.LogoDialog, div.DetailTransactionDialog label.Header label.LogoDialog{
+	margin-top: -5px;
+	margin-left: -3px;
+	float:left;
+}
+div.SalesDialog label.Header label.LogoDialog img, div.DetailTransactionDialog label.Header label.LogoDialog img{
+	width: 21px;
+	height: 26px;
+}
+
+div.SalesDialog label.Header label#Close, div.DetailTransactionDialog label.Header label#Back{
+	padding: 0px 5px 0px 5px;
+	float:right;
+	border: 1px #CCC solid;
+	border-radius: 3px 3px 3px 3px;
+	cursor:pointer;
+}
+div.SalesDialog label.Header label#Close:hover, div.DetailTransactionDialog label.Header label#Back:hover{
+	background : -webkit-linear-gradient(top, #999, #666);
+	background : -moz-linear-gradient(top, #999, #666);
+}
+div#ListTenan{
+	width:98%;
+	padding-right:3px;
+	height: 350px;
+	autoscroll: true;
+	overflow-y: auto;
+	overflow-x: hidden;
+	resize:horizontal;
+	position:absolute;
+	z-index:800;
+}
+table#TableTransaction, table#TableDetailPenjualan{
+	border-collapse: collapse;
+	margin: 2px;
+}
+table#TableTransaction thead tr, table#TableDetailPenjualan thead tr{
+	border-bottom:#CCC 1px solid;
+}
+table#TableTransaction thead tr th, table#TableDetailPenjualan thead tr th{
+	border : #CCC 1px solid;
+	font:"trebuchet MS";
+	font-size:14px;
+	font-weight:bold;
+	color:#F2F2F2;
+	padding: 3px 0px 3px 5px;
+	background-color:#5389fa;
+}
+table#TableTransaction tbody, table#TableDetailPenjualan tbody
+{
+    width:99%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 340px;
+    position: absolute;
+    z-index: 900;
+}
+table#TableTransaction tbody tr, table#TableDetailPenjualan tbody tr
+{
+    border-bottom:#CCC 1px solid;
+    cursor:pointer;
+}
+table#TableTransaction tbody tr:hover td
+{
+    background:#adc6fd;
+    z-index: 950;
+}
+table#TableTransaction tbody tr td, table#TableDetailPenjualan tbody tr td
+{
+	font:"trebuchet MS";
+	font-size:12px;
+	border : #CCC 1px solid;
+	padding: 2px 2px 2px 5px;
+}
+th.Tanggal, td.Tanggal{
+	width: 200px;
+	text-align:center;
+}
+th.NoTransaksi{
+	font-weight:bold;
+	text-align:left;
+	width: 400px;
+}
+td.NoTransaksi{
+	padding-left: 5px;
+	text-align:left;
+	text-transform:uppercase;
+	width: 400px;
+}
+th.Jumlah{
+	width:200px;
+	text-align:center;
+}
+td.Jumlah{
+	width:176px;
+	text-align:right;
+}
+
+th.tanggal{
+	text-align:left;
+	width: 200px;
+}
+th.noTransaksi{
+	text-align:left;
+}
+th.matauang{
+	text-align:center;
+	width: 100px;
+}
+th.IDR{
+	text-align:center;
+	width: 200px;
+	font-size:12px;
+	font-family:"trebuchet MS";
+}
+th.USD{
+	width: 150px;
+	text-align:center;
+	font-size:12px;
+	font-family:"trebuchet MS";
+}
+
+table#TableDetailTransaction tbody tr.Bold{
+     font-weight: bold;
+     color: #000;
+}
+table#TableDetailTransaction tfoot tr.Bold{
+     font-weight: bold;
+     color: #000;
+}
+
+div#ModalDialogSales div.SalesDialog div#Loading, div#ModalDialogSales div.SalesDialog div#Loading{
+	width:100%;
+    height:100%;
+    filter:alpha(opacity=60);
+    -moz-opacity:0.6;
+    -khtml-opacity: 0.6;
+    opacity: 0.6;
+    background:#FFF;	
+	background-image:url(../images/button/preloader.gif);
+	background-position:center;
+	background-repeat:no-repeat;
+	position:absolute;
+	z-index:750px;
+	margin-top: 3em;
+	display:none;
+}
+input#search_transaction
+{
+	position:absolute;
+	right:0;
+	bottom:0;
+	font-size:12px;
+	font-family:"trebuchet MS";
+	color:#5389fa;
+	width: 15em;
+	height:14px;
+	margin: 3px;
+}
+label#TotalTransaction
+{
+    position:absolute;
+	left:0;
+	bottom:0;
+	font-size:12px;
+	font-family:"trebuchet MS";
+	color:#5389fa;
+	margin: 5px;
+}
+span.CCY{
+    float:left;
+    text-align:left;
+}
+
+.Left{
+    text-align:left;
+}
+.Right{
+    text-align:right;
+}
+.Center{
+    text-align:center;
+}

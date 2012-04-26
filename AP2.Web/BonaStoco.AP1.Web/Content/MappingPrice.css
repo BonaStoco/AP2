@@ -1,0 +1,261 @@
+﻿.divIndex{
+    font-family:tahoma;
+    border-radius: 5px 5px 5px 5px;
+    border: solid 1px #3294F0;
+    -webkit-box-shadow: 1px 1px 7px #333;
+    -moz-box-shadow: 1px 1px 7px #333;
+    color: white;
+}
+.divHeader{
+    border: solid 1px #3294F0;
+    border-radius: 5px 5px 0 0;
+    padding: 10px 0 10px 0;
+    background: -webkit-linear-gradient(top, #98CBFB, #3294F0);
+    background: -moz-linear-gradient(top, #98CBFB, #3294F0);
+    color: white;
+    font-family:tahoma;
+}
+.title{
+   font-weight: bold;
+   margin-left: 10px;
+   text-shadow: 1px 1px 1px black, 3px 3px 5px blue;
+}
+.divMappingPrice {
+    width: 100%;
+}
+.divHeaderMappingPrice{
+    width: 100%;
+    height:31px;
+
+}
+#divBodyMappingPrice{
+    width:470px;
+    padding: 18px;
+}
+#TitelMappingPrice{
+   font-size: 21px;
+}
+.SearchTenan {
+    width :100%; 
+    border :0;
+}
+.SearchTenan tr {
+    border :0;
+}
+.SearchTenan tr td{
+    border :0;
+    color:Black;
+    font-size:12px;
+}
+#divListItemMappingPirce{
+    width:100%;
+    display:none;
+    padding: 18px;
+    color: black;
+}
+table#tableListProductTenanLounge thead tr th{
+    background-color :#3294F0
+}
+table#tableListProductTenanLounge tbody tr td{
+    height:17px;
+}
+table#tableListProduct thead tr th{
+    background-color :#3294F0
+}
+.EditPrice{
+    background: transparent url("./images/Actions.png") no-repeat;
+    background-position: -382px -57px;
+    height: 16px;
+    width: 19px;
+    float: left;
+    cursor:pointer;
+}
+.delete{
+    float: right;
+    font-size: 14px;
+    font-weight: bold;
+    color: red;
+    cursor: pointer;
+}
+.DivDialogMapping{
+    width: 350px;
+    margin-left: 31%;
+    margin-top: -16%;
+    margin-bottom: 4%;
+    position: relative;
+    z-index: 600;
+    display: none;
+}
+.DivHeaderDialogMapping{
+    width: 100%;
+    height:17px;
+}
+.TitleEdit{
+    font-size:16px;
+}
+#tableEditDialog tr {
+    border :0;
+}
+#tableEditDialog tr td{
+    border :0;
+    color:Black;
+    font-size:12px;
+}
+#tableAddDialog tr {
+    border :0;
+}
+#tableAddDialog tr td{
+    border :0;
+    color:Black;
+    font-size:12px;
+}
+.simpan{
+    border: solid 1px #3294F0;
+    border-radius: 5px 5px 5px 5px;
+    float: left;
+    padding: 5px;
+    background-color: #3294F0;
+    margin-left: 32%;
+    margin-right: 2%;
+    cursor: pointer;
+    font-weight: bold;
+}
+.batal{
+    border: solid 1px #3294F0;
+    border-radius: 5px 5px 5px 5px;
+    float: left;
+    padding: 5px;
+    background-color: Red;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.simpan:hover{
+    border: solid 1px #D4D5D6;
+    border-radius: 5px 5px 5px 5px;
+    float: left;
+    padding: 5px;
+    background-color: #D4D5D6;
+    margin-left: 32%;
+    margin-right: 2%;
+    cursor: pointer;
+    font-weight: bold;
+}
+#batal:hover{
+    border: solid 1px #D4D5D6;
+    border-radius: 5px 5px 5px 5px;
+    float: left;
+    padding: 5px;
+    background-color: #D4D5D6;
+    cursor: pointer;
+    font-weight: bold;
+}
+ #loadingMapping
+{
+    	width:100%;
+    	height:100%;
+    	filter:alpha(opacity=70);
+    	-moz-opacity:0.9;
+    	-khtml-opacity: 0.9;
+    	opacity: 0.9;
+    	background:#fff;
+    	position:fixed;
+    	top:0; left:0;
+    	z-index:3000;
+    	display : none;		
+}
+#loaders
+{	
+	width : auto;
+	height :auto;
+  	margin : 23% 50% 13% 43%;
+}
+
+div#DialogOverlayProduct{
+	width:100%;
+    height:100%;
+    filter:alpha(opacity=80);
+    -moz-opacity:0.8;
+    -khtml-opacity: 0.8;
+    opacity: 0.8;
+    background:#fff;
+    position:absolute;
+    top:0; left:0;
+	z-index:500;
+	display:none;
+}
+.divListproduct{
+    width: 59%;
+    margin-top: -16%;
+    margin-left: 19%;
+    display: none;
+    position: relative;
+    z-index: 600;
+}
+.Titelproduct{
+    font-size:16px;
+    font-weight:bold;
+}
+.TitelMappingPrice{
+    font-size:22px;
+    font-weight:bold;
+}
+.close{
+    float: right;
+    margin-right: 15px;
+    font-weight: bold;
+}
+.close:hover{
+    float: right;
+    margin-right: 15px;
+    font-weight: bold;
+    color:Red;
+}
+.White
+{
+    background-color:White;
+}
+.Blue
+{
+    background-color: #e3ecff;
+}
+#tableListProductTenanLounge thead th#thButton{
+    background-color: white;
+    width: 5%;
+    border-color: white;
+}
+#tableListProductTenanLounge tbody td#tdButton{
+    background-color: white;
+    width: 5%;
+    border-color: white;
+}
+.DivDialogMessage{
+    width: 350px;
+    margin-left: 35%;
+    margin-top: -14%;
+    margin-bottom: 4%;
+    position: relative;
+    z-index: 600;
+    height: 138px;
+}
+.bodyMessage{
+    background-color: white;
+    padding-top: 25px;
+    padding-left: 19px;
+    font-size: 10px;
+}
+#imageMessage{
+    background: transparent url("./images/warning2.png") no-repeat;
+    height: 58px;
+    width: 61px;
+    float: left;
+    cursor: pointer;
+}
+#errorMessage{
+    color: white;
+    border: solid 1px red;
+    margin: 0 72px 0 18px;
+    padding: 3px 0 3px 14px;
+    background-color: #FF698E;
+    display:none;
+}

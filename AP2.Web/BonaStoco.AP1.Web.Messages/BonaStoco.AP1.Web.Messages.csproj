@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7D80F628-91AA-4542-B988-7110839A1ECD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BonaStoco.AP1.Web.Messages</RootNamespace>
+    <AssemblyName>BonaStoco.AP1.Web.Messages</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApprovedProductMessage.cs" />
+    <Compile Include="ApprovedOpnameMessage.cs" />
+    <Compile Include="AddOpnameItemCommand.cs" />
+	<Compile Include="DeleteOpnameItemCommand.cs" />    <Compile Include="EditQtyOpnameItemCommand.cs" />
+    <Compile Include="CloseStockOpnameCommand.cs" />
+    <Compile Include="OpenOpnameCommand.cs" />
+    <Compile Include="SyncronizeProductTenanIdMessage.cs" />
+    <Compile Include="UnitEditedMessage.cs" />
+    <Compile Include="ExchangeRateMessage.cs" />
+    <Compile Include="PartGroupEditedMessage.cs" />
+    <Compile Include="RejectProductMessage.cs" />
+    <Compile Include="RegisterProductMessage.cs" />
+    <Compile Include="ShoppingCartCheckedOut.cs" />
+    <Compile Include="ShoppingCartData.cs" />
+    <Compile Include="TenanEditedMessage.cs" />
+    <Compile Include="TambahUnitMessage.cs" />
+    <Compile Include="TambahPartGroupMessage.cs" />
+    <Compile Include="UpdateActualQtyMessage.cs" />
+    <Compile Include="UpdatePartGroupMessage.cs" />
+    <Compile Include="UploadSalesMessage.cs" />
+    <Compile Include="VerifikasiPengirimanBarangMessage.cs" />
+    <Compile Include="TenanCreatedMessage.cs" />
+    <Compile Include="PengirimanBarangMessage.cs" />
+    <Compile Include="ProductEditedMessage.cs" />
+    <Compile Include="ITenanIdentity.cs" />
+    <Compile Include="TambahProductMessage.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="MessagesExtention.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BonaStoco.AP1.MasterData.Models\BonaStoco.AP1.MasterData.Models.csproj">
+      <Project>{8D677F59-3717-494A-9700-2FA40E0FA9A4}</Project>
+      <Name>BonaStoco.AP1.MasterData.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

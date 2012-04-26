@@ -1,0 +1,96 @@
+#headerReportPenerimaanBarang
+{
+ background-color:#fff;
+ border: 0px none #fff;
+  
+}
+
+#headerReportPenerimaanBarang td
+{
+ background-color:#fff;
+ border: 0px none #fff;
+  
+}
+#headerReportPenerimaanBarang tr
+{
+ background-color:#fff;
+ border: 0px none #fff;
+  
+}
+#tblitem, #tblitem td, #tblitem tr
+{
+	border: 1px solid #E8EEF4;
+    border-collapse: collapse;	
+}
+#divItem
+{
+	min-height: 400px;
+}
+#TitleHeader
+{
+	text-align:center;
+	font-weight:bolder;
+	font-size: 18px;
+}
+.left
+{
+	text-align: left;
+	padding-left: 7px;
+}
+.right
+{
+	text-align:right;
+	padding-right: 7px;
+}
+.center
+{
+	text-align:center;
+}
+.top
+{
+	vertical-align:top;
+}
+#HeaderTableItem th
+{
+	background-color : #CCC;
+	font-weight: bold;
+	font-size: 13px;
+	color : Gray;
+}
+
+#headerCetakReportPenerimaanBarang
+{
+ background-color:#fff;
+ border: 0px none #fff;
+  
+}
+
+#headerPrintReportPenerimaanBarang td
+{
+ background-color:#fff;
+ border: 0px none #fff;
+  
+}
+#headerPrintReportPenerimaanBarang tr
+{
+ background-color:#fff;
+ border: 0px none #fff;
+  
+}
+
+#tblitemPrint, #tblitemPrint td, #tblitemPrint tr
+{
+	border: 1px solid #E8EEF4;
+    border-collapse: collapse;	
+}
+#divItemPrint
+{
+	min-height: 400px;
+}
+#HeaderTableItemPrint th
+{
+	background-color : #CCC;
+	font-weight: bold;
+	font-size: 13px;
+	color : Gray;
+}

@@ -1,0 +1,103 @@
+﻿@model IList<BonaStoco.AP1.MasterData.Models.Ccy>
+
+@section styles
+{
+    <link href="@Url.Content("~/Content/ExchangeRate.css")" rel="stylesheet" type="text/css" />
+}
+@section scripts
+{
+     @Content.Script("ExchangeRate.js", @Url)
+}
+
+<h2>Memperbarui Kurs Mata Uang</h2>
+    <div style="width:400px;">
+      <table id="ExchangeRate" width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td><table id="Exchange" width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr class="headerTable">
+              <td colspan="2" class="center">Tanggal</td>
+            </tr>
+            <tr class="bodyTable">
+              <td class="left">Dari</td>
+              <td class="left"><input type="text" id="dari" name="dari" readonly="readonly"/></td>
+              </tr>
+            <tr class="bodyTable">
+              <td class="left">Sampai</td>
+              <td><input type="text" id="sampai" name="sampai" readonly="readonly"/></td>
+            </tr>
+          </table></td>
+        </tr>
+        <tr>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+              <table id="ExchangeRate" width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr class="headerTable">
+                  <td width="25%" class="left">Mata Uang</td>
+                  <td width="60%" class="right">Kurs</td>
+                  <td></td>
+                </tr>
+                <tbody id="bodyExchange">
+                    <tr class="bodyTable">
+                      <td>IDR</td>
+                      <td class="right">1</td>
+                      <td class="center"></td>
+                    </tr>
+                </tbody>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td class="center bodyTable" id="Add">.</td>
+                </tr>
+              </table>
+          </td>
+        </tr>
+        <tr>
+          <td><input type="button" id="updateBtn" value="Update" disabled="disabled"/></td>
+        </tr>
+      </table>
+    </div>
+
+<div id="Dialog-Add" title="Tambah Kurs Mata Uang">
+<p class="validateTips"></p>
+    <table width="100%%" border="0">
+      <tr id="headerTable">
+        <td width="37%" class="left">Mata Uang</td>
+        <td width="63%" class="left">
+            <select name="select" id="MataUang" onchange="Change()">
+                    <option value="00">--NONE--</option>
+            @foreach (var ccy in Model)
+            {
+                if (ccy.Nama != "Rupiah")
+                {
+                     <option value="@ccy.CcyId">@ccy.Kode</option>
+                }
+            }
+            </select>
+        </td>
+      </tr>
+      <tr>
+        <td>Kurs</td>
+        <td><input type="text" name="textfield" id="Kurs" /></td>
+      </tr>
+    </table>
+</div>
+
+<div id="Dialog-Edit" title="Ubah Kurs Mata Uang">
+    <table width="100%%" border="0">
+      <tr id="headerTable">
+        <td width="37%" class="left">Mata Uang</td>
+        <td width="63%" class="left">
+            <input type="text" id="matauang" readonly="readonly"/>
+            <input type="hidden" id="idmatauang" />
+        </td>
+      </tr>
+      <tr>
+        <td>Kurs</td>
+        <td>
+            <input type="text" id="kurs-edit" />
+        </td>
+      </tr>
+    </table>
+</div>

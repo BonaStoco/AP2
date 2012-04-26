@@ -1,0 +1,62 @@
+﻿@model IList<BonaStoco.AP1.Web.Models.RecoverTenanModel>
+@{
+    ViewBag.Title = "Recover Import Data Tenant";
+}
+
+@section scripts
+{
+    <script type="text/javascript">
+        function Recover() {
+            $.ajax({
+                type: "GET",
+                url: "/Test/FindTenantsToRecover",
+                dataType: "json",
+                success: DoRecover
+            });
+        }
+        function DoRecover(data, status) {
+            $("#recover").attr("disabled", true);
+            for (var e in data) {
+                var code = data[e].Code;
+                RecoverTenant(code);
+            }
+        }
+        function RecoverTenant(code) {
+            $.ajax({
+                type: "POST",
+                url: "/Test/RecoverTenan/",
+                data: { "tenantId": code },
+                dataType: "json",
+                success: RecoverTenantResponse
+            });
+        }
+        function RecoverTenantResponse(data, status) {
+            $("#status-" + data.TenantId).text("OK");   
+        }
+    </script>
+}
+
+<h2>Recover Import Data Tenant</h2>
+<p>
+<table>
+    <thead>
+        <th>Tenan Id</th>
+        <th>Name</th>
+        <th>Recovered</th>
+    </thead>
+    <tbody>
+        @foreach (BonaStoco.AP1.Web.Models.RecoverTenanModel tenant in Model)
+        {
+            <tr>
+                <td>@tenant.Code</td>
+                <td>@tenant.Name</td>
+                <td><span id="status-@tenant.Code">No</span></td>
+            </tr>
+        }
+    </tbody>
+</table>
+</p>
+@if (Model.Count != 0)
+{
+    <input id="recover" type="button" value="Recover" onclick="Recover()" />
+}

@@ -1,0 +1,93 @@
+﻿@{
+    var TimeSessionTimOut = 900;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/themes/base/jquery.ui.all.css")"  rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/themes/base/jquery.ui.datepicker.css")"  rel="stylesheet" type="text/css" />
+    @RenderSection("styles", false)
+</head>
+<body onkeypress="RefreshSessionTimeOut(@TimeSessionTimOut)" onmousemove="RefreshSessionTimeOut(@TimeSessionTimOut)">
+    <div class="page">
+        <header>
+            <div id="logindisplay">
+                @Html.Partial("_LogOnPartial")
+            </div>
+            <div id="title">
+                 @Html.Partial("_TitlePartial")
+            </div>
+            <div id="Logo">
+                <img src="@Url.Content("~/Content/images/AP1-Logo.png")" height="72px"/>
+            </div>
+
+            <nav id="nav">
+                <div id="menu">
+                    <ul id="menustyle">
+                        <li>@Html.ActionLink("Home", "TenantPage", "Home")</li>
+                        <li><a href="javascript:void(0)" >Master Barang</a>
+                            <ul>
+                                <li>@Html.ActionLink("Unit", "Index", "Unit")</li>
+                                <li> @Html.ActionLink("Part Group", "Index", "PartGroup")</li>                                                                             
+                                <li> @Html.ActionLink("Tambah Barang", "TambahProduct", "MasterData")  </li>          
+							    <li>@Html.ActionLink("Request Status", "PartRequestStatus", "PartRequestStatus") </li>
+                                <li>@Html.ActionLink("Cari Barang", "Index", "MasterData") </li>
+                            </ul>
+                        </li>
+                        <li><a href="javascript:void(0)" >Pengiriman</a>
+                            <ul>
+                                <li>@Html.ActionLink("Pengiriman barang", "Index", "PengirimanBarang")</li>
+                                <li>@Html.ActionLink("Daftar Pengiriman", "Index", "LaporanPengirimanBarang")</li>  
+                            </ul>
+                        </li>
+                        <li>@Html.ActionLink("Retur barang", "Index", "ReturBarang")</li>
+                        <li>@Html.ActionLink("Laporan Penjualan", "DetailPenjualanTenant", "ReportSaleTenant")</li>
+                        <li>@Html.ActionLink("Laporan Void", "Index", "LaporanVoid")</li>
+                        <li>@Html.ActionLink("Stock List", "ReportStockTenan", "ReportStock")</li>
+                        <li>@Html.ActionLink("Profil Perusahaan", "Index", "CompanyProfile")</li>
+                        <li>@Html.ActionLink("Upload Data Penjualan", "Index", "UploadSales")</li>
+                        <li><a href="javascript:void(0)" >Import Data</a>
+                            <ul>
+                                <li>@Html.ActionLink("Barang", "ImportProduct", "MasterData")</li>
+                                <li>@Html.ActionLink("Group Barang", "ImportPartGroup", "MasterData")</li>
+                                <li>@Html.ActionLink("Edit Barang", "ImportEditBarang", "MasterData")</li>
+                                <li><a href="http://localhost:54095">Transaksi POS</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="javascript:void(0)" >Export Data</a>
+                            <ul>
+                                <li>@Html.ActionLink("Barang", "ExportProduct", "MasterData")</li>
+                                <li>@Html.ActionLink("Edit Barang", "ExportEditProduct", "MasterData")</li>
+                            </ul>
+                        </li>
+                        <li>@Html.ActionLink("Laporan Inventory", "ReportInventoryTenan", "ReportInventory")</li>
+                       
+                        @*<li>@Html.ActionLink("Stock Opname", "Index", "StockOpname")</li>*@
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <section id="main">
+            @RenderBody()
+        </section>
+        <footer-left>
+            © 2011 www.Bonastoco.com - Telkom Indonesia
+        </footer-left>
+        <footer-right>
+            Powered By <a href="http://www.bonastoco.com" target="_blank">Inforsys Indonesia</href>
+        </footer-right>
+    </div>
+    @Content.Script("jquery-1.5.1.js", @Url)
+    @*@Content.Script("jquery-1.5.1.min.js", @Url)*@
+    @Content.Script("modernizr-1.7.min.js", @Url)
+    @Content.Script("jquery.unobtrusive-ajax.min.js", @Url)
+    @Content.Script("jquery-ui-1.8.11.min.js", @Url)
+    @Content.Script("ap1.js", @Url)
+    @Content.Script("SessionTimeOut.js", @Url)
+    @RenderSection("scripts", false)
+</body>
+</html>
+<div id="timeCounter" style="display: none;">@TimeSessionTimOut</div>

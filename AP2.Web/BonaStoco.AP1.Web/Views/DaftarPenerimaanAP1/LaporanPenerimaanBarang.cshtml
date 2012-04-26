@@ -1,0 +1,442 @@
+﻿@using BonaStoco.AP1.PengirimanBarang.Models
+@{
+    ViewBag.Title = "Laporan Penerimaan Barang";
+}
+
+@using BonaStoco.AP1.PengirimanBarang.Models
+@model GRN
+@section styles
+{
+    <link href="@Url.Content("~/Content/PenerimaanBarang(View).css")" rel="stylesheet" type="text/css" />
+     <style rel="stylesheet" type="text/css">
+        #headerPrintReportPenerimaanBarang 
+        {  
+            background-color:#fff;
+            border: 0px none #fff;
+            display: none;
+        }
+    </style>
+}
+@{
+    IList<GRNItem> items = ViewBag.GRNItems;
+    int no = 1;
+}
+@section scripts
+{
+  @Content.Script("PrintDocument.js", @Url)
+    @Content.Script("stringformat.js", @Url)
+    <script type="text/javascript">
+        $("#btnprint").click(function () {
+            var print = $("#printTable");
+            print.jqprint();
+        });
+
+        /* print barcode using jzebra */
+        function printStruk(barcode, harga, ccyCode, partname, qty) {
+            var applet = document.jZebra;
+            /*var str = document.getElementById("barcode").value;*/
+            if (applet != null) {
+                // Plain Text
+                str = trim(barcode);
+                applet.findPrinter("Zebra  TLP2844");
+                applet.append("N\n");
+                applet.append("q847\n");
+                applet.append("Q120,21\n");
+                var x = 50;
+                var y1 = 0;
+                var y2 = 18;
+                var y3 = 65;
+                var y4 = 81;
+                var countdown = qty;
+                var i = 0;
+                while (i < qty) {
+                    for (var j = 0; j < 3; j++) {
+                        if (countdown != 0) {
+                            applet.append("A" + (x - 15) + "," + y1 + ",0,2,1,1,N,\"" + partname.slice(0, 20) + "\"\n");
+                            applet.append("B" + x + "," + y2 + ",0,1,1,1,40,N,\"" + barcode + "\"\n");
+                            applet.append("A" + x + "," + y3 + ",0,1,1,1,N,\"" + barcode + "\"\n");
+                            applet.append("A" + x + "," + y4 + ",0,2,1,1,N,\"" + ccyCode + " " + harga + "\"\n");
+                            x += 280;
+                            i++;
+                            countdown--;
+                        }
+                    }
+                    if (i % 3 == 0) x = 70;
+                    applet.append("P1,1\n");
+                    applet.print();
+                }
+
+                while (!applet.isDonePrinting()) {
+                    // Wait
+                }
+                var e = applet.getException();
+                if (e == null) var info = "Printed Successfully";
+                else {
+                    var info = "Error: " + e.getLocalizedMessage();
+                    if (info != null)
+                        alert(info);
+                }
+            }
+            else {
+                var info = "Printer belum siap";
+                alert(info);
+            }
+        }
+
+        function trim(dataStr) {
+            return dataStr.replace(/(\r\n|\r|\n)/g, "");
+        }
+        function FindAllItemsThenPrint() {
+            var grnId = $("#Guid").val();
+            $.ajax({
+                type: "POST",
+                url: "/VerifikasiPengirimanBarang/FindAllItems/" + grnId,
+                dataType: "json",
+                success: PrintAllBarcode,
+                async: false
+            });
+        }
+        function PrintAllBarcode(data, status) {
+            var code = "";
+            for (var i = 0; i < data.length; i++) {
+                var item = data[i];
+                var code = item.Barcode;
+                var hargaJual;
+                if (item.CcyCode.toUpperCase() == "USD") {
+
+                    hargaJual = String.format("{0:c}", item.Harga);
+                }
+                else if (item.CcyCode.toUpperCase() == "IDR") {
+                    hargaJual = FormatCurrency(item.Harga);
+                }
+                if (item.StatusPrint)
+                    printStruk(item.Barcode, hargaJual, item.CcyCode, item.Nama, item.ActualQty);
+            }
+        }
+
+        
+        function PrintBarcode(index) {
+            var barcode = $("#barcode-" + index).text();
+            var qty = $("#Qty-" + index).text();
+            var harga = $("#Harga-" + index).text();
+            var ccyCode = $("#CcyCode-" + index).text();
+            var partname = $("#PartName-" + index).text();
+            var hargaJual;
+            if (ccyCode.toUpperCase() == "USD") {
+
+                hargaJual = String.format("{0:c}", harga);
+            }
+            else if (ccyCode.toUpperCase() == "IDR") {
+                hargaJual = FormatCurrency(harga);
+            }
+            printStruk(barcode, hargaJual, ccyCode, partname, qty);
+        }
+
+        function PrintBarcodeByQty(index) {
+            var barcode = $("#barcode-" + index).text();
+            var harga = $("#Harga-" + index).text();
+            var qty = $("#qtyPrint").val();
+            var ccyCode = $("#CcyCode-" + index).text();
+            var partname = $("#PartName-" + index).text();
+            $("#DialogPrint").dialog("close");
+            var hargaJual;
+            if (ccyCode.toUpperCase() == "USD") {
+
+                hargaJual = String.format("{0:c}", harga);
+            }
+            else if (ccyCode.toUpperCase() == "IDR") {
+                hargaJual = FormatCurrency(harga);
+            }
+            printStruk(barcode, hargaJual, ccyCode, partname, qty);
+        }
+        function PrintDialog(index) {
+            $("#DialogPrint").dialog({
+                autoOpen: false,
+                height: 300,
+                width: 420,
+                modal: true,
+                buttons:
+                    {
+                        "Print": function () {
+                            PrintBarcodeByQty(index);
+                        },
+                        Cancel: function () {
+                            $(this).dialog("close");
+                        }
+                    }
+            });
+            $("#DialogPrint").empty();
+            $("#DialogPrint").append("<table width='100%' border='0'><tr><td width='60%' class='left'>Jumlah Barcode</td>" +
+                                         "<td width='40%' class='left'><input type='text' id='qtyPrint'/>" +
+                                         "</td></tr></table>");
+            $("#DialogPrint").dialog("open");
+        }
+
+        function FormatCurrency(value) {
+            value += '';
+            x = value.split(',');
+            x1 = x[0];
+            x2 = x.length > 1 ? ',' + x[1] : '';
+            var rgx = /(\d+)(\d{3})/;
+            while (rgx.test(x1)) {
+                x1 = x1.replace(rgx, '$1' + ',' + '$2');
+            }
+            return x1 + x2;
+        }
+    </script>
+}
+<button id="btnprint">Cetak Laporan</button>
+<button onclick="FindAllItemsThenPrint()">Print All Barcode</button>
+<applet name="jZebra" code="jzebra.RawPrintApplet.class" archive="@Url.Content("~/Scripts/jzebra.jar")" width="10" height="10">
+<param name="printer" value="zebra">
+<param name="sleep" value="200"></applet>
+<br />
+<br />
+<fieldset id="formatPenerimaanBarang">
+@Html.HiddenFor( m => m.Guid)
+    <table id="headerReportPenerimaanBarang" width="100%" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+          <td colspan="6" class="left"><img src="../../Content/images/AP1-Logo.png" width="30%"/></td>
+          <td class="right">
+          <span style="font-size:34px; color:#BBBBBB; text-shadow: 2px 2px 2px #000;"><i>e</i></span>
+          <span style="font-size:22px; color:#BBBBBB; text-shadow: 2px 2px 2px #000; padding-right:10px;">-POS</span></td>
+          </tr>
+          <tr>
+            <td colspan="7" id="TitleHeader">PENERIMAAN BARANG</td>
+          </tr>
+          <tr>
+            <td height="20" colspan="7"></td>
+          </tr>
+          <tr>
+            <td width="17%" class="left">Tenan</td>
+            <td width="1%" class="center">:</td>
+            <td width="27%" class="left">@Model.TenanName</td>
+            <td width="5%" rowspan="4"></td>
+            <td width="19%" class="left">No. Dokumen</td>
+            <td width="1%" class="center">:</td>
+            <td width="25%" class="left">@Model.Referensi</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td class="left" rowspan="2" valign="top">@ViewBag.Tenan.Alamat</td>
+            <td class="left">Tgl Dokumen</td>
+            <td class="center">:</td>
+            <td class="left">@Model.TanggalTransaksi.ToString("dd-MM-yyyy")</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td class="left">Nama Pengirim</td>
+            <td class="center">:</td>
+            <td class="left">@Model.NamaPengirim</td>
+          </tr>
+          <tr>
+            <td class="left">Kode Transaksi</td>
+            <td class="center">:</td>
+            <td class="left">@Model.KodeTransaksi</td>
+            <td class="left">User</td>
+            <td class="center">:</td>
+            <td class="left">@User.Identity.Name</td>
+          </tr>
+          <tr>
+            <td width="15%" class="left"></td>
+            <td width="1%" class="center"></td>
+            <td width="27%" class="left"></td>
+            <td width="7%" rowspan="4"></td>
+            <td width="19%" class="left">Keterangan</td>
+            <td width="1%" class="center">:</td>
+            <td width="25%" class="left">@Model.Keterangan</td>
+          </tr>
+          <tr>
+            <td height="38"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+  
+          <tr>
+            <td colspan="7">
+                <div id="divItem">
+                    <table id="tblitem" width="100%%" border="1" cellpadding="0" cellspacing="0">
+                      <tr id="HeaderTableItem">
+                        <th width="4%" class="center">No</th>
+                        <th width="20%" class="center">Kode Barang</th>
+                        <th width="20%" class="center">Barcode</th>
+                        <th width="40%" class="center">Nama Barang</th>
+                        <th width="10%" class="center" id="thPrintBarcode">Print Barcode</th>
+						<th class="center">Mata Uang </th>
+						<th class="center">Harga Satuan </th>
+                        <th width="16%" colspan="2" class="center">Jumlah</th>
+                       </tr>
+                             @foreach (GRNItem item in items)
+                             { 
+                                  <tr>
+                                    <td class="center">@no</td>
+                                    <td class="center">@item.Kode</td>
+                                    <td class="center" id="barcode-@no">@item.Barcode</td>
+                                    <td class="left" id="PartName-@no">@item.Nama</td>
+                                    <td class="center" id="btnPrintBarcode">
+                                        @if(item.StatusPrint)
+                                        {
+                                            <button onclick="PrintBarcode(@no)">Print</button>
+                                        }
+                                    </td>
+                                    <td width="8%" class="center" id="CcyCode-@no">@item.CcyCode</td>
+									@if(item.CcyCode.ToUpper() == "USD"){
+                                        <td width="8%" class="right" id="Harga-@no">@item.HargaJual.ToString("N2")</td>
+                                    }
+                                    else{
+                                        <td width="8%" class="right" id="Harga-@no">@item.HargaJual.ToString("N0")</td>
+                                    }
+                                    <td width="8%" class="right  print" id="Qty-@no" onclick="PrintDialog(@no)" style="cursor:pointer;">@item.ActualQty</td>
+                                    <td width="8%" class="left">@item.UnitName</td>
+                                  </tr>
+                                 no++;    
+                             }
+                    </table>
+                </div>
+            <br />
+            </td>
+          </tr>
+          <tr>
+            <td colspan="7">
+            <table id="tblitem" width="100%%" border="1" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="33%" class="left">Received By</td>
+                <td width="34%" class="left">Checked By</td>
+                <td width="33%" class="left">Approved By</td>
+              </tr>
+              <tr>
+                <td width="33%" height="84">&nbsp;</td>
+                <td width="34%">&nbsp;</td>
+                <td width="33%">&nbsp;</td>
+              </tr>
+            </table>
+            </td>
+          </tr>
+    </table>
+</fieldset>
+<div id="printTable">
+ <table id="headerPrintReportPenerimaanBarang" width="100%" cellpadding="0" cellspacing="0">
+            <tr>
+          <td colspan="6" class="left"><img src="../../Content/images/AP1-Logo.png" width="30%"/></td>
+          <td class="right">
+          <span style="font-size:34px; color:#BBBBBB; text-shadow: 2px 2px 2px #000;"><i>e</i></span>
+          <span style="font-size:22px; color:#BBBBBB; text-shadow: 2px 2px 2px #000; padding-right:10px;">-POS</span></td>
+          </tr>
+          <tr>
+            <td colspan="7" id="TitleHeader">PENERIMAAN BARANG</td>
+          </tr>
+          <tr>
+            <td height="20" colspan="7"></td>
+          </tr>
+          <tr>
+            <td width="17%" class="left">Tenan</td>
+            <td width="1%" class="center">:</td>
+            <td width="27%" class="left">@Model.TenanName</td>
+            <td width="5%" rowspan="4"></td>
+            <td width="19%" class="left">No. Dokumen</td>
+            <td width="1%" class="center">:</td>
+            <td width="25%" class="left">@Model.Referensi</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td class="left" rowspan="2" valign="top">@ViewBag.Tenan.Alamat</td>
+            <td class="left">Tgl Dokumen</td>
+            <td class="center">:</td>
+            <td class="left">@Model.TanggalTransaksi.ToString("dd-MM-yyyy")</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td class="left">Nama Pengirim</td>
+            <td class="center">:</td>
+            <td class="left">@Model.NamaPengirim</td>
+          </tr>
+          <tr>
+            <td class="left">Kode Transaksi</td>
+            <td class="center">:</td>
+            <td class="left">@Model.KodeTransaksi</td>
+            <td class="left">User</td>
+            <td class="center">:</td>
+            <td class="left">@User.Identity.Name</td>
+          </tr>
+          <tr>
+            <td width="15%" class="left"></td>
+            <td width="1%" class="center"></td>
+            <td width="27%" class="left"></td>
+            <td width="7%" rowspan="4"></td>
+            <td width="19%" class="left">Keterangan</td>
+            <td width="1%" class="center">:</td>
+            <td width="25%" class="left">@Model.Keterangan</td>
+          </tr>
+          <tr>
+            <td height="38"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+  
+          <tr>
+            <td colspan="7">
+                <div id="divItemPrint">
+                    <table id="tblitemPrint" width="100%%" border="1" cellpadding="0" cellspacing="0">
+                      <tr id="HeaderTableItemPrint">
+                        <th width="4%" class="center">No</th>
+                        <th width="20%" class="center">Kode Barang</th>
+                        <th width="20%" class="center">Barcode</th>
+                        <th width="40%" class="center">Nama Barang</th>
+						<th class="center">Mata Uang </th>
+						<th class="center">Harga Satuan </th>
+                        <th width="16%" colspan="2" class="center">Jumlah</th>
+                       </tr>
+                             @foreach (GRNItem item in items)
+                             { 
+                                  <tr>
+                                    <td class="center">@no</td>
+                                    <td class="center">@item.Kode</td>
+                                    <td class="center" id="barcode-@no">@item.Barcode</td>
+                                    <td class="left" id="PartName-@no">@item.Nama</td>
+                                    <td width="8%" class="center" id="CcyCode-@no">@item.CcyCode</td>
+									@if(item.CcyCode.ToUpper() == "USD"){
+                                        <td width="8%" class="right" id="Harga-@no">@item.HargaJual.ToString("N2")</td>
+                                    }
+                                    else{
+                                        <td width="8%" class="right" id="Harga-@no">@item.HargaJual.ToString("N0")</td>
+                                    }
+                                    <td width="8%" class="right  print" id="Qty-@no" onclick="PrintDialog(@no)" style="cursor:pointer;">@item.ActualQty</td>
+                                    <td width="8%" class="left">@item.UnitName</td>
+                                  </tr>
+                                 no++;    
+                             }
+                    </table>
+                </div>
+            <br />
+            </td>
+          </tr>
+          <tr>
+            <td colspan="7">
+            <table id="tblitemPrint" width="100%%" border="1" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="33%" class="left">Received By</td>
+                <td width="34%" class="left">Checked By</td>
+                <td width="33%" class="left">Approved By</td>
+              </tr>
+              <tr>
+                <td width="33%" height="84">&nbsp;</td>
+                <td width="34%">&nbsp;</td>
+                <td width="33%">&nbsp;</td>
+              </tr>
+            </table>
+            </td>
+          </tr>
+    </table>
+    </div>
+
+<div id="DialogPrint" title="Print Barcode"></div>

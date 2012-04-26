@@ -1,0 +1,68 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+@section styles
+{
+     <link href="@Url.Content("~/Content/partgroup/partgroup.css")" rel="stylesheet" type="text/css" />
+     <link href="@Url.Content("~/Content/ListMenuUnit.css")" rel="stylesheet" type="text/css" />
+ }
+@section scripts{
+   
+     @Content.Script("partgroup.js", @Url)
+     }
+ <h2>Group Barang</h2>
+    <div id="users-contain" class="ui-widget">
+     <span id="TenantId" style="visibility:hidden" >@ViewBag.TenanId</span>
+        <button class="add button" onclick="addPartGroup()"><img src="@Url.Content("~/Content/images/button/add.png")"/> Tambah Part Group</button><br />
+	    <table id="users" class="ui-widget ui-widget-content">
+		    <thead>
+			    <tr class="ui-widget-header ">				
+				    <th width ="11">Kode</th>
+                    <th class="right" width ="12">Nama</th>
+                    <th width ="6">&nbsp;</th>
+			    </tr>
+		    </thead>
+		    <tbody>
+			
+		    </tbody>
+	    </table>
+    </div>
+    <div id="edit-dialog" title="Edit Part Group">
+        <p class="validateTips"></p>
+        <table width="100%" border="0">
+        <tr>
+            <td>Kode</td>
+            <td><input type="text" id="edit-kode" /></td>
+        </tr>
+        <tr>
+            <td>Nama</td>
+            <td><input type="text" id="edit-nama" /> </td>
+        </tr>
+        <input type="hidden" id="edit-model-guid" />
+    </table>
+    </div>
+
+    <div id="add-dialog" title="Tambah Part Group">
+        <p class="validateTips"></p>
+        <table width="100%" border="0">
+        <tr>
+            <td>Kode</td>
+            <td><input type="text" id="add-kode" /></td>
+        </tr>
+        <tr>
+            <td>Nama</td>
+            <td><input type="text" id="add-nama" /></td> 
+            <input type="hidden" id="add-model-guid" value=""/>
+            <input type="hidden" id="tenant-id" value="" />
+        </tr>
+        </table>
+    </div>
+
+<div id="dialog-overlay">
+		<div id="dialog-loader">
+			<img src="@Url.Content("~/Content/images/loader-new.gif")"/>
+		</div>
+</div>
+    <div id="error-dialog" title="Error">
+        <p id="error-message"></p>
+    </div>

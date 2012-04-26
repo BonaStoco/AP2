@@ -1,0 +1,250 @@
+﻿#dialog-overlay-inventory
+{
+    -webkit-box-align: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-pack: center;
+    -webkit-transition: 0.25s opacity; /*background: -webkit-radial-gradient(rgba(127, 127, 127, 0.5),                                       rgba(127, 127, 127, 0.5) 35%,                                       rgba(0, 0, 0, 0.7));*/
+    bottom: 0;
+    display: -webkit-box;
+    left: 0;
+    background: #000;
+    -moz-opacity: 0.7;
+    -khtml-opacity: 0.7;
+    opacity: 0.7;
+    overflow: auto;
+    padding: 20px;
+    padding-bottom: 130px;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 10;
+    display: none;
+}
+
+#dialog-loader
+{
+    padding: 0;
+}
+
+ul#navbutton #btnactive a
+{
+    padding: 10px 70px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 2.8em;
+    background-color: #D43F55;
+    color: #fff;
+    border-radius: 4px 4px 4px 4px;
+    -webkit-border-radius: 4px 4px 4px 4px;
+    -moz-border-radius: 4px 4px 4px 4px;
+}
+
+#detailleft
+{
+    background-color: #f8f8f8;
+    position: inherit;
+    width: 222px;
+    height: auto;
+    min-height: 750px;
+    z-index: 1;
+    border: 1px solid #dcd;
+}
+
+#ReportInventory, #ReportInventory tr, #ReportInventory td
+{
+    border: none 0px #ccc;
+    margin-top: 0px;
+    top: 0px;
+}
+
+#tblInventory
+{
+    border: 0;
+}
+
+#tblInventory tr
+{
+    border: solid 1px #FF3F00;
+}
+
+#tblInventory td
+{
+    border: solid 2px #fff;
+}
+
+#tblInventory th
+{
+    background-color: #5B8EAC;
+    color: White;
+    border: solid 1px #fff;
+    font-size: 8pt;
+}
+
+#menugroup a
+{
+    color: blue;
+    font-size: 11pt;
+    padding-left: 15px;
+}
+
+#menugroup a:link
+{
+    text-decoration: none;
+}
+
+#menugroup a:hover
+{
+    color: #5B8EAC;
+    font-weight: bold;
+}
+
+#menugroup a:active
+{
+    color: blue;
+    font-weight: lighter;
+}
+
+#btnbandara
+{
+    background-color: #5B8EAC;
+    margin-left: 1px;
+    padding: 5px 3px 5px 3px;
+    color: white;
+    font-weight: bold;
+    font-size: 10pt;
+    border: 0px solid black;
+}
+
+#lapInventory
+{
+    background-color: #4A4AFF;
+    padding: 0px 0px 0px 6px;
+    color: yellow;
+    font-size: larger;
+    font-weight: bold;
+}
+
+#nameTenan
+{
+    color: #6699CC;
+    border: solid 0px #000;
+    background-color: #fff;
+    border-radius: 4px 4px 4px 4px;
+    -webkit-border-radius: 4px 4px 4px 4px;
+    -moz-border-radius: 4px 4px 4px 4px;
+    font-size: x-large;
+}
+
+#tenanId
+{
+    color: #6699CC;
+    border: solid 1px #ccc;
+    background-color: #FFF;
+    width: 60px;
+}
+
+.btn
+{
+    background-color: #00BF00;
+    width: 200px;
+    display: block;
+    border-radius: 4px 4px 4px 4px;
+    -webkit-border-radius: 4px 4px 4px 4px;
+    -moz-border-radius: 4px 4px 4px 4px;
+    padding-right: 20px;
+    color: #fff;
+    weight: bold;
+}
+#ErrorInvTenan
+{
+    font-size: 16px;
+    font-weight: bold;
+    color: red;
+    display:none;
+}
+
+/*Pagination*/
+.Pagging
+{
+    padding: 7px 12px 25px 35px;
+    border: solid 1px #EBEBEB;
+    background: #EBEBEB;
+}
+.DivNext
+{
+    float: left;
+    margin-right: 5px;
+}
+.DivPrev
+{
+    float: left;
+    margin-right: 5px;
+}
+.disableNext
+{
+    float: left;
+    margin-right: 5px;
+}
+.disablePrev
+{
+    float: left;
+    margin-right: 5px;
+}
+.DivlimitData
+{
+    float: left;
+}
+.DivPage
+{
+    float: left;
+    padding-right: 4px;
+    padding-left: 4px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.pagingSize
+{
+    height: 21px;
+    width: 19px;
+    cursor: pointer;
+}
+.prev
+{
+    background: transparent url("/Content/images/Actions.png") no-repeat;
+    background-position: -233px -265px;
+}
+.next
+{
+    background: transparent url("/Content/images/Actions.png") no-repeat;
+    background-position: -257px -265px;
+}
+.first
+{
+    background: transparent url("/Content/images/Actions.png") no-repeat;
+    background-position: -209px -265px;
+}
+.last
+{
+    background: transparent url("/Content/images/Actions.png") no-repeat;
+    background-position: -283px -265px;
+}
+.prevDisable
+{
+    background: transparent url("/Content/images/Actions.png") no-repeat;
+    background-position: -334px -265px;
+}
+.nextDisable
+{
+    background: transparent url("/Content/images/Actions.png") no-repeat;
+    background-position: -359px -265px;
+}
+.firstDisable
+{
+    background: transparent url("/Content/images/Actions.png") no-repeat;
+    background-position: -309px -265px;
+}
+.lastDisable
+{
+    background: transparent url("/Content/images/Actions.png") no-repeat;
+    background-position: -383px -265px;
+}

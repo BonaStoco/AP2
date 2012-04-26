@@ -1,0 +1,36 @@
+﻿@model BonaStoco.AP1.MasterData.Models.Tenan
+@{
+    ViewBag.Title = "Index";
+}
+
+@section styles
+{
+ <link href="@Url.Content("~/Content/CompanyProfile.css")" rel="stylesheet" type="text/css" />
+
+}
+<h2>Profil Perusahaan</h2>
+
+@if (Model != null)
+{
+ <div id=nama-labelcompanyprofile>@Model.TenanName</div>       
+<div class="companyprofile">
+
+
+<div id=alamat><div id=alamat-labelcompanyprofile class=label-companyprofile> Alamat</div><div id=alamat-fieldcompanyprofile class=field-companyprofile>: @Model.Alamat</div></div>
+<hr />
+<div id=npwp><div id=npwp-labelcompanyprofile class=label-companyprofile> NPWP</div><div id=npwp-fieldcompanyprofile class=field-companyprofile>: @Model.Npwp</div></div>
+<hr />
+<div id=nppkp><div id=nppkp-labelcompanyprofile class=label-companyprofile> NPPKP</div><div id=nppkp-fieldcompanyprofile class=field-companyprofile>: @Model.Nppkp</div></div>
+ <hr />
+ <div id=nppkp><div id=nppkp-labelcompanyprofile class=label-companyprofile> Kategori Perusahaan</div><div id=nppkp-fieldcompanyprofile class=field-companyprofile>: @Model.TenanTypeName</div></div>
+ <hr />
+ <div id=nppkp><div id=nppkp-labelcompanyprofile class=label-companyprofile> Kategori Produk</div><div id=nppkp-fieldcompanyprofile class=field-companyprofile>: @Model.ProductTypeName</div></div>
+ <hr />
+ <div id=nppkp><div id=nppkp-labelcompanyprofile class=label-companyprofile> Gate</div><div id=nppkp-fieldcompanyprofile class=field-companyprofile>: @Model.Gate</div></div>
+ <hr />
+ 
+</div>
+
+    <br />
+<div id=link-editprofile><img src="../Content/images/pensil.png"/>@Html.ActionLink("Edit Profil", "EditProfile", new { tenantId = Model.TenanId })</div>
+}

@@ -1,0 +1,70 @@
+#tblFormPenerimaan
+{
+	background-color:#fff;
+	border: 0px none #fff;
+}
+
+#tblFormPenerimaan td
+{
+ background-color:#fff;
+ border: 0px none #fff;
+  
+}
+#tblFormPenerimaan tr
+{
+ background-color:#fff;
+ border: 0px none #fff;
+  
+}
+
+form { margin: 10px 0; }
+table#tenans { border-collapse: collapse; margin: 1em 0; }
+table#tenans thead th { background: #3b5998; color: #fff; font-size: 13px; }
+table#tenans tbody th { text-align: left; }
+table#tenans th, table#tenans td { border: 1px solid #ddd; padding: 2px 5px; font-size: 12px; }
+pre { font-size: 130%; background: #f7f7f7; padding: 10px 10px; font-weight: bold; }
+.odd, .r1 { background: #fff; }
+.even, .r2 { background: #eee; }
+.r3 { background: #ebebeb; }
+.search { font-weight:  bold; }
+
+dt { margin-top: 10px; font-weight: bold;  }
+dd { margin: 0;}
+.new { color: #f34105; text-transform: uppercase; font-size: 85%; margin-left: 3px; }
+
+form.quicksearch { padding: 10px; background: #f7f7f7; }
+form.quicksearch input { margin-left: 5px; width: 300px; }
+form.quicksearch img { vertical-align: middle; margin-left: 5px; }
+
+
+
+tr#tenan
+{
+	font-size : 12px;
+	cursor : pointer;
+}
+tr#tenan :hover
+{
+	background-color : LIGHTBLUE;
+}
+#tenan a:link
+{
+	display : block;
+	text-decoration:none;
+	font-size : 12px;
+}
+#txtSearch
+{
+	color : #747862;
+	font-size : 14px;
+}
+
+input[type="submit"] {
+    font-size: 12px;
+    padding: 5px;
+}
+tbody tr.Product:hover
+{
+     background : #d4d4d4;
+     cursor : pointer;
+}

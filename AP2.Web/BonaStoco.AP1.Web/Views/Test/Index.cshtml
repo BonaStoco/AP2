@@ -1,0 +1,243 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Test ajax</h2>
+@section scripts
+{
+<script type="text/javascript">
+    function readyAJAX() {
+        try {
+            return new XMLHttpRequest();
+        } catch (e) {
+            try {
+                return new ActiveXObject("Msxml2.XMLHTTP");
+            } catch (e) {
+                try {
+                    return new ActiveXObject("Microsoft.XMLHTTP");
+                } catch (e) {
+                    return "A newer browser is needed.";
+                }
+            }
+        }
+    }
+    function test() {
+        var requestObj = readyAJAX();
+        requestObj.open("GET", "http://localhost:50429/Test/SayHello/" + document.getElementById("tenantid").value, false);
+        requestObj.send();
+        if (requestObj.status == 200) {
+            document.getElementById("result").innerHTML += "<h2>" + requestObj.responseText + "</h2>";
+        }
+        else {
+            alert(requestObj.statusText);
+        }
+    }
+    function testAsync() {
+        var requestObj = readyAJAX();
+        requestObj.open("GET", "http://localhost:50429/Test/SayHello/" + document.getElementById("tenantid").value, true);
+        requestObj.send();
+        requestObj.onreadystatechange = function () {
+            if (requestObj.readyState == 4) {
+                if (requestObj.status == 200) {
+                    document.getElementById("result").innerHTML += "<h2>" + requestObj.responseText + "</h2>";
+                }
+                else {
+                    alert(requestObj.statusText);
+                }
+            }
+        }
+    }
+    function testPost() {
+        var requestObj = readyAJAX();
+        var params = "id=" + $("#result").value;
+        requestObj.open("POST", "http://localhost:50429/Test/SayHello", true);
+        requestObj.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        requestObj.send(params);
+        requestObj.onreadystatechange = function () {
+            if (requestObj.readyState == 4) {
+                if (requestObj.status == 200) {
+                    document.getElementById("result").innerHTML += "<h2>" + requestObj.responseText + "</h2>";
+                }
+                else {
+                    alert(requestObj.statusText);
+                }
+            }
+        }
+    }
+    function testJson() {
+        var requestObj = readyAJAX();
+        var url = "http://localhost:50429/Test/TestJson";
+        requestObj.open("GET", url, false);
+        requestObj.send();
+        if (requestObj.status == 200) {
+            //var xmldocument = eval('(' + requestObj.responseText + ')');
+            document.getElementById("result").innerHTML += requestObj.responseText;
+            //document.getElementById("result").innerHTML += xmldocument.Foo.Id + ", " + xmldocument.Foo.Name;
+        }
+    }
+</script>
+<script type="text/javascript">
+    var MyLibrary = {};
+    MyLibrary.sendAlert = function (msg, elm) {
+        alert(msg);
+    }
+</script>
+<script type="text/javascript">
+    function loadProducts() {
+        $.ajax({
+            type: 'GET',
+            url: '/Test/LoadProducts',
+            dataType: "json",
+            success: showProducts
+        });
+    }
+
+    function importTenants() {
+        $.ajax({
+            type: 'POST',
+            url: '/Test/RegisterAllTenant',
+            dataType: "html",
+            success: importTenantsResult
+        });
+    }
+
+    function importTenantsResult(data, status) {
+        $("#result").html(data);
+    }
+
+    function showProducts(data, status) {
+        $("#result").html("");
+        $("#result").append("<table></table>");
+        $("#result table").append("<tr><td>Kode</td><td>Name</td></tr>");
+        $.each(data, function (item) {
+            var newRow = "<tr>";
+            newRow += "<td>" + data[item].Nama + "</td>";
+            newRow += "<td>" + data[item].Kode + "</td>";
+            newRow += "</tr>";
+            $("#result table").append(newRow);
+        });
+        $("#result tr:odd").css("background-color", "#abacab");
+        $("#result").before("<div>Insert before</div>");
+        $("#result").after("<div>Insert after</div>");
+    }
+
+    function changeAttr() {
+        //$("input").attr("value", "test");
+        $("input").each(function () {
+            $(this).val("Test");
+            //$(this).bind("click", function () {
+            //    alert("You clicked me");
+            //});
+            $(this).click(function () {
+                alert("You clicked me");
+            });
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#wrapperP").click(function () {
+            alert("Hello");
+            return true;
+        });
+
+        /*$("#option1").click(function () {
+        $("#option1").hide();
+        });
+        $("#option2").click(function () {
+        $("#option2").hide();
+        });
+        $("#option3").click(function () {
+        $("#option3").hide();
+        });
+        $("#option4").click(function () {
+        $("#option4").hide();
+        });*/
+
+        $('.removeBtn').each(function (elm) {
+            $(this).click(function () {
+                $(this).parent().slideUp(500);
+            });
+        });
+
+        $('#container span').draggable();
+        $('#targetContainer').droppable({
+            drop: function (event, ui) {
+                alert("Dropped Element: " + ui.drabbagle.text());
+            }
+        });
+        $('#container2').accordion(
+            {
+                collapsible: true,
+                active: false
+            }
+         );
+    });
+
+    $("#myDiv").click(function () {
+        $('#braingiaLink').click();
+    });
+
+    $("#wrapperP").mouseover(function () {
+        $("#braingiaLink").hide();
+    });
+
+    $("#wrapperP").mouseout(function () {
+        $("#braingiaLink").show();
+    });
+
+</script>
+}
+
+<div>
+<input id="tenantid" type="text" onblur="testPost()" />
+<input type="button" value="Test Ajax" onclick="testPost()" />
+<input type="button" value="Test library" onclick="MyLibrary.sendAlert(document.getElementById('tenantid').value)" />
+<input type="button" value="Test Json" onclick="testJson()" />
+<input type="button" value="Test working with attribute" onclick="changeAttr()" />
+<p>
+<input type="button" value="Load Products" onclick="loadProducts();" />
+<input type="button" value="Import Tenants" onclick="importTenants();" />
+</p>
+<p>
+<input type="button" value="Import Tenants" onclick="importTenants();" />
+</p>
+</div>
+<div id="result"></div>
+<div id="myDiv">
+    Here is some text.<br />
+    It goes inside this div<br />
+</div>
+<p id="wrapperP">
+<a id="braingiaLink" href="http://www.braingia.org">Steve Suehring</a>
+</p>
+<p>
+<ul>
+    <li id="option1">Option 1 <span class="removeBtn" id="remove1">(x)</span></li>
+    <li id="option2">Option 2 <span class="removeBtn" id="remove2">(x)</span></li>
+    <li id="option3">Option 3 <span class="removeBtn" id="remove3">(x)</span></li>
+    <li id="option4">Option 4 <span class="removeBtn" id="remove4">(x)</span></li>
+</ul>
+</p>
+<p>
+<div id="container">
+<span>Drag me around</span>
+</div>
+<div id="targetContainer">
+</div>
+</p>
+<hr />
+<div id="container2">
+    <h3 class="optionHead">Option 1</h3>
+    <div class="optionDiv" id="option1">
+        <p>Text of option 1</p>
+    </div>
+    <h3 class="optionHead">Option 2</h3>
+    <div class="optionHead" id="option2">
+        <p>Text of option 2</p>
+    </div>
+    <h3 class="optionHead">Option 3</h3>
+    <div class="optionHead" id="option3">
+        <p>Text of option 3</p>
+    </div>
+</div>

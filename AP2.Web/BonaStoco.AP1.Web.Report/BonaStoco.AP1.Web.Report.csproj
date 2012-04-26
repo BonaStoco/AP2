@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7120214E-F4BE-4E88-A6AF-E987EEA38687}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BonaStoco.AP1.Web.Report</RootNamespace>
+    <AssemblyName>BonaStoco.AP1.Web.Report</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BonaStoco.Inf.Data.ViewModel">
+      <HintPath>..\..\..\bonastoco-bin\BonaStoco.Inf.Data.ViewModel.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Billing.cs" />
+    <Compile Include="BillingTenant.cs" />
+    <Compile Include="FakturPajakAP2.cs" />
+    <Compile Include="FakturAP2.cs" />
+    <Compile Include="FormulaBagiHasil.cs" />
+    <Compile Include="IInventoryRepository.cs" />
+    <Compile Include="ILaporanRingkasanPenjualanPerHariTenanRepository.cs" />
+    <Compile Include="LaporanRingkasanPenjualanPerHariTenan.cs" />
+    <Compile Include="LaporanRingkasanPenjualanPerHari.cs" />
+    <Compile Include="LaporanVoidDetail.cs" />
+    <Compile Include="SalesAmountMonth.cs" />
+    <Compile Include="SalesAmountDay.cs" />
+    <Compile Include="DailySales.cs" />
+    <Compile Include="FakturAP.cs" />
+    <Compile Include="FakturPajak.cs" />
+    <Compile Include="GroupStock.cs" />
+    <Compile Include="IKalenderTenanViewRepository.cs" />
+    <Compile Include="IKalenderViewRepository.cs" />
+    <Compile Include="ILaporanDetailPenjualanPerTenanRepository.cs" />
+    <Compile Include="IReportFakturPajakRepository.cs" />
+    <Compile Include="ITenanActivityMonitoringRepository.cs" />
+    <Compile Include="KalenderTenantView.cs" />
+    <Compile Include="KalenderView.cs" />
+    <Compile Include="LaporanDetailPenjualanPerTenanView.cs" />
+    <Compile Include="LaporanProduksi.cs" />
+    <Compile Include="MonthlySales.cs" />
+    <Compile Include="ProductChange.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SalesProductDetail.cs" />
+    <Compile Include="SayNumber.cs" />
+    <Compile Include="StockCard.cs" />
+    <Compile Include="StockOpnameReport.cs" />
+    <Compile Include="SubTerminalDailySales.cs" />
+    <Compile Include="SubTerminalMonthlySales.cs" />
+    <Compile Include="SubTerminalYearlySales.cs" />
+    <Compile Include="TenanActivityMonitoring.cs" />
+    <Compile Include="TenanSpeedyPayment.cs" />
+    <Compile Include="TenantBandaraDailySales.cs" />
+    <Compile Include="TenantBandaraMonthlySales.cs" />
+    <Compile Include="TenantBandaraYearlySales.cs" />
+    <Compile Include="TenantDailySales.cs" />
+    <Compile Include="TenantDailySalesMonitoringEPOS.cs" />
+    <Compile Include="TenantMonthlySales.cs" />
+    <Compile Include="TenantSubterminalDailySales.cs" />
+    <Compile Include="TenantSubterminalMonthlySales.cs" />
+    <Compile Include="TenantSubterminalYearlySales.cs" />
+    <Compile Include="TenantTerminalDailySales.cs" />
+    <Compile Include="TenantTerminalMonthlySales.cs" />
+    <Compile Include="TenantTerminalYearlySales.cs" />
+    <Compile Include="TenantYearlySales.cs" />
+    <Compile Include="TerminalDailySales.cs" />
+    <Compile Include="TerminalMonthlySales.cs" />
+    <Compile Include="TerminalYearlySales.cs" />
+    <Compile Include="YearlySales.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BonaStoco.AP1.MasterData.Models\BonaStoco.AP1.MasterData.Models.csproj">
+      <Project>{8D677F59-3717-494A-9700-2FA40E0FA9A4}</Project>
+      <Name>BonaStoco.AP1.MasterData.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\src\BonaStoco.AP1.Inventory.Models\BonaStoco.AP1.Inventory.Models.csproj">
+      <Project>{AD109A76-3A03-4A1A-8F50-F938C9B65F4E}</Project>
+      <Name>BonaStoco.AP1.Inventory.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

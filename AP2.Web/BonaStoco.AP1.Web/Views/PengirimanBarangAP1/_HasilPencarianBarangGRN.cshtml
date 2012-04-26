@@ -1,0 +1,35 @@
+﻿@model BonaStoco.AP1.Web.Models.GRNItemModel
+@if (Model != null)
+{
+    <tr id="grnitem-@Model.Id">
+        <td>@Model.Barcode</td>
+        <td>@Model.NamaBarang</td>
+        <td>@Model.Qty</td>
+        <td>@Model.Unit</td>
+        <td>@Model.Harga.ToString("N0")</td>
+        <td>@Model.Jumlah.ToString("N0")</td>
+        <td>@Ajax.ActionLink(
+            "Edit", "Edit", new { id = Model.Id, tenanId = ViewBag.TenanId},
+            new AjaxOptions()
+            {
+                HttpMethod = "GET",
+                InsertionMode = InsertionMode.Replace,
+                UpdateTargetId = "grnitem-" + Model.Id
+            })
+            @Ajax.ActionLink(
+                  "Hapus", "DeleteItem", new { id = Model.Id },
+                        new AjaxOptions()
+                        {
+                            HttpMethod = "POST",
+                            InsertionMode = InsertionMode.Replace,
+                            UpdateTargetId = "grnitem-" + Model.Id
+                        })
+        </td>
+    </tr>
+}
+else
+{
+    <script type="text/javascript">
+        alert("Barang yang anda cari tidak ditemukan.");
+    </script>
+}

@@ -1,0 +1,265 @@
+﻿@using BonaStoco.AP1.Web.Models 
+@{
+    ViewBag.Title = "Index";
+}
+@section styles
+{
+    <link href="@Url.Content("~/Content/AdvancedSearch.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/themes/base/jquery-ui-1.8.14.custom.css")" rel="stylesheet" type="text/css" />
+}
+@section scripts{
+    @Content.Script("jquery.quicksearch.js", @Url)
+     @Content.Script("stringformat.js", @Url)
+     <script type="text/javascript">
+         $(document).ready(function () {
+             $("#SetData").hide();
+             $("#AdvancedSearch").dialog({
+                 autoOpen: false,
+                 width: 900,
+                 height: 450
+             });
+             $("#AdvSearch").click(function () {
+                 document.getElementById("AdvancedSearch").focus();
+                 $("#AdvancedSearch").dialog("open");
+             });
+             $("#btnPreview").click(function () {
+                 var bulan = $("#bulan").val();
+                 var tahun = $("#tahun").val();
+                 var id = $("#tenant").val();
+                 var ccy = $("#ccy").val();
+                 $.ajax({
+                     type: "GET",
+                     url: "/APReport/FakturbyTenanAndPeriod",
+                     dataType: "json",
+                     data: { 'Id': id, 'tahun': tahun, 'bulan': bulan },
+                     success: FindFakturSuccess
+                 });
+                 $("#tenant1").val(id);
+                 $("#tahun1").val(tahun);
+                 $("#bulan1").val(bulan);
+                 $("#ccy1").val(ccy);
+             });
+             $('#id_search').quicksearch('table#tenans tbody tr',
+             {
+                 noResults: 'noresults',
+                 stripeRows: ['odd', 'even'],
+                 loader: 'img.loading'
+             });
+
+             $("#update").click(function () {
+                 $("#confirm-dialog").dialog("open");
+                 
+             });
+
+             $("#confirm-dialog").dialog({
+                 autoOpen: false,
+                 height: 200,
+                 width: 380,
+                 modal: true,
+                 buttons:
+                    {
+                        "Ya": function () {
+                            $("#formFakturAp").submit();
+                        },
+                        "Tidak": function () {
+                            $(this).dialog("close");
+                        }
+                    }
+             });
+         });
+
+         function FindFakturSuccess(data) {
+             if (data != null) {
+                 $("#APReport").remove();
+                 $("#NoFaktur").val(data.NoFaktur);
+                 $("#Ttd").val(data.Ttd);
+                 $("#Nip").val(data.Nip);
+                 $("#SetData").show();
+             }
+             else
+                 alert("Data Tidak Di Temukan");
+         }
+
+         function CloseDialog(tenanId, tenanName) {
+             document.getElementById("tenant").value = tenanId;
+             document.getElementById("tenantName").innerHTML = tenanName;
+             document.getElementById("btnPreview").disabled = "";
+             $("#AdvancedSearch").dialog("close");
+         }
+
+         function FindTenantNameByTenanId(id) {
+             $.ajax({
+                 type: "GET",
+                 url: "/APReport/FindTenantNameByTenanId/" + id,
+                 dataType: "json",
+                 success: ShowStateTenantName
+             });
+         }
+         function ShowStateTenantName(data) {
+             document.getElementById("tenantName").innerHTML = data;
+             if (data != "Tenant Tidak Ditemukan") {
+                 document.getElementById("btnPreview").disabled = "";
+             }
+             else {
+
+                 document.getElementById("btnPreview").disabled = "disabled";
+             }
+         }
+         
+</script>
+}
+<h2>Faktur AP1</h2>
+
+<div id="APReport">
+
+  <table id="TblAPReportForm" width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="14%" >Tahun</td>
+      <td width="1%" >:</td>
+      <td width="16%" >
+      @{
+        int currentYear = DateTime.Now.Year;
+        <input name="tahun" type="text" id="tahun" value="@currentYear"/>
+       }
+      </td>
+      <td width="1%">&nbsp;</td>
+      <td width="69%" >&nbsp;</td>
+    </tr>
+    <tr>
+      <td>Bulan</td>
+      <td>:</td>
+      <td>
+     <select name="bulan" id="bulan" >
+   @{
+      
+    String[] month = new String[12] { "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember" };
+    int currentMonth = DateTime.Now.Month;
+    int y = 1;
+    string t;
+    foreach (var item in month)
+        {
+            if (y == currentMonth)
+            {
+                t = "selected";
+            }
+            else
+            {
+                t = "";
+            }
+            <option value=@y @t>@item</option>
+            y++;
+        }
+    }
+       </select>
+      </td>
+      <td width="1%">&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+ @*   <tr>
+        <td>Mata Uang</td>
+        <td>:</td>
+        <td>
+            <select name="ccyCode" id="ccy">
+           @{
+      
+                String[] ccy = new String[2] { "IDR", "USD"};
+                int i = 1;
+                foreach (var item in ccy)
+                {
+                    <option value = @item>@item</option>
+                    i++;
+                }
+            }
+            </select>
+        </td>
+        <td></td>
+        <td></td>
+    </tr>*@
+    <tr>
+        <td>No Tenan </td>
+        <td>:</td>
+        <td><input type="text" name="Tenant" id="tenant" onchange="FindTenantNameByTenanId(this.value,event)"/></td>
+        <td><button id="AdvSearch">Search</button></td>
+        <td><label id="tenantName"></label></td>
+    </tr>
+    <tr>
+        <td></td>
+      <td colspan="4">&nbsp;&nbsp;
+        <button id="btnPreview" disabled="disabled">Submit</button>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div id="SetData" style="display:none">
+@*    @using (Html.BeginForm("ReportPreview", "APReport"))
+    {*@
+    <form id="formFakturAp" method="post" action=/APReport/ReportPreview>
+        <table>
+        <tr>
+            <td>No Faktur </td>
+            <td> 
+                <input type="text" id="NoFaktur" name="noFaktur"/>
+            </td>
+        </tr>
+        <tr>
+            <td>Authorized Person</td>
+            <td>
+                <input type="text" id="Ttd" name="ttd"/>
+                <input type="checkbox" id="pts" name="pts" value="PTS" /> PTS
+            </td>
+        </tr>
+                <tr>
+            <td>NIP</td>
+            <td>
+                <input type="text" id="Nip" name="nip"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="hidden" id="tenant1" name="Tenant"/>
+                <input type="hidden" id="bulan1" name="bulan"/>
+                <input type="hidden" id="tahun1" name="tahun"/>
+                <input type="hidden" id="ccy1" name="ccyCode"/>
+            </td>
+            <td>
+                <label id='update' name="button" class='positive button'>Update & Preview</label>
+                <button id="preview" name="Button" class='positive button' value="1">Preview</button>
+            </td>
+        </tr>
+    </table>
+    </form>
+@*  }*@
+</div>
+
+<div id="confirm-dialog" title="Konfirmasi" style="display : none">
+     <label>Data tersebut dan semua perhitungan konsesi akan ter-update ke dalam database, apakah Anda yakin ?</label>
+</div>
+
+<div id="AdvancedSearch" title="Advanced Search" style="display:none">
+        <br />
+	    <input type="text" name="search" value="" id="id_search" placeholder="Search"/> 
+        <img class="loading" src="@Url.Content("~/Content/images/loader.gif")"/>
+    <table id="tenans" width="100%">
+        <thead>
+            <tr >
+                <th>Kode</th>
+                <th>Nama</th>
+                <th>Alamat</th>
+            </tr>
+        </thead>
+        <tbody>
+    	    <tr id="noresults">
+		        <td colspan="6">No Results</td>
+	        </tr>
+            @foreach (var tenan in @ViewBag.Tenants)
+            {
+                <tr id="tenan" onclick="CloseDialog('@tenan.TenanId.ToString()','@tenan.TenanName')">
+                    <td width="10%">@tenan.TenanId.ToString()</td>
+                    <td width="35%">@tenan.TenanName</td>
+                    <td width="55%">@tenan.Alamat</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

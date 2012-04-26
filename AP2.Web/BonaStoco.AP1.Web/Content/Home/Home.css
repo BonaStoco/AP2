@@ -1,0 +1,215 @@
+﻿div#Home{
+	font-family:"trebuchet MS";
+	font-size:13px;
+}
+div#tenant{
+	width:360px;
+	height:180px;
+	margin-left:3em;
+	border-radius: 5px 5px 5px 5px;	
+	border: solid 1px #FDB344;
+	position:absolute;
+	padding: 2px 3px 10px 3px;
+	-webkit-box-shadow: 1px 1px 7px #333;
+    -moz-box-shadow: 1px 1px 7px #333;
+    color:#0066CC;
+}
+label.Header{
+	display:block;
+	padding:2px;
+	font-weight:bold;
+	text-align:center;
+	border: 1px #FDB344 solid;
+	border-radius: 5px 5px 5px 5px;
+	vertical-align:middle;
+	margin-bottom:7px;	
+	color:#000;
+	background : -webkit-linear-gradient(top, #FFFF9B, #FDB344);
+	background : -moz-linear-gradient(top, #FFFF9B, #FDB344);
+}
+
+div#tenant label.Left{
+	margin-bottom: 6px;
+	margin-left:10px;
+	width: 230px;
+	float:left;
+}
+div#tenant label.Rigth{
+	margin-bottom: 6px;
+	float:right;
+	width: 100px;
+	margin-right:10px;
+	margin-left:10px;
+	text-align:center;
+	font-weight:bold;
+}
+
+.BorderOrange
+{
+	border-bottom:#FDB344 1px solid;
+}
+
+div#Sales
+{
+    margin-left:450px;
+	width:540px;
+	height: 180px;
+	border-radius: 5px 5px 5px 5px;	
+	border: solid 1px #FDB344;
+	padding: 2px 3px 10px 3px;
+	position:absolute;
+	-webkit-box-shadow: 1px 1px 7px #333;
+    -moz-box-shadow: 1px 1px 7px #333;
+    color:#0066CC;
+}
+
+div#Sales div.HeaderLeft{
+	margin-bottom: 6px;
+	margin-left:10px;
+	width: 210px;
+	float:left;
+}
+
+div#Sales div.HeaderMataUang{
+	margin-bottom: 6px;
+	width: 280px;
+	float:right;
+	margin-right:10px;
+}
+
+div.HeaderMataUang label.HeaderIDR{
+	width: 150px;
+	text-align:right;
+	float:left;
+	padding-right: 10px;
+}
+div.HeaderMataUang label.HeaderUSD{
+	width: 120px;
+	text-align:right;
+	float:right;
+}
+
+
+div#Sales div.Left{
+	clear:both;
+	margin-bottom: 6px;
+	margin-left:10px;
+	width: 230px;
+	float:left;
+}
+
+div#Sales div.MataUang{
+	margin-bottom: 6px;
+	margin-right:10px;
+	width: 280px;
+	float:right;
+}
+
+div.MataUang label.IDR{
+	width: 150px;
+	text-align:right;
+	float:left;
+}
+div.MataUang label.USD{
+	width: 120px;
+	text-align:right;
+	float:right;
+}
+
+span.CCY{
+	text-align:left;
+	float:left;
+}
+
+div#Monitoring
+{
+    margin-top:17em;
+    margin-left:450px;
+	width:540px;
+	height:250px;
+	border-radius: 5px 5px 5px 5px;	
+	border: solid 1px #FDB344;
+	padding: 2px 3px 10px 3px;
+	position:absolute;
+	-webkit-box-shadow: 1px 1px 7px #333;
+    -moz-box-shadow: 1px 1px 7px #333;
+    color:#0066CC;
+}
+div#DataMonitoring
+{
+    width:540px;
+    height:230px;
+    margin: 0 auto;
+}
+div#Notification
+{
+    margin-left:3em;
+    margin-top:17em;
+	width:360px;
+	height:100px;
+	border-radius: 5px 5px 5px 5px;	
+	border: solid 1px #FDB344;
+	padding: 2px 3px 10px 3px;
+	position:absolute;
+	-webkit-box-shadow: 1px 1px 7px #333;
+    -moz-box-shadow: 1px 1px 7px #333;
+    color:#0066CC;
+}
+div.notif
+{
+    margin-bottom: 6px;
+	width: 90%;
+	margin-right:10px;
+	margin-left:10px;
+	text-align:left;
+}
+div.notif:hover
+{
+    color:Black;
+}
+span.RedColor
+{
+    font-weight:bold;
+    color:Red;
+}
+
+div#announcement
+{
+	margin-left:3em;
+	margin-top:17em;
+	height:250px;
+	width:360px;
+	border-radius: 5px 5px 5px 5px;	
+	border: solid 1px #FDB344;
+	padding: 2px 3px 10px 3px;
+	position:absolute;
+	-webkit-box-shadow: 1px 1px 7px #333;
+    -moz-box-shadow: 1px 1px 7px #333;
+    color:#0066CC;
+}
+
+div#headline
+{
+	width:340px;
+	margin-left:10px;
+	color:#3E576F;
+	font-weight:bold;
+}
+
+div#story
+{
+	margin-top:10px;
+	margin-left:10px;
+	margin-right:10px;
+	color:#696969;
+}
+
+div#tanggal
+{
+	margin-top:10px;
+	margin-left:10px;
+	margin-right:10px;
+	font-style:italic;
+	font-size:11px;
+	color:#696969;
+}

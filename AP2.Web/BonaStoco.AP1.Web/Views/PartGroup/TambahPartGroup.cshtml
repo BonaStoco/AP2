@@ -1,0 +1,32 @@
+﻿@model BonaStoco.AP1.MasterData.Models.PartGroup
+@{
+    ViewBag.Title = "TambahPartGroup";
+}
+@section scripts
+{
+    @Content.Script("jquery.validate.min.js", @Url)
+    @Content.Script("jquery.validate.unobtrusive.min.js", @Url)
+}
+<link href="../../Content/partgroup/tambahgroup.css" rel="stylesheet" type="text/css" />    
+@using(Html.BeginForm())
+{
+    @Html.ValidationSummary(true);
+    <fieldset>
+        <legend> Tambah Group Barang</legend>   
+        @Html.HiddenFor(model => model.GroupId)
+
+        <div class="label">Kode </div>
+        <div class=edit-field>
+        @Html.EditorFor(model => model.Kode)
+        @Html.ValidationMessageFor(model => model.Kode)
+        </div> 
+        <div class="label">Nama </div>
+        <div class=edit-field>
+        @Html.EditorFor(model => model.Nama)
+        @Html.ValidationMessageFor(model => model.Nama)
+        </div>
+        <div id="btngroup">
+            <input type="submit" id="simpangroup" value="Simpan" />
+        </div>
+    </fieldset>
+}

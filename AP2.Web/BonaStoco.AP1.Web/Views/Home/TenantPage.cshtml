@@ -1,0 +1,120 @@
+﻿@model BonaStoco.AP1.MasterData.Models.SummaryHomeTenan
+@{
+    ViewBag.Title = "Dashboard Tenant";
+}
+
+@section styles{
+<link href="@Url.Content("~/Content/themes/base/jquery-ui-1.8.14.custom.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/Content/Home/Home.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/Content/Home/ModalDialog.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/Content/ModalDialog/ModalDialogSalesMonitoring.css")" rel="stylesheet" type="text/css" />
+}
+@section scripts
+{
+    @Content.Script("AdvancedSearchTenan.js", @Url)
+    @Content.Script("highcharts.js", @Url)
+    @Content.Script("Home/TenantSalesMonitoring.js", @Url)
+    @Content.Script("stringformat.js", @Url)
+    @Content.Script("jquery.validate.min.js", @Url)
+    @Content.Script("jquery.validate.unobtrusive.min.js", @Url)
+    @Content.Script("jquery.quicksearch.js", @Url)
+    @Content.Script("Home/Announcement.js", @Url)
+    <script type="text/javascript">
+        $(document).ready(function () {
+            Announcement();
+            GetSalesMonitoring();
+        });
+    </script>
+}
+
+@*<h2>@ViewBag.Title</h2>*@
+
+<div id="Home">
+    <div id="tenant">
+    	<label class="Header">Profile</label>
+  		<div id="DataTenant">
+            <label class="Left BorderOrange">No Tenan</label>
+            <label class="Rigth BorderOrange" >@Model.TenanId</label>
+        </div>
+    </div>
+
+    <div id="Sales">
+    	<label class="Header">Sales</label>
+    	<div class="HeaderLeft"></div>
+        <div class="HeaderMataUang">
+        	<label class="HeaderIDR">IDR</label>
+        	<label class="HeaderUSD">USD</label>
+        </div>
+		
+        <div id="DataSales">
+            <div class="Left BorderOrange">Total Transaksi Hari Ini</div>
+            <div class="MataUang">
+                <label class="IDR BorderOrange">
+                    <span class="CCY">Rp.</span>
+                    <span>@Model.TotalTransaksiHariIdr.ToString("N0")</span>
+                </label>
+                <label class="USD BorderOrange">
+                    <span class="CCY">$</span>
+                    <span>@Model.TotalTransaksiHariUsd.ToString("N")</span>
+                </label>
+            </div>
+            
+            <div class="Left BorderOrange">Total Transaksi Hari Sebelumnya</div>
+            <div class="MataUang">
+                <label class="IDR BorderOrange">
+                    <span class="CCY">Rp.</span>
+                    <span>@Model.TotalTransaksiKemarinIdr.ToString("N0")</span>
+                </label>
+                <label class="USD BorderOrange">
+                    <span class="CCY">$</span>
+                    <span>@Model.TotalTransaksiKemarinUsd.ToString("N")</span>
+                </label>
+            </div>
+
+            <div class="Left BorderOrange">Total Transaksi Bulan Ini</div>
+            <div class="MataUang">
+                <label class="IDR BorderOrange">
+                    <span class="CCY">Rp.</span>
+                    <span>@Model.TotalTransaksiBulanIdr.ToString("N0")</span>
+                </label>
+                <label class="USD BorderOrange">
+                    <span class="CCY">$</span>
+                    <span>@Model.TotalTransaksiBulanUsd.ToString("N")</span>
+                </label>
+            </div>
+
+            <div class="Left BorderOrange">Total Transaksi Bulan Sebelumnya</div>
+            <div class="MataUang">
+                <label class="IDR BorderOrange">
+                    <span class="CCY">Rp.</span>
+                    <span>@Model.TotalTransaksiBulanKemarinIdr.ToString("N0")</span>
+                </label>
+                <label class="USD BorderOrange">
+                    <span class="CCY">$</span>
+                    <span>@Model.TotalTransaksiBulanKemarinUsd.ToString("N")</span>
+                </label>
+            </div>
+
+            <div class="Left BorderOrange">Total Transaksi Tahun Ini</div>
+            <div class="MataUang">
+                <label class="IDR BorderOrange">
+                    <span class="CCY">Rp.</span>
+                    <span>@Model.TotalTransaksiTahunIdr.ToString("N0")</span>
+                </label>
+                <label class="USD BorderOrange">
+                    <span class="CCY">$</span>
+                    <span>@Model.TotalTransaksiTahunUsd.ToString("N")</span>
+                </label>
+            </div>
+		</div>
+    </div>
+    <div id="Monitoring">
+        <label class="Header">Sales Monitoring</label>
+        <div id="SalesMonitoring" style="height:230px"></div>
+    </div>
+    
+    <div id="announcement">
+    	<label class="Header">Announcement</label>
+        <div id="info"></div>
+    </div>
+</div>

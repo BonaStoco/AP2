@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "RegisterTenant";
+}
+<script type="text/javascript">
+    function importTenants() {
+        $("#importBtn").val("Please wait...");
+        $("#importBtn").attr("disabled", true);
+        $.ajax({
+            type: 'POST',
+            url: '/Test/RegisterAllTenant',
+            dataType: "html",
+            success: importTenantsResult
+        });
+    }
+
+    function importTenantsResult(data, status) {
+        $("#result").html(data);
+        $("#importBtn").val("Import tenant");
+        $("#importBtn").attr("disabled", false);
+    }
+</script>
+<h2>Register Tenant</h2>
+<input id="importBtn" type="button" value="Import Tenants" onclick="importTenants();" />
+<p><div id="result"></div></p>

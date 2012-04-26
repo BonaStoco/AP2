@@ -1,0 +1,50 @@
+﻿@model BonaStoco.AP1.MasterData.Models.Product
+@{
+    ViewBag.Title = "Export Edit Product";
+}
+@section styles{
+    <link href="@Url.Content("~/Content/ImportProduct/ImportProduct.css")" rel="stylesheet" type="text/css" />
+}
+@section scripts{
+    <script type = "text/javascript">
+        $(document).ready(
+            function () {
+                $.ajax({
+                    type: "POST",
+                    url: "/MasterData/LoadPartGroupByTenan",
+                    dataType: "json",
+                    success: AddItemToDropdownList
+                });
+            });
+
+            function AddItemToDropdownList(data) {
+                $.each(data, function (item)
+                {
+                    $("#partgroup").append("<option value='" + data[item].GroupId + "'>" + data[item].Nama + "</option>");
+                })
+            }
+    </script>
+}
+<h2>Export Edit Product</h2>
+
+@using (Html.BeginForm("ExportFormatEditProduct", "MasterData", new AjaxOptions
+                            {
+                                HttpMethod = "POST",
+                                LoadingElementId = "loading",
+                                OnSuccess = "SuccessExport"
+                            }))
+{
+    <div class="editor-label">
+            Pilih group yang akan di export : 
+    </div>
+    <div class="editor-field">
+            <select name="groupId" id="partgroup">
+                <option value="all">All Group</option>
+            </select>
+    </div>
+    <p>
+        <button id="BtnExport" class="positive button"><img src="@Url.Content("~/Content/images/button/search.png")"/>Export Edit Barang</button>
+    </p>
+}
+
+

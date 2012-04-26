@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Export Product";
+}
+@section styles{
+    <link href="@Url.Content("~/Content/ImportProduct/ImportProduct.css")" rel="stylesheet" type="text/css" />
+}
+@section scripts{
+    <script type="text/javascript">
+        $("#BtnExport").click(function () {
+            $("#BtnExport").attr("disable", true);
+        });
+    </script>
+}
+<h2>Export Product</h2>
+@using (Html.BeginForm("ExportFormatNewProduct", "MasterData"))
+{
+    <p>
+        <button id="BtnExport" class="positive button"><img src="@Url.Content("~/Content/images/button/search.png")"/>Export Barang</button>
+    </p>
+}
+

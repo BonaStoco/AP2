@@ -1,0 +1,74 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+namespace BonaStoco.AP1.MasterData.Models
+{
+    public interface IMasterDataRepository
+    {
+        ProductType FindProductTypeById(int productTypeId);
+        IList<PartGroup> FindAllGroups(int tenanId);
+        PartGroup GetPartGroupByModelGuid(Guid modelGuid);
+        IList<Ccy> FindAllCurrencies(int tenanId);
+        IList<Unit> FindAllUnits(int tenanId);
+        Unit FindAllUnitsByModelGuid(Guid id);
+        IList<Product> FindAllProduct(int tenanId);       
+        IList<RequestProduct> FindAllProductPending();
+        IList<RequestProduct> FindAllProductAproveByProductId(int productId);
+        RequestProduct FindProductAproveByGuidId(string guidId);
+        IList<Product> FindProductByBarcodeOrCode(int tenantId, string code);
+        Product FindProductById(int tenanId, int productId);
+        Tenan FindTenanById(int tenanId);
+        IList<Product> FindProductByname(int tenanId, string nama);
+        IList<Tenan> GetAllTenan();
+        IList<Company> GetAllCompany();
+        MappingCompany FindCompanyName(string locationid);
+        MappingTerminal FindTerminalName(string terminalid);
+        IList<MappingCompany> FindBandaraByCategoryId(int categoryId);
+        IList<MappingTerminal> FindTerminalByCategoryIdAndLocationId(int categoryId, int locationId);
+        IList<MappingTerminal> FindTerminalByCategoryId(int categoryId);
+        IList<MappingSubTerminal> FindSubTerminalByCategoryId(int categoryId);
+        IList<MappingSubTerminal> FindSubTerminalByCategoryIdAndLocationId(int categoryId, int locationId);
+        IList<MappingSubTerminal> FindSubTerminalByCategoryIdAndTerminalId(int categoryId, int terminalId);
+        MappingSubTerminal FindSubTerminalById(int subTerminalId);
+        IList<Tenan> FindAllTenanByCategoryId(int categoryId);
+        IList<Tenan> FindTenantByBandara(int bandaraId);
+        IList<Tenan> FindTenantByBandaraAndTerminal(int bandaraId, int terminalId);
+        IList<Tenan> FindTenantByBandaraAndTerminalAndSubTerminal(int bandaraId, int terminalId, int subTerminalId);
+        Tenan FindTenantIdByBandara(int tenanId, int bandaraId);
+        Tenan FindTenantIdByBandaraAndTerminal(int tenanId, int bandaraId, int terminalId);
+        Tenan FindTenantIdByBandaraAndTerminalAndSubTerminal(int tenanId, int bandaraId, int terminalId, int subTerminalId);
+        IList<MappingTerminal> FindTerminalById(int terminalId);
+        IList<MappingCompany> FindBandaraById(int locationId);
+        Ccy GetCcyById(int ccyId);      
+        PartGroup GetPartGroupById(int groupId, int tenanId); 
+        Unit GetUnitById(int unitId, int tenanId);
+        IList<RequestProduct> FindByStatusAndTenanId(int tenanId, DateTime dari,DateTime sampai);
+        IList<RequestProduct> FindProductApprovedAndPendingByTenanId(int tenanId);
+        IList<AirCraft> FindAirCraft();
+        IList<Customer> FindCustomer();
+        IList<Destinetion> FindDestinetion();
+        IList<Comodity> FindComodity();
+        IList<BandaraAdvanceSearch> FindBandara();
+        BandaraAdvanceSearch FindTenanActivityByIdBandara(int id);
+        Product FindProductByCode(int tenantId, string code);
+        IList<Product> FindProductByGroupId(int tenanId, int groupId);
+        IList<Product> FindSearchProductByName(int tenanId, string name);
+        IList<TenanMonitoring> FindTenanActive(string data);
+        FindBandaraForMonitoringTenan FindBandaraForMonitoringTenan();
+        IList<TenanType> FindTenanType();
+        TenanType FindTenanTypeById(int tenanTypeId);
+        IList<ProductType> FindProductType();
+        FindBandaraForMonitoringTenanAP2 FindBandaraForMonitoringAP2Tenan();       
+        IList<FindCcyCode> FindCcyCode();
+        FindCcyCode FindCcyCodeByName(string ccy);
+        ProductType FindProductTypeByName(string name);
+        TenanType FindTenanTypeByName(string name);
+        PendingProductRequestCount CountPendingRequestedProduct();
+        IList<ProductPrint> FindAllProductByCode(string kode, int tenanId);
+        void RejectAllRequestProduct(RequestProduct requestProduct);
+        IList<RequestProduct> FindAllProductPendingByTenanId(int tenanId);
+        IList<ProductHeader> FindAllProductPendingByGroupTenan();
+        IList<Product> FindProductFilteredByMappedPrice(int tenanId, IList<MappingPriceList> mappingprice);
+    }
+}

@@ -1,0 +1,71 @@
+<project name="BonaStoco.AP1.Web" default="install" xmlns="http://nant.sf.net/release/0.91-alpha2/nant.xsd">
+  <property name="project.config" value="debug"/>
+  <property name="deploy.dir" value="${directory::get-current-directory()}"/>
+  <property name="solution.dir" value="." />
+  <property name="build.base" value="${project::get-name()}" />
+  <property name="build.dir" value="${deploy.dir}/${build.base}" />
+
+  <target name="clean.project">
+    <foreach item="Folder" property="foldername">
+      <in>
+        <items>
+          <include name="**/bin" />
+          <include name="**/obj" />
+        </items>
+      </in>
+      <do>
+        <delete dir="${foldername}" />
+      </do>
+    </foreach>
+  </target>
+
+  <target name="clean" description="remove all build products" depends="clean.project">
+    <delete dir="${build.dir}" if="${directory::exists(build.dir)}" />
+  </target>
+
+  <target name="init" depends="clean">
+    <mkdir dir="${build.dir}" unless="${directory::exists(build.dir)}"/>
+  </target>
+
+  <target name="copy.to.bonastoco-bin">
+    <copy todir="${bonastoco-bin}" flatten="true" overwrite="true">
+      <fileset basedir="${build.dir}">
+        <include name="${project::get-name()}.Messages.*" />
+      </fileset>
+    </copy>
+  </target>
+
+  <target name="copy.to.bonastoco.gui-bin">
+    <copy todir="${bonastoco.gui-bin}" flatten="true" overwrite="true">
+      <fileset basedir="${build.dir}">
+        <!--<include name="" />-->
+      </fileset>
+    </copy>
+  </target>
+
+  <!--<target name="compile" depends="init">
+    <exec program="${framework::get-framework-directory(framework::get-target-framework())}\MSBuild.exe"
+          commandline="/v:q /p:Configuration=${project.config} /p:OutDir=${build.dir}/"
+          workingdir="${solution.dir}" />
+  </target>-->
+
+  <target name="compile" description="Compile Web Site.">
+    <exec basedir="${framework::get-framework-directory(framework::get-target-framework())}"
+          program="msbuild.exe"
+          commandline=" BonaStoco.AP1.Web.csproj /nologo 
+                        /p:Configuration=release
+                        /t:Rebuild
+                        /t:ResolveReferences;_CopyWebApplication
+                        /p:OutDir=${build.dir}\bin\
+                        /p:WebProjectOutputDir=${build.dir}\"
+          workingdir="BonaStoco.AP1.Web"
+          failonerror="true" />
+  </target>
+
+  <target name="install" depends="compile, copy.to.bonastoco-bin, copy.to.bonastoco.gui-bin"/>
+
+  <!--<target name="install.messages">
+    <exec program="${framework::get-framework-directory(framework::get-target-framework())}\MSBuild.exe"
+          commandline="/v:q /p:Configuration=${project.config} /p:OutDir=${build.dir}/"
+          workingdir="${solution.dir}/src/BonaStoco.AP1.Messages" />-->
+</project>

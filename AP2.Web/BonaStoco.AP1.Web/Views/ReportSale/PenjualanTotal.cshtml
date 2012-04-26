@@ -1,0 +1,165 @@
+﻿@using BonaStoco.AP1.MasterData.Models
+@model BonaStoco.AP1.Web.Models.CompanyProfiles
+@{
+    int bandaraChildId = 1;
+    int terminalChildId = 100;
+    int subTerminalChildId = 1000;
+}
+@section styles{
+    <link href="@Url.Content("~/Content/treeview/TreeView.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/RekapPerTenant.css")" rel="stylesheet" type="text/css" />
+}
+@section scripts{
+    @Content.Script("TreeView.js", @Url)
+    @Content.Script("PenjualanTotal.js", @Url)
+    <script type="text/javascript">
+    $(document).ready(function() {
+		$("#root ul").each(function() {$(this).css("display", "none");});
+		$("#root .category").click(function() {
+			var childid = "#" + $(this).attr("childid");
+			if ($(childid).css("display") == "none") {$(childid).css("display", "block");}
+			else {$(childid).css("display", "none");}
+			if ($(this).hasClass("cat_close")) {$(this).removeClass("cat_close").addClass("cat_open");}
+			else{$(this).removeClass("cat_open").addClass("cat_close");}
+		});
+     });
+    </script>
+}
+<table width="100%" height="470px" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+        <td width="13%" height="100%" class="top">
+              <div id="headerCompany">@Model.CompanyName</div>
+              <br />
+
+              <div class="content">
+	                <ul id="root" class="menu">
+                    @if(ViewBag.Bandara != null)
+                    {
+                        foreach (MappingCompany bandara in ViewBag.Bandara)
+                        {
+                            <li>
+                                <a childid = '@bandaraChildId' class='cat_close category'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                                	@Ajax.ActionLink(bandara.NameCompany, "PagePenjualanHarianBandara","APReportSale", new { locationId = bandara.locationId, companyName = bandara.NameCompany },
+                                    new AjaxOptions {
+                                        HttpMethod = "GET",
+                                        InsertionMode = InsertionMode.Replace,
+                                        UpdateTargetId = "results",
+                                        LoadingElementId = "dialog-overlay"
+                                    })
+                            </li>
+                            if (ViewBag.Terminal != null)
+                            {
+                                <ul id="@bandaraChildId">
+                                    @foreach(MappingTerminal terminal in ViewBag.Terminal)
+                                    {
+                                        if(terminal.LocationId.Equals(bandara.locationId))
+                                        {
+                                            <li>
+                                                <a childid = '@terminalChildId' class='cat_close category'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                                                @Ajax.ActionLink(terminal.TerminalName, "PageHari","BandaraReportSale", new { locationId = terminal.LocationId, terminalId = terminal.TerminalId ,terminalName = terminal.TerminalName },
+                                                new AjaxOptions {
+                                                    HttpMethod = "GET",
+                                                    InsertionMode = InsertionMode.Replace,
+                                                    UpdateTargetId = "results",
+                                                    LoadingElementId = "dialog-overlay"
+                                                })
+                                            </li>
+                                            if(ViewBag.SubTerminal != null)
+                                            {
+                                                <ul id="@terminalChildId">
+                                                    @foreach(MappingSubTerminal subterminal in ViewBag.SubTerminal)
+                                                    {
+                                                        if(subterminal.TerminalId.Equals(terminal.TerminalId))
+                                                        {
+                                                            <li>
+                                                                <a class='product'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                                                                @Ajax.ActionLink(subterminal.SubTerminalName, "PageHari","TerminalReportSale", new { locationId = terminal.LocationId, subTerminalId = subterminal.SubTerminalId, subTerminalName = subterminal.SubTerminalName },
+                                                                    new AjaxOptions {
+                                                                        HttpMethod = "GET",
+                                                                        InsertionMode = InsertionMode.Replace,
+                                                                        UpdateTargetId = "results",
+                                                                        LoadingElementId = "dialog-overlay"
+                                                                    })
+                                                            </li>
+                                                        }
+                                                        subTerminalChildId++;
+                                                    }
+                                                </ul>
+                                            }
+                                        }
+                                        terminalChildId++;
+                                    }
+                                </ul>
+                            }
+                            bandaraChildId++;
+                        }
+                    }
+                    else if (ViewBag.Terminal != null)
+                    {
+                        foreach (MappingTerminal terminal in ViewBag.Terminal)
+                        {
+                            <li>
+                                <a childid = '@terminalChildId' class='cat_close category'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                                @Ajax.ActionLink(terminal.TerminalName, "PageHari","BandaraReportSale", new { locationId = terminal.LocationId, terminalId = terminal.TerminalId, terminalName = terminal.TerminalName },
+                                    new AjaxOptions {
+                                        HttpMethod = "GET",
+                                        InsertionMode = InsertionMode.Replace,
+                                        UpdateTargetId = "results",
+                                        LoadingElementId = "dialog-overlay"
+                                    })
+                            </li>
+                                if(ViewBag.SubTerminal != null)
+                                {
+                                    <ul id="@terminalChildId">
+                                        @foreach(MappingSubTerminal subterminal in ViewBag.SubTerminal)
+                                        {
+                                            if(subterminal.TerminalId.Equals(terminal.TerminalId))
+                                            {
+                                                <li>
+                                                    <a class='product'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                                                    @Ajax.ActionLink(subterminal.SubTerminalName, "PageHari","TerminalReportSale", new { locationId = terminal.LocationId,subTerminalId = subterminal.TerminalId, subTerminalName = subterminal.SubTerminalName },
+                                                        new AjaxOptions {
+                                                            HttpMethod = "GET",
+                                                            InsertionMode = InsertionMode.Replace,
+                                                            UpdateTargetId = "results",
+                                                            LoadingElementId = "dialog-overlay"
+                                                        })
+                                                </li>
+                                            }
+                                            subTerminalChildId++;
+                                        }    
+                                    </ul>
+                                }
+                            terminalChildId++;
+                        }
+                    }
+                    else if (ViewBag.SubTerminal != null)
+                    {
+                        foreach (MappingSubTerminal subterminal in ViewBag.SubTerminal)
+                        {
+                            <li>
+                                <a class='product'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                                @Ajax.ActionLink(subterminal.SubTerminalName, "PageHari", "TerminalReportSale", new { locationId = Model.Role.Bandara,subTerminalId = subterminal.SubTerminalId, subTerminalName = subterminal.SubTerminalName },
+                                    new AjaxOptions
+                                    {
+                                        HttpMethod = "GET",
+                                        InsertionMode = InsertionMode.Replace,
+                                        UpdateTargetId = "results",
+                                        LoadingElementId = "dialog-overlay"
+                                    })
+                            </li>
+                            subTerminalChildId++;
+                        }
+                    }
+                    </ul>      
+              </div>
+         </td>
+         <td width="87%" colspan="3" align="right" class="top" id="results">
+         </td>
+  </tr>
+</table>
+<div id="dialog-overlay">
+		<div id="dialog-loader">
+			<img src="@Url.Content("~/Content/images/loader-new.gif")"/>
+		</div>
+</div>

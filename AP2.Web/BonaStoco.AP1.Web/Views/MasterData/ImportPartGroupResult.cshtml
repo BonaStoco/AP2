@@ -1,0 +1,35 @@
+﻿@model BonaStoco.AP1.Web.Models.ImportProductResponse
+@{
+    ViewBag.Title = "Import Group Barang";
+}
+<div>
+@if (!Model.HasError)
+{
+    <div>
+        <h2>Part Group telah diimport. @Html.ActionLink("Kembali ke import group barang.", "ImportPartgroup")</h2>
+    </div>
+}
+else
+{
+    <div>
+        @Html.ActionLink("Kembali ke import group barang.", "ImportPartgroup")
+        <br />
+        <table>
+            <caption>Import group barang yang gagal:</caption>
+            <thead>
+                <tr>
+                    <th>Pesan error</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (string errMsg in Model.ErrorMessages)
+                {
+                    <tr>
+                        <td>@errMsg</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+</div>

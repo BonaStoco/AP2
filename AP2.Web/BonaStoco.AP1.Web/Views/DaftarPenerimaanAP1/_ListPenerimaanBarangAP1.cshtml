@@ -1,0 +1,56 @@
+﻿@model IList<BonaStoco.AP1.PengirimanBarang.Models.GRN>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#resultItem").dialog({
+            autoOpen: false,
+            width: 900,
+            height: 350,
+            show: "Fade",
+            hide: "explode"
+        });
+    });
+    function ShowDetailItem() {
+        $("#resultItem").dialog("open");
+        return false;
+    }
+</script>
+<table width="100%">
+    <thead>
+        <tr>
+            <th>Tanggal</th>
+            <th>No Transaksi</th>
+            <th>Referensi</th>
+            <th>Nama Pengirim</th>
+            <th>Keterangan</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="searchResults">
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.TanggalTransaksi</td>
+            @*<td>@item.KodeTransaksi</td>*@
+            <td onclick="ShowDetailItem()">@Ajax.ActionLink(item.KodeTransaksi, "DetailPenerimaanBarang", new { grnId = item.Guid },
+            new AjaxOptions
+             {
+                HttpMethod = "POST",
+                InsertionMode = InsertionMode.Replace,
+                UpdateTargetId = "resultItem"
+             })
+            </td>
+            <td>@item.Referensi</td>
+            <td>@item.NamaPengirim</td>
+            <td>@item.Keterangan</td>
+            <td>@item.StatusString</td>
+            <td>@Html.ActionLink("Print", "LaporanPenerimaanBarang", "DaftarPenerimaanAP1", new { guid = item.Guid, tenanId = ViewBag.TenanId }, null)</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<div id="resultItem">
+
+</div>

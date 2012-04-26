@@ -1,0 +1,88 @@
+﻿@model BonaStoco.AP1.Web.Models.ImportProductResponse
+@{
+    ViewBag.Title = "Pengiriman Barang";
+}
+
+@section styles
+{
+    <link href="@Url.Content("~/Content/themes/base/jquery-ui-1.8.14.custom.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/AdvancedSearchProduct.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/PengirimanBarang.css")" rel="stylesheet" type="text/css" />
+}
+@section scripts
+{
+    @Content.Script("AdvancedSearchProduct.js", @Url)
+    @Content.Script("PengirimanBarang.js", @Url)
+    @Content.Script("jquery.validate.min.js", @Url)
+    @Content.Script("jquery.validate.unobtrusive.min.js", @Url)
+    @Content.Script("jquery-ui-1.8.14.custom.min.js", @Url)
+    @Content.Script("stringformat.js", @Url)
+}
+<div>
+    <p>
+        Masukkan barcode atau kode barang  <br />
+        <input type="text" name="code" id="txtCari" style="float:left;margin-right:5px;"/>
+        <button class="positive button" onclick="Cari()"><img src="@Url.Content("~/Content/images/button/search.png")"/>Enter</button>
+        <button id="AdvSearchGrn" class="positive button"><img src="@Url.Content("~/Content/images/button/search.png")"/>Cari Berdasarkan Nama</button>
+        <button id="Import" class="positive button"><img src="@Url.Content("~/Content/images/button/search.png")"/>Import</button>
+        <img id="Pogress" src="@Url.Content("~/Content/images/loader.gif")" alt="Loader"/>
+    </p>
+</div>
+<br />
+@if (Model!=null && Model.HasError)
+{
+    <div id="error">
+        <table width="100%" id="tableError">
+            <thead>
+                <tr>
+                    <th>Pesan error</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (string errMsg in Model.ErrorMessages)
+                {
+                    <tr>
+                        <td class="left">@errMsg</td>
+                    </tr>
+                }
+                     <tr>
+                        <td class="center"><button id="ErrorOK" class="positive button"><img src="@Url.Content("~/Content/images/button/search.png")"/>OK</button></td>
+                    </tr>
+            </tbody>
+        </table>
+    </div>
+}
+<div id="DivEdit">
+    <table id="resultForEdit"></table>
+</div>
+<div id="DivError">
+<table id="dialogError"></table>
+</div>
+<div id="DivNewProduct">
+<table id="createNewProduct"></table>
+</div>
+<div id="divItem"></div>
+<br />
+<div id="kirimbaranglink" style="display:none;">@Html.ActionLink("Kirim Barang", "KirimBarang")</div>
+<div id="AdvancedSearchProduct" title="Pencarian Berdasarkan Nama Barang"></div>
+<div id="DialogEdit" title='Edit Jumlah Barang Yang Akan Di Kirim'></div>
+<div id="DivImport" style="display:none;">
+    <div id='accordion'>
+        <h4>File harus dalam format CSV ( namafile.csv ). Contoh format data adalah sbb:</h4>
+        <div>
+        <table border='1'>
+            <tr><td>Kode</td><td>,</td><td>Nama</td><td>,</td><td>Qty</td></tr>
+            <tr><td>00001</td><td>,</td><td>Cupcake</td><td>,</td><td>5</td></tr>
+            <tr><td>00002</td><td>,</td><td>Kopi Luwak</td><td>,</td><td>7</td></tr>
+        </table>
+        </div>
+   </div>
+   <br />
+   @using (Html.BeginForm("ImportPengirimanBarang", "PengirimanBarang", FormMethod.Post, new { enctype = "multipart/form-data" }))
+   {
+        <input type='file' name='file' id='file' style="float:left;margin-right:3px;"/>
+            <button id="BtnImport" class="positive button"><img src="@Url.Content("~/Content/images/button/search.png")"/>Import Pengiriman</button>
+        <br />
+        <div id="dialog-overlay"><div id="dialog-loader"><img src="@Url.Content("~/Content/images/loader-new.gif")"/></div></div>
+   }
+</div>

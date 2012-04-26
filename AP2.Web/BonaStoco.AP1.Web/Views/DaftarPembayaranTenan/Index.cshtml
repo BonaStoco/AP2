@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "Daftar Pembayaran Tenan";
+}
+
+@section styles
+{
+ <link href="@Url.Content("~/Content/site.css")" rel="stylesheet" type="text/css" />
+
+}
+@section scripts
+{
+    <script src="@Url.Content("~/Scripts/BillingTenant.js")" type="text/javascript"></script>
+}
+
+<h2>Daftar Pembayaran Tenan</h2>
+<h3>Tahun&nbsp;<span id="year"></span></h3>
+
+<a href= "#" onclick="PreviousYear()"><label id="lbl-previous-year"></label><span id="previous-year"></span></a>&nbsp;
+<a href= "#" onclick="NextYear()"><label id="lbl-next-year"></label><span id="next-year"></span></a>&nbsp;
+<a href= "#" onclick="AddDataUnregisteredTenant()"><label id="lbl-singkron"></label><span id="singkron"></span></a>
+<br />
+<br />
+
+<div>
+<table id="billingTenant" width="100%">
+<thead>
+    <tr>
+        <th>No</th>
+        <th>Kode</th>
+        <th>Nama</th>
+        <th>Bln Masuk</th>
+        <th>Bln Keluar</th>
+        <th>Jan</th>
+        <th>Feb</th>
+        <th>Mar</th>
+        <th>Apr</th>
+        <th>Mei</th>
+        <th>Jun</th>
+        <th>Jul</th>
+        <th>Agu</th>
+        <th>Sep</th>
+        <th>Okt</th>
+        <th>Nov</th>
+        <th>Des</th>
+    </tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</div>
+
+
+<div id="dialog-overlay">
+		<div id="dialog-loader">
+			<img src="@Url.Content("~/Content/images/loader-new.gif")"/>
+        </div>
+</div>

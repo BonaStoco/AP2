@@ -1,0 +1,33 @@
+﻿div.errorMessageContainer
+{
+    margin-top:10px;
+    background-color:#FF6A6A;
+	border: 1px Solid #E00;
+	width: 100%;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+}
+
+div.commonError
+{
+    color:White;
+    font-size:12px;
+    padding:2px;
+    padding-right:10px;
+}
+
+div#deleteError
+{
+    cursor:pointer;
+    float:right;
+    color:#000;
+}
+div#deleteError:hover
+{
+    color:White;
+}
+div#deleteError:hover:parent
+{
+    color:Black;
+}

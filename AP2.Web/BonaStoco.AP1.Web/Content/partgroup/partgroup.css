@@ -1,0 +1,87 @@
+﻿#btngroup 
+{
+     padding-left:130px;
+     padding-top:20px;
+    
+}
+#btn-add
+{
+    background-color:#f5f5f5;
+	width:150px;   
+    color:black;    
+    font-size: 14px;      
+    border:1px solid gray;
+    cursor:pointer;   
+    padding: 1px;
+    font-weight:normal;
+}
+
+body { font-family:Trebuchet MS; }	
+		div#users-contain { width: 350px; margin: 20px 0; }
+		div#users-contain table { margin: 1em 0; border-collapse: collapse; width: 100%; }
+		div#users-contain table td, div#users-contain table th { border: 1px solid #eee;  text-align: left; }
+		.ui-dialog .ui-state-error { padding: .3em; }
+		.validateTips { border: 1px solid transparent; padding: 0.3em; }
+		
+DIV#loader {
+  border: 1px solid #ccc;
+  width: 500px;
+  height: 500px;
+}
+
+DIV#edit-dialog 
+{
+    display :none;
+}
+
+DIV#add-dialog 
+{
+    display :none;
+}
+
+DIV#error-dialog 
+{
+    display :none;
+    color:Red;
+    text-decoration:blink;
+    
+}
+
+#loader 
+{
+	display:none;
+
+}
+.ui-state-error { padding: .3em; }
+.validateTips
+{
+    font-size : 11px;
+    text-decoration : blink;    
+    color : Red;
+}
+.ErrorMessage
+{
+    font-size: 11px;
+    color : Red;
+}
+
+#dialog-overlay
+{
+    	width:100%;
+    	height:100%;
+    	filter:alpha(opacity=70);
+    	-moz-opacity:0.7;
+    	-khtml-opacity: 0.7;
+    	opacity: 0.7;
+    	background:#000;
+    	position:fixed;
+    	top:0; left:0;
+    	z-index:3000;
+    	display : none;			
+}
+#dialog-loader
+{	
+	width : 200px;
+	height : 200px;
+  	margin : 14% 50% 14% 40%; 
+}

@@ -1,0 +1,122 @@
+﻿@using BonaStoco.AP1.PengirimanBarang.Models
+@model IList<GRNItem>
+@{
+    ViewBag.Title = "Verifikasi Pengiriman Barang";
+}
+<link href="@Url.Content("~/Content/themes/base/jquery-ui-1.8.14.custom.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/Content/VerifikasiPengiriman.css")" rel="stylesheet" type="text/css" />
+@section scripts
+{
+    @Content.Script("jquery-1.5.1.js", @Url)
+    @Content.Script("jquery-ui-1.8.14.custom.min.js", @Url)   
+    @Content.Script("jquery.validate.min.js", @Url)
+    @Content.Script("jquery.validate.unobtrusive.min.js", @Url)
+    @Content.Script("jquery.quicksearch.js", @Url)
+    @Content.Script("stringformat.js", @Url)
+    @Content.Script("verifikasipengirimanbarang.js", @Url) 
+}
+
+<h2>Verifikasi Pengiriman Barang</h2>
+ <applet name="jZebra" code="jzebra.RawPrintApplet.class" archive="@Url.Content("~/Scripts/jzebra.jar")" width="10" height="10">
+    <param name="printer" value="zebra"/>
+    <param name="sleep" value="200"/>
+</applet>
+@using (Html.BeginForm("ConfirmVerifikasiPengirimanBarang", "VerifikasiPengirimanBarang", new { grnId = ViewBag.GRN.Guid, tenanId = ViewBag.Tenan.TenanId }, FormMethod.Post))
+{
+<fieldset>
+    <legend>@ViewBag.Tenan.TenanId - @ViewBag.Tenan.TenanName - No Transaksi: @ViewBag.GRN.KodeTransaksi</legend>
+    <br />
+    <table>
+    <thead>
+        <tr>
+            <th>Code</th>
+            <th>Barcode</th>
+            <th>Nama Barang</th>
+            <th>Qty</th>
+            <th colspan=2>Actual Qty</th>
+            <th>Unit</th>
+            <th>Harga</th>
+            <th>Jumlah</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="searchResults">
+        @if (Model != null && Model.Count > 0)
+        {
+            foreach (GRNItem item in Model)
+            {
+                <tr id = "grnitem-@item.Guid.ToString()">
+
+                    <td>@item.Kode</td>
+                    <td>@item.Barcode</td>
+                    @if (item.Items.Length > 0)
+                    {
+                        <td style ="background:transparent url(../../Content/images/new.png) center right no-repeat">@item.Nama</td>
+                    }
+                    else
+                    {
+                            <td>@item.Nama</td>
+                    }
+                    
+                    <td>@item.Qty</td>
+                    <td>@item.ActualQty</td>
+                    <td><span onclick="Edit()" style="cursor:pointer">
+                        @Ajax.ActionLink("Edit", "Edit", new { id = item.Guid.ToString() },
+                        new AjaxOptions
+                        {
+                            HttpMethod = "POST",
+                            InsertionMode = InsertionMode.Replace,
+                            UpdateTargetId = "FormEdit"
+                        })
+                        </span>
+                       </td>
+                    <td>@item.UnitName</td>
+                    @if (item.CcyCode.ToUpper() == "USD" || item.CcyCode.ToUpper()=="US DOLLAR")
+                    {
+                         <td>$ @item.Harga.ToString("N2")</td>
+                         <td>$ @item.Jumlah.ToString("N2")</td>
+                    }
+                    else
+                    {
+                        <td>Rp. @item.Harga.ToString("N0")</td>
+                        <td>Rp. @item.Jumlah.ToString("N0")</td>
+                    }
+                    <td>                 
+
+                    
+                    <span id="linkPrint" onclick="dialogPrintBarcode('@item.Barcode', '@item.CcyCode', '@item.HargaJual', '@item.Nama', '@item.ActualQty', '@item.StatusPrint')">Print Barcode</span>
+                   
+                    </td>
+                    @if (item.Items.Length > 0)
+                    {
+		                <td><span style="cursor:pointer" onClick="history.go(0)" VALUE="Refresh">
+                            @Ajax.ActionLink("Reject", "Reject", new { id = item.Guid.ToString(), grnId = item.GRNId.ToString(), tenanId = ViewBag.Tenan.TenanId },
+                            new AjaxOptions
+                            {
+                                HttpMethod = "POST",
+                                InsertionMode = InsertionMode.Replace
+                            })
+                        </span></td>
+                    }
+                    else
+                    {
+                        <td></td>       
+                    }
+                </tr>
+            }
+        }
+    </tbody>
+    </table>
+    <br />
+    <input type="submit" value="Confirm" />
+  
+
+</fieldset>
+}
+<div id="FormEdit" title="Edit Qty">
+
+</div>
+ <div id="dialog-print" title="Print Barcode" style="display:block">
+   
+</div>

@@ -1,0 +1,75 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+@section scripts
+{
+    <script type="text/javascript">
+
+        function findPrinter() {
+            // Searches for locally installed printer with "zebra" in the name
+            document.jZebra.findPrinter("Zebra  TLP2844");
+        }
+
+	    function PrintBarcode(){
+		    var harga ="150000\n";
+		    var partname="Aqua Botol 600 ml\n";
+		    var ccyCode="IDR";
+		    var barcode="1234567890\n";
+		    var applet = document.jZebra;
+		    if (applet != null) {
+                // Plain Text
+				applet.findPrinter("Zebra  TLP2844");
+				applet.append("N\n");
+				applet.append("q609\n");
+				applet.append("Q203,26\n");
+				applet.append("A253,26,0,3,1,1,N," + partname);
+				applet.append("B0,0,0,UA0,2,2,30,B," + barcode);
+				applet.append("A253,26,0,3,1,1,N," + "RP" + "    " + harga);
+				applet.append("P1,1");
+                // Send to the printer
+                applet.print();
+                while (!applet.isDonePrinting()) {
+                    // Wait
+                }
+                var e = applet.getException();
+                if (e == null) var info = "Printed Successfully";
+                else {
+                    var info = "Error: " + e.getLocalizedMessage();
+                    if (info != null)
+                        alert(info);
+                }
+            }
+            else {
+                var info = "Printer belum siap";
+                alert(info);
+            }
+        }
+        function print() {
+            // Send characters/raw commands to applet using "append"
+            // Hint:  Carriage Return = \r, New Line = \n, Escape Double Quotes= \"
+            //document.jZebra.append("A37,503,0,1,2,3,N,ABC WIDGET CO\n");
+
+            // Send characters/raw commands to printer
+            //document.jZebra.print();
+
+            document.jZebra.append("N\n");
+            document.jZebra.append("q609\n");
+            document.jZebra.append("Q203,26\n");
+            document.jZebra.append("A253,26,0,3,1,1,N,Kopi Luwak");
+            document.jZebra.append("B0,0,0,UA0,2,2,30,B,1234567890");
+            document.jZebra.append("A253,26,0,3,1,1,N,RP 50,000");
+            document.jZebra.append("P1,1");
+            document.jZebra.print();
+        }
+    </script>
+}
+<applet name="jZebra" code="jzebra.RawPrintApplet.class" archive="@Url.Content("~/Scripts/jzebra.jar")" width="100" height="100"></applet><br><br>
+
+<!--<applet name="jZebra" code="jzebra.RawPrintApplet.class" archive="@Url.Content("~/Scripts/jzebra.jar")" width="10" height="10">
+<param name="printer" value="zebra">
+<param name="sleep" value="200"></applet>-->
+
+<h2>BarcodePrintIndex</h2>
+<br />
+<input type="button" onClick="findPrinter()" value="Detect Printer"><br><br>
+<button onclick="print()">Print</button>

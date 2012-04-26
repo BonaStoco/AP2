@@ -1,0 +1,149 @@
+﻿<style type="text/css">
+<!--
+
+ul#navbutton #btnactive a {
+    padding: 10px 70px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 2.8em;
+    background-color: #D43F55;
+    color: #fff;
+    border-radius: 4px 4px 4px 4px;
+    -webkit-border-radius: 4px 4px 4px 4px;
+    -moz-border-radius: 4px 4px 4px 4px;
+   
+}
+
+#detailleft {
+	
+	background-color:#f8f8f8;	   
+	position: inherit;
+	width: 222px;
+	height: auto;
+	min-height:750px;
+	z-index: 1;
+	border: 1px solid #dcd;
+	
+}
+
+#ReportStock, #ReportStock tr, #ReportStock td
+{
+	border:none 0px #ccc;
+	margin-top:0px;
+	top:0px;
+}
+
+
+#tblstock 
+{
+	border:0;
+
+}
+
+#tblstock tr 
+{
+     
+    border:solid 1px #FF3F00;
+  
+}
+
+#tblstock td
+{
+	border:solid 2px #fff;
+}
+
+#tblstock th
+{
+	 background-color:#5B8EAC; 
+	 color:White;
+	border:solid 1px #fff;
+	font-size:8pt;
+	
+}
+
+
+#menugroup a
+{
+	 color:blue;
+	 font-size:11pt;
+	 padding-left:15px;	 
+	}
+
+#menugroup a:link
+{
+    text-decoration:none;   
+   
+}
+
+#menugroup a:hover
+{
+ color: #5B8EAC; 
+ font-weight:bold;  
+}
+#menugroup a:active
+{
+ color: blue; 
+ font-weight:lighter;
+}
+
+	
+#btnbandara
+{
+	background-color:#5B8EAC;  
+    margin-left:1px;    
+    padding:5px 3px 5px 3px;
+    color:white;  
+    font-weight:bold;
+    font-size:10pt;  
+    border:0px solid black;
+   
+	}
+	
+	
+#lapstock
+{
+	 background-color:#4A4AFF;       
+     padding:0px 0px 0px 6px;
+     color:yellow;
+     font-size:larger;
+     font-weight:bold; 
+	}
+	
+	
+    #nameTenan
+    {
+	    color:#6699CC;
+	    border:solid 0px #000;
+	    background-color:#fff;
+	    border-radius: 4px 4px 4px 4px;
+		-webkit-border-radius: 4px 4px 4px 4px;
+		-moz-border-radius: 4px 4px 4px 4px;
+		font-size:x-large;
+    
+     
+     
+    }
+    
+ #tenanId
+    {
+	    color:#6699CC;
+	    border:solid 1px #ccc;
+	    background-color:#FFF;	   
+    width:60px;
+     
+    }
+.btn
+{
+	 background-color:#00BF00;
+	 width:200px;
+	 display:block;
+	  border-radius: 4px 4px 4px 4px;
+    -webkit-border-radius: 4px 4px 4px 4px;
+    -moz-border-radius: 4px 4px 4px 4px;    
+     padding-right:20px;
+     color:#fff;
+     weight:bold;
+}
+    
+-->
+</style>

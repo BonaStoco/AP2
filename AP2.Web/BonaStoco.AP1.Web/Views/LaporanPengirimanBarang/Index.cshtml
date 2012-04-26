@@ -1,0 +1,84 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+@section styles
+{
+<style>
+    #form
+    {
+        border:0px; border-color:#fff;
+    }
+    #form tr
+    {
+        border:0px; border-color:#fff;
+    }
+    #form td
+    {
+        border:0px; border-color:#fff;
+    }
+</style>
+}
+
+@section scripts{
+     <script type="text/javascript">
+         $(function () {
+             var dates = $("#dari, #sampai").datepicker({ dateFormat: 'yy-mm-dd',
+                 defaultDate: "+1w",
+                 changeMonth: true,
+                 numberOfMonths: 1,
+                 onSelect: function (selectedDate) {
+                     var option = this.id == "dari" ? "minDate" : "maxDate",
+					instance = $(this).data("datepicker"),
+					date = $.datepicker.parseDate(
+						instance.settings.dateFormat ||
+						$.datepicker._defaults.dateFormat,
+						selectedDate, instance.settings);
+                     dates.not(this).datepicker("option", option, date);
+                 }
+             });
+         });
+	</script>
+}
+    <h2>Laporan Pengiriman Barang</h2>
+    <div>
+        @using (Ajax.BeginForm("LaporanPengirimanBarang", "LaporanPengirimanBarang",
+            new AjaxOptions
+            {
+                HttpMethod = "POST",
+                InsertionMode = InsertionMode.Replace,
+                UpdateTargetId = "view",
+                LoadingElementId = "progress"
+            }
+            ))
+        { 
+            
+            <table id="form">
+            <tr>
+                <td>Dari</td>
+                <td><input type="text" name="dari" id="dari" readonly="readonly"/></td>
+            </tr>
+            <tr>
+                <td>Sampai</td>
+                <td><input type="text" name="sampai" id="sampai" readonly="readonly" /></td>
+            </tr>
+            <tr>
+                <td>Status</td>
+                <td>
+                <input type="radio" value="all" name="status" checked="checked"/>&nbsp; All &nbsp;&nbsp;
+                <input type="radio" value="0" name="status" />&nbsp; Belum Konfirmasi &nbsp;&nbsp;
+                <input type="radio" value="1" name="status"/>&nbsp; Sudah Konfirmasi &nbsp;&nbsp;
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <input type="submit" value="Cari" />&nbsp;<img id="progress" src="@Url.Content("~/Content/images/loader.gif")" alt="Loader"/>
+             </td>
+            </tr>
+            </table>
+            
+        }
+    </div>
+<div id="view">
+
+</div>

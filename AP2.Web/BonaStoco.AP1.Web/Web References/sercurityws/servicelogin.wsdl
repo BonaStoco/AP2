@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="urn:BonastocoServices" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn:BonastocoServices" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="urn:BonastocoServices">
+      <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/" />
+      <xsd:complexType name="Person">
+        <xsd:all>
+          <xsd:element login="email" name="email" type="xsd:string" />
+          <xsd:element login="password" name="password" type="xsd:string" />
+          <xsd:element login="code" name="code" type="xsd:string" />
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="loginResponse">
+        <xsd:all>
+          <xsd:element response="token" name="token" type="xsd:string" />
+          <xsd:element response="status" name="status" type="xsd:int" />
+          <xsd:element response="message" name="message" type="xsd:string" />
+          <xsd:element response="role" name="role" type="xsd:int" />
+          <xsd:element response="companyid" name="companyid" type="xsd:int" />
+          <xsd:element response="company" name="company" type="xsd:string" />
+          <xsd:element response="refresh" name="refresh" type="xsd:int" />
+          <xsd:element response="usertype" name="usertype" type="xsd:int" />
+          <xsd:element response="limit" name="limit" type="xsd:int" />
+          <xsd:element response="expired" name="expired" type="xsd:date" />
+          <xsd:element response="company" name="headoffice" type="xsd:string" />
+          <xsd:element response="resellerid" name="resellerid" type="xsd:int" />
+          <xsd:element response="reselleremail" name="reselleremail" type="xsd:string" />
+          <xsd:element response="reserved" name="reserved" type="xsd:string" />
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="changepasswd">
+        <xsd:all>
+          <xsd:element passwd="token" name="token" type="xsd:string" />
+          <xsd:element passwd="oldpassword" name="oldpassword" type="xsd:string" />
+          <xsd:element passwd="newpassword" name="newpassword" type="xsd:string" />
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="logmeout">
+        <xsd:all>
+          <xsd:element logoff="token" name="token" type="xsd:string" />
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="serverToken">
+        <xsd:all>
+          <xsd:element svrtoken="token" name="token" type="xsd:string" />
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="sayHello">
+        <xsd:all>
+          <xsd:element say_hello="name" name="name" type="xsd:string" />
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="serverResponse">
+        <xsd:all>
+          <xsd:element response="token" name="token" type="xsd:string" />
+          <xsd:element response="status" name="status" type="xsd:int" />
+          <xsd:element response="message" name="message" type="xsd:string" />
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="serverStatistic">
+        <xsd:all>
+          <xsd:element response="token" name="token" type="xsd:string" />
+          <xsd:element response="status" name="status" type="xsd:int" />
+          <xsd:element response="message" name="message" type="xsd:string" />
+          <xsd:element response="trial" name="trial" type="xsd:int" />
+          <xsd:element response="free" name="free" type="xsd:int" />
+          <xsd:element response="cobranding" name="cobranding" type="xsd:int" />
+          <xsd:element response="personal" name="personal" type="xsd:int" />
+          <xsd:element response="personal" name="corporate" type="xsd:int" />
+          <xsd:element response="product" name="product" type="xsd:int" />
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="stockTransfer">
+        <xsd:all>
+          <xsd:element stock="token" name="token" type="xsd:string" />
+        </xsd:all>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="helloRequest">
+    <wsdl:part name="person" type="tns:sayHello" />
+  </wsdl:message>
+  <wsdl:message name="helloResponse">
+    <wsdl:part name="return" type="tns:serverResponse" />
+  </wsdl:message>
+  <wsdl:message name="logonRequest">
+    <wsdl:part name="person" type="tns:Person" />
+  </wsdl:message>
+  <wsdl:message name="logonResponse">
+    <wsdl:part name="return" type="tns:loginResponse" />
+  </wsdl:message>
+  <wsdl:message name="changepasswordRequest">
+    <wsdl:part name="person" type="tns:changepasswd" />
+  </wsdl:message>
+  <wsdl:message name="changepasswordResponse">
+    <wsdl:part name="return" type="tns:serverResponse" />
+  </wsdl:message>
+  <wsdl:message name="logoutRequest">
+    <wsdl:part name="person" type="tns:logmeout" />
+  </wsdl:message>
+  <wsdl:message name="logoutResponse">
+    <wsdl:part name="return" type="tns:serverResponse" />
+  </wsdl:message>
+  <wsdl:message name="resetcompanyRequest">
+    <wsdl:part name="person" type="tns:serverToken" />
+  </wsdl:message>
+  <wsdl:message name="resetcompanyResponse">
+    <wsdl:part name="return" type="tns:serverResponse" />
+  </wsdl:message>
+  <wsdl:message name="bonastocostatisticRequest">
+    <wsdl:part name="person" type="tns:serverToken" />
+  </wsdl:message>
+  <wsdl:message name="bonastocostatisticResponse">
+    <wsdl:part name="return" type="tns:serverStatistic" />
+  </wsdl:message>
+  <wsdl:message name="stocktransferRequest">
+    <wsdl:part name="person" type="tns:stockTransfer" />
+  </wsdl:message>
+  <wsdl:message name="stocktransferResponse">
+    <wsdl:part name="return" type="tns:serverResponse" />
+  </wsdl:message>
+  <wsdl:portType name="BonastocoServicesPortType">
+    <wsdl:operation name="hello">
+      <documentation>Logon Mechanism</documentation>
+      <wsdl:input message="tns:helloRequest" />
+      <wsdl:output message="tns:helloResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="logon">
+      <documentation>Logon Mechanism</documentation>
+      <wsdl:input message="tns:logonRequest" />
+      <wsdl:output message="tns:logonResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="changepassword">
+      <documentation>Change User Password</documentation>
+      <wsdl:input message="tns:changepasswordRequest" />
+      <wsdl:output message="tns:changepasswordResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="logout">
+      <documentation>Logout Mechanism</documentation>
+      <wsdl:input message="tns:logoutRequest" />
+      <wsdl:output message="tns:logoutResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="resetcompany">
+      <documentation>Reset Company Name Success</documentation>
+      <wsdl:input message="tns:resetcompanyRequest" />
+      <wsdl:output message="tns:resetcompanyResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="bonastocostatistic">
+      <documentation>Bonastoco statistic</documentation>
+      <wsdl:input message="tns:bonastocostatisticRequest" />
+      <wsdl:output message="tns:bonastocostatisticResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="stocktransfer">
+      <documentation>Stock Transfer</documentation>
+      <wsdl:input message="tns:stocktransferRequest" />
+      <wsdl:output message="tns:stocktransferResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BonastocoServicesBinding" type="tns:BonastocoServicesPortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="hello">
+      <soap:operation soapAction="urn:BonastocoServices#hello" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:BonastocoServices" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:BonastocoServices" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="logon">
+      <soap:operation soapAction="urn:BonastocoServices#logon" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:BonastocoServices" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:BonastocoServices" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="changepassword">
+      <soap:operation soapAction="urn:BonastocoServices#changepassword" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:BonastocoServices" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:BonastocoServices" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="logout">
+      <soap:operation soapAction="urn:BonastocoServices#logout" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:BonastocoServices" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:BonastocoServices" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="resetcompany">
+      <soap:operation soapAction="urn:BonastocoServices#resetcompany" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:BonastocoServices" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:BonastocoServices" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="bonastocostatistic">
+      <soap:operation soapAction="urn:BonastocoServices#bonastocostatistic" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:BonastocoServices" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:BonastocoServices" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="stocktransfer">
+      <soap:operation soapAction="urn:BonastocoServices#stocktransfer" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:BonastocoServices" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:BonastocoServices" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BonastocoServices">
+    <wsdl:port name="BonastocoServicesPort" binding="tns:BonastocoServicesBinding">
+      <soap:address location="http://www.bonastoco.com/services/servicelogin.php" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

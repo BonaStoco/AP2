@@ -1,0 +1,73 @@
+﻿@model List<BonaStoco.AP1.Web.Report.DailySales>
+@{
+    DateTime today = DateTime.Today;
+    DateTime previousDay = today.AddDays(-1);
+    DateTime twoDaysBefore = previousDay.AddDays(-1);    
+}
+
+<span id='location-id' hidden="hidden">@ViewBag.locationId</span>
+<span id='no'  hidden="hidden">0</span>
+<table id="detail-harian" width="95%" height="65%" border="0" align="right" cellpadding="0" cellspacing="0">
+    <tr>
+        <td width="128px" height="39">
+            <div class="ActivePeriode">Hari
+            </div>
+        </td>
+        <td width="128px">
+            <div id="Periode">@Ajax.ActionLink("Bulan", "PagePenjualanBulananBandara", "APReportSale", new { locationId = ViewBag.LocationId, ViewBag.CompanyName },
+                    new AjaxOptions {
+                        HttpMethod = "GET",
+                        InsertionMode = InsertionMode.Replace,
+                        UpdateTargetId = "results",
+                        LoadingElementId = "dialog-overlay"
+                    })
+            </div>
+        </td>
+        <td width="128px">
+            <div id="Periode">@Ajax.ActionLink("Tahun", "PagePenjualanTahunanBandara", "APReportSale", new { locationId = ViewBag.LocationId, ViewBag.CompanyName },
+                    new AjaxOptions
+                    {
+                        HttpMethod = "GET",
+                        InsertionMode = InsertionMode.Replace,
+                        UpdateTargetId = "results",
+                        LoadingElementId = "dialog-overlay"
+                    })
+            </div>
+        </td >
+        <td width="100%">
+            <div class="NamaBandara">Bandara @ViewBag.CompanyName</div>
+        </td>
+    </tr>
+    <tr>
+     <td colspan="4" align="right" class="top" id="results">
+            <table width="100%" height="100%" border="0" align="right" cellpadding="0" cellspacing="0">
+            <tr height="30px" class="header-view" style="cursor:pointer"><td>Total Penjualan</td></tr>
+                <td>   
+                <div id="tanggalresult">
+					   <table id="tableRekap" width="100%">
+                         <tr>
+                            <th width="200" height="21" class="right" id="twoDaysBefore" style="text-align:right;">@twoDaysBefore.ToString("dd MMMM yyyy")</th>
+					        <th width="200" height="21" class="right" id="previousDay" style="text-align:right;">@previousDay.ToString("dd MMMM yyyy")</th>
+                            <th width="200" height="21" class="right" id="today" style="text-align:right;">@ViewBag.Today.ToString("dd MMMM yyyy")</th>
+					     </tr>         
+					     <tr>
+					        <td height="40" class="twobefore"><span id="date1-idr">Rp.@ViewBag.TwoDaysBeforeDate</span></td>
+					        <td height="40" class="before"><span id="date2-idr">Rp.@ViewBag.PreviousDayDate</span></td>
+                            <td height="40" class="current" style="font-weight:bold;"><span id="date3-idr">Rp.@ViewBag.TotalSalePerDay</span></td>
+					     </tr>
+                         <tr>
+					        <td height="40"  class=" twobefore"><span id="date1-usd">$@ViewBag.TwoDaysBeforeDateUSD</span></td>
+					        <td height="40"  class=" before"><span id="date2-usd">$@ViewBag.PreviousDayDateUSD</span></td>
+                            <td height="40"  class="current" style="font-weight:bold;"><span id="date3-usd">$@ViewBag.TotalSalePerDayUSD</span></td>
+					     </tr>
+                       </table>
+                       <br />
+                      <div style="float:right">   
+                        <a href="#" onclick="previous()" id="previous"><b> Previous</b></a>  <a href="#" onclick="next()" id="next" style="cursor:pointer"><b>| Next</b></a>
+                     </div> 
+                </div>         
+                </td>
+              </table>
+    </td>                      
+   </tr>
+</table>
